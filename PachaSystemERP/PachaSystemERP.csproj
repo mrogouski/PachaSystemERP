@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46FBE84B-5463-46AC-9F7D-82D162B68952}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PachaSystemERP</RootNamespace>
+    <AssemblyName>PachaSystemERP</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HasarLibreriaFiscal3561">
+      <HintPath>..\..\..\..\Documents\Programacion\IFH-2G-Distribucion-180914\HERRAMIENTAS\DLL NET\HasarLibreriaFiscal3561.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\CertificadoX509.cs" />
+    <Compile Include="Classes\Configuracion.cs" />
+    <Compile Include="Classes\ControladorFiscal.cs" />
+    <Compile Include="Classes\DetalleProducto.cs" />
+    <Compile Include="Classes\DetalleServicio.cs" />
+    <Compile Include="Classes\Facturacion.cs" />
+    <Compile Include="Classes\FacturaElectronica.cs" />
+    <Compile Include="Classes\GeneradorCodigoBarras.cs" />
+    <Compile Include="Classes\GeneradorComprobante.cs" />
+    <Compile Include="Classes\TiqueAcceso.cs" />
+    <Compile Include="Controls\CueText.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Enums\Concepto.cs" />
+    <Compile Include="Enums\ModoDeFacturacion.cs" />
+    <Compile Include="Enums\ModoDeOperacion.cs" />
+    <Compile Include="Enums\TipoDeComprobante.cs" />
+    <Compile Include="Enums\TipoDeDocumento.cs" />
+    <Compile Include="Enums\TipoDeFacturacion.cs" />
+    <Compile Include="Enums\TipoDeResponsabilidad.cs" />
+    <Compile Include="Forms\ControlCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ControlCategoria.Designer.cs">
+      <DependentUpon>ControlCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ControlIva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ControlIva.Designer.cs">
+      <DependentUpon>ControlIva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ControlStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ControlStock.Designer.cs">
+      <DependentUpon>ControlStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ControlTributos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ControlTributos.Designer.cs">
+      <DependentUpon>ControlTributos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Factura.Designer.cs">
+      <DependentUpon>Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManejoClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManejoClientes.Designer.cs">
+      <DependentUpon>ManejoClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManejoTipoFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManejoTipoFactura.Designer.cs">
+      <DependentUpon>ManejoTipoFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MenuConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MenuConfiguracion.Designer.cs">
+      <DependentUpon>MenuConfiguracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReportFacturaB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportFacturaB.Designer.cs">
+      <DependentUpon>ReportFacturaB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VisorFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VisorFactura.Designer.cs">
+      <DependentUpon>VisorFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\DataSources\DataSetComprobante.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetComprobante.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Forms\ControlCategoria.resx">
+      <DependentUpon>ControlCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ControlIva.resx">
+      <DependentUpon>ControlIva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ControlStock.resx">
+      <DependentUpon>ControlStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ControlTributos.resx">
+      <DependentUpon>ControlTributos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Factura.resx">
+      <DependentUpon>Factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManejoClientes.resx">
+      <DependentUpon>ManejoClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManejoTipoFactura.resx">
+      <DependentUpon>ManejoTipoFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MenuConfiguracion.resx">
+      <DependentUpon>MenuConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportFacturaB.resx">
+      <DependentUpon>ReportFacturaB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VisorFactura.resx">
+      <DependentUpon>VisorFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Reports\FacturaB.rdlc" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\DataSetComprobante.xsc">
+      <DependentUpon>DataSetComprobante.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\DataSetComprobante.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetComprobante.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\DataSources\DataSetComprobante.xss">
+      <DependentUpon>DataSetComprobante.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PachaSystem.Data\PachaSystem.Data.csproj">
+      <Project>{bd0cc208-0a5b-46e5-8a22-b583e786fb41}</Project>
+      <Name>PachaSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PachaSystem.Wsaa\PachaSystem.Wsaa.csproj">
+      <Project>{ed4cd5c4-f39e-45e6-926b-ba924419582f}</Project>
+      <Name>PachaSystem.Wsaa</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PachaSystem.Wsfe\PachaSystem.Wsfe.csproj">
+      <Project>{fde93b7f-ae6f-4c18-b112-8f2ae052e9a5}</Project>
+      <Name>PachaSystem.Wsfe</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
