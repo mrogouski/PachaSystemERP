@@ -11,12 +11,12 @@ namespace PachaSystem.Wsfe.Responses
     [DataContract(Name = "FECompConsultaResponse", Namespace = "http://ar.gov.afip.dif.FEV1/")]
     public class ConsultaComprobanteResponse
     {
-        private ConsultarComprobanteResponse _resultados;
+        private ConsultarDetalleComprobanteResponse _resultados;
         private List<Error> _errores;
         private List<Evento> _eventos;
 
         [DataMember(Name = "ResultGet", Order = 0)]
-        public ConsultarComprobanteResponse Resultados
+        public ConsultarDetalleComprobanteResponse Resultados
         {
             get
             {

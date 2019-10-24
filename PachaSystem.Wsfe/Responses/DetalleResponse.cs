@@ -12,11 +12,11 @@ namespace PachaSystem.Wsfe.Responses
     public class DetalleResponse
     {
         private int _concepto;
-        private int _tipoDeDocumento;
-        private long _numeroDeDocumento;
-        private long _comprobanteDesde;
-        private long _comprobanteHasta;
-        private string _comprobanteFecha;
+        private int _tipoDocumento;
+        private long _numeroDocumento;
+        private long _numeroComprobanteInicial;
+        private long _numeroComprobanteFinal;
+        private string _fechaComprobante;
         private string _resultado;
         private List<Observaciones> _observaciones;
 
@@ -35,72 +35,72 @@ namespace PachaSystem.Wsfe.Responses
         }
 
         [DataMember(Name = "DocTipo", Order = 1)]
-        public int TipoDeDocumento
+        public int TipoDocumento
         {
             get
             {
-                return _tipoDeDocumento;
+                return _tipoDocumento;
             }
 
             set
             {
-                _tipoDeDocumento = value;
+                _tipoDocumento = value;
             }
         }
 
         [DataMember(Name = "DocNro", Order = 2)]
-        public long NumeroDeDocumento
+        public long NumeroDocumento
         {
             get
             {
-                return _numeroDeDocumento;
+                return _numeroDocumento;
             }
 
             set
             {
-                _numeroDeDocumento = value;
+                _numeroDocumento = value;
             }
         }
 
         [DataMember(Name = "CbteDesde", Order = 3)]
-        public long ComprobanteDesde
+        public long NumeroComprobanteInicial
         {
             get
             {
-                return _comprobanteDesde;
+                return _numeroComprobanteInicial;
             }
 
             set
             {
-                _comprobanteDesde = value;
+                _numeroComprobanteInicial = value;
             }
         }
 
         [DataMember(Name = "CbteHasta", Order = 4)]
-        public long ComprobanteHasta
+        public long NumeroComprobanteFinal
         {
             get
             {
-                return _comprobanteHasta;
+                return _numeroComprobanteFinal;
             }
 
             set
             {
-                _comprobanteHasta = value;
+                _numeroComprobanteFinal = value;
             }
         }
 
         [DataMember(Name = "CbteFch", Order = 5)]
-        public string ComprobanteFecha
+        public string FechaComprobante
         {
             get
             {
-                return _comprobanteFecha;
+                return _fechaComprobante;
             }
 
             set
             {
-                _comprobanteFecha = value;
+                _fechaComprobante = value;
             }
         }
 

@@ -9,19 +9,19 @@ namespace PachaSystem.Wsfe.Responses
     using PachaSystem.Wsfe.Models;
 
     [DataContract(Name = "FECompConsResponse", Namespace = "http://ar.gov.afip.dif.FEV1/")]
-    public class ConsultarComprobanteResponse : CaeDetalleResponse
+    public class ConsultarDetalleComprobanteResponse : CaeDetalleResponse
     {
         private string _resultado;
-        private string _codigoDeAutorizacion;
-        private string _tipoDeEmision;
-        private string _fechaDeVencimiento;
-        private string _fechaDeProceso;
+        private string _codigoAutorizacion;
+        private string _tipoEmision;
+        private string _fechaVencimiento;
+        private string _fechaProceso;
         private List<Observaciones> _observaciones;
-        private int _puntoDeVenta;
-        private int _tipoDeComprobante;
+        private int _puntoVenta;
+        private int _tipoComprobante;
 
         [DataMember(Name = "Resultado", Order = 0)]
-        public string Resultado
+        public new string Resultado
         {
             get
             {
@@ -35,63 +35,63 @@ namespace PachaSystem.Wsfe.Responses
         }
 
         [DataMember(Name = "CodAutorizacion", Order = 1)]
-        public string CodigoDeAutorizacion
+        public string CodigoAutorizacion
         {
             get
             {
-                return _codigoDeAutorizacion;
+                return _codigoAutorizacion;
             }
 
             set
             {
-                _codigoDeAutorizacion = value;
+                _codigoAutorizacion = value;
             }
         }
 
         [DataMember(Name = "EmisionTipo", Order = 2)]
-        public string TipoDeEmision
+        public string TipoEmision
         {
             get
             {
-                return _tipoDeEmision;
+                return _tipoEmision;
             }
 
             set
             {
-                _tipoDeEmision = value;
+                _tipoEmision = value;
             }
         }
 
         [DataMember(Name = "FchVto", Order = 3)]
-        public string FechaDeVencimiento
+        public string FechaVencimiento
         {
             get
             {
-                return _fechaDeVencimiento;
+                return _fechaVencimiento;
             }
 
             set
             {
-                _fechaDeVencimiento = value;
+                _fechaVencimiento = value;
             }
         }
 
         [DataMember(Name = "FchProceso", Order = 4)]
-        public string FechaDeProceso
+        public string FechaProceso
         {
             get
             {
-                return _fechaDeProceso;
+                return _fechaProceso;
             }
 
             set
             {
-                _fechaDeProceso = value;
+                _fechaProceso = value;
             }
         }
 
         [DataMember(Name = "Observaciones", Order = 5)]
-        public List<Observaciones> Observaciones
+        public new List<Observaciones> Observaciones
         {
             get
             {
@@ -105,30 +105,30 @@ namespace PachaSystem.Wsfe.Responses
         }
 
         [DataMember(Name = "PtoVta", Order = 6)]
-        public int PuntoDeVenta
+        public int PuntoVenta
         {
             get
             {
-                return _puntoDeVenta;
+                return _puntoVenta;
             }
 
             set
             {
-                _puntoDeVenta = value;
+                _puntoVenta = value;
             }
         }
 
         [DataMember(Name = "CbteTipo", Order = 7)]
-        public int TipoDeComprobante
+        public int TipoComprobante
         {
             get
             {
-                return _tipoDeComprobante;
+                return _tipoComprobante;
             }
 
             set
             {
-                _tipoDeComprobante = value;
+                _tipoComprobante = value;
             }
         }
     }

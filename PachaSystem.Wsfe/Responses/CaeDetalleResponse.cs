@@ -10,7 +10,7 @@ namespace PachaSystem.Wsfe.Responses
     public class CaeDetalleResponse : DetalleResponse
     {
         private string _cae;
-        private string _caeFechaDeVencimiento;
+        private string _fechaVencimientoCAE;
 
         [DataMember(Name = "CAE", Order = 0)]
         public string CAE
@@ -27,16 +27,16 @@ namespace PachaSystem.Wsfe.Responses
         }
 
         [DataMember(Name = "CAEFchVto", Order = 1)]
-        public string CAEFechaDeVencimiento
+        public string FechaVencimientoCAE
         {
             get
             {
-                return _caeFechaDeVencimiento;
+                return _fechaVencimientoCAE;
             }
 
             set
             {
-                _caeFechaDeVencimiento = value;
+                _fechaVencimientoCAE = value;
             }
         }
     }

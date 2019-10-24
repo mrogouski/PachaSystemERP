@@ -1,4 +1,5 @@
-﻿using PachaSystemERP.Forms;
+﻿using PachaSystem.Data;
+using PachaSystemERP.Forms;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -21,6 +22,9 @@ namespace PachaSystemERP
             culture.NumberFormat.NumberDecimalSeparator = ".";
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            PachaSystemContext context = new PachaSystemContext();
+            context.Database.Initialize(false);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

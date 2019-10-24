@@ -214,7 +214,7 @@
                 if (response != null)
                 {
                     _comprobante.CAE = response.DetalleResponse.Select(x => x.CAE).First();
-                    _comprobante.FechaVencimientoCAE = DateTime.ParseExact(response.DetalleResponse.Select(x => x.CAEFechaDeVencimiento).First(), "yyyyMMdd", CultureInfo.CurrentCulture);
+                    _comprobante.FechaVencimientoCAE = DateTime.ParseExact(response.DetalleResponse.Select(x => x.FechaVencimientoCAE).First(), "yyyyMMdd", CultureInfo.CurrentCulture);
                 }
             }
 
@@ -226,60 +226,6 @@
         public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public int ObtenerDigitoControl(string codigoBarras)
-        {
-            int impares = 0;
-            int pares = 0;
-
-            if (codigoBarras.Length % 2 != 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(codigoBarras));
-            }
-
-            var codigoBarrasReverso = codigoBarras.Reverse();
-            for (int i = 0; i < codigoBarrasReverso.Count(); i++)
-            {
-                var numero = (int)char.GetNumericValue(codigoBarrasReverso.ElementAt(i));
-                if (i % 2 != 0)
-                {
-                    pares += numero;
-                }
-                else
-                {
-                    impares += numero;
-                }
-            }
-
-            var suma = (impares * 3) + pares;
-
-            var digitoControl = (10 - (suma % 10)) % 10;
-            return digitoControl;
-        }
-
-        public int ObtenerDigitoControlComprobante(string codigoBarras)
-        {
-            int impares = 0;
-            int pares = 0;
-
-            for (int i = 0; i < codigoBarras.Count(); i++)
-            {
-                var numero = (int)char.GetNumericValue(codigoBarras.ElementAt(i));
-                if (i % 2 == 0)
-                {
-                    pares += numero;
-                }
-                else
-                {
-                    impares += numero;
-                }
-            }
-
-            var suma = impares + (pares * 3);
-
-            var digitoControl = (10 - (suma % 10)) % 10;
-            return digitoControl;
         }
     }
 }
