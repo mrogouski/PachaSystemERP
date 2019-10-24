@@ -9,6 +9,17 @@ namespace PachaSystemERP.Classes
 {
     public class BarcodeGenerator
     {
+        private int _width;
+        private int _scale;
+        private int _height;
+        private float _fontSize;
+        private float WideToNarrowRatio = 2.5f;
+
+        public int Width { get => _width; set => value = _width; }
+        public int Scale { get => _scale; set => value = _scale; }
+        public int Height { get => _height; set => value = _height; }
+        public float FontSize { get => _fontSize; set => value = _fontSize; }
+
         public byte[] GenerateBarcodeAFIP(string code)
         {
             var controlDigit = GetControlDigitAFIP(code);
@@ -110,16 +121,51 @@ namespace PachaSystemERP.Classes
             return encodedPairs;
         }
 
-         /*      validação do dígito verificador: https://strokescribe.com/en/ean-13.html#ean-13-check-digitvba
- *      projeto EAN-13 (VB.Net e C#): https://www.ibm.com/developerworks/community/blogs/fd26864d-cb41-49cf-b719-d89c6b072893/entry/net_c_C3_B3digo_de_barras_ean_8_e_13_parte_021?lang=en
- *      especificações do padrão ITF-14: http://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf
- *      */
         private byte[] CreateBinaryImage(List<string> code)
         {
             //int pairs;
             //float Width = (P(4N+6)+N+6)X+2*Q;
-            Graphics graphics = null;
-            graphics.FillRectangle(new SolidBrush(Color.White), );
+            Graphics graphic = null;
+            graphic.FillRectangle(new SolidBrush(Color.White), );
+            float width = _width * _scale;
+            float height = _height * _scale;
+
+            //	EAN13 Barcode should be a total of 113 modules wide.
+            float lineWidth = width / 113f;
+
+            // Save the GraphicsState.
+            System.Drawing.Drawing2D.GraphicsState gs = g.Save();
+
+            // Set the PageUnit to Inch because all of our measurements are in inches.
+            graphic.PageUnit = GraphicsUnit.Millimeter;
+
+            // Set the PageScale to 1, so a millimeter will represent a true millimeter.
+            graphic.PageScale = 1;
+
+            Font font = new Font("Arial", _fontSize * _scale);
+
+            string startPattern = "0000";
+            string stopPattern = "1100";
+
+            var barcode = new StringBuilder();
+            barcode.Append(startPattern);
+            barcode.Append(code);
+            barcode.Append(stopPattern);
+
+
+            // Draw the barcode lines.
+            foreach (var digit in barcode.ToString())
+            {
+                switch (digit)
+                {
+                    case '0':
+                        graphic.FillRectangle(new SolidBrush(Color.Black), );
+                        break;
+                    case '1':
+                        graphic.FillRectangle(new SolidBrush(Color.Black), );
+                        break;
+                }
+            }
         }
 
         private int GetControlDigit(string code)
