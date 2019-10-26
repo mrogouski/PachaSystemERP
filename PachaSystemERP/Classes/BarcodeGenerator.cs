@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PachaSystemERP.Classes
 {
-    public class BarcodeGenerator
+    public class BarcodeGenerator : IDisposable
     {
         private int _width;
         private int _scale;
@@ -20,11 +20,13 @@ namespace PachaSystemERP.Classes
         public int Height { get => _height; set => value = _height; }
         public float FontSize { get => _fontSize; set => value = _fontSize; }
 
-        public byte[] GenerateBarcodeAFIP(string code)
+        public Bitmap GenerateBarcodeAFIP(string code)
         {
-            var controlDigit = GetControlDigitAFIP(code);
+            //var controlDigit = GetControlDigitAFIP(code);
 
-            var encodedCode = EncodeString(code + controlDigit);
+            var encodedCode = EncodeString(code);
+
+            return CreateBinaryImage(encodedCode);
         }
 
         private List<string> EncodeString(string code)
@@ -121,28 +123,16 @@ namespace PachaSystemERP.Classes
             return encodedPairs;
         }
 
-        private byte[] CreateBinaryImage(List<string> code)
+        private Bitmap CreateBinaryImage(List<string> code)
         {
             //int pairs;
             //float Width = (P(4N+6)+N+6)X+2*Q;
-            Graphics graphic = null;
-            graphic.FillRectangle(new SolidBrush(Color.White), );
             float width = _width * _scale;
             float height = _height * _scale;
+            //float x = 0;
+            float y = 0;
 
-            //	EAN13 Barcode should be a total of 113 modules wide.
-            float lineWidth = width / 113f;
-
-            // Save the GraphicsState.
-            System.Drawing.Drawing2D.GraphicsState gs = g.Save();
-
-            // Set the PageUnit to Inch because all of our measurements are in inches.
-            graphic.PageUnit = GraphicsUnit.Millimeter;
-
-            // Set the PageScale to 1, so a millimeter will represent a true millimeter.
-            graphic.PageScale = 1;
-
-            Font font = new Font("Arial", _fontSize * _scale);
+            //Font font = new Font("Arial", _fontSize * _scale);
 
             string startPattern = "0000";
             string stopPattern = "1100";
@@ -152,20 +142,30 @@ namespace PachaSystemERP.Classes
             barcode.Append(code);
             barcode.Append(stopPattern);
 
-
             // Draw the barcode lines.
-            foreach (var digit in barcode.ToString())
+            Bitmap bitmap = new Bitmap(barcode.Length, 20);
+            Graphics graphics = Graphics.FromImage(bitmap);
+            // Set the PageUnit to Inch because all of our measurements are in inches.
+            graphics.PageUnit = GraphicsUnit.Millimeter;
+
+            // Set the PageScale to 1, so a millimeter will represent a true millimeter.
+            graphics.PageScale = 1;
+
+            var test = barcode.ToString().ToCharArray();
+            for (int x = 0; x < barcode.Length; x++)
             {
-                switch (digit)
+                switch (test[x])
                 {
                     case '0':
-                        graphic.FillRectangle(new SolidBrush(Color.Black), );
+                        graphics.FillRectangle(Brushes.Black, x, y, 10, 20);
                         break;
                     case '1':
-                        graphic.FillRectangle(new SolidBrush(Color.Black), );
+                        graphics.FillRectangle(Brushes.White, x, y, 10, 20);
                         break;
                 }
             }
+
+            return bitmap;
         }
 
         private int GetControlDigit(string code)
@@ -237,5 +237,40 @@ namespace PachaSystemERP.Classes
             var controlDigit = (10 - (sum % 10)) % 10;
             return controlDigit;
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~BarcodeGenerator() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }
