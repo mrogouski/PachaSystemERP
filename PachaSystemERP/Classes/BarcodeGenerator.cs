@@ -9,16 +9,35 @@ namespace PachaSystemERP.Classes
 {
     public class BarcodeGenerator : IDisposable
     {
-        private int _width;
-        private int _scale;
-        private int _height;
-        private float _fontSize;
-        private float WideToNarrowRatio = 2.5f;
+        private float _moduleWidth = 0.191f;
+        private int _moduleHeight = 32;
+        private float _wideToNarrowRatio = 2.5f;
+        private int _moduleQuantity;
 
-        public int Width { get => _width; set => value = _width; }
-        public int Scale { get => _scale; set => value = _scale; }
-        public int Height { get => _height; set => value = _height; }
-        public float FontSize { get => _fontSize; set => value = _fontSize; }
+        public BarcodeGenerator(int width, int height)
+        {
+            _moduleWidth = width;
+            _moduleHeight = height;
+        }
+
+        public float Width { get => _moduleWidth; set => value = _moduleWidth; }
+
+        public float Height { get => _moduleHeight; set => value = _moduleHeight; }
+
+        public float WideToNarrowRatio
+        {
+            get
+            {
+                return _wideToNarrowRatio;
+            }
+            set
+            {
+                if (value < 2.25 || value > 3)
+                {
+
+                }
+            }
+        }
 
         public Bitmap GenerateBarcodeAFIP(string code)
         {
@@ -125,43 +144,47 @@ namespace PachaSystemERP.Classes
 
         private Bitmap CreateBinaryImage(List<string> code)
         {
-            //int pairs;
-            //float Width = (P(4N+6)+N+6)X+2*Q;
-            float width = _width * _scale;
-            float height = _height * _scale;
-            //float x = 0;
-            float y = 0;
-
-            //Font font = new Font("Arial", _fontSize * _scale);
-
+            int xAxis = 0;
+            int yAxis = 0;
             string startPattern = "0000";
-            string stopPattern = "1100";
+            string stopPattern = "100";
 
-            var barcode = new StringBuilder();
-            barcode.Append(startPattern);
-            barcode.Append(code);
-            barcode.Append(stopPattern);
-
-            // Draw the barcode lines.
-            Bitmap bitmap = new Bitmap(barcode.Length, 20);
+            //Create de bitmap with the specified width and height
+            Bitmap bitmap = new Bitmap(_moduleWidth * _moduleQuantity, _moduleHeight);
             Graphics graphics = Graphics.FromImage(bitmap);
-            // Set the PageUnit to Inch because all of our measurements are in inches.
+
+            // Set the PageUnit to Millimeter because all of our measurements are in millimeter.
             graphics.PageUnit = GraphicsUnit.Millimeter;
 
             // Set the PageScale to 1, so a millimeter will represent a true millimeter.
             graphics.PageScale = 1;
 
-            var test = barcode.ToString().ToCharArray();
-            for (int x = 0; x < barcode.Length; x++)
+            foreach (var pair in code)
             {
-                switch (test[x])
+                var leftPair = pair.Substring(0, 5);
+                var rightPair = pair.Substring(5, 5);
+
+                for (int index = 0; index < 5; index++)
                 {
-                    case '0':
-                        graphics.FillRectangle(Brushes.Black, x, y, 10, 20);
-                        break;
-                    case '1':
-                        graphics.FillRectangle(Brushes.White, x, y, 10, 20);
-                        break;
+                    switch (leftPair.Substring(index, 1))
+                    {
+                        case "0":
+                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth / _moduleWidth, _moduleHeight);
+                            break;
+                        case "1":
+                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, (_moduleWidth / _moduleWidth) * _wideToNarrowRatio, _moduleHeight * _wideToNarrowRatio);
+                            break;
+                    }
+
+                    switch (rightPair.Substring(index, 1))
+                    {
+                        case "0":
+                            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
+                            break;
+                        case "1":
+                            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight * _wideToNarrowRatio);
+                            break;
+                    }
                 }
             }
 
