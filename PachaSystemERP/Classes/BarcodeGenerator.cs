@@ -9,20 +9,38 @@ namespace PachaSystemERP.Classes
 {
     public class BarcodeGenerator : IDisposable
     {
-        private float _moduleWidth = 0.191f;
-        private int _moduleHeight = 32;
-        private float _wideToNarrowRatio = 2.5f;
-        private int _moduleQuantity;
+        private float _moduleWidth;
+        private float _moduleHeight;
+        private float _wideToNarrowRatio;
 
-        public BarcodeGenerator(int width, int height)
+        public float ModuleWidth
         {
-            _moduleWidth = width;
-            _moduleHeight = height;
+            get
+            {
+                return _moduleWidth;
+            }
+            set
+            {
+                if (_moduleWidth < 1.520 && _moduleWidth > 0.1)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(ModuleWidth));
+                }
+
+                _moduleWidth = value;
+            }
         }
 
-        public float Width { get => _moduleWidth; set => value = _moduleWidth; }
-
-        public float Height { get => _moduleHeight; set => value = _moduleHeight; }
+        public float ModuleHeight
+        {
+            get
+            {
+                return _moduleHeight;
+            }
+            set
+            {
+                _moduleHeight = value;
+            }
+        }
 
         public float WideToNarrowRatio
         {
@@ -34,16 +52,18 @@ namespace PachaSystemERP.Classes
             {
                 if (value < 2.25 || value > 3)
                 {
-
+                    throw new ArgumentOutOfRangeException(nameof(WideToNarrowRatio));
                 }
+
+                _wideToNarrowRatio = value;
             }
         }
 
         public Bitmap GenerateBarcodeAFIP(string code)
         {
-            //var controlDigit = GetControlDigitAFIP(code);
+            var controlDigit = GetControlDigitAFIP(code);
 
-            var encodedCode = EncodeString(code);
+            var encodedCode = EncodeString(code + controlDigit);
 
             return CreateBinaryImage(encodedCode);
         }
@@ -55,88 +75,84 @@ namespace PachaSystemERP.Classes
                 throw new ArgumentNullException(nameof(code));
             }
 
-            List<string> pairs = new List<string>();
             List<string> encodedPairs = new List<string>();
             string left = null;
             string right = null;
 
-            for (int index = 0; index < code.Length;)
+            for (int index = 0; index < code.Count();)
             {
-                pairs.Add(code.Substring(index, 2));
+                var pair = code.Substring(index, 2);
                 index += 2;
 
-                foreach (string pair in pairs)
+                switch (pair.Substring(0, 1))
                 {
-                    switch (int.Parse(pair.Substring(0, 1)))
-                    {
-                        case 0:
-                            left = "00110";
-                            break;
-                        case 1:
-                            left = "10001";
-                            break;
-                        case '2':
-                            left = "01001";
-                            break;
-                        case 3:
-                            left = "11000";
-                            break;
-                        case 4:
-                            left = "00101";
-                            break;
-                        case 5:
-                            left = "10100";
-                            break;
-                        case 6:
-                            left = "01100";
-                            break;
-                        case 7:
-                            left = "00011";
-                            break;
-                        case 8:
-                            left = "10010";
-                            break;
-                        case 9:
-                            left = "01010";
-                            break;
-                    }
-
-                    switch (int.Parse(pair.Substring(1, 1)))
-                    {
-                        case 0:
-                            right = "00110";
-                            break;
-                        case 1:
-                            right = "10001";
-                            break;
-                        case '2':
-                            right = "01001";
-                            break;
-                        case 3:
-                            right = "11000";
-                            break;
-                        case 4:
-                            right = "00101";
-                            break;
-                        case 5:
-                            right = "10100";
-                            break;
-                        case 6:
-                            right = "01100";
-                            break;
-                        case 7:
-                            right = "00011";
-                            break;
-                        case 8:
-                            right = "10010";
-                            break;
-                        case 9:
-                            right = "01010";
-                            break;
-                    }
-
-                    encodedPairs.Add(left + right);
+                    case "0":
+                        left = "00110";
+                        break;
+                    case "1":
+                        left = "10001";
+                        break;
+                    case "2":
+                        left = "01001";
+                        break;
+                    case "3":
+                        left = "11000";
+                        break;
+                    case "4":
+                        left = "00101";
+                        break;
+                    case "5":
+                        left = "10100";
+                        break;
+                    case "6":
+                        left = "01100";
+                        break;
+                    case "7":
+                        left = "00011";
+                        break;
+                    case "8":
+                        left = "10010";
+                        break;
+                    case "9":
+                        left = "01010";
+                        break;
                 }
+
+                switch (pair.Substring(1, 1))
+                {
+                    case "0":
+                        right = "00110";
+                        break;
+                    case "1":
+                        right = "10001";
+                        break;
+                    case "2":
+                        right = "01001";
+                        break;
+                    case "3":
+                        right = "11000";
+                        break;
+                    case "4":
+                        right = "00101";
+                        break;
+                    case "5":
+                        right = "10100";
+                        break;
+                    case "6":
+                        right = "01100";
+                        break;
+                    case "7":
+                        right = "00011";
+                        break;
+                    case "8":
+                        right = "10010";
+                        break;
+                    case "9":
+                        right = "01010";
+                        break;
+                }
+
+                encodedPairs.Add(left + right);
             }
 
             return encodedPairs;
@@ -144,13 +160,11 @@ namespace PachaSystemERP.Classes
 
         private Bitmap CreateBinaryImage(List<string> code)
         {
-            int xAxis = 0;
-            int yAxis = 0;
-            string startPattern = "0000";
-            string stopPattern = "100";
+            float xAxis = 0;
+            float yAxis = 0;
 
             //Create de bitmap with the specified width and height
-            Bitmap bitmap = new Bitmap(_moduleWidth * _moduleQuantity, _moduleHeight);
+            Bitmap bitmap = new Bitmap(776, 426);
             Graphics graphics = Graphics.FromImage(bitmap);
 
             // Set the PageUnit to Millimeter because all of our measurements are in millimeter.
@@ -159,6 +173,21 @@ namespace PachaSystemERP.Classes
             // Set the PageScale to 1, so a millimeter will represent a true millimeter.
             graphics.PageScale = 1;
 
+            //Drawing the starting quiet zone
+            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10 * _moduleWidth, _moduleHeight);
+            xAxis += 10 *_moduleWidth;
+
+            //Drawing the start pattern
+            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
+            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
+            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
+            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
+            xAxis += _moduleWidth;
+
+            //Drawing the barcode
             foreach (var pair in code)
             {
                 var leftPair = pair.Substring(0, 5);
@@ -169,10 +198,12 @@ namespace PachaSystemERP.Classes
                     switch (leftPair.Substring(index, 1))
                     {
                         case "0":
-                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth / _moduleWidth, _moduleHeight);
+                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
+                            xAxis += _moduleWidth;
                             break;
                         case "1":
-                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, (_moduleWidth / _moduleWidth) * _wideToNarrowRatio, _moduleHeight * _wideToNarrowRatio);
+                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight);
+                            xAxis += _moduleWidth * _wideToNarrowRatio;
                             break;
                     }
 
@@ -180,13 +211,27 @@ namespace PachaSystemERP.Classes
                     {
                         case "0":
                             graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
+                            xAxis += _moduleWidth;
                             break;
                         case "1":
-                            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight * _wideToNarrowRatio);
+                            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight);
+                            xAxis += _moduleWidth * _wideToNarrowRatio;
                             break;
                     }
                 }
             }
+
+            //Drawing the stop pattern
+            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
+            xAxis += _moduleWidth * _wideToNarrowRatio;
+            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
+            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
+            xAxis += _moduleWidth;
+
+            //Drawing the ending quiet zone
+            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10*  _moduleWidth, _moduleHeight);
+            xAxis += 10 * _moduleWidth;
 
             return bitmap;
         }
