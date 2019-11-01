@@ -174,16 +174,19 @@ namespace PachaSystemERP.Classes
             graphics.PageScale = 1;
 
             //Drawing the starting quiet zone
-            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10 * _moduleWidth, _moduleHeight);
-            xAxis += 10 *_moduleWidth;
+            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10 * (_moduleWidth * _wideToNarrowRatio), _moduleHeight);
+            xAxis += 10 * (_moduleWidth * _wideToNarrowRatio);
 
             //Drawing the start pattern
             graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
             xAxis += _moduleWidth;
+
             graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
             xAxis += _moduleWidth;
+
             graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
             xAxis += _moduleWidth;
+
             graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
             xAxis += _moduleWidth;
 
@@ -203,7 +206,7 @@ namespace PachaSystemERP.Classes
                             break;
                         case "1":
                             graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight);
-                            xAxis += _moduleWidth * _wideToNarrowRatio;
+                            xAxis += (_moduleWidth * _wideToNarrowRatio);
                             break;
                     }
 
@@ -215,23 +218,24 @@ namespace PachaSystemERP.Classes
                             break;
                         case "1":
                             graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight);
-                            xAxis += _moduleWidth * _wideToNarrowRatio;
+                            xAxis += (_moduleWidth * _wideToNarrowRatio);
                             break;
                     }
                 }
             }
 
             //Drawing the stop pattern
-            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
-            xAxis += _moduleWidth * _wideToNarrowRatio;
+            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, (_moduleWidth * _wideToNarrowRatio), _moduleHeight);
+            xAxis += (_moduleWidth * _wideToNarrowRatio);
+
             graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
             xAxis += _moduleWidth;
+
             graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
             xAxis += _moduleWidth;
 
             //Drawing the ending quiet zone
-            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10*  _moduleWidth, _moduleHeight);
-            xAxis += 10 * _moduleWidth;
+            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10 * (_moduleWidth * _wideToNarrowRatio), _moduleHeight);
 
             return bitmap;
         }
