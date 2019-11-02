@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +23,7 @@ namespace PachaSystemERP.Classes
             }
             set
             {
-                if (_moduleWidth < 1.520 && _moduleWidth > 0.1)
+                if (_moduleWidth < 1.520 && _moduleWidth > 0.100)
                 {
                     throw new ArgumentOutOfRangeException(nameof(ModuleWidth));
                 }
@@ -59,7 +61,7 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public Bitmap GenerateBarcodeAFIP(string code)
+        public string GenerateBarcodeAFIP(string code)
         {
             var controlDigit = GetControlDigitAFIP(code);
 
@@ -158,40 +160,45 @@ namespace PachaSystemERP.Classes
             return encodedPairs;
         }
 
-        private Bitmap CreateBinaryImage(List<string> code)
+        private string CreateBinaryImage(List<string> code)
         {
             float xAxisPosition = 0;
             float yAxisPosition = 0;
-            float narrowLineWidth = (float)Math.Round(_moduleWidth, 3);
-            float wideLineWidth = (float)Math.Round(_moduleWidth * _wideToNarrowRatio, 3);
-            float lineHeight = (float)Math.Round(_moduleHeight, 3);
+            float narrowLineWidth = _moduleWidth;
+            float wideLineWidth = _moduleWidth * _wideToNarrowRatio;
+            float lineHeight = _moduleHeight;
+            float bitmapWidth = (21 * (4 * _wideToNarrowRatio + 6) + _wideToNarrowRatio + 6) * _moduleWidth + 2 * (10 * _moduleWidth);
 
-            //Create de bitmap with the specified width and height
-            Bitmap bitmap = new Bitmap(776, 426);
+            //Create the bitmap with the specified width and height
+            Bitmap bitmap = new Bitmap(565, 79);
             Graphics graphics = Graphics.FromImage(bitmap);
 
             // Set the PageUnit to Millimeter because all of our measurements are in millimeter.
-            //graphics.PageUnit = GraphicsUnit.Millimeter;
+            graphics.PageUnit = GraphicsUnit.Millimeter;
 
-            //// Set the PageScale to 1, so a millimeter will represent a true millimeter.
-            //graphics.PageScale = 1;
+            // Set the PageScale to 1, so a millimeter will represent a true millimeter.
+            graphics.PageScale = 1;
+
+            graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+
+            graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.AssumeLinear;
 
             //Drawing the starting quiet zone
             graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, (10 * narrowLineWidth), lineHeight);
-            xAxisPosition += (float)Math.Round((10 * narrowLineWidth), 3);
+            xAxisPosition += (10 * narrowLineWidth);
 
             //Drawing the start pattern
             graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
-            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
+            xAxisPosition += narrowLineWidth;
 
             graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
-            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
+            xAxisPosition += narrowLineWidth;
 
             graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
-            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
+            xAxisPosition += narrowLineWidth;
 
             graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
-            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
+            xAxisPosition += narrowLineWidth;
 
             //Drawing the barcode
             foreach (var pair in code)
@@ -204,11 +211,11 @@ namespace PachaSystemERP.Classes
                     switch (leftPair.Substring(index, 1))
                     {
                         case "0":
-                            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+                            graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
                             xAxisPosition += narrowLineWidth;
                             break;
                         case "1":
-                            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, wideLineWidth, lineHeight);
+                            graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, wideLineWidth, lineHeight);
                             xAxisPosition += wideLineWidth;
                             break;
                     }
@@ -216,11 +223,11 @@ namespace PachaSystemERP.Classes
                     switch (rightPair.Substring(index, 1))
                     {
                         case "0":
-                            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+                            graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
                             xAxisPosition += narrowLineWidth;
                             break;
                         case "1":
-                            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, wideLineWidth, lineHeight);
+                            graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, wideLineWidth, lineHeight);
                             xAxisPosition += wideLineWidth;
                             break;
                     }
@@ -228,19 +235,26 @@ namespace PachaSystemERP.Classes
             }
 
             //Drawing the stop pattern
-            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, wideLineWidth, lineHeight);
+            graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, wideLineWidth, lineHeight);
             xAxisPosition += wideLineWidth;
 
-            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+            graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
             xAxisPosition += narrowLineWidth;
 
-            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+            graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
             xAxisPosition += narrowLineWidth;
 
             //Drawing the ending quiet zone
-            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, (10 * narrowLineWidth), lineHeight);
+            graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, (10 * narrowLineWidth), lineHeight);
 
-            return bitmap;
+            graphics.Save();
+
+            MemoryStream memoryStream = new MemoryStream();
+            bitmap.Save(memoryStream, ImageFormat.Bmp);
+            byte[] imageBytes = memoryStream.ToArray();
+            var base64String = Convert.ToBase64String(imageBytes);
+
+            return base64String;
         }
 
         private int GetControlDigit(string code)

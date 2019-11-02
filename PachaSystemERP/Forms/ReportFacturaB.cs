@@ -18,10 +18,10 @@ namespace PachaSystemERP.Forms
             InitializeComponent();
             var barcode = new BarcodeGenerator();
 
-            barcode.ModuleWidth = 0.191f;
-            barcode.ModuleHeight = 10;
+            barcode.ModuleWidth = 0.40f;
+            barcode.ModuleHeight = 12;
             barcode.WideToNarrowRatio = 2.5f;
-            pictureBox1.Image = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
+            textBox1.Text = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
         }
     }
 }

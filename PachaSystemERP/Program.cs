@@ -23,12 +23,12 @@ namespace PachaSystemERP
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
 
-            //PachaSystemContext context = new PachaSystemContext();
-            //context.Database.Initialize(false);
+            PachaSystemContext context = new PachaSystemContext();
+            context.Database.Initialize(false);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ReportFacturaB());
+            Application.Run(new VisorFactura());
         }
     }
 }
