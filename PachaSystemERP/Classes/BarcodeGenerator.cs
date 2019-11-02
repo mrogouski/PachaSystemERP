@@ -160,35 +160,38 @@ namespace PachaSystemERP.Classes
 
         private Bitmap CreateBinaryImage(List<string> code)
         {
-            float xAxis = 0;
-            float yAxis = 0;
+            float xAxisPosition = 0;
+            float yAxisPosition = 0;
+            float narrowLineWidth = (float)Math.Round(_moduleWidth, 3);
+            float wideLineWidth = (float)Math.Round(_moduleWidth * _wideToNarrowRatio, 3);
+            float lineHeight = (float)Math.Round(_moduleHeight, 3);
 
             //Create de bitmap with the specified width and height
             Bitmap bitmap = new Bitmap(776, 426);
             Graphics graphics = Graphics.FromImage(bitmap);
 
             // Set the PageUnit to Millimeter because all of our measurements are in millimeter.
-            graphics.PageUnit = GraphicsUnit.Millimeter;
+            //graphics.PageUnit = GraphicsUnit.Millimeter;
 
-            // Set the PageScale to 1, so a millimeter will represent a true millimeter.
-            graphics.PageScale = 1;
+            //// Set the PageScale to 1, so a millimeter will represent a true millimeter.
+            //graphics.PageScale = 1;
 
             //Drawing the starting quiet zone
-            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10 * (_moduleWidth * _wideToNarrowRatio), _moduleHeight);
-            xAxis += 10 * (_moduleWidth * _wideToNarrowRatio);
+            graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, (10 * narrowLineWidth), lineHeight);
+            xAxisPosition += (float)Math.Round((10 * narrowLineWidth), 3);
 
             //Drawing the start pattern
-            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
-            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
+            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
 
-            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
-            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
+            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
 
-            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
-            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.Black, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
+            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
 
-            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
-            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.White, xAxisPosition, yAxisPosition, narrowLineWidth, lineHeight);
+            xAxisPosition += (float)Math.Round(narrowLineWidth, 3);
 
             //Drawing the barcode
             foreach (var pair in code)
@@ -201,41 +204,41 @@ namespace PachaSystemERP.Classes
                     switch (leftPair.Substring(index, 1))
                     {
                         case "0":
-                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
-                            xAxis += _moduleWidth;
+                            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+                            xAxisPosition += narrowLineWidth;
                             break;
                         case "1":
-                            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight);
-                            xAxis += (_moduleWidth * _wideToNarrowRatio);
+                            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, wideLineWidth, lineHeight);
+                            xAxisPosition += wideLineWidth;
                             break;
                     }
 
                     switch (rightPair.Substring(index, 1))
                     {
                         case "0":
-                            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
-                            xAxis += _moduleWidth;
+                            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+                            xAxisPosition += narrowLineWidth;
                             break;
                         case "1":
-                            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth * _wideToNarrowRatio, _moduleHeight);
-                            xAxis += (_moduleWidth * _wideToNarrowRatio);
+                            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, wideLineWidth, lineHeight);
+                            xAxisPosition += wideLineWidth;
                             break;
                     }
                 }
             }
 
             //Drawing the stop pattern
-            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, (_moduleWidth * _wideToNarrowRatio), _moduleHeight);
-            xAxis += (_moduleWidth * _wideToNarrowRatio);
+            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, wideLineWidth, lineHeight);
+            xAxisPosition += wideLineWidth;
 
-            graphics.FillRectangle(Brushes.White, xAxis, yAxis, _moduleWidth, _moduleHeight);
-            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+            xAxisPosition += narrowLineWidth;
 
-            graphics.FillRectangle(Brushes.Black, xAxis, yAxis, _moduleWidth, _moduleHeight);
-            xAxis += _moduleWidth;
+            graphics.FillRectangle(Brushes.Black, (float)Math.Round(xAxisPosition, 4), yAxisPosition, narrowLineWidth, lineHeight);
+            xAxisPosition += narrowLineWidth;
 
             //Drawing the ending quiet zone
-            graphics.FillRectangle(Brushes.White, xAxis, yAxis, 10 * (_moduleWidth * _wideToNarrowRatio), _moduleHeight);
+            graphics.FillRectangle(Brushes.White, (float)Math.Round(xAxisPosition, 4), yAxisPosition, (10 * narrowLineWidth), lineHeight);
 
             return bitmap;
         }

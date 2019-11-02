@@ -16,13 +16,12 @@ namespace PachaSystemERP.Forms
         public ReportFacturaB()
         {
             InitializeComponent();
-            using (var barcode = new BarcodeGenerator())
-            {
-                barcode.ModuleWidth = 0.191f;
-                barcode.ModuleHeight = 10;
-                barcode.WideToNarrowRatio = 3f;
-                pictureBox1.Image = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
-            }
+            var barcode = new BarcodeGenerator();
+
+            barcode.ModuleWidth = 0.191f;
+            barcode.ModuleHeight = 10;
+            barcode.WideToNarrowRatio = 2.5f;
+            pictureBox1.Image = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
         }
     }
 }
