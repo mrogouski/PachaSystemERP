@@ -202,7 +202,7 @@ namespace PachaSystemERP.Properties.DataSources {
             this.DataSetName = "DataSetComprobante";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/DataSetComprobante.xsd";
-            this.EnforceConstraints = true;
+            this.EnforceConstraints = false;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableDataTableComprobante = new DataTableComprobanteDataTable();
             base.Tables.Add(this.tableDataTableComprobante);

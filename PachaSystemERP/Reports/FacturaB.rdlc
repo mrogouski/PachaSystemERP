@@ -160,19 +160,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>3.4cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>3.4cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>3.4cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>3.4cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>3.4cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -518,9 +518,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSetComprobante</DataSetName>
-            <Left>0.49953cm</Left>
             <Height>1.2cm</Height>
-            <Width>12.5cm</Width>
+            <Width>17cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -541,7 +540,7 @@
           </BottomBorder>
         </Style>
       </Body>
-      <Width>6.52926in</Width>
+      <Width>6.69291in</Width>
       <Page>
         <PageHeader>
           <Height>5.67183cm</Height>
@@ -562,7 +561,7 @@
             <Line Name="Line5">
               <Top>2.79622cm</Top>
               <Height>0cm</Height>
-              <Width>16.57266cm</Width>
+              <Width>17cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -837,7 +836,7 @@
             <Line Name="Line4">
               <Top>1.74627cm</Top>
               <Height>0cm</Height>
-              <Width>16.57266cm</Width>
+              <Width>17cm</Width>
               <Style>
                 <Border>
                   <Style>Solid</Style>
@@ -845,13 +844,14 @@
               </Style>
             </Line>
             <Image Name="BarcodeImage">
-              <Source>External</Source>
-              <Value>=Parameters!BarcodeString.Value</Value>
+              <Source>Database</Source>
+              <Value>=Parameters!BarcodeParameter.Value</Value>
+              <MIMEType>image/bmp</MIMEType>
               <Sizing>FitProportional</Sizing>
-              <Top>1.92266cm</Top>
+              <Top>0.14111cm</Top>
               <Left>0.49953cm</Left>
-              <Height>1.20896cm</Height>
-              <Width>10.94563cm</Width>
+              <Height>1.31479cm</Height>
+              <Width>11.47479cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -878,7 +878,7 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="BarcodeString">
+    <ReportParameter Name="BarcodeParameter">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -891,7 +891,7 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>BarcodeString</ParameterName>
+          <ParameterName>BarcodeParameter</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

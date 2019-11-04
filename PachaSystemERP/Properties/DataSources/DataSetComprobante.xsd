@@ -77,10 +77,10 @@ WHERE        (Comprobante.ID = @id)</CommandText>
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DataSetComprobante" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetComprobante" msprop:Generator_UserDSName="DataSetComprobante">
+  <xs:element name="DataSetComprobante" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:EnforceConstraints="False" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetComprobante" msprop:Generator_UserDSName="DataSetComprobante">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTableComprobante" msprop:Generator_TableClassName="DataTableComprobanteDataTable" msprop:Generator_TableVarName="tableDataTableComprobante" msprop:Generator_RowChangedName="DataTableComprobanteRowChanged" msprop:Generator_TablePropName="DataTableComprobante" msprop:Generator_RowDeletingName="DataTableComprobanteRowDeleting" msprop:Generator_RowChangingName="DataTableComprobanteRowChanging" msprop:Generator_RowEvHandlerName="DataTableComprobanteRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableComprobanteRowDeleted" msprop:Generator_RowClassName="DataTableComprobanteRow" msprop:Generator_UserTableName="DataTableComprobante" msprop:Generator_RowEvArgName="DataTableComprobanteRowChangeEvent">
+        <xs:element name="DataTableComprobante" msprop:Generator_TableClassName="DataTableComprobanteDataTable" msprop:Generator_TableVarName="tableDataTableComprobante" msprop:Generator_TablePropName="DataTableComprobante" msprop:Generator_RowDeletingName="DataTableComprobanteRowDeleting" msprop:Generator_RowChangingName="DataTableComprobanteRowChanging" msprop:Generator_RowEvHandlerName="DataTableComprobanteRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableComprobanteRowDeleted" msprop:Generator_UserTableName="DataTableComprobante" msprop:Generator_RowChangedName="DataTableComprobanteRowChanged" msprop:Generator_RowEvArgName="DataTableComprobanteRowChangeEvent" msprop:Generator_RowClassName="DataTableComprobanteRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PuntoVenta" msprop:Generator_ColumnVarNameInTable="columnPuntoVenta" msprop:Generator_ColumnPropNameInRow="PuntoVenta" msprop:Generator_ColumnPropNameInTable="PuntoVentaColumn" msprop:Generator_UserColumnName="PuntoVenta" type="xs:int" />

@@ -30,26 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.RvComprobante = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dataTableComprobanteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetComprobante = new PachaSystemERP.Properties.DataSources.DataSetComprobante();
+            this.RvComprobante = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dataTableComprobanteTableAdapter = new PachaSystemERP.Properties.DataSources.DataSetComprobanteTableAdapters.DataTableComprobanteTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableComprobanteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetComprobante)).BeginInit();
             this.SuspendLayout();
-            // 
-            // RvComprobante
-            // 
-            this.RvComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSetComprobante";
-            reportDataSource1.Value = this.dataTableComprobanteBindingSource;
-            this.RvComprobante.LocalReport.DataSources.Add(reportDataSource1);
-            this.RvComprobante.LocalReport.ReportEmbeddedResource = "PachaSystemERP.Reports.FacturaB.rdlc";
-            this.RvComprobante.Location = new System.Drawing.Point(0, 0);
-            this.RvComprobante.Name = "RvComprobante";
-            this.RvComprobante.ServerReport.BearerToken = null;
-            this.RvComprobante.Size = new System.Drawing.Size(800, 450);
-            this.RvComprobante.TabIndex = 0;
             // 
             // dataTableComprobanteBindingSource
             // 
@@ -61,6 +48,20 @@
             this.dataSetComprobante.DataSetName = "DataSetComprobante";
             this.dataSetComprobante.EnforceConstraints = false;
             this.dataSetComprobante.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // RvComprobante
+            // 
+            this.RvComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "DataSetComprobante";
+            reportDataSource1.Value = this.dataTableComprobanteBindingSource;
+            this.RvComprobante.LocalReport.DataSources.Add(reportDataSource1);
+            this.RvComprobante.LocalReport.EnableExternalImages = true;
+            this.RvComprobante.LocalReport.ReportEmbeddedResource = "PachaSystemERP.Reports.FacturaB.rdlc";
+            this.RvComprobante.Location = new System.Drawing.Point(0, 0);
+            this.RvComprobante.Name = "RvComprobante";
+            this.RvComprobante.ServerReport.BearerToken = null;
+            this.RvComprobante.Size = new System.Drawing.Size(800, 450);
+            this.RvComprobante.TabIndex = 0;
             // 
             // dataTableComprobanteTableAdapter
             // 

@@ -21,16 +21,6 @@
 
         private void VisorFactura_Load(object sender, EventArgs e)
         {
-            var barcode = new BarcodeGenerator();
-
-            barcode.ModuleWidth = 0.40f;
-            barcode.ModuleHeight = 12;
-            barcode.WideToNarrowRatio = 2.5f;
-            var barcodeString = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
-            ReportParameterCollection parameters = new ReportParameterCollection();
-            parameters.Add(new ReportParameter("BarcodeString", barcodeString));
-            RvComprobante.LocalReport.SetParameters(parameters);
-
             try
             {
                 // TODO: This line of code loads data into the 'dataSetComprobante.DataTableComprobante' table. You can move, or remove it, as needed.
@@ -42,7 +32,17 @@
 
                 throw ex.InnerException;
             }
-            
+
+            var barcode = new BarcodeGenerator();
+
+            barcode.ModuleWidth = 0.40f;
+            barcode.ModuleHeight = 12;
+            barcode.WideToNarrowRatio = 2.5f;
+            var barcodeString = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
+            ReportParameterCollection parameters = new ReportParameterCollection();
+            parameters.Add(new ReportParameter("BarcodeParameter", barcodeString));
+            RvComprobante.LocalReport.SetParameters(parameters);
+
             this.RvComprobante.RefreshReport();
         }
     }
