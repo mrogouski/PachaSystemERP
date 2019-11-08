@@ -35,13 +35,14 @@
 
             var barcode = new BarcodeGenerator();
 
-            barcode.ModuleWidth = 0.40f;
-            barcode.ModuleHeight = 12;
-            barcode.WideToNarrowRatio = 2.5f;
-            var barcodeString = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
-            ReportParameterCollection parameters = new ReportParameterCollection();
-            parameters.Add(new ReportParameter("BarcodeParameter", barcodeString));
-            RvComprobante.LocalReport.SetParameters(parameters);
+            //barcode.ModuleWidth = 0.8f;
+            //barcode.ModuleHeight = 12;
+            //barcode.WideToNarrowRatio = 2.5f;
+            //barcode.Scale = 1;
+            //var barcodeString = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
+            //ReportParameterCollection parameters = new ReportParameterCollection();
+            //parameters.Add(new ReportParameter("BarcodeParameter", barcodeString));
+            //RvComprobante.LocalReport.SetParameters(parameters);
 
             this.RvComprobante.RefreshReport();
         }

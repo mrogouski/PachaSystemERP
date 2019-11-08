@@ -14,6 +14,7 @@ namespace PachaSystemERP.Classes
         private float _moduleWidth;
         private float _moduleHeight;
         private float _wideToNarrowRatio;
+        private float _scale;
 
         public float ModuleWidth
         {
@@ -61,7 +62,19 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public string GenerateBarcodeAFIP(string code)
+        public float Scale
+        {
+            set
+            {
+                if (value < 0.25 || value > 1.2)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Scale));
+                }
+                _scale = value;
+            }
+        }
+
+        public Bitmap GenerateBarcodeAFIP(string code)
         {
             var controlDigit = GetControlDigitAFIP(code);
 
@@ -160,24 +173,27 @@ namespace PachaSystemERP.Classes
             return encodedPairs;
         }
 
-        private string CreateBinaryImage(List<string> code)
+        private Bitmap CreateBinaryImage(List<string> code)
         {
             float xAxisPosition = 0;
             float yAxisPosition = 0;
             float narrowLineWidth = _moduleWidth;
             float wideLineWidth = _moduleWidth * _wideToNarrowRatio;
             float lineHeight = _moduleHeight;
-            float bitmapWidth = (21 * (4 * _wideToNarrowRatio + 6) + _wideToNarrowRatio + 6) * _moduleWidth + 2 * (10 * _moduleWidth);
+            float barcodeWidth = (21 * (4 * _wideToNarrowRatio + 6) + _wideToNarrowRatio + 6) * _moduleWidth + 2 * (10 * _moduleWidth);
+            float barcodeHeight = _moduleHeight;
+            int bitmapWidth = Convert.ToInt32((100 * barcodeWidth) / 25.4f);
+            int bitmapHeight = Convert.ToInt32((100 * _moduleHeight) / 25.4f);
 
             //Create the bitmap with the specified width and height
-            Bitmap bitmap = new Bitmap(565, 79);
+            Bitmap bitmap = new Bitmap(bitmapWidth, bitmapHeight);
             Graphics graphics = Graphics.FromImage(bitmap);
 
             // Set the PageUnit to Millimeter because all of our measurements are in millimeter.
             graphics.PageUnit = GraphicsUnit.Millimeter;
 
             // Set the PageScale to 1, so a millimeter will represent a true millimeter.
-            graphics.PageScale = 1;
+            graphics.PageScale = _scale;
 
             graphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
 
@@ -249,12 +265,12 @@ namespace PachaSystemERP.Classes
 
             graphics.Save();
 
-            MemoryStream memoryStream = new MemoryStream();
-            bitmap.Save(memoryStream, ImageFormat.Bmp);
-            byte[] imageBytes = memoryStream.ToArray();
-            var base64String = Convert.ToBase64String(imageBytes);
+            //MemoryStream memoryStream = new MemoryStream();
+            //bitmap.Save(memoryStream, ImageFormat.Bmp);
+            //byte[] imageBytes = memoryStream.ToArray();
+            //var base64String = Convert.ToBase64String(imageBytes);
 
-            return base64String;
+            return bitmap;
         }
 
         private int GetControlDigit(string code)
