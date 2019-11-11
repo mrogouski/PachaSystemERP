@@ -265,10 +265,10 @@ namespace PachaSystemERP.Classes
 
             graphics.Save();
 
-            //MemoryStream memoryStream = new MemoryStream();
-            //bitmap.Save(memoryStream, ImageFormat.Bmp);
-            //byte[] imageBytes = memoryStream.ToArray();
-            //var base64String = Convert.ToBase64String(imageBytes);
+            MemoryStream memoryStream = new MemoryStream();
+            bitmap.Save(memoryStream, ImageFormat.Bmp);
+            byte[] imageBytes = memoryStream.ToArray();
+            var base64String = Convert.ToBase64String(imageBytes);
 
             return bitmap;
         }

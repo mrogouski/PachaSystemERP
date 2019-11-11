@@ -1,12 +1,15 @@
 ﻿namespace PachaSystemERP.Forms
 {
     using Microsoft.Reporting.WinForms;
+    using NBarCodes;
     using PachaSystemERP.Classes;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -33,16 +36,27 @@
                 throw ex.InnerException;
             }
 
-            var barcode = new BarcodeGenerator();
+            BarCodeSettings settings = new BarCodeSettings();
+            settings.Data = "20247825607001000036935743048290920190912";
+            settings.Type = BarCodeType.Interleaved25;
+            settings.UseChecksum = true;
+            settings.Unit = BarCodeUnit.Pixel;
+            settings.NarrowWidth = 1;
+            settings.WideWidth = 2f;
+            settings.BarHeight = 32;
+            var font = new Font("Arial", 9f);
+            settings.Font = font;
+            BarCodeGenerator generator = new BarCodeGenerator(settings);
 
-            //barcode.ModuleWidth = 0.8f;
-            //barcode.ModuleHeight = 12;
-            //barcode.WideToNarrowRatio = 2.5f;
-            //barcode.Scale = 1;
-            //var barcodeString = barcode.GenerateBarcodeAFIP("20247825607001000036935743048290920190912");
-            //ReportParameterCollection parameters = new ReportParameterCollection();
-            //parameters.Add(new ReportParameter("BarcodeParameter", barcodeString));
-            //RvComprobante.LocalReport.SetParameters(parameters);
+            var bitmap = new Bitmap(generator.GenerateImage());
+            MemoryStream memoryStream = new MemoryStream();
+            bitmap.Save(memoryStream, ImageFormat.Bmp);
+            byte[] imageBytes = memoryStream.ToArray();
+            var base64String = Convert.ToBase64String(imageBytes);
+
+            ReportParameterCollection parameters = new ReportParameterCollection();
+            parameters.Add(new ReportParameter("barcode", base64String));
+            RvComprobante.LocalReport.SetParameters(parameters);
 
             this.RvComprobante.RefreshReport();
         }
