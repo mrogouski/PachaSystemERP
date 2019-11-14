@@ -55,7 +55,8 @@
             var base64String = Convert.ToBase64String(imageBytes);
 
             ReportParameterCollection parameters = new ReportParameterCollection();
-            parameters.Add(new ReportParameter("barcode", base64String));
+            parameters.Add(new ReportParameter("Barcode", base64String));
+            parameters.Add(new ReportParameter("NombreFantasia", "Pacha System"));
             RvComprobante.LocalReport.SetParameters(parameters);
 
             this.RvComprobante.RefreshReport();
