@@ -4,6 +4,7 @@
 
 namespace PachaSystemERP.Classes
 {
+    using System;
     using System.Configuration;
     using PachaSystemERP.Enums;
 
@@ -32,10 +33,10 @@ namespace PachaSystemERP.Classes
             Responsabilidad = int.Parse(settings["TipoResponsable"].Value);
             RutaCertificado = settings["RutaCertificado"].Value;
             PasswordCertificado = settings["PasswordCertificado"].Value;
-            ModoFacturacion = (ModoFacturacion)System.Enum.Parse(typeof(ModoFacturacion), settings["ModoDeFacturacion"].Value);
+            ModoFacturacion = (ModoFacturacion)Enum.Parse(typeof(ModoFacturacion), settings["ModoDeFacturacion"].Value);
             if (ModoFacturacion == ModoFacturacion.FacturaElectronica)
             {
-                ModoDeOperacion = (ModoDeOperacion)System.Enum.Parse(typeof(ModoDeOperacion), settings["ModoDeOperacion"].Value);
+                ModoDeOperacion = (ModoDeOperacion)Enum.Parse(typeof(ModoDeOperacion), settings["ModoDeOperacion"].Value);
                 PuntoVenta = int.Parse(settings["PuntoDeVenta"].Value);
             }
 

@@ -10,5 +10,29 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=ACER\SQLEXPRESS;Initial Catalog=PachaSystemERP;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="NombreFantasia" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Pacha System</Value>
+    </Setting>
+    <Setting Name="RazonSocial" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Walter Gonzalez Adolfo</Value>
+    </Setting>
+    <Setting Name="Domicilio" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Alvar Nuñez 0 Dpto 22, Puerto Iguazu, Misiones</Value>
+    </Setting>
+    <Setting Name="CondicionFiscal" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">IVA Responsable Inscripto</Value>
+    </Setting>
+    <Setting Name="CUIT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20247825607</Value>
+    </Setting>
+    <Setting Name="IngresosBrutos" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20247825607</Value>
+    </Setting>
+    <Setting Name="FechaInicioActividades" Type="System.DateTime" Scope="Application">
+      <Value Profile="(Default)">2005-11-01</Value>
+    </Setting>
+    <Setting Name="PuntoVenta" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

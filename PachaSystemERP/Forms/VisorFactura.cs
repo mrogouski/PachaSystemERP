@@ -3,6 +3,7 @@
     using Microsoft.Reporting.WinForms;
     using NBarCodes;
     using PachaSystemERP.Classes;
+    using PachaSystemERP.Properties;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -56,7 +57,13 @@
 
             ReportParameterCollection parameters = new ReportParameterCollection();
             parameters.Add(new ReportParameter("Barcode", base64String));
-            parameters.Add(new ReportParameter("NombreFantasia", "Pacha System"));
+            parameters.Add(new ReportParameter("NombreFantasia", Settings.Default.NombreFantasia));
+            parameters.Add(new ReportParameter("RazonSocial", Settings.Default.RazonSocial));
+            parameters.Add(new ReportParameter("Domicilio", Settings.Default.Domicilio));
+            parameters.Add(new ReportParameter("CondicionFiscal", Settings.Default.CondicionFiscal));
+            parameters.Add(new ReportParameter("CUIT", Settings.Default.CUIT));
+            parameters.Add(new ReportParameter("IngresosBrutos", Settings.Default.IngresosBrutos));
+            parameters.Add(new ReportParameter("FechaInicioActividades", Settings.Default.FechaInicioActividades.ToShortDateString()));
             RvComprobante.LocalReport.SetParameters(parameters);
 
             this.RvComprobante.RefreshReport();
