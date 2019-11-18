@@ -451,7 +451,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSetComprobante</DataSetName>
-            <Top>0cm</Top>
             <Height>1.2cm</Height>
             <Width>17cm</Width>
             <Style>
@@ -482,9 +481,9 @@
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Line Name="Line1">
-              <Top>1.25459cm</Top>
+              <Top>1.22813cm</Top>
               <Left>8.28633cm</Left>
-              <Height>2.74541cm</Height>
+              <Height>2.77187cm</Height>
               <Width>0cm</Width>
               <Style>
                 <Border>
@@ -513,6 +512,12 @@
                       <Value>Razon Social: </Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!RazonSocial.Value</Value>
+                      <Style>
+                        <FontWeight>Normal</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -549,6 +554,10 @@
                     </TextRun>
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!Domicilio.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -631,7 +640,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Fecha  de Comprobante:</Value>
+                      <Value>Fecha  de Emision:</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -680,6 +689,10 @@
                     </TextRun>
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!CUIT.Value</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
@@ -840,6 +853,10 @@
                       <Value xml:space="preserve"> </Value>
                       <Style />
                     </TextRun>
+                    <TextRun>
+                      <Value>=Fields!TipoResponsable.Value</Value>
+                      <Style />
+                    </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
@@ -950,6 +967,10 @@
                       <Value xml:space="preserve"> </Value>
                       <Style />
                     </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!CondicionFiscal.Value</Value>
+                      <Style />
+                    </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
@@ -1000,6 +1021,84 @@
               <Height>0.6cm</Height>
               <Width>7.47818cm</Width>
               <ZIndex>14</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox18">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Ingresos Brutos:</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value xml:space="preserve"> </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!IngresosBrutos.Value</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox18</rd:DefaultName>
+              <Top>2.51633cm</Top>
+              <Left>9.15504cm</Left>
+              <Height>0.6cm</Height>
+              <Width>6.44229cm</Width>
+              <ZIndex>15</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox20">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Fecha de Inicio de Actividades: </Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!FechaInicioActividades.Value</Value>
+                      <Style>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox20</rd:DefaultName>
+              <Top>3.29272cm</Top>
+              <Left>9.15504cm</Left>
+              <Height>0.6cm</Height>
+              <Width>6.44229cm</Width>
+              <ZIndex>16</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1154,6 +1253,30 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="RazonSocial">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Domicilio">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CondicionFiscal">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CUIT">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="IngresosBrutos">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="FechaInicioActividades">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1169,6 +1292,36 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>NombreFantasia</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>RazonSocial</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Domicilio</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>CondicionFiscal</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>CUIT</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>IngresosBrutos</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>FechaInicioActividades</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

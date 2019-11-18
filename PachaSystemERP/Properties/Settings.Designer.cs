@@ -33,5 +33,77 @@ namespace PachaSystemERP.Properties {
                 return ((string)(this["PachaSystemERPConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pacha System")]
+        public string NombreFantasia {
+            get {
+                return ((string)(this["NombreFantasia"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Walter Gonzalez Adolfo")]
+        public string RazonSocial {
+            get {
+                return ((string)(this["RazonSocial"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Alvar Nuñez 0 Dpto 22, Puerto Iguazu, Misiones")]
+        public string Domicilio {
+            get {
+                return ((string)(this["Domicilio"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("IVA Responsable Inscripto")]
+        public string CondicionFiscal {
+            get {
+                return ((string)(this["CondicionFiscal"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20247825607")]
+        public string CUIT {
+            get {
+                return ((string)(this["CUIT"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20247825607")]
+        public string IngresosBrutos {
+            get {
+                return ((string)(this["IngresosBrutos"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2005-11-01")]
+        public global::System.DateTime FechaInicioActividades {
+            get {
+                return ((global::System.DateTime)(this["FechaInicioActividades"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int PuntoVenta {
+            get {
+                return ((int)(this["PuntoVenta"]));
+            }
+        }
     }
 }
