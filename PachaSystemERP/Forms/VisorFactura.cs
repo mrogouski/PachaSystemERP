@@ -17,8 +17,10 @@
 
     public partial class VisorFactura : Form
     {
-        public VisorFactura()
+        private int _comprobanteID;
+        public VisorFactura(int comprobanteID)
         {
+            _comprobanteID = comprobanteID;
             InitializeComponent();
         }
 
@@ -27,10 +29,10 @@
             try
             {
                 // TODO: This line of code loads data into the 'dataSetComprobante.DataTableComprobante' table. You can move, or remove it, as needed.
-                this.dataTableComprobanteTableAdapter.Fill(this.dataSetComprobante.DataTableComprobante, 1);
+                this.dataTableComprobanteTableAdapter.Fill(this.dataSetComprobante.DataTableComprobante, _comprobanteID);
 
             }
-            catch (ConstraintException ex)
+            catch (Exception ex)
             {
 
                 throw ex.InnerException;

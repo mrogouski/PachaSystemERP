@@ -167,11 +167,11 @@
             }
         }
 
-        public bool GenerarComprobante(TipoConcepto tipoConcepto)
+        public int GenerarComprobante(TipoConcepto tipoConcepto)
         {
             if (_detalleProducto.Count == 0)
             {
-                return false;
+                throw new ArgumentException("No se pudo generar el comprobante porque no se cargo ningún producto");
             }
             else
             {
@@ -207,8 +207,6 @@
                     _comprobante.ComprobanteCliente.Add(comprobanteCliente);
                 }
 
-                _unitOfWork.Comprobante.Agregar(_comprobante);
-
                 var response = _facturaElectronica.GenerarComprobante(_comprobante);
 
                 if (response != null)
@@ -218,9 +216,10 @@
                 }
             }
 
+            _unitOfWork.Comprobante.Agregar(_comprobante);
             _unitOfWork.Guardar();
 
-            return true;
+            return _comprobante.ID;
         }
 
         public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
