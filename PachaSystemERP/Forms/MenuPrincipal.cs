@@ -64,7 +64,7 @@
 
         private void FacturaBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var tipoComprobante = _unitOfWork.TipoComprobante.Obtener(x => x.Descripcion == "FACTURAS B");
+            var tipoComprobante = _unitOfWork.TipoComprobante.Obtener(x => x.Descripcion == "FACTURA B");
             var form = new Factura(tipoComprobante)
             {
                 FormBorderStyle = FormBorderStyle.None,

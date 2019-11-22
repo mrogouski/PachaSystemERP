@@ -203,7 +203,7 @@
             this.label4.Text = "Descripción";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // nudCantidad
+            // NudCantidad
             // 
             this.NudCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.NudCantidad.Location = new System.Drawing.Point(608, 7);
@@ -212,7 +212,7 @@
             0,
             0,
             0});
-            this.NudCantidad.Name = "nudCantidad";
+            this.NudCantidad.Name = "NudCantidad";
             this.NudCantidad.Size = new System.Drawing.Size(121, 20);
             this.NudCantidad.TabIndex = 10;
             this.NudCantidad.Value = new decimal(new int[] {
@@ -244,7 +244,7 @@
             this.label5.Text = "Precio Unitario";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // nudPrecioUnitario
+            // NudPrecioUnitario
             // 
             this.NudPrecioUnitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.NudPrecioUnitario.DecimalPlaces = 2;
@@ -255,7 +255,7 @@
             0,
             0,
             0});
-            this.NudPrecioUnitario.Name = "nudPrecioUnitario";
+            this.NudPrecioUnitario.Name = "NudPrecioUnitario";
             this.NudPrecioUnitario.Size = new System.Drawing.Size(115, 20);
             this.NudPrecioUnitario.TabIndex = 11;
             this.NudPrecioUnitario.ValueChanged += new System.EventHandler(this.NudPrecioUnitario_ValueChanged);
@@ -271,7 +271,7 @@
             this.label6.Text = "Subtotal";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // nudSubtotal
+            // NudSubtotal
             // 
             this.NudSubtotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.NudSubtotal.DecimalPlaces = 2;
@@ -282,7 +282,7 @@
             0,
             0,
             0});
-            this.NudSubtotal.Name = "nudSubtotal";
+            this.NudSubtotal.Name = "NudSubtotal";
             this.NudSubtotal.Size = new System.Drawing.Size(115, 20);
             this.NudSubtotal.TabIndex = 12;
             this.NudSubtotal.ThousandsSeparator = true;
@@ -399,6 +399,7 @@
             // cbTipoDocumento
             // 
             this.cbTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumento.FormattingEnabled = true;
             this.cbTipoDocumento.Location = new System.Drawing.Point(608, 5);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
@@ -430,6 +431,7 @@
             // cbTipoResponsabilidadCliente
             // 
             this.cbTipoResponsabilidadCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTipoResponsabilidadCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoResponsabilidadCliente.FormattingEnabled = true;
             this.cbTipoResponsabilidadCliente.Location = new System.Drawing.Point(366, 5);
             this.cbTipoResponsabilidadCliente.Name = "cbTipoResponsabilidadCliente";
@@ -475,7 +477,7 @@
             this.btnFacturar.Name = "btnFacturar";
             this.btnFacturar.Size = new System.Drawing.Size(75, 23);
             this.btnFacturar.TabIndex = 1;
-            this.btnFacturar.Text = "Facturar";
+            this.btnFacturar.Text = "Generar Comprobante";
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.BtnFacturar_Click);
             // 
@@ -595,16 +597,15 @@
             this.label14.Text = "Numero de Comprobante";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblNumeroDeComprobante
+            // lblNumeroComprobante
             // 
             this.lblNumeroComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNumeroComprobante.AutoSize = true;
             this.lblNumeroComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumeroComprobante.Location = new System.Drawing.Point(552, 26);
-            this.lblNumeroComprobante.Name = "lblNumeroDeComprobante";
+            this.lblNumeroComprobante.Name = "lblNumeroComprobante";
             this.lblNumeroComprobante.Size = new System.Drawing.Size(177, 13);
             this.lblNumeroComprobante.TabIndex = 3;
-            this.lblNumeroComprobante.Text = "1";
             // 
             // Factura
             // 

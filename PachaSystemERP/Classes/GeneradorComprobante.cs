@@ -167,7 +167,7 @@
             }
         }
 
-        public int GenerarComprobante(TipoConcepto tipoConcepto)
+        public Comprobante GenerarComprobante(TipoConcepto tipoConcepto)
         {
             if (_detalleProducto.Count == 0)
             {
@@ -190,7 +190,7 @@
                 {
                     DetalleComprobante detalle = new DetalleComprobante();
                     detalle.ComprobanteID = _comprobante.ID;
-                    detalle.ProductoID = item.ProductoID;
+                    detalle.Producto = _unitOfWork.Producto.Obtener(x => x.ID == item.ProductoID);
                     detalle.Cantidad = item.Cantidad;
                     detalle.ImporteIva = item.ImporteIva;
                     detalle.ImporteTributo = item.ImporteTributo;
@@ -219,7 +219,7 @@
             _unitOfWork.Comprobante.Agregar(_comprobante);
             _unitOfWork.Guardar();
 
-            return _comprobante.ID;
+            return _comprobante;
         }
 
         public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)

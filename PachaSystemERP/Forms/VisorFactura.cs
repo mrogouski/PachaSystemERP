@@ -2,6 +2,7 @@
 {
     using Microsoft.Reporting.WinForms;
     using NBarCodes;
+    using PachaSystem.Data.Models;
     using PachaSystemERP.Classes;
     using PachaSystemERP.Properties;
     using System;
@@ -18,10 +19,10 @@
 
     public partial class VisorFactura : Form
     {
-        private int _comprobanteID;
-        public VisorFactura(int comprobanteID)
+        private Comprobante _comprobante;
+        public VisorFactura(Comprobante comprobante)
         {
-            _comprobanteID = comprobanteID;
+            _comprobante = comprobante;
             InitializeComponent();
         }
 
@@ -30,7 +31,7 @@
             try
             {
                 // TODO: This line of code loads data into the 'dataSetComprobante.DataTableComprobante' table. You can move, or remove it, as needed.
-                this.dataTableComprobanteTableAdapter.Fill(this.dataSetComprobante.DataTableComprobante, _comprobanteID);
+                this.dataTableComprobanteTableAdapter.Fill(this.dataSetComprobante.DataTableComprobante, _comprobante.ID);
 
             }
             catch (Exception ex)
@@ -39,8 +40,16 @@
                 throw ex.InnerException;
             }
 
+            StringBuilder builder = new StringBuilder();
+            builder.Append(Settings.Default.CUIT);
+            builder.Append(_comprobante.TipoComprobanteID.ToString("D3"));
+            builder.Append(Settings.Default.PuntoVenta.ToString("D5"));
+            builder.Append(_comprobante.CAE);
+            builder.Append(_comprobante.FechaVencimientoCAE.ToString("yyyyMMdd"));
+
             BarCodeSettings settings = new BarCodeSettings();
-            settings.Data = "20247825607001000036935743048290920190912";
+            //settings.Data = "20247825607001000036935743048290920190912";
+            settings.Data = builder.ToString();
             settings.Type = BarCodeType.Interleaved25;
             settings.UseChecksum = true;
             settings.Unit = BarCodeUnit.Pixel;

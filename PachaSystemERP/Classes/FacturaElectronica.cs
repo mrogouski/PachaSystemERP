@@ -101,7 +101,7 @@ namespace PachaSystemERP.Classes
                 detalles.ImporteExento = decimal.ToDouble(comprobante.ImporteExento);
                 detalles.ImporteIVA = decimal.ToDouble(comprobante.ImporteTotalIva);
                 detalles.ImporteTributo = decimal.ToDouble(comprobante.ImporteTotalTributo);
-                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Obtener(x => x.ID == comprobante.TipoMonedaID).Codigo;
+                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Obtener(x => x.ID == comprobante.TipoMoneda.ID).Codigo;
                 detalles.MonedaCotizacion = comprobante.CotizacionMoneda;
 
                 //if (comprobante.ComprobantesAsociados != null)

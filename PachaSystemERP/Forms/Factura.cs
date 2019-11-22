@@ -189,8 +189,10 @@ namespace PachaSystemERP.Forms
             }
 
             var concepto = _unitOfWork.TipoConcepto.Obtener(x => x.Descripcion == "PRODUCTOS");
+
             var form = new VisorFactura(_generador.GenerarComprobante(concepto));
-            form.ShowDialog();
+            var dialogResult = form.ShowDialog();
+
             Inicializar();
         }
 

@@ -460,7 +460,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.71875in</Height>
+        <Height>2.70833in</Height>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -473,7 +473,7 @@
           </BottomBorder>
         </Style>
       </Body>
-      <Width>6.69291in</Width>
+      <Width>7.48031in</Width>
       <Page>
         <PageHeader>
           <Height>8cm</Height>
@@ -494,7 +494,7 @@
             <Line Name="Line5">
               <Top>4cm</Top>
               <Height>0cm</Height>
-              <Width>17cm</Width>
+              <Width>19cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -511,12 +511,14 @@
                     <TextRun>
                       <Value>Razon Social: </Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Parameters!RazonSocial.Value</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Normal</FontWeight>
                       </Style>
                     </TextRun>
@@ -549,16 +551,21 @@
                     <TextRun>
                       <Value>Domicilio Comercial:</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Parameters!Domicilio.Value</Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -642,16 +649,20 @@
                     <TextRun>
                       <Value>Fecha  de Emision:</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Fields!FechaComprobante.Value</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <Format>d</Format>
                       </Style>
                     </TextRun>
@@ -684,16 +695,21 @@
                     <TextRun>
                       <Value>CUIT:</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Parameters!CUIT.Value</Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -960,16 +976,21 @@
                     <TextRun>
                       <Value>Condición frente al IVA:</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Parameters!CondicionFiscal.Value</Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -1040,16 +1061,21 @@
                     <TextRun>
                       <Value>Ingresos Brutos:</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Parameters!IngresosBrutos.Value</Value>
-                      <Style />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -1080,12 +1106,14 @@
                     <TextRun>
                       <Value>Fecha de Inicio de Actividades: </Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
                       <Value>=Parameters!FechaInicioActividades.Value</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Normal</FontWeight>
                       </Style>
                     </TextRun>
@@ -1117,29 +1145,18 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>3.49254cm</Height>
+          <Height>2cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Line Name="Line4">
-              <Top>1.74627cm</Top>
-              <Height>0cm</Height>
-              <Width>17cm</Width>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Line>
             <Image Name="BarcodeImage">
               <Source>Database</Source>
               <Value>=Parameters!Barcode.Value</Value>
               <MIMEType>image/bmp</MIMEType>
-              <Top>1.92266cm</Top>
-              <Left>0.18203cm</Left>
+              <Top>0.5cm</Top>
+              <Left>0.5cm</Left>
               <Height>1.28833cm</Height>
-              <Width>10.83979cm</Width>
-              <ZIndex>1</ZIndex>
+              <Width>10cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1169,11 +1186,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox6</rd:DefaultName>
-              <Top>1.86562cm</Top>
-              <Left>11.37391cm</Left>
+              <Top>0.5cm</Top>
+              <Left>10.67639cm</Left>
               <Height>0.6cm</Height>
-              <Width>5.25167cm</Width>
-              <ZIndex>2</ZIndex>
+              <Width>8cm</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1211,11 +1228,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox16</rd:DefaultName>
-              <Top>2.64201cm</Top>
-              <Left>11.37391cm</Left>
+              <Top>1.27639cm</Top>
+              <Left>10.67639cm</Left>
               <Height>0.6cm</Height>
-              <Width>5.25167cm</Width>
-              <ZIndex>3</ZIndex>
+              <Width>8cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

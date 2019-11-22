@@ -12,6 +12,8 @@
 
         public string Descripcion { get; set; }
 
+        public string Clase { get; set; }
+
         public bool ControladorFiscal { get; set; }
 
         public bool FacturaElectronica { get; set; }

@@ -18,7 +18,7 @@
                          DetalleComprobante.BaseImponible, DetalleComprobante.Subtotal, DetalleComprobante.ImporteIva, DetalleComprobante.ImporteTributo, 
                          TipoResponsable.Descripcion AS TipoResponsable, Producto.Codigo, Producto.Descripcion AS Producto, Producto.PrecioUnitario, 
                          TipoDocumento.Descripcion AS TipoDocumento, TipoCondicionIva.Descripcion AS TipoCondicionIva, TipoComprobante.Descripcion AS TipoComprobante, 
-                         TipoTributo.Descripcion AS TipoTributo, TipoTributo.Alicuota, Comprobante.ID, TipoCondicionIva.Alicuota AS AlicuotaIva
+                         TipoTributo.Descripcion AS TipoTributo, TipoTributo.Alicuota, Comprobante.ID, TipoCondicionIva.Alicuota AS AlicuotaIva, Comprobante.TipoComprobanteID
 FROM            Comprobante LEFT OUTER JOIN
                          CategoriaTributo ON Comprobante.ID = CategoriaTributo.ID LEFT OUTER JOIN
                          Cliente ON Comprobante.ID = Cliente.ID LEFT OUTER JOIN
@@ -69,6 +69,7 @@ WHERE        (Comprobante.ID = @id)</CommandText>
               <Mapping SourceColumn="Alicuota" DataSetColumn="Alicuota" />
               <Mapping SourceColumn="ID" DataSetColumn="ID" />
               <Mapping SourceColumn="AlicuotaIva" DataSetColumn="AlicuotaIva" />
+              <Mapping SourceColumn="TipoComprobanteID" DataSetColumn="TipoComprobanteID" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -80,7 +81,7 @@ WHERE        (Comprobante.ID = @id)</CommandText>
   <xs:element name="DataSetComprobante" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:EnforceConstraints="False" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetComprobante" msprop:Generator_UserDSName="DataSetComprobante">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTableComprobante" msprop:Generator_TableClassName="DataTableComprobanteDataTable" msprop:Generator_TableVarName="tableDataTableComprobante" msprop:Generator_TablePropName="DataTableComprobante" msprop:Generator_RowDeletingName="DataTableComprobanteRowDeleting" msprop:Generator_RowChangingName="DataTableComprobanteRowChanging" msprop:Generator_RowEvHandlerName="DataTableComprobanteRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableComprobanteRowDeleted" msprop:Generator_UserTableName="DataTableComprobante" msprop:Generator_RowChangedName="DataTableComprobanteRowChanged" msprop:Generator_RowEvArgName="DataTableComprobanteRowChangeEvent" msprop:Generator_RowClassName="DataTableComprobanteRow">
+        <xs:element name="DataTableComprobante" msprop:Generator_TableClassName="DataTableComprobanteDataTable" msprop:Generator_TableVarName="tableDataTableComprobante" msprop:Generator_RowChangedName="DataTableComprobanteRowChanged" msprop:Generator_TablePropName="DataTableComprobante" msprop:Generator_RowDeletingName="DataTableComprobanteRowDeleting" msprop:Generator_RowChangingName="DataTableComprobanteRowChanging" msprop:Generator_RowEvHandlerName="DataTableComprobanteRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableComprobanteRowDeleted" msprop:Generator_RowClassName="DataTableComprobanteRow" msprop:Generator_UserTableName="DataTableComprobante" msprop:Generator_RowEvArgName="DataTableComprobanteRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PuntoVenta" msprop:Generator_ColumnVarNameInTable="columnPuntoVenta" msprop:Generator_ColumnPropNameInRow="PuntoVenta" msprop:Generator_ColumnPropNameInTable="PuntoVentaColumn" msprop:Generator_UserColumnName="PuntoVenta" type="xs:int" />
@@ -186,6 +187,7 @@ WHERE        (Comprobante.ID = @id)</CommandText>
               <xs:element name="Alicuota" msprop:Generator_ColumnVarNameInTable="columnAlicuota" msprop:Generator_ColumnPropNameInRow="Alicuota" msprop:Generator_ColumnPropNameInTable="AlicuotaColumn" msprop:Generator_UserColumnName="Alicuota" type="xs:decimal" minOccurs="0" />
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
               <xs:element name="AlicuotaIva" msprop:Generator_ColumnVarNameInTable="columnAlicuotaIva" msprop:Generator_ColumnPropNameInRow="AlicuotaIva" msprop:Generator_ColumnPropNameInTable="AlicuotaIvaColumn" msprop:Generator_UserColumnName="AlicuotaIva" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TipoComprobanteID" msprop:Generator_ColumnVarNameInTable="columnTipoComprobanteID" msprop:Generator_ColumnPropNameInRow="TipoComprobanteID" msprop:Generator_ColumnPropNameInTable="TipoComprobanteIDColumn" msprop:Generator_UserColumnName="TipoComprobanteID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

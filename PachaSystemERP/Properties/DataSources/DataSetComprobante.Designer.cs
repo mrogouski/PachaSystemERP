@@ -341,6 +341,8 @@ namespace PachaSystemERP.Properties.DataSources {
             
             private global::System.Data.DataColumn columnAlicuotaIva;
             
+            private global::System.Data.DataColumn columnTipoComprobanteID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTableComprobanteDataTable() {
@@ -624,6 +626,14 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TipoComprobanteIDColumn {
+                get {
+                    return this.columnTipoComprobanteID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -689,7 +699,8 @@ namespace PachaSystemERP.Properties.DataSources {
                         string TipoComprobante, 
                         string TipoTributo, 
                         decimal Alicuota, 
-                        decimal AlicuotaIva) {
+                        decimal AlicuotaIva, 
+                        int TipoComprobanteID) {
                 DataTableComprobanteRow rowDataTableComprobanteRow = ((DataTableComprobanteRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PuntoVenta,
@@ -722,7 +733,8 @@ namespace PachaSystemERP.Properties.DataSources {
                         TipoTributo,
                         Alicuota,
                         null,
-                        AlicuotaIva};
+                        AlicuotaIva,
+                        TipoComprobanteID};
                 rowDataTableComprobanteRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTableComprobanteRow);
                 return rowDataTableComprobanteRow;
@@ -783,6 +795,7 @@ namespace PachaSystemERP.Properties.DataSources {
                 this.columnAlicuota = base.Columns["Alicuota"];
                 this.columnID = base.Columns["ID"];
                 this.columnAlicuotaIva = base.Columns["AlicuotaIva"];
+                this.columnTipoComprobanteID = base.Columns["TipoComprobanteID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -850,6 +863,8 @@ namespace PachaSystemERP.Properties.DataSources {
                 base.Columns.Add(this.columnID);
                 this.columnAlicuotaIva = new global::System.Data.DataColumn("AlicuotaIva", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAlicuotaIva);
+                this.columnTipoComprobanteID = new global::System.Data.DataColumn("TipoComprobanteID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoComprobanteID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnPuntoVenta.AllowDBNull = false;
@@ -880,6 +895,7 @@ namespace PachaSystemERP.Properties.DataSources {
                 this.columnID.AllowDBNull = false;
                 this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
+                this.columnTipoComprobanteID.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1467,6 +1483,17 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int TipoComprobanteID {
+                get {
+                    return ((int)(this[this.tableDataTableComprobante.TipoComprobanteIDColumn]));
+                }
+                set {
+                    this[this.tableDataTableComprobante.TipoComprobanteIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCAENull() {
                 return this.IsNull(this.tableDataTableComprobante.CAEColumn);
             }
@@ -1896,6 +1923,7 @@ namespace PachaSystemERP.Properties.DataSources.DataSetComprobanteTableAdapters 
             tableMapping.ColumnMappings.Add("Alicuota", "Alicuota");
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("AlicuotaIva", "AlicuotaIva");
+            tableMapping.ColumnMappings.Add("TipoComprobanteID", "TipoComprobanteID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1926,19 +1954,19 @@ namespace PachaSystemERP.Properties.DataSources.DataSetComprobanteTableAdapters 
                 "poCondicionIva.Descripcion AS TipoCondicionIva, TipoComprobante.Descripcion AS T" +
                 "ipoComprobante, \r\n                         TipoTributo.Descripcion AS TipoTribut" +
                 "o, TipoTributo.Alicuota, Comprobante.ID, TipoCondicionIva.Alicuota AS AlicuotaIv" +
-                "a\r\nFROM            Comprobante LEFT OUTER JOIN\r\n                         Categor" +
-                "iaTributo ON Comprobante.ID = CategoriaTributo.ID LEFT OUTER JOIN\r\n             " +
-                "            Cliente ON Comprobante.ID = Cliente.ID LEFT OUTER JOIN\r\n            " +
-                "             DetalleComprobante ON Comprobante.ID = DetalleComprobante.Comproban" +
-                "teID LEFT OUTER JOIN\r\n                         Producto ON DetalleComprobante.Pr" +
-                "oductoID = Producto.ID LEFT OUTER JOIN\r\n                         TipoComprobante" +
-                " ON Comprobante.TipoComprobanteID = TipoComprobante.ID LEFT OUTER JOIN\r\n        " +
-                "                 TipoCondicionIva ON Producto.TipoCondicionIvaID = TipoCondicion" +
-                "Iva.ID LEFT OUTER JOIN\r\n                         TipoDocumento ON Cliente.TipoDo" +
-                "cumentoID = TipoDocumento.ID LEFT OUTER JOIN\r\n                         TipoRespo" +
-                "nsable ON Cliente.TipoResponsableID = TipoResponsable.ID LEFT OUTER JOIN\r\n      " +
-                "                   TipoTributo ON CategoriaTributo.ID = TipoTributo.CategoriaTri" +
-                "butoID\r\nWHERE        (Comprobante.ID = @id)";
+                "a, Comprobante.TipoComprobanteID\r\nFROM            Comprobante LEFT OUTER JOIN\r\n " +
+                "                        CategoriaTributo ON Comprobante.ID = CategoriaTributo.ID" +
+                " LEFT OUTER JOIN\r\n                         Cliente ON Comprobante.ID = Cliente.I" +
+                "D LEFT OUTER JOIN\r\n                         DetalleComprobante ON Comprobante.ID" +
+                " = DetalleComprobante.ComprobanteID LEFT OUTER JOIN\r\n                         Pr" +
+                "oducto ON DetalleComprobante.ProductoID = Producto.ID LEFT OUTER JOIN\r\n         " +
+                "                TipoComprobante ON Comprobante.TipoComprobanteID = TipoComproban" +
+                "te.ID LEFT OUTER JOIN\r\n                         TipoCondicionIva ON Producto.Tip" +
+                "oCondicionIvaID = TipoCondicionIva.ID LEFT OUTER JOIN\r\n                         " +
+                "TipoDocumento ON Cliente.TipoDocumentoID = TipoDocumento.ID LEFT OUTER JOIN\r\n   " +
+                "                      TipoResponsable ON Cliente.TipoResponsableID = TipoRespons" +
+                "able.ID LEFT OUTER JOIN\r\n                         TipoTributo ON CategoriaTribut" +
+                "o.ID = TipoTributo.CategoriaTributoID\r\nWHERE        (Comprobante.ID = @id)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

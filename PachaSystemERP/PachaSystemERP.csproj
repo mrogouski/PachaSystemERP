@@ -152,12 +152,6 @@
     <Compile Include="Forms\MenuPrincipal.Designer.cs">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ReportFacturaB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ReportFacturaB.Designer.cs">
-      <DependentUpon>ReportFacturaB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\VisorFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,9 +192,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReportFacturaB.resx">
-      <DependentUpon>ReportFacturaB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VisorFactura.resx">
       <DependentUpon>VisorFactura.cs</DependentUpon>
