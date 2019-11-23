@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class TipoTributo
+    public class Tributo
     {
         public int ID { get; set; }
 
@@ -18,6 +18,6 @@
 
         public virtual CategoriaTributo CategoriaTributo { get; set; }
 
-        public virtual ICollection<Producto> Productos { get; set; }
+        public virtual ICollection<Comprobante> Comprobantes { get; set; }
     }
 }

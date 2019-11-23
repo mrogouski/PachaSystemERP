@@ -16,6 +16,6 @@
 
         public bool FacturaElectronica { get; set; }
 
-        public virtual ICollection<TipoTributo> Tributos { get; set; }
+        public virtual ICollection<Tributo> Tributos { get; set; }
     }
 }

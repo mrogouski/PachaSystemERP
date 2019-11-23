@@ -49,12 +49,10 @@ namespace PachaSystemERP.Forms
         {
             _context.Producto.Load();
             _context.TipoCondicionIva.Load();
-            _context.TipoTributo.Load();
             _context.CategoriaProducto.Load();
 
             _articuloBindingSource = new BindingSource();
             var ivaBindingSource = new BindingSource();
-            var tributoBindingSource = new BindingSource();
             var categoriaBindingSource = new BindingSource();
 
             _articuloBindingSource.DataSource = _context.Producto.Local.ToBindingList();
@@ -67,7 +65,6 @@ namespace PachaSystemERP.Forms
             DgvArticulos.Columns["FechaBaja"].Visible = false;
             DgvArticulos.Columns["CategoriaProducto"].Visible = false;
             DgvArticulos.Columns["TipoCondicionIva"].Visible = false;
-            DgvArticulos.Columns["TipoTributo"].Visible = false;
             DgvArticulos.Columns["DetalleComprobante"].Visible = false;
 
             DataGridViewComboBoxColumn columnIva = new DataGridViewComboBoxColumn();
@@ -77,15 +74,6 @@ namespace PachaSystemERP.Forms
             columnIva.DisplayMember = "Descripcion";
             columnIva.ValueMember = "ID";
             DgvArticulos.Columns.Add(columnIva);
-
-            DataGridViewComboBoxColumn columnTributo = new DataGridViewComboBoxColumn();
-            columnTributo.DataPropertyName = "TipoTributoID";
-            columnTributo.Name = "Tributo";
-            columnTributo.DataSource = _context.TipoTributo.Local.ToBindingList();
-            //query.Insert(0, new SistemaDeFacturacion.TipoDocumento { Id = 0, Descripcion = "SELECCIONAR" });
-            columnTributo.DisplayMember = "Descripcion";
-            columnTributo.ValueMember = "ID";
-            DgvArticulos.Columns.Add(columnTributo);
 
             DataGridViewComboBoxColumn columnCategoria = new DataGridViewComboBoxColumn();
             columnCategoria.DataPropertyName = "CategoriaProductoID";

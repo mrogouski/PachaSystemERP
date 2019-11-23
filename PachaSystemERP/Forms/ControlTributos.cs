@@ -26,6 +26,7 @@ namespace PachaSystemERP.Forms
         public ControlDeTributos()
         {
             InitializeComponent();
+            _context = new PachaSystemContext();
             _context.TipoTributo.Load();
             _context.CategoriaTributo.Load();
         }
@@ -46,8 +47,8 @@ namespace PachaSystemERP.Forms
             column.DataPropertyName = "CategoriaTributoID";
             column.Name = "Categoría de Tributo";
             column.DataSource = _context.CategoriaTributo.Local.ToBindingList();
-            column.ValueMember = "ID";
             column.DisplayMember = "Descripcion";
+            column.ValueMember = "ID";
             dgvTributo.Columns.Add(column);
         }
 
@@ -63,10 +64,6 @@ namespace PachaSystemERP.Forms
                 ErrorProvider errorProvider = new ErrorProvider();
                 errorProvider.SetError(dgvTributo, e.Exception.Message);
             }
-        }
-
-        private void dgvTributo_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
-        {
         }
     }
 }

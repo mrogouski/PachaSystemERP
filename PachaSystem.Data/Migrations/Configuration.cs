@@ -2,6 +2,7 @@ namespace PachaSystem.Data.Migrations
 {
     using PachaSystem.Data.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -20,21 +21,38 @@ namespace PachaSystem.Data.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            context.TipoConcepto.AddOrUpdate(
+            List<TipoConcepto> tipoConcepto = new List<TipoConcepto>
+            {
                 new TipoConcepto { ID = 1, Descripcion = "PRODUCTOS" },
                 new TipoConcepto { ID = 2, Descripcion = "SERVICIOS" },
                 new TipoConcepto { ID = 3, Descripcion = "PRODUCTOS Y SERVICIOS" },
-                new TipoConcepto { ID = 4, Descripcion = "OTROS" });
+                new TipoConcepto { ID = 4, Descripcion = "OTROS" }
+            };
+            context.TipoConcepto.AddRange(tipoConcepto);
 
-            context.TipoCondicionIva.AddOrUpdate(
+            List<TipoCondicionIva> tipoCondicionIva = new List<TipoCondicionIva>()
+            {
                 new TipoCondicionIva { ID = 1, Descripcion = "NO GRAVADO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
                 new TipoCondicionIva { ID = 2, Descripcion = "EXENTO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
                 new TipoCondicionIva { ID = 3, Descripcion = "0%", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
                 new TipoCondicionIva { ID = 4, Descripcion = "10.5%", Alicuota = 10.5M, ControladorFiscal = true, FacturaElectronica = true },
                 new TipoCondicionIva { ID = 5, Descripcion = "21%", Alicuota = 21M, ControladorFiscal = true, FacturaElectronica = true },
-                new TipoCondicionIva { ID = 6, Descripcion = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true });
+                new TipoCondicionIva { ID = 6, Descripcion = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true }
+            };
+            context.TipoCondicionIva.AddRange(tipoCondicionIva);
 
-            context.TipoResponsable.AddOrUpdate(
+            List<CategoriaTributo> categoriaTributo = new List<CategoriaTributo>()
+            {
+                new CategoriaTributo { ID = 1, Descripcion = "Impuestos Nacionales", ControladorFiscal = false, FacturaElectronica = true },
+                new CategoriaTributo { ID = 2, Descripcion = "Impuestos Provinciales", ControladorFiscal = false, FacturaElectronica = true },
+                new CategoriaTributo { ID = 3, Descripcion = "Impuestos Municipales", ControladorFiscal = false, FacturaElectronica = true },
+                new CategoriaTributo { ID = 4, Descripcion = "Impuestos Internos", ControladorFiscal = false, FacturaElectronica = true },
+                new CategoriaTributo { ID = 99, Descripcion = "Otros", ControladorFiscal = false, FacturaElectronica = true }
+            };
+            context.CategoriaTributo.AddRange(categoriaTributo);
+
+            List<TipoResponsable> tipoResponsable = new List<TipoResponsable>
+            {
                 new TipoResponsable { ID = 1, Descripcion = "IVA RESPONSABLE INSCRIPTO", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoResponsable { ID = 2, Descripcion = "IVA RESPONSABLE NO INSCRIPTO", ControladorFiscal = false, FacturaElectronica = true },
                 new TipoResponsable { ID = 3, Descripcion = "IVA NO RESPONSABLE", ControladorFiscal = true, FacturaElectronica = true },
@@ -48,9 +66,12 @@ namespace PachaSystem.Data.Migrations
                 new TipoResponsable { ID = 11, Descripcion = "IVA RESPONSABLE INSCRIPTO – AGENTE DE PERCEPCION", ControladorFiscal = false, FacturaElectronica = true },
                 new TipoResponsable { ID = 12, Descripcion = "PEQUEÑO CONTRIBUYENTE EVENTUAL", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoResponsable { ID = 13, Descripcion = "MONOTRIBUTISTA SOCIAL", ControladorFiscal = true, FacturaElectronica = true },
-                new TipoResponsable { ID = 14, Descripcion = "PEQUEÑO CONTRIBUYENTE EVENTUAL SOCIAL", ControladorFiscal = true, FacturaElectronica = true });
+                new TipoResponsable { ID = 14, Descripcion = "PEQUEÑO CONTRIBUYENTE EVENTUAL SOCIAL", ControladorFiscal = true, FacturaElectronica = true }
+            };
+            context.TipoResponsable.AddRange(tipoResponsable);
 
-            context.TipoDocumento.AddOrUpdate(
+            List<TipoDocumento> tipoDocumento = new List<TipoDocumento>
+            {
                 new TipoDocumento { ID = 0, Descripcion = "CI POLICIA FEDERAL", ControladorFiscal = false, FacturaElectronica = true },
                 new TipoDocumento { ID = 1, Descripcion = "CI BUENOS AIRES", ControladorFiscal = false, FacturaElectronica = true },
                 new TipoDocumento { ID = 2, Descripcion = "CI CATAMARCA", ControladorFiscal = false, FacturaElectronica = true },
@@ -86,9 +107,12 @@ namespace PachaSystem.Data.Migrations
                 new TipoDocumento { ID = 94, Descripcion = "PASAPORTE", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoDocumento { ID = 95, Descripcion = "CI BUENOS AIRES RNP", ControladorFiscal = false, FacturaElectronica = true },
                 new TipoDocumento { ID = 96, Descripcion = "DNI", ControladorFiscal = true, FacturaElectronica = true },
-                new TipoDocumento { ID = 99, Descripcion = "SIN IDENTIFICAR", ControladorFiscal = true, FacturaElectronica = true });
+                new TipoDocumento { ID = 99, Descripcion = "SIN IDENTIFICAR", ControladorFiscal = true, FacturaElectronica = true }
+            };
+            context.TipoDocumento.AddRange(tipoDocumento);
 
-            context.TipoMoneda.AddOrUpdate(
+            List<TipoMoneda> tipoMoneda = new List<TipoMoneda>
+            {
                 new TipoMoneda { ID = 1, Codigo = "000", Descripcion = "OTRAS MONEDAS" },
                 new TipoMoneda { ID = 2, Codigo = "PES", Descripcion = "PESOS" },
                 new TipoMoneda { ID = 3, Codigo = "DOL", Descripcion = "DOLAR ESTADOUNIDENSE" },
@@ -150,9 +174,12 @@ namespace PachaSystem.Data.Migrations
                 new TipoMoneda { ID = 59, Codigo = "061", Descripcion = "ZLTYS POLACOS" },
                 new TipoMoneda { ID = 60, Codigo = "062", Descripcion = "RUPIAS HINDÚES" },
                 new TipoMoneda { ID = 61, Codigo = "063", Descripcion = "LEMPIRAS HONDUREÑAS" },
-                new TipoMoneda { ID = 62, Codigo = "064", Descripcion = "YUAN (REPUBLICA POPULAR CHINA)" });
+                new TipoMoneda { ID = 62, Codigo = "064", Descripcion = "YUAN (REPUBLICA POPULAR CHINA)" }
+            };
+            context.TipoMoneda.AddRange(tipoMoneda);
 
-            context.TipoComprobante.AddOrUpdate(
+            List<TipoComprobante> tipoComprobante = new List<TipoComprobante>
+            {
                 new TipoComprobante { ID = 1, Descripcion = "FACTURA A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoComprobante { ID = 2, Descripcion = "NOTA DE DEBITO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoComprobante { ID = 3, Descripcion = "NOTA DE CREDITO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
@@ -208,9 +235,11 @@ namespace PachaSystem.Data.Migrations
                 new TipoComprobante { ID = 902, Descripcion = "RECIBO X", Clase = "X", ControladorFiscal = true, FacturaElectronica = false },
                 new TipoComprobante { ID = 903, Descripcion = "PRESUPUESTO X", Clase = "X", ControladorFiscal = true, FacturaElectronica = false },
                 new TipoComprobante { ID = 907, Descripcion = "COMPROBANTE DONACION", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false },
-                new TipoComprobante { ID = 910, Descripcion = "GENERICO", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false });
+                new TipoComprobante { ID = 910, Descripcion = "GENERICO", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false }
+            };
+            context.TipoComprobante.AddRange(tipoComprobante);
 
-            context.Cliente.AddOrUpdate(
+            context.Cliente.Add(
                 new Cliente { ID = 1, RazonSocial = "CONSUMIDOR FINAL", TipoDocumentoID = 99, NumeroDocumento = string.Empty, TipoResponsableID = 5, Domicilio = string.Empty });
 
             base.Seed(context);

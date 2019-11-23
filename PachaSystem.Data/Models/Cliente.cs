@@ -20,7 +20,7 @@
 
         public string Domicilio { get; set; }
 
-        public virtual List<ComprobanteCliente> ComprobanteCliente { get; set; }
+        public virtual ICollection<ComprobanteCliente> ComprobanteCliente { get; set; }
 
         public virtual TipoDocumento TipoDocumento { get; set; }
 

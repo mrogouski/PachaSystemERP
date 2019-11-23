@@ -40,7 +40,7 @@ namespace PachaSystem.Data.Helpers
 
         Repository<TipoResponsable> TipoResponsable { get; }
 
-        Repository<TipoTributo> TipoTributo { get; }
+        Repository<Tributo> TipoTributo { get; }
 
         void Guardar();
     }

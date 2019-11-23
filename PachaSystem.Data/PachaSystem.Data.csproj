@@ -70,7 +70,8 @@
     <Compile Include="Models\TipoDocumento.cs" />
     <Compile Include="Models\TipoMoneda.cs" />
     <Compile Include="Models\TipoResponsable.cs" />
-    <Compile Include="Models\TipoTributo.cs" />
+    <Compile Include="Models\Tributo.cs" />
+    <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="ObservableListSource.cs" />
     <Compile Include="PachaSystemContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

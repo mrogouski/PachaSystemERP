@@ -53,7 +53,9 @@ namespace PachaSystem.Data
 
         public DbSet<TipoResponsable> TipoResponsable { get; set; }
 
-        public DbSet<TipoTributo> TipoTributo { get; set; }
+        public DbSet<Tributo> TipoTributo { get; set; }
+
+        public DbSet<UnidadMedida> UnidadMedida { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -98,8 +100,11 @@ namespace PachaSystem.Data
             modelBuilder.Entity<TipoResponsable>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<TipoResponsable>().Property(x => x.Descripcion).IsRequired();
 
-            modelBuilder.Entity<TipoTributo>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<TipoTributo>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<Tributo>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Tributo>().Property(x => x.Descripcion).IsRequired();
+
+            modelBuilder.Entity<UnidadMedida>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<UnidadMedida>().Property(x => x.Descripcion).IsRequired();
         }
     }
 }

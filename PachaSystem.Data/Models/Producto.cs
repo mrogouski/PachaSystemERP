@@ -26,7 +26,7 @@
 
         public virtual TipoCondicionIva TipoCondicionIva { get; set; }
 
-        public virtual TipoTributo TipoTributo { get; set; }
+        public virtual Tributo TipoTributo { get; set; }
 
         public virtual CategoriaProducto CategoriaProducto { get; set; }
 

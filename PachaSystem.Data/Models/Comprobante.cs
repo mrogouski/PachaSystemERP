@@ -15,7 +15,6 @@ namespace PachaSystem.Data.Models
         public Comprobante()
         {
             DetalleComprobante = new HashSet<DetalleComprobante>();
-            ComprobanteCliente = new HashSet<ComprobanteCliente>();
         }
 
         public int ID { get; set; }
@@ -56,7 +55,9 @@ namespace PachaSystem.Data.Models
 
         public double CotizacionMoneda { get; set; }
 
-        public virtual ICollection<ComprobanteCliente> ComprobanteCliente { get; set; }
+        public int ClienteID { get; set; }
+
+        public virtual Cliente Cliente { get; set; }
 
         public virtual ICollection<DetalleComprobante> DetalleComprobante { get; set; }
 

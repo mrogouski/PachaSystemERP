@@ -24,8 +24,6 @@ namespace PachaSystem.Data.Models
 
         public decimal ImporteIva { get; set; }
 
-        public decimal ImporteTributo { get; set; }
-
         public virtual Comprobante Comprobante { get; set; }
 
         public Producto Producto { get; set; }

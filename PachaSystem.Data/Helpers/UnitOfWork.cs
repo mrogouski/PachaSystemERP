@@ -29,7 +29,7 @@ namespace PachaSystem.Data.Helpers
         private Repository<TipoDocumento> _tipoDocumento;
         private Repository<TipoMoneda> _tipoMoneda;
         private Repository<TipoResponsable> _tipoResponsable;
-        private Repository<TipoTributo> _tributo;
+        private Repository<Tributo> _tributo;
 
         public UnitOfWork(PachaSystemContext context)
         {
@@ -218,13 +218,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<TipoTributo> TipoTributo
+        public Repository<Tributo> TipoTributo
         {
             get
             {
                 if (_tributo == null)
                 {
-                    _tributo = new Repository<TipoTributo>(_context);
+                    _tributo = new Repository<Tributo>(_context);
                 }
 
                 return _tributo;

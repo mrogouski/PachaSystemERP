@@ -66,7 +66,6 @@
             this.dgvTributo.Name = "dgvTributo";
             this.dgvTributo.Size = new System.Drawing.Size(754, 363);
             this.dgvTributo.TabIndex = 0;
-            this.dgvTributo.CellValueNeeded += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.dgvTributo_CellValueNeeded);
             this.dgvTributo.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvTributo_DataError);
             // 
             // btnAceptar
