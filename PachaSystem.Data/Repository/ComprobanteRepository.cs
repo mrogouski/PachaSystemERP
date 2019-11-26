@@ -33,11 +33,11 @@ namespace PachaSystem.Data.Repository
             var query = (from c in _context.Comprobante
                          join dc in _context.DetalleComprobante on c.ID equals dc.ComprobanteID
                          join p in _context.Producto on dc.ProductoID equals p.ID
-                         join ci in _context.TipoCondicionIva on p.TipoCondicionIvaID equals ci.ID
-                         join t in _context.TipoTributo on p.TipoTributoID equals t.ID
+                         join ci in _context.Iva on p.TipoCondicionIvaID equals ci.ID
+                         join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
+                         join t in _context.Tributo on dt.TributoID equals t.ID
                          join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID
-                         join cc in _context.ComprobanteCliente on c.ID equals cc.ComprobanteID
-                         join client in _context.Cliente on cc.ClienteID equals client.ID
+                         join client in _context.Cliente on c.ClienteID equals client.ID
                          select c)
                          .Where(filtro)
                          .FirstOrDefault();

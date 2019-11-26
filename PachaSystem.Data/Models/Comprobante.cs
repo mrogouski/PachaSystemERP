@@ -57,7 +57,11 @@ namespace PachaSystem.Data.Models
 
         public int ClienteID { get; set; }
 
+        public  int? ComprobanteAsociadoID { get; set; }
+
         public virtual Cliente Cliente { get; set; }
+
+        public virtual ComprobanteAsociado ComprobanteAsociado { get; set; }
 
         public virtual ICollection<DetalleComprobante> DetalleComprobante { get; set; }
 
@@ -66,5 +70,7 @@ namespace PachaSystem.Data.Models
         public virtual TipoComprobante TipoComprobante { get; set; }
 
         public virtual TipoMoneda TipoMoneda { get; set; }
+
+        public virtual ICollection<DetalleTributo> DetalleTributo { get; set; }
     }
 }

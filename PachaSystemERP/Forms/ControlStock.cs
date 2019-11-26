@@ -21,9 +21,7 @@ namespace PachaSystemERP.Forms
 
     public partial class ControlDeStock : Form
     {
-        private BindingSource _articuloBindingSource;
         private PachaSystemContext _context;
-        private UnitOfWork _unitOfWork;
         private ErrorProvider _errorProvider;
         private CueText _cueText;
 
@@ -34,7 +32,6 @@ namespace PachaSystemERP.Forms
         {
             InitializeComponent();
             _context = new PachaSystemContext();
-            _unitOfWork = new UnitOfWork(_context);
             _errorProvider = new ErrorProvider();
         }
 
@@ -48,16 +45,14 @@ namespace PachaSystemERP.Forms
         private void CargarArticulos()
         {
             _context.Producto.Load();
-            _context.TipoCondicionIva.Load();
-            _context.CategoriaProducto.Load();
+            _context.Iva.Load();
+            _context.Rubro.Load();
 
-            _articuloBindingSource = new BindingSource();
-            var ivaBindingSource = new BindingSource();
-            var categoriaBindingSource = new BindingSource();
+            bindingSource= new BindingSource();
 
-            _articuloBindingSource.DataSource = _context.Producto.Local.ToBindingList();
+            bindingSource.DataSource = _context.Producto.Local.ToBindingList();
 
-            DgvArticulos.DataSource = _articuloBindingSource;
+            DgvArticulos.DataSource = bindingSource;
             DgvArticulos.Columns["ID"].Visible = false;
             DgvArticulos.Columns["CategoriaProductoID"].Visible = false;
             DgvArticulos.Columns["TipoCondicionIvaID"].Visible = false;
@@ -70,7 +65,7 @@ namespace PachaSystemERP.Forms
             DataGridViewComboBoxColumn columnIva = new DataGridViewComboBoxColumn();
             columnIva.DataPropertyName = "TipoCondicionIvaID";
             columnIva.Name = "Alicuota IVA";
-            columnIva.DataSource = _context.TipoCondicionIva.Local.ToBindingList();
+            columnIva.DataSource = _context.Iva.Local.ToBindingList();
             columnIva.DisplayMember = "Descripcion";
             columnIva.ValueMember = "ID";
             DgvArticulos.Columns.Add(columnIva);
@@ -78,7 +73,7 @@ namespace PachaSystemERP.Forms
             DataGridViewComboBoxColumn columnCategoria = new DataGridViewComboBoxColumn();
             columnCategoria.DataPropertyName = "CategoriaProductoID";
             columnCategoria.Name = "Categoria";
-            columnCategoria.DataSource = _context.CategoriaProducto.Local.ToBindingList();
+            columnCategoria.DataSource = _context.Rubro.Local.ToBindingList();
             columnCategoria.DisplayMember = "Descripcion";
             columnCategoria.ValueMember = "ID";
             DgvArticulos.Columns.Add(columnCategoria);
@@ -94,7 +89,7 @@ namespace PachaSystemERP.Forms
             try
             {
                 _context.SaveChanges();
-                _articuloBindingSource.ResetBindings(false);
+                bindingSource.ResetBindings(false);
             }
             catch (DbEntityValidationException ex)
             {

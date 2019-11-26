@@ -18,6 +18,6 @@
 
         public virtual CategoriaTributo CategoriaTributo { get; set; }
 
-        public virtual ICollection<Comprobante> Comprobantes { get; set; }
+        public virtual ICollection<DetalleComprobante> DetalleComprobante { get; set; }
     }
 }

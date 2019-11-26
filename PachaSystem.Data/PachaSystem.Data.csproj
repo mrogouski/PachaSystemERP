@@ -40,9 +40,17 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,17 +64,17 @@
     <Compile Include="Helpers\Repository.cs" />
     <Compile Include="Helpers\UnitOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\CategoriaProducto.cs" />
+    <Compile Include="Models\DetalleTributo.cs" />
+    <Compile Include="Models\Rubro.cs" />
     <Compile Include="Models\CategoriaTributo.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Comprobante.cs" />
     <Compile Include="Models\ComprobanteAsociado.cs" />
-    <Compile Include="Models\ComprobanteCliente.cs" />
     <Compile Include="Models\DetalleComprobante.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\TipoComprobante.cs" />
     <Compile Include="Models\TipoConcepto.cs" />
-    <Compile Include="Models\TipoCondicionIva.cs" />
+    <Compile Include="Models\Iva.cs" />
     <Compile Include="Models\TipoDocumento.cs" />
     <Compile Include="Models\TipoMoneda.cs" />
     <Compile Include="Models\TipoResponsable.cs" />
@@ -75,9 +83,7 @@
     <Compile Include="ObservableListSource.cs" />
     <Compile Include="PachaSystemContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\ComprobanteClienteRepository.cs" />
     <Compile Include="Repository\ComprobanteRepository.cs" />
-    <Compile Include="Repository\DetalleComprobanteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

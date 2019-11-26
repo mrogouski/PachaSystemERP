@@ -27,7 +27,7 @@ namespace PachaSystemERP.Forms
         {
             InitializeComponent();
             _context = new PachaSystemContext();
-            _context.TipoTributo.Load();
+            _context.Tributo.Load();
             _context.CategoriaTributo.Load();
         }
 
@@ -36,7 +36,7 @@ namespace PachaSystemERP.Forms
             var tributoBindingSource = new BindingSource();
             var categoriaBindingSource = new BindingSource();
 
-            tributoBindingSource.DataSource = _context.TipoTributo.Local.ToBindingList();
+            tributoBindingSource.DataSource = _context.Tributo.Local.ToBindingList();
 
             categoriaBindingSource.DataSource = tributoBindingSource;
             categoriaBindingSource.DataMember = "CategoriaTributoID";

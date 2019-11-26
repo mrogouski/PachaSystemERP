@@ -14,7 +14,7 @@ namespace PachaSystem.Data.Helpers
 
     public interface IUnitOfWork : IDisposable
     {
-        Repository<CategoriaProducto> CategoriaProducto { get; }
+        Repository<Rubro> CategoriaProducto { get; }
 
         Repository<CategoriaTributo> CategoriaTributo { get; }
 
@@ -22,9 +22,7 @@ namespace PachaSystem.Data.Helpers
 
         ComprobanteRepository Comprobante { get; }
 
-        ComprobanteClienteRepository ComprobanteCliente { get; }
-
-        DetalleComprobanteRepository DetalleComprobante { get; }
+        Repository<DetalleComprobante> DetalleComprobante { get; }
 
         Repository<Producto> Producto { get; }
 
@@ -32,7 +30,7 @@ namespace PachaSystem.Data.Helpers
 
         Repository<TipoConcepto> TipoConcepto { get; }
 
-        Repository<TipoCondicionIva> TipoCondicionIva { get; }
+        Repository<Iva> TipoCondicionIva { get; }
 
         Repository<TipoDocumento> TipoDocumento { get; }
 

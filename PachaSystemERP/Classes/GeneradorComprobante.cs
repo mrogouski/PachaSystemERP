@@ -36,7 +36,7 @@
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
             _comprobante = new Comprobante();
-            _numeroComprobante = SincronizarNumeroComprobante(tipoComprobante);
+            _numeroComprobante = _facturaElectronica.SincronizarNumeroComprobante(tipoComprobante);
             _comprobante.PuntoVenta = Configuracion.PuntoVenta;
             _comprobante.TipoComprobanteID = tipoComprobante.ID;
         }
@@ -117,10 +117,6 @@
             detalle.Cantidad = cantidad;
             detalle.PrecioUnitario = query.PrecioUnitario;
             detalle.AlicuotaIva = query.TipoCondicionIva.Alicuota;
-            if (query.TipoTributo != null)
-            {
-                detalle.AlicuotaTributo = query.TipoTributo.Alicuota;
-            }
 
             _detalleProducto.Add(detalle);
             CantidadTotal = _detalleProducto.Sum(x => x.Cantidad);
@@ -135,36 +131,7 @@
             cliente.NumeroDocumento = numeroDocumento;
             cliente.TipoResponsableID = tipoResponsableID;
             cliente.Domicilio = domicilio;
-
-            ComprobanteCliente comprobanteCliente = new ComprobanteCliente();
-            comprobanteCliente.Cliente = cliente;
-            comprobanteCliente.PorcentajeTitularidad = 100;
-            _comprobante.ComprobanteCliente.Add(comprobanteCliente);
-        }
-
-        public string SincronizarNumeroComprobante(TipoComprobante tipoComprobante)
-        {
-            if (tipoComprobante == null)
-            {
-                throw new ArgumentNullException(nameof(tipoComprobante));
-            }
-
-            if (Configuracion.ModoFacturacion == ModoFacturacion.FacturaElectronica)
-            {
-                _comprobante.NumeroComprobante = _facturaElectronica.ObtenerNumeroUltimoComprobante(tipoComprobante.ID) + 1;
-                var stringBuilder = new StringBuilder();
-                stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
-                stringBuilder.Append(_comprobante.NumeroComprobante.ToString("D8"));
-                return stringBuilder.ToString();
-            }
-            else
-            {
-                _comprobante.NumeroComprobante = _facturaElectronica.ObtenerNumeroUltimoComprobante(tipoComprobante.ID) + 1;
-                var stringBuilder = new StringBuilder();
-                stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
-                stringBuilder.Append(_comprobante.NumeroComprobante.ToString("D8"));
-                return stringBuilder.ToString();
-            }
+            _comprobante.Cliente = cliente;
         }
 
         public Comprobante GenerarComprobante(TipoConcepto tipoConcepto)
@@ -193,23 +160,22 @@
                     detalle.Producto = _unitOfWork.Producto.Obtener(x => x.ID == item.ProductoID);
                     detalle.Cantidad = item.Cantidad;
                     detalle.ImporteIva = item.ImporteIva;
-                    detalle.ImporteTributo = item.ImporteTributo;
                     detalle.BaseImponible = item.BaseImponible;
                     detalle.Subtotal = item.Subtotal;
 
                     _comprobante.DetalleComprobante.Add(detalle);
                 }
 
-                if (_comprobante.ComprobanteCliente.Count == 0)
+                if (_comprobante.Cliente == null)
                 {
-                    ComprobanteCliente comprobanteCliente = new ComprobanteCliente();
-                    comprobanteCliente.Cliente = _unitOfWork.Cliente.Obtener(x => x.RazonSocial == "CONSUMIDOR FINAL");
-                    _comprobante.ComprobanteCliente.Add(comprobanteCliente);
+                    Cliente cliente = new Cliente();
+                    cliente = _unitOfWork.Cliente.Obtener(x => x.RazonSocial == "CONSUMIDOR FINAL");
+                    _comprobante.Cliente = cliente;
                 }
 
                 var response = _facturaElectronica.GenerarComprobante(_comprobante);
 
-                if (response != null)
+                if (response.CabeceraResponse.Resultado == "A")
                 {
                     _comprobante.CAE = response.DetalleResponse.Select(x => x.CAE).First();
                     _comprobante.FechaVencimientoCAE = DateTime.ParseExact(response.DetalleResponse.Select(x => x.FechaVencimientoCAE).First(), "yyyyMMdd", CultureInfo.CurrentCulture);

@@ -15,13 +15,12 @@ namespace PachaSystem.Data.Helpers
     public class UnitOfWork : IUnitOfWork
     {
         private readonly PachaSystemContext _context;
-        private Repository<CategoriaProducto> _categoriaProducto;
+        private Repository<Rubro> _categoriaProducto;
         private Repository<CategoriaTributo> _categoriaTributo;
         private Repository<Cliente> _cliente;
         private ComprobanteRepository _comprobante;
-        private ComprobanteClienteRepository _comprobanteCliente;
-        private DetalleComprobanteRepository _detalleComprobante;
-        private Repository<TipoCondicionIva> _condicionIva;
+        private Repository<DetalleComprobante> _detalleComprobante;
+        private Repository<Iva> _condicionIva;
         private Repository<Producto> _producto;
         private Repository<DetalleComprobante> _productoComprobante;
         private Repository<TipoComprobante> _tipoComprobante;
@@ -36,13 +35,13 @@ namespace PachaSystem.Data.Helpers
             _context = context;
         }
 
-        public Repository<CategoriaProducto> CategoriaProducto
+        public Repository<Rubro> CategoriaProducto
         {
             get
             {
                 if (_categoriaProducto != null)
                 {
-                    _categoriaProducto = new Repository<CategoriaProducto>(_context);
+                    _categoriaProducto = new Repository<Rubro>(_context);
                 }
 
                 return _categoriaProducto;
@@ -88,26 +87,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public ComprobanteClienteRepository ComprobanteCliente
-        {
-            get
-            {
-                if (_comprobanteCliente == null)
-                {
-                    _comprobanteCliente = new ComprobanteClienteRepository(_context);
-                }
-
-                return _comprobanteCliente;
-            }
-        }
-
-        public DetalleComprobanteRepository DetalleComprobante
+        public Repository<DetalleComprobante> DetalleComprobante
         {
             get
             {
                 if (_detalleComprobante == null)
                 {
-                    _detalleComprobante = new DetalleComprobanteRepository(_context);
+                    _detalleComprobante = new Repository<DetalleComprobante>(_context);
                 }
 
                 return _detalleComprobante;
@@ -153,13 +139,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<TipoCondicionIva> TipoCondicionIva
+        public Repository<Iva> TipoCondicionIva
         {
             get
             {
                 if (_condicionIva == null)
                 {
-                    _condicionIva = new Repository<TipoCondicionIva>(_context);
+                    _condicionIva = new Repository<Iva>(_context);
                 }
 
                 return _condicionIva;

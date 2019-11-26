@@ -60,12 +60,18 @@
     <Reference Include="NBarCodes, Version=3.0.3.31991, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NBarCodes.3.0.3.31991\lib\net40\NBarCodes.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,14 +84,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\BarcodeGenerator.cs" />
     <Compile Include="Classes\CertificadoX509.cs" />
     <Compile Include="Classes\Configuracion.cs" />
     <Compile Include="Classes\DetalleProducto.cs" />
     <Compile Include="Classes\DetalleServicio.cs" />
     <Compile Include="Classes\Facturacion.cs" />
     <Compile Include="Classes\FacturaElectronica.cs" />
-    <Compile Include="Classes\GeneradorCodigoBarras.cs" />
     <Compile Include="Classes\GeneradorComprobante.cs" />
     <Compile Include="Classes\TiqueAcceso.cs" />
     <Compile Include="Controls\CueText.cs">
@@ -206,6 +210,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Reports\FacturaB.rdlc" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DataSetComprobante.xsc">
       <DependentUpon>DataSetComprobante.xsd</DependentUpon>

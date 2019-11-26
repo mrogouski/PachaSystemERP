@@ -20,8 +20,8 @@
 
         public DateTime FechaComprobante { get; set; }
 
-        //public virtual TipoComprobante TipoComprobante { get; set; }
+        public virtual TipoComprobante TipoComprobante { get; set; }
 
-        //public virtual Comprobante Comprobante { get; set; }
+        public virtual Comprobante Comprobante { get; set; }
     }
 }

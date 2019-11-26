@@ -13,6 +13,7 @@ namespace PachaSystemERP.Classes
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
+    using NLog;
     using PachaSystem.Data;
     using PachaSystem.Data.Helpers;
     using PachaSystem.Data.Models;
@@ -25,6 +26,7 @@ namespace PachaSystemERP.Classes
 
     public class FacturaElectronica
     {
+        private static readonly Logger logger;
         private static readonly string _servicio = "wsfe";
         private string _token;
         private string _sign;
@@ -61,6 +63,20 @@ namespace PachaSystemERP.Classes
 
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
+        }
+
+        public string SincronizarNumeroComprobante(TipoComprobante tipoComprobante)
+        {
+            if (tipoComprobante == null)
+            {
+                throw new ArgumentNullException(nameof(tipoComprobante));
+            }
+
+            int numeroComprobante = ObtenerNumeroUltimoComprobante(tipoComprobante.ID) + 1;
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
+            stringBuilder.Append(numeroComprobante.ToString("D8"));
+            return stringBuilder.ToString();
         }
 
         /// <summary>
@@ -117,25 +133,17 @@ namespace PachaSystemERP.Classes
                     foreach (var item in comprobante.DetalleComprobante)
                     {
                         detalles.AgregarIVA(item.Producto.TipoCondicionIvaID, item.BaseImponible, item.ImporteIva);
-                        if (item.ImporteTributo > 0)
-                        {
-                            detalles.AgregarTributo(item.Producto.TipoTributo.CategoriaTributoID, item.Producto.TipoTributo.Descripcion, item.Producto.TipoTributo.Alicuota, item.BaseImponible, item.ImporteTributo);
-                        }
                     }
                 }
 
-                foreach (var item in comprobante.ComprobanteCliente)
+                if (comprobante.Cliente.RazonSocial.Equals("CONSUMIDOR FINAL"))
                 {
-                    if (item.Cliente.RazonSocial.Equals("CONSUMIDOR FINAL"))
-                    {
-                        detalles.TipoDeDocumento = item.Cliente.TipoDocumentoID;
-                    }
-                    else
-                    {
-                        detalles.TipoDeDocumento = item.Cliente.TipoDocumentoID;
-                        detalles.NumeroDeDocumento = long.Parse(item.Cliente.NumeroDocumento);
-                        detalles.AgregarComprador(item.Cliente.TipoDocumentoID, item.Cliente.NumeroDocumento, item.PorcentajeTitularidad);
-                    }
+                    detalles.TipoDeDocumento = comprobante.Cliente.TipoDocumentoID;
+                }
+                else
+                {
+                    detalles.TipoDeDocumento = comprobante.Cliente.TipoDocumentoID;
+                    detalles.NumeroDeDocumento = long.Parse(comprobante.Cliente.NumeroDocumento);
                 }
 
                 request.DetalleRequest.Add(detalles);
@@ -147,71 +155,19 @@ namespace PachaSystemERP.Classes
                 }
                 else
                 {
-                    //if (response.Errores.Count > 0 && response.Eventos.Count > 0)
-                    //{
-                    //    throw new ArgumentException();
-                    //}
+                    if (response.Errores.Count > 0 || response.Eventos.Count > 0)
+                    {
+                        foreach (var item in response.Errores)
+                        {
+                            logger.Debug(item.Codigo + item.Mensaje);
+                        }
+                        foreach (var item in response.Eventos)
+                        {
+                            logger.Debug(item.Codigo + item.Mensaje);
+                        }
+                    }
 
                     return response;
-                }
-            }
-            catch (FaultException)
-            {
-
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="comprobante"></param>
-        /// <returns></returns>
-        public async Task GenerarComprobanteAsync(Comprobante comprobante)
-        {
-            try
-            {
-                using (var password = new SecureString())
-                {
-                    ObtenerCredenciales();
-
-                    Credenciales autorizacion = new Credenciales();
-                    autorizacion.Cuit = _cuit;
-                    autorizacion.Sign = _sign;
-                    autorizacion.Token = _token;
-
-                    CaeRequest request = new CaeRequest();
-
-                    //request.CabeceraRequest.CantidadDeRegistros = comprobante.CantidadDeComprobantes;
-                    //request.CabeceraRequest.PuntoDeVenta = comprobante.PuntoDeVenta;
-                    //request.CabeceraRequest.TipoDeComprobante = comprobante.TipoDeComprobante;
-
-                    CaeDetalleRequest detalles = new CaeDetalleRequest();
-                    detalles.Concepto = (int)Concepto.Productos;
-                    detalles.TipoDeDocumento = 99;
-                    detalles.NumeroDeDocumento = 0;
-                    detalles.ComprobanteDesde = 2;
-                    detalles.ComprobanteHasta = 2;
-                    detalles.FechaDeComprobante = DateTime.Now.ToString("yyyyMMdd");
-                    detalles.ImporteTotal = 165.75;
-                    detalles.ImporteNetoNoGravado = 0;
-                    detalles.ImporteNeto = 150;
-                    detalles.ImporteExento = 0;
-                    detalles.ImporteIVA = 15.75;
-                    detalles.ImporteTributo = 0;
-                    detalles.CodigoMoneda = "PES";
-                    detalles.MonedaCotizacion = 1;
-
-                    AlicuotaIva iva = new AlicuotaIva();
-                    iva.ID = 4;
-                    iva.BaseImponible = 165.75;
-                    iva.Importe = 15.75;
-
-                    detalles.AlicuotaIVA.Add(iva);
-
-                    request.DetalleRequest.Add(detalles);
-
-                    var response = await _wsfeClient.SolicitarCaeAsync(autorizacion, request);
                 }
             }
             catch (FaultException)
@@ -228,6 +184,7 @@ namespace PachaSystemERP.Classes
             credenciales.Cuit = _cuit;
             credenciales.Sign = _sign;
             credenciales.Token = _token;
+
             try
             {
                 var response = _wsfeClient.ObtenerTiposDeComprobante(credenciales);

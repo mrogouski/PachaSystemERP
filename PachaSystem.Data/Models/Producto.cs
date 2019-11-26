@@ -18,17 +18,13 @@
 
         public short TipoCondicionIvaID { get; set; }
 
-        public int? TipoTributoID { get; set; }
-
-        public int? CategoriaProductoID { get; set; }
+        public int? RubroID { get; set; }
 
         public DateTime? FechaBaja { get; set; }
 
-        public virtual TipoCondicionIva TipoCondicionIva { get; set; }
+        public virtual Iva TipoCondicionIva { get; set; }
 
-        public virtual Tributo TipoTributo { get; set; }
-
-        public virtual CategoriaProducto CategoriaProducto { get; set; }
+        public virtual Rubro Rubro { get; set; }
 
         public virtual ICollection<DetalleComprobante> DetalleComprobante { get; set; }
     }

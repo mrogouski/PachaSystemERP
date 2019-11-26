@@ -30,16 +30,16 @@ namespace PachaSystem.Data.Migrations
             };
             context.TipoConcepto.AddRange(tipoConcepto);
 
-            List<TipoCondicionIva> tipoCondicionIva = new List<TipoCondicionIva>()
+            List<Iva> tipoCondicionIva = new List<Iva>()
             {
-                new TipoCondicionIva { ID = 1, Descripcion = "NO GRAVADO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                new TipoCondicionIva { ID = 2, Descripcion = "EXENTO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                new TipoCondicionIva { ID = 3, Descripcion = "0%", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                new TipoCondicionIva { ID = 4, Descripcion = "10.5%", Alicuota = 10.5M, ControladorFiscal = true, FacturaElectronica = true },
-                new TipoCondicionIva { ID = 5, Descripcion = "21%", Alicuota = 21M, ControladorFiscal = true, FacturaElectronica = true },
-                new TipoCondicionIva { ID = 6, Descripcion = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true }
+                new Iva { ID = 1, Descripcion = "NO GRAVADO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
+                new Iva { ID = 2, Descripcion = "EXENTO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
+                new Iva { ID = 3, Descripcion = "0%", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
+                new Iva { ID = 4, Descripcion = "10.5%", Alicuota = 10.5M, ControladorFiscal = true, FacturaElectronica = true },
+                new Iva { ID = 5, Descripcion = "21%", Alicuota = 21M, ControladorFiscal = true, FacturaElectronica = true },
+                new Iva { ID = 6, Descripcion = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true }
             };
-            context.TipoCondicionIva.AddRange(tipoCondicionIva);
+            context.Iva.AddRange(tipoCondicionIva);
 
             List<CategoriaTributo> categoriaTributo = new List<CategoriaTributo>()
             {
@@ -238,6 +238,65 @@ namespace PachaSystem.Data.Migrations
                 new TipoComprobante { ID = 910, Descripcion = "GENERICO", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false }
             };
             context.TipoComprobante.AddRange(tipoComprobante);
+
+            List<UnidadMedida> unidadMedida = new List<UnidadMedida>
+            {
+            new UnidadMedida { ID = 00, Descripcion = "SIN DESCRIPCION" },
+            new UnidadMedida { ID = 01, Descripcion = "KILOGRAMO" },
+            new UnidadMedida { ID = 02, Descripcion = "Metros" },
+            new UnidadMedida { ID = 03, Descripcion = "Metro Cuadrado" },
+            new UnidadMedida { ID = 04, Descripcion = "Metro Cúbico" },
+            new UnidadMedida { ID = 05, Descripcion = "Litros" },
+            new UnidadMedida { ID = 06, Descripcion = "1000 Kilowatt Hora" },
+            new UnidadMedida { ID = 07, Descripcion = "Unidad" },
+            new UnidadMedida { ID = 08, Descripcion = "Par" },
+            new UnidadMedida { ID = 09, Descripcion = "Docena" },
+            new UnidadMedida { ID = 10, Descripcion = "Quilate" },
+            new UnidadMedida { ID = 11, Descripcion = "Millar" },
+            new UnidadMedida { ID = 12, Descripcion = "MEGA U. INTER.ACT.ANTIB" },
+            new UnidadMedida { ID = 13, Descripcion = "UNIDAD INT. ACT.INMUNG" },
+            new UnidadMedida { ID = 14, Descripcion = "GRAMO" },
+            new UnidadMedida { ID = 15, Descripcion = "MILIMETRO" },
+            new UnidadMedida { ID = 16, Descripcion = "MILIMETRO CUBICO" },
+            new UnidadMedida { ID = 17, Descripcion = "KILOMETRO" },
+            new UnidadMedida { ID = 18, Descripcion = "HECTOLITRO" },
+            new UnidadMedida { ID = 19, Descripcion = "MEGA UNIDAD INT.ACT.INMUNG" },
+            new UnidadMedida { ID = 20, Descripcion = "CENTIMETRO" },
+            new UnidadMedida { ID = 21, Descripcion = "KILOGRAMO ACTIVO" },
+            new UnidadMedida { ID = 22, Descripcion = "GRAMO ACTIVO" },
+            new UnidadMedida { ID = 23, Descripcion = "GRAMO BASE" },
+            new UnidadMedida { ID = 24, Descripcion = "UIACTHOR" },
+            new UnidadMedida { ID = 25, Descripcion = "JGO.PQT.MAZO NAIPES" },
+            new UnidadMedida { ID = 26, Descripcion = "MUIACTHOR" },
+            new UnidadMedida { ID = 27, Descripcion = "CENTIMETRO CUBICO" },
+            new UnidadMedida { ID = 28, Descripcion = "UIACTANT" },
+            new UnidadMedida { ID = 29, Descripcion = "TONELADA" },
+            new UnidadMedida { ID = 30, Descripcion = "DECAMETRO CUBICO" },
+            new UnidadMedida { ID = 31, Descripcion = "HECTOMETRO CUBICO" },
+            new UnidadMedida { ID = 32, Descripcion = "KILOMETRO CUBICO" },
+            new UnidadMedida { ID = 33, Descripcion = "MICROGRAMO" },
+            new UnidadMedida { ID = 34, Descripcion = "NANOGRAMO" },
+            new UnidadMedida { ID = 35, Descripcion = "PICOGRAMO" },
+            new UnidadMedida { ID = 36, Descripcion = "MUIACTANT" },
+            new UnidadMedida { ID = 37, Descripcion = "UIACTIG" },
+            new UnidadMedida { ID = 41, Descripcion = "MILIGRAMO" },
+            new UnidadMedida { ID = 47, Descripcion = "MILILITRO" },
+            new UnidadMedida { ID = 48, Descripcion = "CURIE" },
+            new UnidadMedida { ID = 49, Descripcion = "MILICURIE" },
+            new UnidadMedida { ID = 50, Descripcion = "MICROCURIE" },
+            new UnidadMedida { ID = 51, Descripcion = "U.INTER.ACT.HORMONAL" },
+            new UnidadMedida { ID = 52, Descripcion = "MEGA U. INTER.ACT.HOR." },
+            new UnidadMedida { ID = 53, Descripcion = "KILOGRAMO BASE" },
+            new UnidadMedida { ID = 54, Descripcion = "GRUESA" },
+            new UnidadMedida { ID = 55, Descripcion = "MUIACTIG" },
+            new UnidadMedida { ID = 61, Descripcion = "KILOGRAMO BRUTO" },
+            new UnidadMedida { ID = 62, Descripcion = "PACK" },
+            new UnidadMedida { ID = 63, Descripcion = "HORMA" },
+            new UnidadMedida { ID = 97, Descripcion = "SEÑAS / ANTICIPOS" },
+            new UnidadMedida { ID = 98, Descripcion = "OTRAS UNIDADES" },
+            new UnidadMedida { ID = 99, Descripcion = "BONIFICACION" },
+            };
+            context.UnidadMedida.AddRange(unidadMedida);
 
             context.Cliente.Add(
                 new Cliente { ID = 1, RazonSocial = "CONSUMIDOR FINAL", TipoDocumentoID = 99, NumeroDocumento = string.Empty, TipoResponsableID = 5, Domicilio = string.Empty });

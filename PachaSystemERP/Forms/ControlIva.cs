@@ -31,9 +31,9 @@ namespace PachaSystemERP.Forms
         private void ControlDeIva_Load(object sender, EventArgs e)
         {
             _context = new PachaSystemContext();
-            _context.TipoCondicionIva.Load();
+            _context.Iva.Load();
             var bindingSource = new BindingSource();
-            bindingSource.DataSource = _context.TipoCondicionIva.Local.ToBindingList();
+            bindingSource.DataSource = _context.Iva.Local.ToBindingList();
             dgvIva.DataSource = bindingSource;
         }
 
