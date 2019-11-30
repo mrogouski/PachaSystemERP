@@ -116,7 +116,7 @@
             detalle.Descripcion = query.Descripcion;
             detalle.Cantidad = cantidad;
             detalle.PrecioUnitario = query.PrecioUnitario;
-            detalle.AlicuotaIva = query.TipoCondicionIva.Alicuota;
+            detalle.AlicuotaIva = query.Iva.Alicuota;
 
             _detalleProducto.Add(detalle);
             CantidadTotal = _detalleProducto.Sum(x => x.Cantidad);
