@@ -21,16 +21,18 @@ namespace PachaSystem.Data.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            List<TipoConcepto> tipoConcepto = new List<TipoConcepto>
+            if (context.Database.Exists() == false)
+            {
+                List<TipoConcepto> tipoConcepto = new List<TipoConcepto>
             {
                 new TipoConcepto { ID = 1, Descripcion = "PRODUCTOS" },
                 new TipoConcepto { ID = 2, Descripcion = "SERVICIOS" },
                 new TipoConcepto { ID = 3, Descripcion = "PRODUCTOS Y SERVICIOS" },
                 new TipoConcepto { ID = 4, Descripcion = "OTROS" }
             };
-            context.TipoConcepto.AddRange(tipoConcepto);
+                context.TipoConcepto.AddRange(tipoConcepto);
 
-            List<Iva> tipoCondicionIva = new List<Iva>()
+                List<Iva> tipoCondicionIva = new List<Iva>()
             {
                 new Iva { ID = 1, Descripcion = "NO GRAVADO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
                 new Iva { ID = 2, Descripcion = "EXENTO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
@@ -39,9 +41,9 @@ namespace PachaSystem.Data.Migrations
                 new Iva { ID = 5, Descripcion = "21%", Alicuota = 21M, ControladorFiscal = true, FacturaElectronica = true },
                 new Iva { ID = 6, Descripcion = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true }
             };
-            context.Iva.AddRange(tipoCondicionIva);
+                context.Iva.AddRange(tipoCondicionIva);
 
-            List<CategoriaTributo> categoriaTributo = new List<CategoriaTributo>()
+                List<CategoriaTributo> categoriaTributo = new List<CategoriaTributo>()
             {
                 new CategoriaTributo { ID = 1, Descripcion = "Impuestos Nacionales", ControladorFiscal = false, FacturaElectronica = true },
                 new CategoriaTributo { ID = 2, Descripcion = "Impuestos Provinciales", ControladorFiscal = false, FacturaElectronica = true },
@@ -49,9 +51,9 @@ namespace PachaSystem.Data.Migrations
                 new CategoriaTributo { ID = 4, Descripcion = "Impuestos Internos", ControladorFiscal = false, FacturaElectronica = true },
                 new CategoriaTributo { ID = 99, Descripcion = "Otros", ControladorFiscal = false, FacturaElectronica = true }
             };
-            context.CategoriaTributo.AddRange(categoriaTributo);
+                context.CategoriaTributo.AddRange(categoriaTributo);
 
-            List<TipoResponsable> tipoResponsable = new List<TipoResponsable>
+                List<TipoResponsable> tipoResponsable = new List<TipoResponsable>
             {
                 new TipoResponsable { ID = 1, Descripcion = "IVA RESPONSABLE INSCRIPTO", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoResponsable { ID = 2, Descripcion = "IVA RESPONSABLE NO INSCRIPTO", ControladorFiscal = false, FacturaElectronica = true },
@@ -68,9 +70,9 @@ namespace PachaSystem.Data.Migrations
                 new TipoResponsable { ID = 13, Descripcion = "MONOTRIBUTISTA SOCIAL", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoResponsable { ID = 14, Descripcion = "PEQUEÑO CONTRIBUYENTE EVENTUAL SOCIAL", ControladorFiscal = true, FacturaElectronica = true }
             };
-            context.TipoResponsable.AddRange(tipoResponsable);
+                context.TipoResponsable.AddRange(tipoResponsable);
 
-            List<TipoDocumento> tipoDocumento = new List<TipoDocumento>
+                List<TipoDocumento> tipoDocumento = new List<TipoDocumento>
             {
                 new TipoDocumento { ID = 0, Descripcion = "CI POLICIA FEDERAL", ControladorFiscal = false, FacturaElectronica = true },
                 new TipoDocumento { ID = 1, Descripcion = "CI BUENOS AIRES", ControladorFiscal = false, FacturaElectronica = true },
@@ -109,9 +111,9 @@ namespace PachaSystem.Data.Migrations
                 new TipoDocumento { ID = 96, Descripcion = "DNI", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoDocumento { ID = 99, Descripcion = "SIN IDENTIFICAR", ControladorFiscal = true, FacturaElectronica = true }
             };
-            context.TipoDocumento.AddRange(tipoDocumento);
+                context.TipoDocumento.AddRange(tipoDocumento);
 
-            List<TipoMoneda> tipoMoneda = new List<TipoMoneda>
+                List<TipoMoneda> tipoMoneda = new List<TipoMoneda>
             {
                 new TipoMoneda { ID = 1, Codigo = "000", Descripcion = "OTRAS MONEDAS" },
                 new TipoMoneda { ID = 2, Codigo = "PES", Descripcion = "PESOS" },
@@ -176,9 +178,9 @@ namespace PachaSystem.Data.Migrations
                 new TipoMoneda { ID = 61, Codigo = "063", Descripcion = "LEMPIRAS HONDUREÑAS" },
                 new TipoMoneda { ID = 62, Codigo = "064", Descripcion = "YUAN (REPUBLICA POPULAR CHINA)" }
             };
-            context.TipoMoneda.AddRange(tipoMoneda);
+                context.TipoMoneda.AddRange(tipoMoneda);
 
-            List<TipoComprobante> tipoComprobante = new List<TipoComprobante>
+                List<TipoComprobante> tipoComprobante = new List<TipoComprobante>
             {
                 new TipoComprobante { ID = 1, Descripcion = "FACTURA A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
                 new TipoComprobante { ID = 2, Descripcion = "NOTA DE DEBITO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
@@ -237,9 +239,9 @@ namespace PachaSystem.Data.Migrations
                 new TipoComprobante { ID = 907, Descripcion = "COMPROBANTE DONACION", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false },
                 new TipoComprobante { ID = 910, Descripcion = "GENERICO", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false }
             };
-            context.TipoComprobante.AddRange(tipoComprobante);
+                context.TipoComprobante.AddRange(tipoComprobante);
 
-            List<UnidadMedida> unidadMedida = new List<UnidadMedida>
+                List<UnidadMedida> unidadMedida = new List<UnidadMedida>
             {
             new UnidadMedida { ID = 00, Descripcion = "SIN DESCRIPCION" },
             new UnidadMedida { ID = 01, Descripcion = "KILOGRAMO" },
@@ -296,12 +298,13 @@ namespace PachaSystem.Data.Migrations
             new UnidadMedida { ID = 98, Descripcion = "OTRAS UNIDADES" },
             new UnidadMedida { ID = 99, Descripcion = "BONIFICACION" },
             };
-            context.UnidadMedida.AddRange(unidadMedida);
+                context.UnidadMedida.AddRange(unidadMedida);
 
-            context.Cliente.Add(
-                new Cliente { ID = 1, RazonSocial = "CONSUMIDOR FINAL", TipoDocumentoID = 99, NumeroDocumento = string.Empty, TipoResponsableID = 5, Domicilio = string.Empty });
+                context.Cliente.Add(
+                    new Cliente { ID = 1, RazonSocial = "CONSUMIDOR FINAL", TipoDocumentoID = 99, NumeroDocumento = string.Empty, TipoResponsableID = 5, Domicilio = string.Empty });
 
-            base.Seed(context);
+                base.Seed(context);
+            }
         }
     }
 }

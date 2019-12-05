@@ -132,7 +132,7 @@ namespace PachaSystemERP.Classes
                 {
                     foreach (var item in comprobante.DetalleComprobante)
                     {
-                        detalles.AgregarIVA(item.Producto.TipoCondicionIvaID, item.BaseImponible, item.ImporteIva);
+                        detalles.AgregarIVA(item.Producto.IvaID, item.BaseImponible, item.ImporteIva);
                     }
                 }
 

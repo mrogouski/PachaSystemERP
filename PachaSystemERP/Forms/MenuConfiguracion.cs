@@ -35,11 +35,11 @@
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void BtnAceptar_Click(object sender, EventArgs e)
         {
             Configuracion.RutaCertificado = txtRutaDelCertificado.Text;
             Configuracion.PasswordCertificado = txtPassword.Text;
-            if (long.TryParse(txtCuit.Text, out long cuit))
+            if (long.TryParse(MtbCuit.Text, out long cuit))
             {
                 Configuracion.Cuit = cuit;
             }
@@ -50,7 +50,7 @@
 
         private void Configuracion_Load(object sender, EventArgs e)
         {
-            txtCuit.Text = Configuracion.Cuit.ToString();
+            MtbCuit.Text = Configuracion.Cuit.ToString();
             txtRutaDelCertificado.Text = Configuracion.RutaCertificado;
             txtPassword.Text = Configuracion.PasswordCertificado;
         }

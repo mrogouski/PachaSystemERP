@@ -18,7 +18,8 @@ namespace PachaSystem.Data
 
     public class PachaSystemContext : DbContext
     {
-        private static readonly Logger logger;
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="PachaSystemContext"/>.
         /// </summary>
@@ -78,6 +79,9 @@ namespace PachaSystem.Data
 
             modelBuilder.Entity<DetalleTributo>().HasKey(x => new { x.ComprobanteID, x.TributoID });
 
+            modelBuilder.Entity<ComprobanteAsociado>()
+                .HasRequired(x => x.Comprobante)
+                .WithOptional(x => x.ComprobanteAsociado);
             modelBuilder.Entity<ComprobanteAsociado>().Property(x => x.NumeroComprobante).IsRequired();
 
             modelBuilder.Entity<Producto>().Property(x => x.Codigo).IsRequired();

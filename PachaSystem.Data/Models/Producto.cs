@@ -16,13 +16,13 @@
 
         public decimal PrecioUnitario { get; set; }
 
-        public short TipoCondicionIvaID { get; set; }
+        public short IvaID { get; set; }
 
         public int? RubroID { get; set; }
 
         public DateTime? FechaBaja { get; set; }
 
-        public virtual Iva TipoCondicionIva { get; set; }
+        public virtual Iva Iva { get; set; }
 
         public virtual Rubro Rubro { get; set; }
 

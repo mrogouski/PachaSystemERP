@@ -54,16 +54,14 @@ namespace PachaSystemERP.Forms
 
             DgvArticulos.DataSource = bindingSource;
             DgvArticulos.Columns["ID"].Visible = false;
-            DgvArticulos.Columns["CategoriaProductoID"].Visible = false;
-            DgvArticulos.Columns["TipoCondicionIvaID"].Visible = false;
-            DgvArticulos.Columns["TipoTributoID"].Visible = false;
+            DgvArticulos.Columns["RubroID"].Visible = false;
+            DgvArticulos.Columns["IvaID"].Visible = false;
             DgvArticulos.Columns["FechaBaja"].Visible = false;
-            DgvArticulos.Columns["CategoriaProducto"].Visible = false;
-            DgvArticulos.Columns["TipoCondicionIva"].Visible = false;
+            DgvArticulos.Columns["RubroID"].Visible = false;
             DgvArticulos.Columns["DetalleComprobante"].Visible = false;
 
             DataGridViewComboBoxColumn columnIva = new DataGridViewComboBoxColumn();
-            columnIva.DataPropertyName = "TipoCondicionIvaID";
+            columnIva.DataPropertyName = "IvaID";
             columnIva.Name = "Alicuota IVA";
             columnIva.DataSource = _context.Iva.Local.ToBindingList();
             columnIva.DisplayMember = "Descripcion";
@@ -71,7 +69,7 @@ namespace PachaSystemERP.Forms
             DgvArticulos.Columns.Add(columnIva);
 
             DataGridViewComboBoxColumn columnCategoria = new DataGridViewComboBoxColumn();
-            columnCategoria.DataPropertyName = "CategoriaProductoID";
+            columnCategoria.DataPropertyName = "RubroID";
             columnCategoria.Name = "Categoria";
             columnCategoria.DataSource = _context.Rubro.Local.ToBindingList();
             columnCategoria.DisplayMember = "Descripcion";

@@ -57,8 +57,6 @@ namespace PachaSystem.Data.Models
 
         public int ClienteID { get; set; }
 
-        public  int? ComprobanteAsociadoID { get; set; }
-
         public virtual Cliente Cliente { get; set; }
 
         public virtual ComprobanteAsociado ComprobanteAsociado { get; set; }
