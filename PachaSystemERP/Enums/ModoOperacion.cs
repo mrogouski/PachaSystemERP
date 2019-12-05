@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public enum ModoDeOperacion
+    public enum ModoOperacion
     {
         Homologacion,
         Produccion,

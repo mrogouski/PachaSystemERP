@@ -10,12 +10,12 @@ namespace PachaSystem.Data.Helpers
     using System.Text;
     using System.Threading.Tasks;
     using PachaSystem.Data.Models;
-    using PachaSystem.Data.Repository;
+    using PachaSystem.Data.Repositories;
 
     public class UnitOfWork : IUnitOfWork
     {
         private readonly PachaSystemContext _context;
-        private Repository<Rubro> _categoriaProducto;
+        private Repository<CategoriaProducto> _categoriaProducto;
         private Repository<CategoriaTributo> _categoriaTributo;
         private Repository<Cliente> _cliente;
         private ComprobanteRepository _comprobante;
@@ -35,13 +35,13 @@ namespace PachaSystem.Data.Helpers
             _context = context;
         }
 
-        public Repository<Rubro> CategoriaProducto
+        public Repository<CategoriaProducto> CategoriaProducto
         {
             get
             {
                 if (_categoriaProducto != null)
                 {
-                    _categoriaProducto = new Repository<Rubro>(_context);
+                    _categoriaProducto = new Repository<CategoriaProducto>(_context);
                 }
 
                 return _categoriaProducto;

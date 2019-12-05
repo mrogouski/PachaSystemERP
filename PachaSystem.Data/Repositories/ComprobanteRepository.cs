@@ -2,7 +2,7 @@
 // Copyright (c) Pacha System. All rights reserved.
 // </copyright>
 
-namespace PachaSystem.Data.Repository
+namespace PachaSystem.Data.Repositories
 {
     using System;
     using System.Collections.Generic;

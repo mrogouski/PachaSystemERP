@@ -10,11 +10,11 @@ namespace PachaSystem.Data.Helpers
     using System.Text;
     using System.Threading.Tasks;
     using PachaSystem.Data.Models;
-    using PachaSystem.Data.Repository;
+    using PachaSystem.Data.Repositories;
 
     public interface IUnitOfWork : IDisposable
     {
-        Repository<Rubro> CategoriaProducto { get; }
+        Repository<CategoriaProducto> CategoriaProducto { get; }
 
         Repository<CategoriaTributo> CategoriaTributo { get; }
 

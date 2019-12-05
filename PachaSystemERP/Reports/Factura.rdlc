@@ -219,7 +219,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Producto</Value>
+                                  <Value>Producto / Servicio</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -397,6 +397,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1343,6 +1344,7 @@
                     <TextRun>
                       <Value>Periodo Facturado Desde: </Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1375,6 +1377,7 @@
                     <TextRun>
                       <Value>Hasta: </Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1407,6 +1410,7 @@
                     <TextRun>
                       <Value>Fecha de Vto. para el pago:</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>

@@ -47,6 +47,7 @@ namespace PachaSystemERP.Forms
             _context.Producto.Load();
             _context.Iva.Load();
             _context.Rubro.Load();
+            _context.UnidadMedida.Load();
 
             bindingSource= new BindingSource();
 
@@ -54,27 +55,28 @@ namespace PachaSystemERP.Forms
 
             DgvArticulos.DataSource = bindingSource;
             DgvArticulos.Columns["ID"].Visible = false;
-            DgvArticulos.Columns["RubroID"].Visible = false;
+            DgvArticulos.Columns["CategoriaProductoID"].Visible = false;
             DgvArticulos.Columns["IvaID"].Visible = false;
-            DgvArticulos.Columns["FechaBaja"].Visible = false;
-            DgvArticulos.Columns["RubroID"].Visible = false;
+            DgvArticulos.Columns["CategoriaProducto"].Visible = false;
+            DgvArticulos.Columns["Iva"].Visible = false;
             DgvArticulos.Columns["DetalleComprobante"].Visible = false;
+            DgvArticulos.Columns["FechaBaja"].Visible = false;
 
-            DataGridViewComboBoxColumn columnIva = new DataGridViewComboBoxColumn();
-            columnIva.DataPropertyName = "IvaID";
-            columnIva.Name = "Alicuota IVA";
-            columnIva.DataSource = _context.Iva.Local.ToBindingList();
-            columnIva.DisplayMember = "Descripcion";
-            columnIva.ValueMember = "ID";
-            DgvArticulos.Columns.Add(columnIva);
+            DataGridViewComboBoxColumn ivaColumn = new DataGridViewComboBoxColumn();
+            ivaColumn.DataPropertyName = "IvaID";
+            ivaColumn.Name = "Alicuota IVA";
+            ivaColumn.DataSource = _context.Iva.Local.ToBindingList();
+            ivaColumn.DisplayMember = "Descripcion";
+            ivaColumn.ValueMember = "ID";
+            DgvArticulos.Columns.Add(ivaColumn);
 
-            DataGridViewComboBoxColumn columnCategoria = new DataGridViewComboBoxColumn();
-            columnCategoria.DataPropertyName = "RubroID";
-            columnCategoria.Name = "Categoria";
-            columnCategoria.DataSource = _context.Rubro.Local.ToBindingList();
-            columnCategoria.DisplayMember = "Descripcion";
-            columnCategoria.ValueMember = "ID";
-            DgvArticulos.Columns.Add(columnCategoria);
+            DataGridViewComboBoxColumn categoryColumn = new DataGridViewComboBoxColumn();
+            categoryColumn.DataPropertyName = "CategoriaProductoID";
+            categoryColumn.Name = "Categoría";
+            categoryColumn.DataSource = _context.Rubro.Local.ToBindingList();
+            categoryColumn.DisplayMember = "Descripcion";
+            categoryColumn.ValueMember = "ID";
+            DgvArticulos.Columns.Add(categoryColumn);
         }
 
         private void ControlDeStock_Load(object sender, EventArgs e)

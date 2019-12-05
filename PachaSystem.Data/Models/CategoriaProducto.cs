@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Rubro
+    public class CategoriaProducto
     {
         public int ID { get; set; }
 

@@ -48,13 +48,13 @@ namespace PachaSystemERP.Classes
             }
 
             _cuit = Configuracion.Cuit;
-            if (Configuracion.ModoDeOperacion == ModoDeOperacion.Homologacion)
+            if (Configuracion.ModoDeOperacion == ModoOperacion.Homologacion)
             {
                 _wsaaClient = new WsaaClient("WsaaHomologacion");
                 _wsfeClient = new WsfeClient("WsfeHomologacion");
                 _testing = true;
             }
-            else if (Configuracion.ModoDeOperacion == ModoDeOperacion.Produccion)
+            else if (Configuracion.ModoDeOperacion == ModoOperacion.Produccion)
             {
                 _wsaaClient = new WsaaClient("WsaaProduccion");
                 _wsfeClient = new WsfeClient("WsfeProduccion");

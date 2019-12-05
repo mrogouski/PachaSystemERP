@@ -44,7 +44,7 @@ namespace PachaSystem.Data
 
         public DbSet<Producto> Producto { get; set; }
 
-        public DbSet<Rubro> Rubro { get; set; }
+        public DbSet<CategoriaProducto> Rubro { get; set; }
 
         public DbSet<TipoComprobante> TipoComprobante { get; set; }
 
@@ -67,7 +67,7 @@ namespace PachaSystem.Data
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Add(new DecimalPropertyConvention(19, 2));
 
-            modelBuilder.Entity<Rubro>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<CategoriaProducto>().Property(x => x.Descripcion).IsRequired();
 
             modelBuilder.Entity<CategoriaTributo>().Property(x => x.Descripcion).IsRequired();
 

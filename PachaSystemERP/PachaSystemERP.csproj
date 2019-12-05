@@ -87,32 +87,20 @@
     <Compile Include="Classes\CertificadoX509.cs" />
     <Compile Include="Classes\Configuracion.cs" />
     <Compile Include="Classes\DetalleProducto.cs" />
-    <Compile Include="Classes\DetalleServicio.cs" />
-    <Compile Include="Classes\Facturacion.cs" />
     <Compile Include="Classes\FacturaElectronica.cs" />
     <Compile Include="Classes\GeneradorComprobante.cs" />
     <Compile Include="Classes\TiqueAcceso.cs" />
     <Compile Include="Controls\CueText.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Enums\Concepto.cs" />
-    <Compile Include="Enums\ModoDeFacturacion.cs" />
-    <Compile Include="Enums\ModoDeOperacion.cs" />
-    <Compile Include="Enums\TipoDeComprobante.cs" />
-    <Compile Include="Enums\TipoDeDocumento.cs" />
-    <Compile Include="Enums\TipoDeFacturacion.cs" />
-    <Compile Include="Enums\TipoDeResponsabilidad.cs" />
+    <Compile Include="Enums\ModoFacturacion.cs" />
+    <Compile Include="Enums\ModoOperacion.cs" />
+    <Compile Include="Enums\TipoFacturacion.cs" />
     <Compile Include="Forms\ControlCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ControlCategoria.Designer.cs">
       <DependentUpon>ControlCategoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ControlIva.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ControlIva.Designer.cs">
-      <DependentUpon>ControlIva.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ControlStock.cs">
       <SubType>Form</SubType>
@@ -120,11 +108,11 @@
     <Compile Include="Forms\ControlStock.Designer.cs">
       <DependentUpon>ControlStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ControlTributos.cs">
+    <Compile Include="Forms\ManejoTributos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ControlTributos.Designer.cs">
-      <DependentUpon>ControlTributos.cs</DependentUpon>
+    <Compile Include="Forms\ManejoTributos.Designer.cs">
+      <DependentUpon>ManejoTributos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Factura.cs">
       <SubType>Form</SubType>
@@ -137,12 +125,6 @@
     </Compile>
     <Compile Include="Forms\ManejoClientes.Designer.cs">
       <DependentUpon>ManejoClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ManejoTipoFactura.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ManejoTipoFactura.Designer.cs">
-      <DependentUpon>ManejoTipoFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MenuConfiguracion.cs">
       <SubType>Form</SubType>
@@ -173,23 +155,17 @@
     <EmbeddedResource Include="Forms\ControlCategoria.resx">
       <DependentUpon>ControlCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ControlIva.resx">
-      <DependentUpon>ControlIva.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ControlStock.resx">
       <DependentUpon>ControlStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ControlTributos.resx">
-      <DependentUpon>ControlTributos.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ManejoTributos.resx">
+      <DependentUpon>ManejoTributos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Factura.resx">
       <DependentUpon>Factura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManejoClientes.resx">
       <DependentUpon>ManejoClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ManejoTipoFactura.resx">
-      <DependentUpon>ManejoTipoFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MenuConfiguracion.resx">
       <DependentUpon>MenuConfiguracion.cs</DependentUpon>

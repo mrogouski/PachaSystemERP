@@ -20,7 +20,7 @@ namespace PachaSystemERP.Classes
 
         public static ModoFacturacion ModoFacturacion { get; set; }
 
-        public static ModoDeOperacion ModoDeOperacion { get; set; }
+        public static ModoOperacion ModoDeOperacion { get; set; }
 
         public static int PuntoVenta { get; set; }
 
@@ -36,7 +36,7 @@ namespace PachaSystemERP.Classes
             ModoFacturacion = (ModoFacturacion)Enum.Parse(typeof(ModoFacturacion), settings["ModoDeFacturacion"].Value);
             if (ModoFacturacion == ModoFacturacion.FacturaElectronica)
             {
-                ModoDeOperacion = (ModoDeOperacion)Enum.Parse(typeof(ModoDeOperacion), settings["ModoDeOperacion"].Value);
+                ModoDeOperacion = (ModoOperacion)Enum.Parse(typeof(ModoOperacion), settings["ModoDeOperacion"].Value);
                 PuntoVenta = int.Parse(settings["PuntoDeVenta"].Value);
             }
 

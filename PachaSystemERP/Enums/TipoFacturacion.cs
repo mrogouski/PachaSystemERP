@@ -10,7 +10,7 @@ namespace PachaSystemERP.Enums
     using System.Text;
     using System.Threading.Tasks;
 
-    public enum TipoDeFacturacion
+    public enum TipoFacturacion
     {
         FacturaElectronica = 0,
         ImpresoraFiscal = 1,

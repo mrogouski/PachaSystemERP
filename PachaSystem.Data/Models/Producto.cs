@@ -18,13 +18,13 @@
 
         public short IvaID { get; set; }
 
-        public int? RubroID { get; set; }
+        public int? CategoriaProductoID { get; set; }
 
         public DateTime? FechaBaja { get; set; }
 
         public virtual Iva Iva { get; set; }
 
-        public virtual Rubro Rubro { get; set; }
+        public virtual CategoriaProducto CategoriaProducto { get; set; }
 
         public virtual ICollection<DetalleComprobante> DetalleComprobante { get; set; }
     }
