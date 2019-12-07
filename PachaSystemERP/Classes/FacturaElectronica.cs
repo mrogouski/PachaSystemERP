@@ -26,7 +26,7 @@ namespace PachaSystemERP.Classes
 
     public class FacturaElectronica
     {
-        private static readonly Logger logger;
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private static readonly string _servicio = "wsfe";
         private string _token;
         private string _sign;
@@ -155,15 +155,18 @@ namespace PachaSystemERP.Classes
                 }
                 else
                 {
-                    if (response.Errores.Count > 0 || response.Eventos.Count > 0)
+                    if (response.Errores.Count > 0)
                     {
                         foreach (var item in response.Errores)
                         {
-                            logger.Debug(item.Codigo + item.Mensaje);
+                            _logger.Debug(item.Codigo + item.Mensaje);
                         }
+                    }
+                    else if (response.Eventos.Count > 0)
+                    {
                         foreach (var item in response.Eventos)
                         {
-                            logger.Debug(item.Codigo + item.Mensaje);
+                            _logger.Debug(item.Codigo + item.Mensaje);
                         }
                     }
 

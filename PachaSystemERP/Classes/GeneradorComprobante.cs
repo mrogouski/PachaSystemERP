@@ -36,7 +36,7 @@
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
             _comprobante = new Comprobante();
-            _numeroComprobante = _facturaElectronica.SincronizarNumeroComprobante(tipoComprobante);
+            _comprobante.NumeroComprobante = _facturaElectronica.ObtenerNumeroUltimoComprobante(tipoComprobante.ID) + 1;
             _comprobante.PuntoVenta = Configuracion.PuntoVenta;
             _comprobante.TipoComprobanteID = tipoComprobante.ID;
         }
@@ -103,8 +103,17 @@
         {
             get
             {
+                _numeroComprobante = FormatearNumeroComprobante();
                 return _numeroComprobante;
             }
+        }
+
+        private string FormatearNumeroComprobante()
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
+            stringBuilder.Append(_comprobante.NumeroComprobante.ToString("D8"));
+            return stringBuilder.ToString();
         }
 
         public void AgregarProducto(string codigoProducto, int cantidad)
@@ -179,13 +188,13 @@
                 {
                     _comprobante.CAE = response.DetalleResponse.Select(x => x.CAE).First();
                     _comprobante.FechaVencimientoCAE = DateTime.ParseExact(response.DetalleResponse.Select(x => x.FechaVencimientoCAE).First(), "yyyyMMdd", CultureInfo.CurrentCulture);
+                    _unitOfWork.Comprobante.Agregar(_comprobante);
+                    _unitOfWork.Guardar();
+                    return _comprobante;
                 }
             }
 
-            _unitOfWork.Comprobante.Agregar(_comprobante);
-            _unitOfWork.Guardar();
-
-            return _comprobante;
+            return null;
         }
 
         public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
