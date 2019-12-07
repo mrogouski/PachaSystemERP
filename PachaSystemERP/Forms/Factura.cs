@@ -190,8 +190,16 @@ namespace PachaSystemERP.Forms
 
             var concepto = _unitOfWork.TipoConcepto.Obtener(x => x.Descripcion == "PRODUCTOS");
 
-            var form = new VisorFactura(_generador.GenerarComprobante(concepto));
-            var dialogResult = form.ShowDialog();
+            var comprobante = _generador.GenerarComprobante(concepto);
+            if (string.IsNullOrWhiteSpace(comprobante.CAE))
+            {
+                MessageBox.Show("No se pudo generar el comprobante, revise el registro de errores");
+            }
+            else
+            {
+                var form = new VisorFactura(comprobante);
+                form.ShowDialog();
+            }
 
             Inicializar();
         }

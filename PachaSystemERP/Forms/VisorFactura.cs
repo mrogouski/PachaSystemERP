@@ -22,7 +22,7 @@
         private Comprobante _comprobante;
         public VisorFactura(Comprobante comprobante)
         {
-            _comprobante = comprobante;
+            _comprobante = comprobante ?? throw new ArgumentNullException(nameof(comprobante));
             InitializeComponent();
         }
 
