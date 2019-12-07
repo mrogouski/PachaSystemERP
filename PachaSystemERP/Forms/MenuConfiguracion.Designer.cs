@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.TxtNombreFantasia = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TxtRazonSocial = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.MtbCuit = new System.Windows.Forms.MaskedTextBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.MtbPuntoDeVenta = new System.Windows.Forms.MaskedTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtRutaDelCertificado = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSeleccionarCertificado = new System.Windows.Forms.Button();
-            this.TxtDomicilio = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.CbCondicionFiscal = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.DtpFechaInicioActividades = new System.Windows.Forms.DateTimePicker();
-            this.openFileDialogCertificado = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.MtbCuit = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtRazonSocial = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtNombreFantasia = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtDomicilio = new System.Windows.Forms.TextBox();
+            this.CbCondicionFiscal = new System.Windows.Forms.ComboBox();
+            this.DtpFechaInicioActividades = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.MtbPuntoDeVenta = new System.Windows.Forms.MaskedTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnSeleccionarCertificado = new System.Windows.Forms.Button();
+            this.txtRutaDelCertificado = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.openFileDialogCertificado = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -84,218 +84,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 7);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(368, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Nombre Fantasía";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // TxtNombreFantasia
-            // 
-            this.TxtNombreFantasia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtNombreFantasia.Location = new System.Drawing.Point(377, 3);
-            this.TxtNombreFantasia.Name = "TxtNombreFantasia";
-            this.TxtNombreFantasia.Size = new System.Drawing.Size(368, 20);
-            this.TxtNombreFantasia.TabIndex = 13;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 34);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(368, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Razón Social";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // TxtRazonSocial
-            // 
-            this.TxtRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtRazonSocial.Location = new System.Drawing.Point(377, 30);
-            this.TxtRazonSocial.Name = "TxtRazonSocial";
-            this.TxtRazonSocial.Size = new System.Drawing.Size(368, 20);
-            this.TxtRazonSocial.TabIndex = 15;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(368, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "C.U.I.T.";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // MtbCuit
-            // 
-            this.MtbCuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.MtbCuit.Location = new System.Drawing.Point(377, 57);
-            this.MtbCuit.Mask = "00-00000000-0";
-            this.MtbCuit.Name = "MtbCuit";
-            this.MtbCuit.Size = new System.Drawing.Size(368, 20);
-            this.MtbCuit.TabIndex = 11;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(552, 400);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 6;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAceptar.Location = new System.Drawing.Point(172, 400);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 5;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
-            // 
-            // MtbPuntoDeVenta
-            // 
-            this.MtbPuntoDeVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.MtbPuntoDeVenta.Location = new System.Drawing.Point(252, 16);
-            this.MtbPuntoDeVenta.Mask = "00000";
-            this.MtbPuntoDeVenta.Name = "MtbPuntoDeVenta";
-            this.MtbPuntoDeVenta.Size = new System.Drawing.Size(243, 20);
-            this.MtbPuntoDeVenta.TabIndex = 10;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(243, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Punto de Venta";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 127);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Contraseña del Certificado";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPassword.Location = new System.Drawing.Point(252, 124);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(243, 20);
-            this.txtPassword.TabIndex = 8;
-            this.txtPassword.UseSystemPasswordChar = true;
-            // 
-            // txtRutaDelCertificado
-            // 
-            this.txtRutaDelCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRutaDelCertificado.Location = new System.Drawing.Point(252, 69);
-            this.txtRutaDelCertificado.Name = "txtRutaDelCertificado";
-            this.txtRutaDelCertificado.Size = new System.Drawing.Size(243, 20);
-            this.txtRutaDelCertificado.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 73);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Ubicacion del Certificado:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnSeleccionarCertificado
-            // 
-            this.btnSeleccionarCertificado.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSeleccionarCertificado.Location = new System.Drawing.Point(501, 68);
-            this.btnSeleccionarCertificado.Name = "btnSeleccionarCertificado";
-            this.btnSeleccionarCertificado.Size = new System.Drawing.Size(75, 23);
-            this.btnSeleccionarCertificado.TabIndex = 0;
-            this.btnSeleccionarCertificado.Text = "Examinar...";
-            this.btnSeleccionarCertificado.UseVisualStyleBackColor = true;
-            this.btnSeleccionarCertificado.Click += new System.EventHandler(this.btnSeleccionarCertificado_Click);
-            // 
-            // TxtDomicilio
-            // 
-            this.TxtDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtDomicilio.Location = new System.Drawing.Point(377, 138);
-            this.TxtDomicilio.Name = "TxtDomicilio";
-            this.TxtDomicilio.Size = new System.Drawing.Size(368, 20);
-            this.TxtDomicilio.TabIndex = 17;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 142);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(368, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Domicilio";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 88);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(368, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Condicion Fiscal";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // CbCondicionFiscal
-            // 
-            this.CbCondicionFiscal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.CbCondicionFiscal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CbCondicionFiscal.FormattingEnabled = true;
-            this.CbCondicionFiscal.Location = new System.Drawing.Point(377, 84);
-            this.CbCondicionFiscal.Name = "CbCondicionFiscal";
-            this.CbCondicionFiscal.Size = new System.Drawing.Size(368, 21);
-            this.CbCondicionFiscal.TabIndex = 19;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 115);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(368, 13);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "Fecha de Inicio de Actividades";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // DtpFechaInicioActividades
-            // 
-            this.DtpFechaInicioActividades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.DtpFechaInicioActividades.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaInicioActividades.Location = new System.Drawing.Point(377, 111);
-            this.DtpFechaInicioActividades.Name = "DtpFechaInicioActividades";
-            this.DtpFechaInicioActividades.Size = new System.Drawing.Size(368, 20);
-            this.DtpFechaInicioActividades.TabIndex = 21;
             // 
             // groupBox1
             // 
@@ -339,6 +127,124 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(748, 162);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // MtbCuit
+            // 
+            this.MtbCuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.MtbCuit.Location = new System.Drawing.Point(377, 55);
+            this.MtbCuit.Mask = "00-00000000-0";
+            this.MtbCuit.Name = "MtbCuit";
+            this.MtbCuit.Size = new System.Drawing.Size(368, 20);
+            this.MtbCuit.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(368, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "C.U.I.T.";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TxtRazonSocial
+            // 
+            this.TxtRazonSocial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtRazonSocial.Location = new System.Drawing.Point(377, 29);
+            this.TxtRazonSocial.Name = "TxtRazonSocial";
+            this.TxtRazonSocial.Size = new System.Drawing.Size(368, 20);
+            this.TxtRazonSocial.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 32);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(368, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Razón Social";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TxtNombreFantasia
+            // 
+            this.TxtNombreFantasia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtNombreFantasia.Location = new System.Drawing.Point(377, 3);
+            this.TxtNombreFantasia.Name = "TxtNombreFantasia";
+            this.TxtNombreFantasia.Size = new System.Drawing.Size(368, 20);
+            this.TxtNombreFantasia.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 6);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(368, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Nombre Fantasía";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 84);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(368, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Condicion Fiscal";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 110);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(368, 13);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Fecha de Inicio de Actividades";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 139);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(368, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Domicilio";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // TxtDomicilio
+            // 
+            this.TxtDomicilio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtDomicilio.Location = new System.Drawing.Point(377, 136);
+            this.TxtDomicilio.Name = "TxtDomicilio";
+            this.TxtDomicilio.Size = new System.Drawing.Size(368, 20);
+            this.TxtDomicilio.TabIndex = 17;
+            // 
+            // CbCondicionFiscal
+            // 
+            this.CbCondicionFiscal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CbCondicionFiscal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CbCondicionFiscal.FormattingEnabled = true;
+            this.CbCondicionFiscal.Location = new System.Drawing.Point(377, 81);
+            this.CbCondicionFiscal.Name = "CbCondicionFiscal";
+            this.CbCondicionFiscal.Size = new System.Drawing.Size(368, 21);
+            this.CbCondicionFiscal.TabIndex = 19;
+            // 
+            // DtpFechaInicioActividades
+            // 
+            this.DtpFechaInicioActividades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.DtpFechaInicioActividades.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpFechaInicioActividades.Location = new System.Drawing.Point(377, 107);
+            this.DtpFechaInicioActividades.Name = "DtpFechaInicioActividades";
+            this.DtpFechaInicioActividades.Size = new System.Drawing.Size(368, 20);
+            this.DtpFechaInicioActividades.TabIndex = 21;
+            // 
             // groupBox2
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 2);
@@ -373,6 +279,100 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(748, 162);
             this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.Location = new System.Drawing.Point(252, 125);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(243, 20);
+            this.txtPassword.TabIndex = 8;
+            this.txtPassword.UseSystemPasswordChar = true;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 128);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(243, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Contraseña del Certificado";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // MtbPuntoDeVenta
+            // 
+            this.MtbPuntoDeVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.MtbPuntoDeVenta.Location = new System.Drawing.Point(252, 17);
+            this.MtbPuntoDeVenta.Mask = "00000";
+            this.MtbPuntoDeVenta.Name = "MtbPuntoDeVenta";
+            this.MtbPuntoDeVenta.Size = new System.Drawing.Size(243, 20);
+            this.MtbPuntoDeVenta.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(243, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Punto de Venta";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnSeleccionarCertificado
+            // 
+            this.btnSeleccionarCertificado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSeleccionarCertificado.Location = new System.Drawing.Point(501, 69);
+            this.btnSeleccionarCertificado.Name = "btnSeleccionarCertificado";
+            this.btnSeleccionarCertificado.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionarCertificado.TabIndex = 0;
+            this.btnSeleccionarCertificado.Text = "Examinar...";
+            this.btnSeleccionarCertificado.UseVisualStyleBackColor = true;
+            this.btnSeleccionarCertificado.Click += new System.EventHandler(this.btnSeleccionarCertificado_Click);
+            // 
+            // txtRutaDelCertificado
+            // 
+            this.txtRutaDelCertificado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRutaDelCertificado.Location = new System.Drawing.Point(252, 71);
+            this.txtRutaDelCertificado.Name = "txtRutaDelCertificado";
+            this.txtRutaDelCertificado.Size = new System.Drawing.Size(243, 20);
+            this.txtRutaDelCertificado.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(243, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Ubicacion del Certificado:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAceptar.Location = new System.Drawing.Point(172, 400);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 5;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(552, 400);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // MenuConfiguracion
             // 
