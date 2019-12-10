@@ -155,14 +155,14 @@ namespace PachaSystemERP.Classes
                 }
                 else
                 {
-                    if (response.Errores.Count > 0)
+                    if (response.Errores != null)
                     {
                         foreach (var item in response.Errores)
                         {
                             _logger.Debug(item.Codigo + item.Mensaje);
                         }
                     }
-                    else if (response.Eventos.Count > 0)
+                    else if (response.Eventos != null)
                     {
                         foreach (var item in response.Eventos)
                         {

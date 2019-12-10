@@ -17,7 +17,5 @@
         public short CategoriaTributoID { get; set; }
 
         public virtual CategoriaTributo CategoriaTributo { get; set; }
-
-        public virtual ICollection<DetalleComprobante> DetalleComprobante { get; set; }
     }
 }

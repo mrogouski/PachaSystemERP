@@ -56,8 +56,7 @@ namespace PachaSystemERP.Forms
             lblTotal.DataBindings.Add("Text", _generador, "ImporteTotal", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C");
             lblCantidadArticulos.DataBindings.Add("Text", _generador, "CantidadTotal", true, DataSourceUpdateMode.OnPropertyChanged);
 
-            CargarComboBox();
-            CargarDataGridView();
+            Inicializar();
         }
 
         private void Inicializar()
@@ -73,6 +72,9 @@ namespace PachaSystemERP.Forms
             NudCantidad.Value = 1;
             NudPrecioUnitario.Value = 0;
             NudSubtotal.Value = 0;
+
+            CargarComboBox();
+            CargarDataGridView();
         }
 
         private void CargarComboBox()

@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
@@ -34,7 +35,7 @@
                 this.dataTableComprobanteTableAdapter.Fill(this.dataSetComprobante.DataTableComprobante, _comprobante.ID);
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 
                 throw ex.InnerException;
@@ -75,6 +76,7 @@
             parameters.Add(new ReportParameter("CUIT", Settings.Default.CUIT));
             parameters.Add(new ReportParameter("IngresosBrutos", Settings.Default.IngresosBrutos));
             parameters.Add(new ReportParameter("FechaInicioActividades", Settings.Default.FechaInicioActividades.ToShortDateString()));
+            parameters.Add(new ReportParameter("Cabecera", "Original"));
             RvComprobante.LocalReport.SetParameters(parameters);
 
             this.RvComprobante.RefreshReport();

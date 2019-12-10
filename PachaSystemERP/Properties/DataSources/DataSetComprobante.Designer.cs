@@ -307,8 +307,6 @@ namespace PachaSystemERP.Properties.DataSources {
             
             private global::System.Data.DataColumn columnDomicilio;
             
-            private global::System.Data.DataColumn columnDescripcion;
-            
             private global::System.Data.DataColumn columnCantidad;
             
             private global::System.Data.DataColumn columnBaseImponible;
@@ -316,8 +314,6 @@ namespace PachaSystemERP.Properties.DataSources {
             private global::System.Data.DataColumn columnSubtotal;
             
             private global::System.Data.DataColumn columnImporteIva;
-            
-            private global::System.Data.DataColumn columnImporteTributo;
             
             private global::System.Data.DataColumn columnTipoResponsable;
             
@@ -329,19 +325,9 @@ namespace PachaSystemERP.Properties.DataSources {
             
             private global::System.Data.DataColumn columnTipoDocumento;
             
-            private global::System.Data.DataColumn columnTipoCondicionIva;
-            
-            private global::System.Data.DataColumn columnTipoComprobante;
-            
-            private global::System.Data.DataColumn columnTipoTributo;
-            
-            private global::System.Data.DataColumn columnAlicuota;
-            
-            private global::System.Data.DataColumn columnID;
-            
             private global::System.Data.DataColumn columnAlicuotaIva;
             
-            private global::System.Data.DataColumn columnTipoComprobanteID;
+            private global::System.Data.DataColumn columnIva;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -490,14 +476,6 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DescripcionColumn {
-                get {
-                    return this.columnDescripcion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn CantidadColumn {
                 get {
                     return this.columnCantidad;
@@ -525,14 +503,6 @@ namespace PachaSystemERP.Properties.DataSources {
             public global::System.Data.DataColumn ImporteIvaColumn {
                 get {
                     return this.columnImporteIva;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ImporteTributoColumn {
-                get {
-                    return this.columnImporteTributo;
                 }
             }
             
@@ -578,46 +548,6 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TipoCondicionIvaColumn {
-                get {
-                    return this.columnTipoCondicionIva;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TipoComprobanteColumn {
-                get {
-                    return this.columnTipoComprobante;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TipoTributoColumn {
-                get {
-                    return this.columnTipoTributo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn AlicuotaColumn {
-                get {
-                    return this.columnAlicuota;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn AlicuotaIvaColumn {
                 get {
                     return this.columnAlicuotaIva;
@@ -626,9 +556,9 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TipoComprobanteIDColumn {
+            public global::System.Data.DataColumn IvaColumn {
                 get {
-                    return this.columnTipoComprobanteID;
+                    return this.columnIva;
                 }
             }
             
@@ -684,23 +614,17 @@ namespace PachaSystemERP.Properties.DataSources {
                         string RazonSocial, 
                         string NumeroDocumento, 
                         string Domicilio, 
-                        string Descripcion, 
                         int Cantidad, 
                         decimal BaseImponible, 
                         decimal Subtotal, 
                         decimal ImporteIva, 
-                        decimal ImporteTributo, 
                         string TipoResponsable, 
                         string Codigo, 
                         string Producto, 
                         decimal PrecioUnitario, 
                         string TipoDocumento, 
-                        string TipoCondicionIva, 
-                        string TipoComprobante, 
-                        string TipoTributo, 
-                        decimal Alicuota, 
                         decimal AlicuotaIva, 
-                        int TipoComprobanteID) {
+                        string Iva) {
                 DataTableComprobanteRow rowDataTableComprobanteRow = ((DataTableComprobanteRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PuntoVenta,
@@ -717,34 +641,20 @@ namespace PachaSystemERP.Properties.DataSources {
                         RazonSocial,
                         NumeroDocumento,
                         Domicilio,
-                        Descripcion,
                         Cantidad,
                         BaseImponible,
                         Subtotal,
                         ImporteIva,
-                        ImporteTributo,
                         TipoResponsable,
                         Codigo,
                         Producto,
                         PrecioUnitario,
                         TipoDocumento,
-                        TipoCondicionIva,
-                        TipoComprobante,
-                        TipoTributo,
-                        Alicuota,
-                        null,
                         AlicuotaIva,
-                        TipoComprobanteID};
+                        Iva};
                 rowDataTableComprobanteRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTableComprobanteRow);
                 return rowDataTableComprobanteRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTableComprobanteRow FindByID(int ID) {
-                return ((DataTableComprobanteRow)(this.Rows.Find(new object[] {
-                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -778,24 +688,17 @@ namespace PachaSystemERP.Properties.DataSources {
                 this.columnRazonSocial = base.Columns["RazonSocial"];
                 this.columnNumeroDocumento = base.Columns["NumeroDocumento"];
                 this.columnDomicilio = base.Columns["Domicilio"];
-                this.columnDescripcion = base.Columns["Descripcion"];
                 this.columnCantidad = base.Columns["Cantidad"];
                 this.columnBaseImponible = base.Columns["BaseImponible"];
                 this.columnSubtotal = base.Columns["Subtotal"];
                 this.columnImporteIva = base.Columns["ImporteIva"];
-                this.columnImporteTributo = base.Columns["ImporteTributo"];
                 this.columnTipoResponsable = base.Columns["TipoResponsable"];
                 this.columnCodigo = base.Columns["Codigo"];
                 this.columnProducto = base.Columns["Producto"];
                 this.columnPrecioUnitario = base.Columns["PrecioUnitario"];
                 this.columnTipoDocumento = base.Columns["TipoDocumento"];
-                this.columnTipoCondicionIva = base.Columns["TipoCondicionIva"];
-                this.columnTipoComprobante = base.Columns["TipoComprobante"];
-                this.columnTipoTributo = base.Columns["TipoTributo"];
-                this.columnAlicuota = base.Columns["Alicuota"];
-                this.columnID = base.Columns["ID"];
                 this.columnAlicuotaIva = base.Columns["AlicuotaIva"];
-                this.columnTipoComprobanteID = base.Columns["TipoComprobanteID"];
+                this.columnIva = base.Columns["Iva"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -829,8 +732,6 @@ namespace PachaSystemERP.Properties.DataSources {
                 base.Columns.Add(this.columnNumeroDocumento);
                 this.columnDomicilio = new global::System.Data.DataColumn("Domicilio", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDomicilio);
-                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcion);
                 this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidad);
                 this.columnBaseImponible = new global::System.Data.DataColumn("BaseImponible", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -839,8 +740,6 @@ namespace PachaSystemERP.Properties.DataSources {
                 base.Columns.Add(this.columnSubtotal);
                 this.columnImporteIva = new global::System.Data.DataColumn("ImporteIva", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImporteIva);
-                this.columnImporteTributo = new global::System.Data.DataColumn("ImporteTributo", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnImporteTributo);
                 this.columnTipoResponsable = new global::System.Data.DataColumn("TipoResponsable", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipoResponsable);
                 this.columnCodigo = new global::System.Data.DataColumn("Codigo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -851,22 +750,10 @@ namespace PachaSystemERP.Properties.DataSources {
                 base.Columns.Add(this.columnPrecioUnitario);
                 this.columnTipoDocumento = new global::System.Data.DataColumn("TipoDocumento", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipoDocumento);
-                this.columnTipoCondicionIva = new global::System.Data.DataColumn("TipoCondicionIva", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipoCondicionIva);
-                this.columnTipoComprobante = new global::System.Data.DataColumn("TipoComprobante", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipoComprobante);
-                this.columnTipoTributo = new global::System.Data.DataColumn("TipoTributo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipoTributo);
-                this.columnAlicuota = new global::System.Data.DataColumn("Alicuota", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAlicuota);
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
                 this.columnAlicuotaIva = new global::System.Data.DataColumn("AlicuotaIva", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAlicuotaIva);
-                this.columnTipoComprobanteID = new global::System.Data.DataColumn("TipoComprobanteID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipoComprobanteID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
+                this.columnIva = new global::System.Data.DataColumn("Iva", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIva);
                 this.columnPuntoVenta.AllowDBNull = false;
                 this.columnNumeroComprobante.AllowDBNull = false;
                 this.columnCAE.MaxLength = 2147483647;
@@ -881,21 +768,11 @@ namespace PachaSystemERP.Properties.DataSources {
                 this.columnRazonSocial.MaxLength = 2147483647;
                 this.columnNumeroDocumento.MaxLength = 2147483647;
                 this.columnDomicilio.MaxLength = 2147483647;
-                this.columnDescripcion.MaxLength = 2147483647;
                 this.columnTipoResponsable.MaxLength = 2147483647;
                 this.columnCodigo.MaxLength = 2147483647;
                 this.columnProducto.MaxLength = 2147483647;
                 this.columnTipoDocumento.MaxLength = 2147483647;
-                this.columnTipoCondicionIva.MaxLength = 2147483647;
-                this.columnTipoComprobante.MaxLength = 2147483647;
-                this.columnTipoTributo.MaxLength = 2147483647;
-                this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
-                this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
-                this.columnID.Unique = true;
-                this.columnTipoComprobanteID.AllowDBNull = false;
+                this.columnIva.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1213,22 +1090,6 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Descripcion {
-                get {
-                    try {
-                        return ((string)(this[this.tableDataTableComprobante.DescripcionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Descripcion\' in table \'DataTableComprobante\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTableComprobante.DescripcionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int Cantidad {
                 get {
                     try {
@@ -1288,22 +1149,6 @@ namespace PachaSystemERP.Properties.DataSources {
                 }
                 set {
                     this[this.tableDataTableComprobante.ImporteIvaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal ImporteTributo {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableDataTableComprobante.ImporteTributoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ImporteTributo\' in table \'DataTableComprobante\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTableComprobante.ImporteTributoColumn] = value;
                 }
             }
             
@@ -1390,83 +1235,6 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string TipoCondicionIva {
-                get {
-                    try {
-                        return ((string)(this[this.tableDataTableComprobante.TipoCondicionIvaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TipoCondicionIva\' in table \'DataTableComprobante\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTableComprobante.TipoCondicionIvaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string TipoComprobante {
-                get {
-                    try {
-                        return ((string)(this[this.tableDataTableComprobante.TipoComprobanteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TipoComprobante\' in table \'DataTableComprobante\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTableComprobante.TipoComprobanteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string TipoTributo {
-                get {
-                    try {
-                        return ((string)(this[this.tableDataTableComprobante.TipoTributoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TipoTributo\' in table \'DataTableComprobante\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTableComprobante.TipoTributoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal Alicuota {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableDataTableComprobante.AlicuotaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Alicuota\' in table \'DataTableComprobante\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTableComprobante.AlicuotaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int ID {
-                get {
-                    return ((int)(this[this.tableDataTableComprobante.IDColumn]));
-                }
-                set {
-                    this[this.tableDataTableComprobante.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public decimal AlicuotaIva {
                 get {
                     try {
@@ -1483,12 +1251,17 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int TipoComprobanteID {
+            public string Iva {
                 get {
-                    return ((int)(this[this.tableDataTableComprobante.TipoComprobanteIDColumn]));
+                    try {
+                        return ((string)(this[this.tableDataTableComprobante.IvaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Iva\' in table \'DataTableComprobante\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableDataTableComprobante.TipoComprobanteIDColumn] = value;
+                    this[this.tableDataTableComprobante.IvaColumn] = value;
                 }
             }
             
@@ -1542,18 +1315,6 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDescripcionNull() {
-                return this.IsNull(this.tableDataTableComprobante.DescripcionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDescripcionNull() {
-                this[this.tableDataTableComprobante.DescripcionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCantidadNull() {
                 return this.IsNull(this.tableDataTableComprobante.CantidadColumn);
             }
@@ -1598,18 +1359,6 @@ namespace PachaSystemERP.Properties.DataSources {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetImporteIvaNull() {
                 this[this.tableDataTableComprobante.ImporteIvaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsImporteTributoNull() {
-                return this.IsNull(this.tableDataTableComprobante.ImporteTributoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetImporteTributoNull() {
-                this[this.tableDataTableComprobante.ImporteTributoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1674,54 +1423,6 @@ namespace PachaSystemERP.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTipoCondicionIvaNull() {
-                return this.IsNull(this.tableDataTableComprobante.TipoCondicionIvaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTipoCondicionIvaNull() {
-                this[this.tableDataTableComprobante.TipoCondicionIvaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTipoComprobanteNull() {
-                return this.IsNull(this.tableDataTableComprobante.TipoComprobanteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTipoComprobanteNull() {
-                this[this.tableDataTableComprobante.TipoComprobanteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTipoTributoNull() {
-                return this.IsNull(this.tableDataTableComprobante.TipoTributoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTipoTributoNull() {
-                this[this.tableDataTableComprobante.TipoTributoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsAlicuotaNull() {
-                return this.IsNull(this.tableDataTableComprobante.AlicuotaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetAlicuotaNull() {
-                this[this.tableDataTableComprobante.AlicuotaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsAlicuotaIvaNull() {
                 return this.IsNull(this.tableDataTableComprobante.AlicuotaIvaColumn);
             }
@@ -1730,6 +1431,18 @@ namespace PachaSystemERP.Properties.DataSources {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetAlicuotaIvaNull() {
                 this[this.tableDataTableComprobante.AlicuotaIvaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIvaNull() {
+                return this.IsNull(this.tableDataTableComprobante.IvaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIvaNull() {
+                this[this.tableDataTableComprobante.IvaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1906,24 +1619,17 @@ namespace PachaSystemERP.Properties.DataSources.DataSetComprobanteTableAdapters 
             tableMapping.ColumnMappings.Add("RazonSocial", "RazonSocial");
             tableMapping.ColumnMappings.Add("NumeroDocumento", "NumeroDocumento");
             tableMapping.ColumnMappings.Add("Domicilio", "Domicilio");
-            tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
             tableMapping.ColumnMappings.Add("BaseImponible", "BaseImponible");
             tableMapping.ColumnMappings.Add("Subtotal", "Subtotal");
             tableMapping.ColumnMappings.Add("ImporteIva", "ImporteIva");
-            tableMapping.ColumnMappings.Add("ImporteTributo", "ImporteTributo");
             tableMapping.ColumnMappings.Add("TipoResponsable", "TipoResponsable");
             tableMapping.ColumnMappings.Add("Codigo", "Codigo");
             tableMapping.ColumnMappings.Add("Producto", "Producto");
             tableMapping.ColumnMappings.Add("PrecioUnitario", "PrecioUnitario");
             tableMapping.ColumnMappings.Add("TipoDocumento", "TipoDocumento");
-            tableMapping.ColumnMappings.Add("TipoCondicionIva", "TipoCondicionIva");
-            tableMapping.ColumnMappings.Add("TipoComprobante", "TipoComprobante");
-            tableMapping.ColumnMappings.Add("TipoTributo", "TipoTributo");
-            tableMapping.ColumnMappings.Add("Alicuota", "Alicuota");
-            tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("AlicuotaIva", "AlicuotaIva");
-            tableMapping.ColumnMappings.Add("TipoComprobanteID", "TipoComprobanteID");
+            tableMapping.ColumnMappings.Add("Iva", "Iva");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1945,28 +1651,20 @@ namespace PachaSystemERP.Properties.DataSources.DataSetComprobanteTableAdapters 
                 "               Comprobante.ImporteTotal, Comprobante.ImporteNetoNoGravado, Compr" +
                 "obante.ImporteNeto, Comprobante.ImporteExento, Comprobante.ImporteTotalTributo, " +
                 "\r\n                         Comprobante.ImporteTotalIva, Cliente.RazonSocial, Cli" +
-                "ente.NumeroDocumento, Cliente.Domicilio, CategoriaTributo.Descripcion, DetalleCo" +
-                "mprobante.Cantidad, \r\n                         DetalleComprobante.BaseImponible," +
-                " DetalleComprobante.Subtotal, DetalleComprobante.ImporteIva, DetalleComprobante." +
-                "ImporteTributo, \r\n                         TipoResponsable.Descripcion AS TipoRe" +
-                "sponsable, Producto.Codigo, Producto.Descripcion AS Producto, Producto.PrecioUni" +
-                "tario, \r\n                         TipoDocumento.Descripcion AS TipoDocumento, Ti" +
-                "poCondicionIva.Descripcion AS TipoCondicionIva, TipoComprobante.Descripcion AS T" +
-                "ipoComprobante, \r\n                         TipoTributo.Descripcion AS TipoTribut" +
-                "o, TipoTributo.Alicuota, Comprobante.ID, TipoCondicionIva.Alicuota AS AlicuotaIv" +
-                "a, Comprobante.TipoComprobanteID\r\nFROM            Comprobante LEFT OUTER JOIN\r\n " +
-                "                        CategoriaTributo ON Comprobante.ID = CategoriaTributo.ID" +
-                " LEFT OUTER JOIN\r\n                         Cliente ON Comprobante.ID = Cliente.I" +
-                "D LEFT OUTER JOIN\r\n                         DetalleComprobante ON Comprobante.ID" +
-                " = DetalleComprobante.ComprobanteID LEFT OUTER JOIN\r\n                         Pr" +
-                "oducto ON DetalleComprobante.ProductoID = Producto.ID LEFT OUTER JOIN\r\n         " +
-                "                TipoComprobante ON Comprobante.TipoComprobanteID = TipoComproban" +
-                "te.ID LEFT OUTER JOIN\r\n                         TipoCondicionIva ON Producto.Tip" +
-                "oCondicionIvaID = TipoCondicionIva.ID LEFT OUTER JOIN\r\n                         " +
-                "TipoDocumento ON Cliente.TipoDocumentoID = TipoDocumento.ID LEFT OUTER JOIN\r\n   " +
-                "                      TipoResponsable ON Cliente.TipoResponsableID = TipoRespons" +
-                "able.ID LEFT OUTER JOIN\r\n                         TipoTributo ON CategoriaTribut" +
-                "o.ID = TipoTributo.CategoriaTributoID\r\nWHERE        (Comprobante.ID = @id)";
+                "ente.NumeroDocumento, Cliente.Domicilio, DetalleComprobante.Cantidad, \r\n        " +
+                "                 DetalleComprobante.BaseImponible, DetalleComprobante.Subtotal, " +
+                "DetalleComprobante.ImporteIva, TipoResponsable.Descripcion AS TipoResponsable, \r" +
+                "\n                         Producto.Codigo, Producto.Descripcion AS Producto, Pro" +
+                "ducto.PrecioUnitario, TipoDocumento.Descripcion AS TipoDocumento, Iva.Descripcio" +
+                "n AS Iva, \r\n                         Iva.Alicuota AS AlicuotaIva\r\nFROM          " +
+                "  Comprobante LEFT OUTER JOIN\r\n                         Cliente ON Comprobante.I" +
+                "D = Cliente.ID LEFT OUTER JOIN\r\n                         DetalleComprobante ON C" +
+                "omprobante.ID = DetalleComprobante.ComprobanteID LEFT OUTER JOIN\r\n              " +
+                "           Producto ON DetalleComprobante.ProductoID = Producto.ID LEFT OUTER JO" +
+                "IN\r\n                         Iva ON Producto.IvaID = Iva.ID LEFT OUTER JOIN\r\n   " +
+                "                      TipoDocumento ON Cliente.TipoDocumentoID = TipoDocumento.I" +
+                "D LEFT OUTER JOIN\r\n                         TipoResponsable ON Cliente.TipoRespo" +
+                "nsableID = TipoResponsable.ID\r\nWHERE        (Comprobante.ID = @id)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
