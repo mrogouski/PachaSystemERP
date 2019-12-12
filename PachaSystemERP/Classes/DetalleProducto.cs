@@ -140,7 +140,7 @@
             {
                 if (_alicuotaIva > 0)
                 {
-                    return decimal.Round(_precioUnitario * (_alicuotaIva / 100), 2, MidpointRounding.ToEven);
+                    return decimal.Round(BaseImponible * (_alicuotaIva / 100), 2, MidpointRounding.ToEven);
                 }
                 else
                 {
@@ -174,7 +174,7 @@
             {
                 if (_alicuotaTributo > 0)
                 {
-                    return decimal.Round(_precioUnitario * (_alicuotaTributo / 100), 2, MidpointRounding.ToEven);
+                    return decimal.Round(BaseImponible * (_alicuotaTributo / 100), 2, MidpointRounding.ToEven);
                 }
                 else
                 {
@@ -195,7 +195,7 @@
         {
             get
             {
-                return decimal.Round((_precioUnitario + ImporteIva + ImporteTributo) * _cantidad, 2, MidpointRounding.ToEven);
+                return decimal.Round((BaseImponible + ImporteIva + ImporteTributo), 2, MidpointRounding.ToEven);
             }
         }
 

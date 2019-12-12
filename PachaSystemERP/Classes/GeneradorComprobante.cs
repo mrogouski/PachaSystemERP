@@ -9,6 +9,7 @@
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using NLog;
     using PachaSystem.Data;
     using PachaSystem.Data.Helpers;
     using PachaSystem.Data.Models;
@@ -16,6 +17,7 @@
 
     public class GeneradorComprobante : INotifyPropertyChanged
     {
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private FacturaElectronica _facturaElectronica;
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
@@ -184,7 +186,17 @@
 
                 var response = _facturaElectronica.GenerarComprobante(_comprobante);
 
-                if (response.CabeceraResponse.Resultado == "A")
+                if (response.CabeceraResponse.Resultado != "A")
+                {
+                    foreach (var item in response.DetalleResponse)
+                    {
+                        item.Observaciones.ForEach(s => _logger.Debug(s.Mensaje));
+                    }
+
+                    response.Errores.ForEach(s => _logger.Debug(s));
+                    return null;
+                }
+                else
                 {
                     _comprobante.CAE = response.DetalleResponse.Select(x => x.CAE).First();
                     _comprobante.FechaVencimientoCAE = DateTime.ParseExact(response.DetalleResponse.Select(x => x.FechaVencimientoCAE).First(), "yyyyMMdd", CultureInfo.CurrentCulture);
@@ -193,8 +205,6 @@
                     return _comprobante;
                 }
             }
-
-            return null;
         }
 
         public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)

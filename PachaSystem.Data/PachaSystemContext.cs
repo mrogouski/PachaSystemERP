@@ -27,7 +27,7 @@ namespace PachaSystem.Data
             : base("PachaSystemERP.Properties.Settings.PachaSystemERPConnectionString")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<PachaSystemContext, Configuration>());
-            Database.Log = s => logger.Debug(s);
+            //Database.Log = s => logger.Debug(s);
         }
 
         public DbSet<CategoriaTributo> CategoriaTributo { get; set; }

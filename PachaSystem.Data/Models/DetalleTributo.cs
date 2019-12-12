@@ -13,5 +13,7 @@ namespace PachaSystem.Data.Models
         public int TributoID { get; set; }
 
         public int Importe { get; set; }
+
+        public virtual Tributo Tributo { get; set; }
     }
 }

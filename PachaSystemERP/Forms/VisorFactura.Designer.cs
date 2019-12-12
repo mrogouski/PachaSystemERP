@@ -29,43 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.dataTableComprobanteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetComprobante = new PachaSystemERP.Properties.DataSources.DataSetComprobante();
             this.RvComprobante = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dataTableComprobanteTableAdapter = new PachaSystemERP.Properties.DataSources.DataSetComprobanteTableAdapters.DataTableComprobanteTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableComprobanteBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetComprobante)).BeginInit();
+            this.bindingSourceComprobante = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComprobante)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataTableComprobanteBindingSource
-            // 
-            this.dataTableComprobanteBindingSource.DataMember = "DataTableComprobante";
-            this.dataTableComprobanteBindingSource.DataSource = this.dataSetComprobante;
-            // 
-            // dataSetComprobante
-            // 
-            this.dataSetComprobante.DataSetName = "DataSetComprobante";
-            this.dataSetComprobante.EnforceConstraints = false;
-            this.dataSetComprobante.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // RvComprobante
             // 
             this.RvComprobante.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSetComprobante";
-            reportDataSource1.Value = this.dataTableComprobanteBindingSource;
-            this.RvComprobante.LocalReport.DataSources.Add(reportDataSource1);
-            this.RvComprobante.LocalReport.EnableExternalImages = true;
-            this.RvComprobante.LocalReport.ReportEmbeddedResource = "PachaSystemERP.Reports.FacturaB.rdlc";
+            this.RvComprobante.LocalReport.ReportEmbeddedResource = "PachaSystemERP.Reports.Factura.rdlc";
             this.RvComprobante.Location = new System.Drawing.Point(0, 0);
             this.RvComprobante.Name = "RvComprobante";
             this.RvComprobante.ServerReport.BearerToken = null;
             this.RvComprobante.Size = new System.Drawing.Size(800, 450);
             this.RvComprobante.TabIndex = 0;
             // 
-            // dataTableComprobanteTableAdapter
+            // bindingSourceComprobante
             // 
-            this.dataTableComprobanteTableAdapter.ClearBeforeFill = true;
+            this.bindingSourceComprobante.DataSource = typeof(PachaSystem.Data.Views.ComprobanteView);
             // 
             // VisorFactura
             // 
@@ -76,8 +57,7 @@
             this.Name = "VisorFactura";
             this.Text = "VisorFactura";
             this.Load += new System.EventHandler(this.VisorFactura_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableComprobanteBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetComprobante)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComprobante)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -85,8 +65,6 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer RvComprobante;
-        private System.Windows.Forms.BindingSource dataTableComprobanteBindingSource;
-        private Properties.DataSources.DataSetComprobante dataSetComprobante;
-        private Properties.DataSources.DataSetComprobanteTableAdapters.DataTableComprobanteTableAdapter dataTableComprobanteTableAdapter;
+        private System.Windows.Forms.BindingSource bindingSourceComprobante;
     }
 }

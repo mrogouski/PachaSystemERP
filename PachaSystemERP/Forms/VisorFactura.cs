@@ -2,7 +2,10 @@
 {
     using Microsoft.Reporting.WinForms;
     using NBarCodes;
+    using PachaSystem.Data;
+    using PachaSystem.Data.Helpers;
     using PachaSystem.Data.Models;
+    using PachaSystem.Data.Views;
     using PachaSystemERP.Classes;
     using PachaSystemERP.Properties;
     using System;
@@ -20,26 +23,25 @@
 
     public partial class VisorFactura : Form
     {
+        private PachaSystemContext _context;
+        private UnitOfWork _unitOfWork;
         private Comprobante _comprobante;
+        List<ComprobanteView> _comprobanteView;
         public VisorFactura(Comprobante comprobante)
         {
-            _comprobante = comprobante ?? throw new ArgumentNullException(nameof(comprobante));
+            _comprobante = comprobante;
+            _context = new PachaSystemContext();
+            _unitOfWork = new UnitOfWork(_context);
+            _comprobanteView = _unitOfWork.Comprobante.Obtener(comprobante.ID);
             InitializeComponent();
         }
 
         private void VisorFactura_Load(object sender, EventArgs e)
         {
-            try
-            {
-                // TODO: This line of code loads data into the 'dataSetComprobante.DataTableComprobante' table. You can move, or remove it, as needed.
-                this.dataTableComprobanteTableAdapter.Fill(this.dataSetComprobante.DataTableComprobante, _comprobante.ID);
 
-            }
-            catch (SqlException ex)
-            {
-
-                throw ex.InnerException;
-            }
+            // TODO: This line of code loads data into the 'dataSetComprobante.DataTableComprobante' table. You can move, or remove it, as needed.
+            //this.dataTableComprobanteTableAdapter.Fill(this.dataSetComprobante.DataTableComprobante, _comprobante.ID);
+            bindingSourceComprobante.DataSource = _comprobanteView;
 
             StringBuilder builder = new StringBuilder();
             builder.Append(Settings.Default.CUIT);
@@ -79,6 +81,9 @@
             parameters.Add(new ReportParameter("Cabecera", "Original"));
             RvComprobante.LocalReport.SetParameters(parameters);
 
+            this.RvComprobante.RefreshReport();
+            this.RvComprobante.RefreshReport();
+            this.RvComprobante.RefreshReport();
             this.RvComprobante.RefreshReport();
         }
     }

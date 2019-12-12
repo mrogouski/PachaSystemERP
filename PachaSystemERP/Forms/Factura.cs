@@ -193,7 +193,7 @@ namespace PachaSystemERP.Forms
             var concepto = _unitOfWork.TipoConcepto.Obtener(x => x.Descripcion == "PRODUCTOS");
 
             var comprobante = _generador.GenerarComprobante(concepto);
-            if (string.IsNullOrWhiteSpace(comprobante.CAE))
+            if (comprobante == null)
             {
                 MessageBox.Show("No se pudo generar el comprobante, revise el registro de errores");
             }

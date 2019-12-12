@@ -16,6 +16,8 @@
 
         public short CategoriaTributoID { get; set; }
 
+        public virtual IEnumerable<DetalleTributo> DetalleTributo { get; set; }
+
         public virtual CategoriaTributo CategoriaTributo { get; set; }
     }
 }
