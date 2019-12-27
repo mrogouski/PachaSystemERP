@@ -65,14 +65,14 @@ namespace PachaSystemERP.Classes
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        public string SincronizarNumeroComprobante(TipoComprobante tipoComprobante)
+        public string SincronizarNumeroComprobante(int receiptTypeId)
         {
-            if (tipoComprobante == null)
+            if (receiptTypeId != 0)
             {
-                throw new ArgumentNullException(nameof(tipoComprobante));
+                throw new ArgumentOutOfRangeException(nameof(receiptTypeId));
             }
 
-            int numeroComprobante = ObtenerNumeroUltimoComprobante(tipoComprobante.ID) + 1;
+            int numeroComprobante = ObtenerNumeroUltimoComprobante(receiptTypeId) + 1;
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
             stringBuilder.Append(numeroComprobante.ToString("D8"));
@@ -84,7 +84,7 @@ namespace PachaSystemERP.Classes
         /// </summary>
         /// <param name="comprobante"></param>
         /// <returns></returns>
-        public CaeResponse GenerarComprobante(Comprobante comprobante)
+        public CaeResponse GenerarComprobante(Receipt comprobante)
         {
             try
             {
@@ -93,8 +93,8 @@ namespace PachaSystemERP.Classes
                     throw new ArgumentNullException(nameof(comprobante));
                 }
 
-                ObtenerCredenciales();
-                Credenciales autorizacion = new Credenciales
+                GetCredentials();
+                Credentials autorizacion = new Credentials
                 {
                     Cuit = _cuit,
                     Sign = _sign,
@@ -104,21 +104,21 @@ namespace PachaSystemERP.Classes
                 var request = new CaeRequest();
                 request.CabeceraRequest.CantidadDeRegistros = 1;
                 request.CabeceraRequest.PuntoDeVenta = Configuracion.PuntoVenta;
-                request.CabeceraRequest.TipoDeComprobante = comprobante.TipoComprobanteID;
+                request.CabeceraRequest.TipoDeComprobante = comprobante.ReceiptTypeID;
 
                 var detalles = new CaeDetalleRequest();
-                detalles.Concepto = comprobante.TipoConceptoID;
-                detalles.ComprobanteDesde = comprobante.NumeroComprobante;
-                detalles.ComprobanteHasta = comprobante.NumeroComprobante;
-                detalles.FechaDeComprobante = comprobante.FechaComprobante.ToString("yyyyMMdd");
-                detalles.ImporteTotal = decimal.ToDouble(comprobante.ImporteTotal);
-                detalles.ImporteNetoNoGravado = decimal.ToDouble(comprobante.ImporteNetoNoGravado);
-                detalles.ImporteNeto = decimal.ToDouble(comprobante.ImporteNeto);
-                detalles.ImporteExento = decimal.ToDouble(comprobante.ImporteExento);
-                detalles.ImporteIVA = decimal.ToDouble(comprobante.ImporteTotalIva);
-                detalles.ImporteTributo = decimal.ToDouble(comprobante.ImporteTotalTributo);
-                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Obtener(x => x.ID == comprobante.TipoMoneda.ID).Codigo;
-                detalles.MonedaCotizacion = comprobante.CotizacionMoneda;
+                detalles.Concepto = comprobante.ConceptTypeID;
+                detalles.ComprobanteDesde = comprobante.ReceiptNumber;
+                detalles.ComprobanteHasta = comprobante.ReceiptNumber;
+                detalles.FechaDeComprobante = comprobante.ReceiptDate.ToString("yyyyMMdd");
+                detalles.ImporteTotal = decimal.ToDouble(comprobante.TotalAmount);
+                detalles.ImporteNetoNoGravado = decimal.ToDouble(comprobante.NotTaxedNetAmount);
+                detalles.ImporteNeto = decimal.ToDouble(comprobante.NetAmount);
+                detalles.ImporteExento = decimal.ToDouble(comprobante.ExemptAmount);
+                detalles.ImporteIVA = decimal.ToDouble(comprobante.VatTotalAmount);
+                detalles.ImporteTributo = decimal.ToDouble(comprobante.TributeTotalAmount);
+                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Get(x => x.ID == comprobante.CurrencyType.ID).Codigo;
+                detalles.MonedaCotizacion = comprobante.CurrencyExchangeRate;
 
                 //if (comprobante.ComprobantesAsociados != null)
                 //{
@@ -128,22 +128,22 @@ namespace PachaSystemERP.Classes
                 //    }
                 //}
 
-                if (comprobante.DetalleComprobante != null)
+                if (comprobante.ReceiptDetails != null)
                 {
-                    foreach (var item in comprobante.DetalleComprobante)
+                    foreach (var item in comprobante.ReceiptDetails)
                     {
                         detalles.AgregarIVA(item.Producto.IvaID, item.BaseImponible, item.ImporteIva);
                     }
                 }
 
-                if (comprobante.Cliente.RazonSocial.Equals("CONSUMIDOR FINAL"))
+                if (comprobante.Client.RazonSocial.Equals("CONSUMIDOR FINAL"))
                 {
-                    detalles.TipoDeDocumento = comprobante.Cliente.TipoDocumentoID;
+                    detalles.TipoDeDocumento = comprobante.Client.TipoDocumentoID;
                 }
                 else
                 {
-                    detalles.TipoDeDocumento = comprobante.Cliente.TipoDocumentoID;
-                    detalles.NumeroDeDocumento = long.Parse(comprobante.Cliente.NumeroDocumento);
+                    detalles.TipoDeDocumento = comprobante.Client.TipoDocumentoID;
+                    detalles.NumeroDeDocumento = long.Parse(comprobante.Client.NumeroDocumento);
                 }
 
                 request.DetalleRequest.Add(detalles);
@@ -182,15 +182,15 @@ namespace PachaSystemERP.Classes
 
         public TipoDeComprobanteResponse ObtenerTiposDeComprobante()
         {
-            ObtenerCredenciales();
-            Credenciales credenciales = new Credenciales();
-            credenciales.Cuit = _cuit;
-            credenciales.Sign = _sign;
-            credenciales.Token = _token;
+            GetCredentials();
+            Credentials credentials = new Credentials();
+            credentials.Cuit = _cuit;
+            credentials.Sign = _sign;
+            credentials.Token = _token;
 
             try
             {
-                var response = _wsfeClient.ObtenerTiposDeComprobante(credenciales);
+                var response = _wsfeClient.ObtenerTiposDeComprobante(credentials);
                 return response;
             }
             catch (FaultException)
@@ -200,10 +200,10 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public IList<PachaSystem.Wsfe.Models.TipoDeDocumento> ObtenerTiposDeDocumento()
+        public IEnumerable<TipoDeDocumento> ObtenerTiposDeDocumento()
         {
-            ObtenerCredenciales();
-            Credenciales credenciales = new Credenciales();
+            GetCredentials();
+            Credentials credenciales = new Credentials();
             credenciales.Cuit = _cuit;
             credenciales.Sign = _sign;
             credenciales.Token = _token;
@@ -226,8 +226,8 @@ namespace PachaSystemERP.Classes
 
         public IList<TipoDeTributo> ObtenerTiposDeTributo()
         {
-            ObtenerCredenciales();
-            Credenciales credenciales = new Credenciales();
+            GetCredentials();
+            Credentials credenciales = new Credentials();
             credenciales.Cuit = _cuit;
             credenciales.Sign = _sign;
             credenciales.Token = _token;
@@ -248,13 +248,17 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public IList<TipoDeMoneda> ObtenerTiposDeMoneda()
+        public IEnumerable<TipoDeMoneda> ObtenerTiposDeMoneda()
         {
-            ObtenerCredenciales();
-            Credenciales credenciales = new Credenciales();
-            credenciales.Cuit = _cuit;
-            credenciales.Sign = _sign;
-            credenciales.Token = _token;
+            GetCredentials();
+
+            Credentials credenciales = new Credentials
+            {
+                Cuit = _cuit,
+                Sign = _sign,
+                Token = _token
+            };
+
             try
             {
                 var response = _wsfeClient.ObtenerTiposDeMoneda(credenciales);
@@ -274,8 +278,8 @@ namespace PachaSystemERP.Classes
 
         public int ObtenerNumeroUltimoComprobante(int tipoComprobante)
         {
-            ObtenerCredenciales();
-            Credenciales credenciales = new Credenciales();
+            GetCredentials();
+            Credentials credenciales = new Credentials();
             credenciales.Cuit = _cuit;
             credenciales.Sign = _sign;
             credenciales.Token = _token;
@@ -293,22 +297,16 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public List<string> ObtenerEstadoDeConexion()
+        public DummyResponse GetConnectionStatus()
         {
             var response = _wsfeClient.ObtenerEstadoDelServicio();
-            List<string> list = new List<string>
-            {
-                response.AppServer,
-                response.AuthServer,
-                response.DbServer
-            };
-            return list;
+            return response;
         }
 
         /// <summary>
         /// Solicita la autorizacion de acceso al Web Service especificado.
         /// </summary>
-        private void ObtenerCredenciales()
+        private void GetCredentials()
         {
             if (LeerCredenciales() == false)
             {

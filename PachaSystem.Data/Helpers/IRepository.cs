@@ -12,12 +12,12 @@ namespace PachaSystem.Data.Helpers
     public interface IRepository<TEntity>
         where TEntity : class
     {
-        TEntity Obtener(Expression<Func<TEntity, bool>> filtro = null);
+        TEntity Get(Expression<Func<TEntity, bool>> expression = null);
 
-        IEnumerable<TEntity> ObtenerTodos(Expression<Func<TEntity, bool>> filtro = null);
+        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> expression = null);
 
-        void Agregar(TEntity entidad);
+        void Add(TEntity Entity);
 
-        void Remover(TEntity entidad);
+        void Remove(TEntity Entity);
     }
 }

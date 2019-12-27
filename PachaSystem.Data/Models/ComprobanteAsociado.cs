@@ -24,6 +24,6 @@
 
         public virtual TipoComprobante TipoComprobante { get; set; }
 
-        public virtual Comprobante Comprobante { get; set; }
+        public virtual Receipt Comprobante { get; set; }
     }
 }

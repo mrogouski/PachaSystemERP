@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class Factura
+    partial class FacturaB
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gbDetalleDeArticulo = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvArticulos = new System.Windows.Forms.DataGridView();
+            this.DgvArticles = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -67,11 +68,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.lblNumeroComprobante = new System.Windows.Forms.Label();
+            this.LblReceiptNumber = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.gbDetalleDeArticulo.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvArticles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudPrecioUnitario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSubtotal)).BeginInit();
@@ -79,6 +82,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.gbDetalleDeComprobante.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -134,7 +139,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Controls.Add(this.dgvArticulos, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.DgvArticles, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtDescripcion, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label4, 2, 0);
@@ -159,16 +164,16 @@
             // 
             // dgvArticulos
             // 
-            this.dgvArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel2.SetColumnSpan(this.dgvArticulos, 6);
-            this.dgvArticulos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvArticulos.Location = new System.Drawing.Point(3, 73);
-            this.dgvArticulos.Name = "dgvArticulos";
-            this.dgvArticulos.ReadOnly = true;
-            this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(726, 170);
-            this.dgvArticulos.TabIndex = 2;
+            this.DgvArticles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvArticles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel2.SetColumnSpan(this.DgvArticles, 6);
+            this.DgvArticles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvArticles.Location = new System.Drawing.Point(3, 73);
+            this.DgvArticles.Name = "dgvArticulos";
+            this.DgvArticles.ReadOnly = true;
+            this.DgvArticles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvArticles.Size = new System.Drawing.Size(726, 170);
+            this.DgvArticles.TabIndex = 2;
             // 
             // label2
             // 
@@ -190,7 +195,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(115, 20);
             this.txtDescripcion.TabIndex = 5;
-            this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
+            this.txtDescripcion.TextChanged += new System.EventHandler(this.TxtDescripcion_TextChanged);
             // 
             // label4
             // 
@@ -553,7 +558,7 @@
             this.tableLayoutPanel4.Controls.Add(this.label11, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label13, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label14, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.lblNumeroComprobante, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.LblReceiptNumber, 3, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -599,15 +604,19 @@
             // 
             // lblNumeroComprobante
             // 
-            this.lblNumeroComprobante.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNumeroComprobante.AutoSize = true;
-            this.lblNumeroComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroComprobante.Location = new System.Drawing.Point(552, 26);
-            this.lblNumeroComprobante.Name = "lblNumeroComprobante";
-            this.lblNumeroComprobante.Size = new System.Drawing.Size(177, 13);
-            this.lblNumeroComprobante.TabIndex = 3;
+            this.LblReceiptNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblReceiptNumber.AutoSize = true;
+            this.LblReceiptNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblReceiptNumber.Location = new System.Drawing.Point(552, 26);
+            this.LblReceiptNumber.Name = "lblNumeroComprobante";
+            this.LblReceiptNumber.Size = new System.Drawing.Size(177, 13);
+            this.LblReceiptNumber.TabIndex = 3;
             // 
-            // Factura
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // FacturaB
             // 
             this.AcceptButton = this.btnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -615,7 +624,7 @@
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Factura";
+            this.Name = "FacturaB";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MenuFacturacion_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -623,7 +632,7 @@
             this.gbDetalleDeArticulo.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvArticles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudPrecioUnitario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSubtotal)).EndInit();
@@ -633,6 +642,8 @@
             this.gbDetalleDeComprobante.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -640,7 +651,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView dgvArticulos;
+        private System.Windows.Forms.DataGridView DgvArticles;
         private System.Windows.Forms.GroupBox gbDetalleDeArticulo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label2;
@@ -676,9 +687,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label lblNumeroComprobante;
+        private System.Windows.Forms.Label LblReceiptNumber;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtDomicilio;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.BindingSource bindingSource;
     }
 }
 

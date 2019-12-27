@@ -20,42 +20,37 @@ namespace PachaSystemERP.Forms
     using PachaSystemERP.Classes;
     using PachaSystemERP.Enums;
 
-    public partial class ManejoDeClientes : Form
+    public partial class AddClient : Form
     {
-        private BindingSource _bindingSource;
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ManejoDeClientes"/>.
+        /// Inicializa una nueva instancia de la clase <see cref="AddClient"/>.
         /// </summary>
-        public ManejoDeClientes()
+        public AddClient()
         {
             InitializeComponent();
-            _bindingSource = new BindingSource();
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        private void ManejoDeClientes_Load(object sender, EventArgs e)
+        private void AddNewClient_Load(object sender, EventArgs e)
         {
-            _bindingSource.DataSource = _unitOfWork.Cliente.ObtenerTodos();
-
             if (Configuracion.ModoFacturacion == ModoFacturacion.FacturaElectronica)
             {
-                cbTipoDeDocumento.DataSource = _unitOfWork.TipoDocumento.ObtenerTodos(x => x.FacturaElectronica == true);
+                cbTipoDeDocumento.DataSource = _unitOfWork.TipoDocumento.GetAll(x => x.FacturaElectronica == true);
+                cbTipoDeDocumento.ValueMember = "Id";
+                cbTipoDeDocumento.DisplayMember = "Descripcion";
             }
-
-            cbTipoDeDocumento.ValueMember = "Id";
-            cbTipoDeDocumento.DisplayMember = "Descripcion";
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void BtnAccept_Click(object sender, EventArgs e)
         {
-            _unitOfWork.Guardar();
+            _unitOfWork.SaveChanges();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }

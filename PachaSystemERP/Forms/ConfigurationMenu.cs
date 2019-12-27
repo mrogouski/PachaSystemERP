@@ -13,12 +13,12 @@
     using PachaSystemERP.Classes;
     using PachaSystemERP.Properties;
 
-    public partial class MenuConfiguracion : Form
+    public partial class ConfigurationMenu : Form
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="MenuConfiguracion"/>.
+        /// Inicializa una nueva instancia de la clase <see cref="ConfigurationMenu"/>.
         /// </summary>
-        public MenuConfiguracion()
+        public ConfigurationMenu()
         {
             InitializeComponent();
         }

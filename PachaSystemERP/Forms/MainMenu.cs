@@ -14,15 +14,15 @@
     using PachaSystemERP.Classes;
     using PachaSystemERP.Enums;
 
-    public partial class MenuPrincipal : Form
+    public partial class MainMenu : Form
     {
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="MenuPrincipal"/>.
+        /// Inicializa una nueva instancia de la clase <see cref="MainMenu"/>.
         /// </summary>
-        public MenuPrincipal()
+        public MainMenu()
         {
             InitializeComponent();
             Configuracion.CargarConfiguracion();
@@ -39,7 +39,7 @@
 
         private void TsmiOpciones_Click(object sender, EventArgs e)
         {
-            var form = new MenuConfiguracion();
+            var form = new ConfigurationMenu();
             form.Show();
         }
 
@@ -64,8 +64,7 @@
 
         private void FacturaBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var tipoComprobante = _unitOfWork.TipoComprobante.Obtener(x => x.Descripcion == "FACTURA B");
-            var form = new Factura(tipoComprobante)
+            var form = new FacturaB()
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,
@@ -78,7 +77,7 @@
 
         private void TsbClientes_Click(object sender, EventArgs e)
         {
-            var form = new ManejoDeClientes
+            var form = new AddClient
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,

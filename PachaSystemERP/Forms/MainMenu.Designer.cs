@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class MenuPrincipal
+    partial class MainMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbComprobantes = new System.Windows.Forms.ToolStripDropDownButton();
             this.facturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,38 +116,38 @@
             this.FacturaBToolStripMenuItem,
             this.facturaCToolStripMenuItem});
             this.facturaToolStripMenuItem.Name = "facturaToolStripMenuItem";
-            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.facturaToolStripMenuItem.Text = "Factura";
             // 
             // facturaAToolStripMenuItem
             // 
             this.facturaAToolStripMenuItem.Name = "facturaAToolStripMenuItem";
-            this.facturaAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facturaAToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.facturaAToolStripMenuItem.Text = "Factura A";
             // 
             // FacturaBToolStripMenuItem
             // 
             this.FacturaBToolStripMenuItem.Name = "FacturaBToolStripMenuItem";
-            this.FacturaBToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.FacturaBToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.FacturaBToolStripMenuItem.Text = "Factura B";
             this.FacturaBToolStripMenuItem.Click += new System.EventHandler(this.FacturaBToolStripMenuItem_Click);
             // 
             // facturaCToolStripMenuItem
             // 
             this.facturaCToolStripMenuItem.Name = "facturaCToolStripMenuItem";
-            this.facturaCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facturaCToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.facturaCToolStripMenuItem.Text = "Factura C";
             // 
             // notaDeDébitoToolStripMenuItem
             // 
             this.notaDeDébitoToolStripMenuItem.Name = "notaDeDébitoToolStripMenuItem";
-            this.notaDeDébitoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.notaDeDébitoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.notaDeDébitoToolStripMenuItem.Text = "Nota de Débito";
             // 
             // notaDeCréditoToolStripMenuItem
             // 
             this.notaDeCréditoToolStripMenuItem.Name = "notaDeCréditoToolStripMenuItem";
-            this.notaDeCréditoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.notaDeCréditoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.notaDeCréditoToolStripMenuItem.Text = "Nota de Crédito";
             // 
             // tsbStock
@@ -357,7 +357,7 @@
             this.customizeToolStripMenuItem,
             this.tsmiOpciones});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
@@ -481,7 +481,7 @@
             this.toolStripProgressBarMenuPrincipal.Name = "toolStripProgressBarMenuPrincipal";
             this.toolStripProgressBarMenuPrincipal.Size = new System.Drawing.Size(100, 16);
             // 
-            // MenuPrincipal
+            // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -491,9 +491,11 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MenuPrincipal";
+            this.Name = "MainMenu";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MenuPrincipal";
+            this.Text = "Sistema de Facturación Electronica";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

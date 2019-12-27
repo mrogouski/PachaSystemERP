@@ -62,22 +62,22 @@ namespace PachaSystem.Wsfe
         {
         }
 
-        public CaeResponse SolicitarCae(Credenciales autorizacion, CaeRequest request)
+        public CaeResponse SolicitarCae(Credentials autorizacion, CaeRequest request)
         {
             return base.Channel.SolicitarCae(autorizacion, request);
         }
 
-        public Task<CaeResponse> SolicitarCaeAsync(Credenciales authorization, CaeRequest request)
+        public Task<CaeResponse> SolicitarCaeAsync(Credentials authorization, CaeRequest request)
         {
             return base.Channel.SolicitarCaeAsync(authorization, request);
         }
 
-        public CantidadMaximaDeRegistrosResponse ObtenerCantidadMaximaDeComprobantes(Credenciales autorizacion)
+        public CantidadMaximaDeRegistrosResponse ObtenerCantidadMaximaDeComprobantes(Credentials autorizacion)
         {
             return base.Channel.ObtenerCantidadMaximaDeComprobantes(autorizacion);
         }
 
-        public Task<CantidadMaximaDeRegistrosResponse> ObtenerCantidadMaximaDeComprobantesAsync(Credenciales autorizacion)
+        public Task<CantidadMaximaDeRegistrosResponse> ObtenerCantidadMaximaDeComprobantesAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerCantidadMaximaDeComprobantesAsync(autorizacion);
         }
@@ -92,172 +92,172 @@ namespace PachaSystem.Wsfe
             return base.Channel.ObtenerEstadoDelServicioAsync();
         }
 
-        public RecuperarUltimoComprobanteResponse ObtenerUltimoComprobante(Credenciales autorizacion, int puntoDeVenta, int tipoDeComprobante)
+        public RecuperarUltimoComprobanteResponse ObtenerUltimoComprobante(Credentials autorizacion, int puntoDeVenta, int tipoDeComprobante)
         {
             return base.Channel.ObtenerUltimoComprobante(autorizacion, puntoDeVenta, tipoDeComprobante);
         }
 
-        public Task<RecuperarUltimoComprobanteResponse> ObtenerUltimoComprobanteAsync(Credenciales autorizacion, int puntoDeVenta, int tipoDeComprobante)
+        public Task<RecuperarUltimoComprobanteResponse> ObtenerUltimoComprobanteAsync(Credentials autorizacion, int puntoDeVenta, int tipoDeComprobante)
         {
             return base.Channel.ObtenerUltimoComprobanteAsync(autorizacion, puntoDeVenta, tipoDeComprobante);
         }
 
-        public ConsultaComprobanteResponse ConsultarComprobante(Credenciales autorizacion, ConsultaComprobanteRequest request)
+        public ConsultaComprobanteResponse ConsultarComprobante(Credentials autorizacion, ConsultaComprobanteRequest request)
         {
             return base.Channel.ConsultarComprobante(autorizacion, request);
         }
 
-        public Task<ConsultaComprobanteResponse> ConsultarComprobanteAsync(Credenciales autorizacion, ConsultaComprobanteRequest request)
+        public Task<ConsultaComprobanteResponse> ConsultarComprobanteAsync(Credentials autorizacion, ConsultaComprobanteRequest request)
         {
             return base.Channel.ConsultarComprobanteAsync(autorizacion, request);
         }
 
-        public CaeaResponse RegistroInformativoCaea(Credenciales autorizacion, CaeaRequest request)
+        public CaeaResponse RegistroInformativoCaea(Credentials autorizacion, CaeaRequest request)
         {
             return base.Channel.RegistroInformativoCaea(autorizacion, request);
         }
 
-        public Task<CaeaResponse> RegistroInformativoCaeaAsync(Credenciales autorizacion, CaeaRequest request)
+        public Task<CaeaResponse> RegistroInformativoCaeaAsync(Credentials autorizacion, CaeaRequest request)
         {
             return base.Channel.RegistroInformativoCaeaAsync(autorizacion, request);
         }
 
-        public CaeaSolicitarResponse SolicitarCaea(Credenciales autorizacion, int periodo, short orden)
+        public CaeaSolicitarResponse SolicitarCaea(Credentials autorizacion, int periodo, short orden)
         {
             return base.Channel.SolicitarCaea(autorizacion, periodo, orden);
         }
 
-        public Task<CaeaSolicitarResponse> SolicitarCaeaAsync(Credenciales autorizacion, int periodo, short orden)
+        public Task<CaeaSolicitarResponse> SolicitarCaeaAsync(Credentials autorizacion, int periodo, short orden)
         {
             return base.Channel.SolicitarCaeaAsync(autorizacion, periodo, orden);
         }
 
-        public CaeaSinMovimientosConsultarResponse ConsultarCaeaSinMovimientos(Credenciales autorizacion, string caea, int puntoDeVenta)
+        public CaeaSinMovimientosConsultarResponse ConsultarCaeaSinMovimientos(Credentials autorizacion, string caea, int puntoDeVenta)
         {
             return base.Channel.ConsultarCaeaSinMovimientos(autorizacion, caea, puntoDeVenta);
         }
 
-        public Task<CaeaSinMovimientosConsultarResponse> ConsultarCaeaSinMovimientosAsync(Credenciales autorizacion, string caea, int puntoDeVenta)
+        public Task<CaeaSinMovimientosConsultarResponse> ConsultarCaeaSinMovimientosAsync(Credentials autorizacion, string caea, int puntoDeVenta)
         {
             return base.Channel.ConsultarCaeaSinMovimientosAsync(autorizacion, caea, puntoDeVenta);
         }
 
-        public CaeaSinMovimientoResponse InformarCaeaSinMovimientos(Credenciales autorizacion, int puntoDeVenta, string caea)
+        public CaeaSinMovimientoResponse InformarCaeaSinMovimientos(Credentials autorizacion, int puntoDeVenta, string caea)
         {
             return base.Channel.InformarCaeaSinMovimientos(autorizacion, puntoDeVenta, caea);
         }
 
-        public Task<CaeaSinMovimientoResponse> InformarCaeaSinMovimientosAsync(Credenciales autorizacion, int puntoDeVenta, string caea)
+        public Task<CaeaSinMovimientoResponse> InformarCaeaSinMovimientosAsync(Credentials autorizacion, int puntoDeVenta, string caea)
         {
             return base.Channel.InformarCaeaSinMovimientosAsync(autorizacion, puntoDeVenta, caea);
         }
 
-        public CaeaSolicitarResponse ConsultarCaea(Credenciales autorizacion, int periodo, short orden)
+        public CaeaSolicitarResponse ConsultarCaea(Credentials autorizacion, int periodo, short orden)
         {
             return base.Channel.ConsultarCaea(autorizacion, periodo, orden);
         }
 
-        public Task<CaeaSolicitarResponse> ConsultarCaeaAsync(Credenciales autorizacion, int periodo, short orden)
+        public Task<CaeaSolicitarResponse> ConsultarCaeaAsync(Credentials autorizacion, int periodo, short orden)
         {
             return base.Channel.ConsultarCaeaAsync(autorizacion, periodo, orden);
         }
 
-        public CotizacionResponse ObtenerCotizacion(Credenciales autorizacion, string idMoneda)
+        public CotizacionResponse ObtenerCotizacion(Credentials autorizacion, string idMoneda)
         {
             return base.Channel.ObtenerCotizacion(autorizacion, idMoneda);
         }
 
-        public Task<CotizacionResponse> ObtenerCotizacionAsync(Credenciales autorizacion, string idMoneda)
+        public Task<CotizacionResponse> ObtenerCotizacionAsync(Credentials autorizacion, string idMoneda)
         {
             return base.Channel.ObtenerCotizacionAsync(autorizacion, idMoneda);
         }
 
-        public TributoResponse ObtenerTiposDeTributo(Credenciales autorizacion)
+        public TributoResponse ObtenerTiposDeTributo(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeTributo(autorizacion);
         }
 
-        public Task<TributoResponse> ObtenerTiposDeTributoAsync(Credenciales autorizacion)
+        public Task<TributoResponse> ObtenerTiposDeTributoAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeTributoAsync(autorizacion);
         }
 
-        public TipoDeMonedaResponse ObtenerTiposDeMoneda(Credenciales autorizacion)
+        public TipoDeMonedaResponse ObtenerTiposDeMoneda(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeMoneda(autorizacion);
         }
 
-        public Task<TipoDeMonedaResponse> ObtenerTiposDeMonedaAsync(Credenciales autorizacion)
+        public Task<TipoDeMonedaResponse> ObtenerTiposDeMonedaAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeMonedaAsync(autorizacion);
         }
 
-        public TipoDeIvaResponse ObtenerTiposDeIva(Credenciales autorizacion)
+        public TipoDeIvaResponse ObtenerTiposDeIva(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeIva(autorizacion);
         }
 
-        public Task<TipoDeIvaResponse> ObtenerTiposDeIvaAsync(Credenciales autorizacion)
+        public Task<TipoDeIvaResponse> ObtenerTiposDeIvaAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeIvaAsync(autorizacion);
         }
 
-        public TipoDeOpcionalResponse ObtenesTiposOpcionales(Credenciales autorizacion)
+        public TipoDeOpcionalResponse ObtenesTiposOpcionales(Credentials autorizacion)
         {
             return base.Channel.ObtenesTiposOpcionales(autorizacion);
         }
 
-        public Task<TipoDeOpcionalResponse> ObtenesTiposOpcionalesAsync(Credenciales autorizacion)
+        public Task<TipoDeOpcionalResponse> ObtenesTiposOpcionalesAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenesTiposOpcionalesAsync(autorizacion);
         }
 
-        public TipoDeConceptoResponse ObtenerTiposDeConcepto(Credenciales autorizacion)
+        public TipoDeConceptoResponse ObtenerTiposDeConcepto(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeConcepto(autorizacion);
         }
 
-        public Task<TipoDeConceptoResponse> ObtenerTiposDeConceptoAsync(Credenciales autorizacion)
+        public Task<TipoDeConceptoResponse> ObtenerTiposDeConceptoAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeConceptoAsync(autorizacion);
         }
 
-        public PuntoDeVentaResponse ObtenerPuntosDeVenta(Credenciales autorizacion)
+        public PuntoDeVentaResponse ObtenerPuntosDeVenta(Credentials autorizacion)
         {
             return base.Channel.ObtenerPuntosDeVenta(autorizacion);
         }
 
-        public Task<PuntoDeVentaResponse> ObtenerPuntosDeVentaAsync(Credenciales autorizacion)
+        public Task<PuntoDeVentaResponse> ObtenerPuntosDeVentaAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerPuntosDeVentaAsync(autorizacion);
         }
 
-        public TipoDeComprobanteResponse ObtenerTiposDeComprobante(Credenciales autorizacion)
+        public TipoDeComprobanteResponse ObtenerTiposDeComprobante(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeComprobante(autorizacion);
         }
 
-        public Task<TipoDeComprobanteResponse> ObtenerTiposDeComprobanteAsync(Credenciales autorizacion)
+        public Task<TipoDeComprobanteResponse> ObtenerTiposDeComprobanteAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeComprobanteAsync(autorizacion);
         }
 
-        public TipoDeDocumentoResponse ObtenerTiposDeDocumento(Credenciales autorizacion)
+        public TipoDeDocumentoResponse ObtenerTiposDeDocumento(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeDocumento(autorizacion);
         }
 
-        public Task<TipoDeDocumentoResponse> ObtenerTiposDeDocumentoAsync(Credenciales autorizacion)
+        public Task<TipoDeDocumentoResponse> ObtenerTiposDeDocumentoAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerTiposDeDocumentoAsync(autorizacion);
         }
 
-        public TipoDePaisResponse ObtenerListadoDePaises(Credenciales autorizacion)
+        public TipoDePaisResponse ObtenerListadoDePaises(Credentials autorizacion)
         {
             return base.Channel.ObtenerListadoDePaises(autorizacion);
         }
 
-        public Task<TipoDePaisResponse> ObtenerListadoDePaisesAsync(Credenciales autorizacion)
+        public Task<TipoDePaisResponse> ObtenerListadoDePaisesAsync(Credentials autorizacion)
         {
             return base.Channel.ObtenerListadoDePaisesAsync(autorizacion);
         }

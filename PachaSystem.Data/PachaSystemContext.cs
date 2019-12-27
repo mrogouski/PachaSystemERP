@@ -18,7 +18,7 @@ namespace PachaSystem.Data
 
     public class PachaSystemContext : DbContext
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="PachaSystemContext"/>.
@@ -34,9 +34,9 @@ namespace PachaSystem.Data
 
         public DbSet<Cliente> Cliente { get; set; }
 
-        public DbSet<Comprobante> Comprobante { get; set; }
+        public DbSet<Receipt> Comprobante { get; set; }
 
-        public DbSet<DetalleComprobante> DetalleComprobante { get; set; }
+        public DbSet<ReceiptDetails> DetalleComprobante { get; set; }
 
         public DbSet<DetalleTributo> DetalleTributo { get; set; }
 
@@ -75,13 +75,13 @@ namespace PachaSystem.Data
             modelBuilder.Entity<Cliente>().Property(x => x.NumeroDocumento).IsRequired();
             modelBuilder.Entity<Cliente>().Property(x => x.Domicilio).IsRequired();
 
-            modelBuilder.Entity<DetalleComprobante>().HasKey(x => new { x.ComprobanteID, x.ProductoID });
+            modelBuilder.Entity<ReceiptDetails>().HasKey(x => new { x.ComprobanteID, x.ProductoID });
 
             modelBuilder.Entity<DetalleTributo>().HasKey(x => new { x.ComprobanteID, x.TributoID });
 
             modelBuilder.Entity<ComprobanteAsociado>()
                 .HasRequired(x => x.Comprobante)
-                .WithOptional(x => x.ComprobanteAsociado);
+                .WithOptional(x => x.AssociatedReceipt);
             modelBuilder.Entity<ComprobanteAsociado>().Property(x => x.NumeroComprobante).IsRequired();
 
             modelBuilder.Entity<Producto>().Property(x => x.Codigo).IsRequired();

@@ -7,133 +7,141 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>f4fdb6fa-5aa9-45d8-9bb7-6a525de189f6</rd:DataSourceID>
+      <rd:DataSourceID>f22b77ce-7ad8-4f4a-acd7-55e0e6a76041</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSetComprobanteView">
+    <DataSet Name="ReceiptViewDataSet">
       <Query>
         <DataSourceName>PachaSystemDataViews</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="AlicuotaIva">
-          <DataField>AlicuotaIva</DataField>
+        <Field Name="Address">
+          <DataField>Address</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AmountVat">
+          <DataField>AmountVat</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="BaseImponible">
-          <DataField>BaseImponible</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="CAE">
-          <DataField>CAE</DataField>
+        <Field Name="BusinessName">
+          <DataField>BusinessName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Cantidad">
-          <DataField>Cantidad</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Codigo">
-          <DataField>Codigo</DataField>
+        <Field Name="Cae">
+          <DataField>Cae</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DescripcionIva">
-          <DataField>DescripcionIva</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescripcionProductoServicio">
-          <DataField>DescripcionProductoServicio</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Domicilio">
-          <DataField>Domicilio</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FechaComprobante">
-          <DataField>FechaComprobante</DataField>
+        <Field Name="CaeExpirationDate">
+          <DataField>CaeExpirationDate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="FechaFinalizacionServicio">
-          <DataField>FechaFinalizacionServicio</DataField>
-          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="FechaInicioServicio">
-          <DataField>FechaInicioServicio</DataField>
-          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="FechaVencimientoCAE">
-          <DataField>FechaVencimientoCAE</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="FechaVencimientoPago">
-          <DataField>FechaVencimientoPago</DataField>
-          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="ImporteExento">
-          <DataField>ImporteExento</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ImporteIva">
-          <DataField>ImporteIva</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ImporteNeto">
-          <DataField>ImporteNeto</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ImporteNetoNoGravado">
-          <DataField>ImporteNetoNoGravado</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ImporteTotal">
-          <DataField>ImporteTotal</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ImporteTotalIva">
-          <DataField>ImporteTotalIva</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ImporteTotalTributo">
-          <DataField>ImporteTotalTributo</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="NumeroComprobante">
-          <DataField>NumeroComprobante</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="NumeroDocumento">
-          <DataField>NumeroDocumento</DataField>
+        <Field Name="DocumentNumber">
+          <DataField>DocumentNumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PrecioUnitario">
-          <DataField>PrecioUnitario</DataField>
+        <Field Name="ExemptAmount">
+          <DataField>ExemptAmount</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="Productos">
-          <DataField>Productos</DataField>
+        <Field Name="FiscalCondition">
+          <DataField>FiscalCondition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ItemQuantity">
+          <DataField>ItemQuantity</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NetAmount">
+          <DataField>NetAmount</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="NetAmountNotTaxed">
+          <DataField>NetAmountNotTaxed</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PaymentExpirationDate">
+          <DataField>PaymentExpirationDate</DataField>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="PointOfSale">
+          <DataField>PointOfSale</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Product">
+          <DataField>Product</DataField>
           <rd:TypeName>System.Collections.Generic.IEnumerable`1[[PachaSystem.Data.Models.Producto, PachaSystem.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]</rd:TypeName>
         </Field>
-        <Field Name="PuntoVenta">
-          <DataField>PuntoVenta</DataField>
+        <Field Name="ProductCode">
+          <DataField>ProductCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProductName">
+          <DataField>ProductName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ReceiptDate">
+          <DataField>ReceiptDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ReceiptID">
+          <DataField>ReceiptID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="RazonSocial">
-          <DataField>RazonSocial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="ReceiptNumber">
+          <DataField>ReceiptNumber</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ReceiptTypeID">
+          <DataField>ReceiptTypeID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ServiceEndingDate">
+          <DataField>ServiceEndingDate</DataField>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="ServiceStartDate">
+          <DataField>ServiceStartDate</DataField>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="Subtotal">
           <DataField>Subtotal</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="TipoResponsable">
-          <DataField>TipoResponsable</DataField>
+        <Field Name="TaxBase">
+          <DataField>TaxBase</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TotalAmount">
+          <DataField>TotalAmount</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TotalAmountTax">
+          <DataField>TotalAmountTax</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TotalAmountVat">
+          <DataField>TotalAmountVat</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VatAliquot">
+          <DataField>VatAliquot</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VatType">
+          <DataField>VatType</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>PachaSystem.Data.Views</rd:DataSetName>
-        <rd:TableName>ComprobanteView</rd:TableName>
-        <rd:ObjectDataSourceType>PachaSystem.Data.Views.ComprobanteView, PachaSystem.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ReceiptView</rd:TableName>
+        <rd:ObjectDataSourceType>PachaSystem.Data.Views.ReceiptView, PachaSystem.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -333,7 +341,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Codigo.Value</Value>
+                                  <Value>=Fields!ProductCode.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -356,21 +364,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Producto">
+                        <Textbox Name="DescripcionProducto">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!DescripcionProductoServicio.Value</Value>
+                                  <Value>=Fields!ProductName.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Producto</rd:DefaultName>
+                          <rd:DefaultName>DescripcionProducto</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -386,21 +394,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Cantidad">
+                        <Textbox Name="ItemQuantity">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Cantidad.Value</Value>
+                                  <Value>=Fields!ItemQuantity.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Cantidad</rd:DefaultName>
+                          <rd:DefaultName>ItemQuantity</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -423,7 +431,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PrecioUnitario.Value</Value>
+                                  <Value>=Fields!UnitPrice.Value</Value>
                                   <Style>
                                     <Format>'$' 0.00;('$' 0.00)</Format>
                                     <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
@@ -500,7 +508,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>DataSetComprobanteView</DataSetName>
+            <DataSetName>ReceiptViewDataSet</DataSetName>
             <Height>1.2cm</Height>
             <Width>19cm</Width>
             <Style>
@@ -721,11 +729,10 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!PuntoVenta.Value</Value>
+                          <Value>=Fields!PointOfSale.Value</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>0000</Format>
+                            <FontWeight>Normal</FontWeight>
                           </Style>
                         </TextRun>
                         <TextRun>
@@ -737,11 +744,11 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!NumeroComprobante.Value</Value>
+                          <Value>=Fields!ReceiptNumber.Value</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>00000000</Format>
+                            <FontWeight>Normal</FontWeight>
+                            <Format>0000</Format>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -784,10 +791,9 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!FechaComprobante.Value</Value>
+                          <Value>=Fields!ReceiptDate.Value</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
-                            <Format>d</Format>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -1053,7 +1059,7 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!NumeroDocumento.Value</Value>
+                          <Value>=Fields!DocumentNumber.Value</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
                             <Format>0;(0)</Format>
@@ -1098,7 +1104,7 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!TipoResponsable.Value</Value>
+                          <Value>=Fields!FiscalCondition.Value</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
                           </Style>
@@ -1176,7 +1182,7 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!RazonSocial.Value</Value>
+                          <Value>=Fields!BusinessName.Value</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
                             <FontWeight>Normal</FontWeight>
@@ -1222,7 +1228,7 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!Domicilio.Value</Value>
+                          <Value>=Fields!Address.Value</Value>
                           <Style>
                             <FontSize>9pt</FontSize>
                           </Style>
@@ -1332,6 +1338,13 @@
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
+                    <TextRun>
+                      <Value>=Fields!ServiceStartDate.Value</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
@@ -1365,6 +1378,13 @@
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
+                    <TextRun>
+                      <Value>=Fields!ServiceEndingDate.Value</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
@@ -1392,10 +1412,17 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Fecha de Vto. para el pago:</Value>
+                      <Value>Fecha de Vto. para el pago: </Value>
                       <Style>
                         <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Fields!PaymentExpirationDate.Value</Value>
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1458,7 +1485,7 @@
                       </Style>
                     </TextRun>
                     <TextRun>
-                      <Value>=Fields!CAE.Value</Value>
+                      <Value>=Fields!Cae.Value</Value>
                       <Style>
                         <FontWeight>Normal</FontWeight>
                       </Style>
@@ -1500,10 +1527,8 @@
                       <Style />
                     </TextRun>
                     <TextRun>
-                      <Value>=Fields!FechaVencimientoCAE.Value</Value>
-                      <Style>
-                        <Format>d</Format>
-                      </Style>
+                      <Value>=Fields!CaeExpirationDate.Value</Value>
+                      <Style />
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -1540,11 +1565,9 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!ImporteNeto.Value</Value>
+                          <Value>=Fields!NetAmount.Value</Value>
                           <Style>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>'$' 0.00;'$' -0.00</Format>
-                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
+                            <FontWeight>Normal</FontWeight>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -1611,11 +1634,9 @@
                           </Style>
                         </TextRun>
                         <TextRun>
-                          <Value>=Fields!ImporteTotal.Value</Value>
+                          <Value>=Fields!TotalAmount.Value</Value>
                           <Style>
-                            <FontWeight>Bold</FontWeight>
-                            <Format>'$' 0.00</Format>
-                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
+                            <FontWeight>Normal</FontWeight>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -1628,36 +1649,6 @@
                   <Height>0.6cm</Height>
                   <Width>7.5cm</Width>
                   <ZIndex>2</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="UserID">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=User!UserID</Value>
-                          <Style />
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>UserID</rd:DefaultName>
-                  <Top>0.45539cm</Top>
-                  <Left>0.55245cm</Left>
-                  <Height>0.6cm</Height>
-                  <Width>2.5cm</Width>
-                  <ZIndex>3</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -1738,8 +1729,8 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>3</NumberOfRows>
+      <NumberOfColumns>2</NumberOfColumns>
+      <NumberOfRows>5</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -1752,38 +1743,38 @@
           <ParameterName>NombreFantasia</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>RazonSocial</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>Domicilio</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>CondicionFiscal</ParameterName>
+          <ParameterName>RazonSocial</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>CUIT</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>IngresosBrutos</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>FechaInicioActividades</ParameterName>
+          <ParameterName>Domicilio</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>2</RowIndex>
+          <ParameterName>CondicionFiscal</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>CUIT</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>IngresosBrutos</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>FechaInicioActividades</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>4</RowIndex>
           <ParameterName>Cabecera</ParameterName>
         </CellDefinition>
       </CellDefinitions>

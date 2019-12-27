@@ -10,7 +10,7 @@ namespace PachaSystem.Data.Models
     using System.Text;
     using System.Threading.Tasks;
 
-    public class DetalleComprobante
+    public class ReceiptDetails
     {
         public int ComprobanteID { get; set; }
 
@@ -24,7 +24,7 @@ namespace PachaSystem.Data.Models
 
         public decimal ImporteIva { get; set; }
 
-        public virtual Comprobante Comprobante { get; set; }
+        public virtual Receipt Comprobante { get; set; }
 
         public Producto Producto { get; set; }
     }

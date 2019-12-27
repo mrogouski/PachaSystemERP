@@ -26,6 +26,6 @@
 
         public virtual CategoriaProducto CategoriaProducto { get; set; }
 
-        public virtual ICollection<DetalleComprobante> DetalleComprobante { get; set; }
+        public virtual ICollection<ReceiptDetails> DetalleComprobante { get; set; }
     }
 }

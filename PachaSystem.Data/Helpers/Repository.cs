@@ -17,38 +17,31 @@
             _context = context;
         }
 
-        public void Agregar(TEntity entidad)
+        public void Add(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entidad);
+            _context.Set<TEntity>().Add(entity);
         }
 
-        public TEntity Obtener(Expression<Func<TEntity, bool>> filtro = null)
+        public TEntity Get(Expression<Func<TEntity, bool>> expression = null)
         {
-            if (filtro == null)
+            return _context.Set<TEntity>().Where(expression).FirstOrDefault();
+        }
+
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> expression = null)
+        {
+            if (expression != null)
             {
-                return _context.Set<TEntity>().FirstOrDefault();
+                return _context.Set<TEntity>().Where(expression).ToList();
             }
             else
-            {
-                return _context.Set<TEntity>().Where(filtro).FirstOrDefault();
-            }
-        }
-
-        public IEnumerable<TEntity> ObtenerTodos(Expression<Func<TEntity, bool>> filtro = null)
-        {
-            if (filtro == null)
             {
                 return _context.Set<TEntity>().ToList();
             }
-            else
-            {
-                return _context.Set<TEntity>().Where(filtro).ToList();
-            }
         }
 
-        public void Remover(TEntity entidad)
+        public void Remove(TEntity entity)
         {
-            _context.Set<TEntity>().Remove(entidad);
+            _context.Set<TEntity>().Remove(entity);
         }
     }
 }

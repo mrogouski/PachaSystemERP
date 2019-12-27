@@ -11,6 +11,7 @@ namespace PachaSystem.Data.Helpers
     using System.Threading.Tasks;
     using PachaSystem.Data.Models;
     using PachaSystem.Data.Repositories;
+    using PachaSystem.Data.Views;
 
     public class UnitOfWork : IUnitOfWork
     {
@@ -18,17 +19,18 @@ namespace PachaSystem.Data.Helpers
         private Repository<CategoriaProducto> _categoriaProducto;
         private Repository<CategoriaTributo> _categoriaTributo;
         private Repository<Cliente> _cliente;
-        private ComprobanteRepository _comprobante;
-        private Repository<DetalleComprobante> _detalleComprobante;
+        private ReceiptRepository _receipt;
+        private Repository<ReceiptDetails> _detalleComprobante;
         private Repository<Iva> _condicionIva;
         private Repository<Producto> _producto;
-        private Repository<DetalleComprobante> _productoComprobante;
+        private Repository<ReceiptDetails> _productoComprobante;
         private Repository<TipoComprobante> _tipoComprobante;
         private Repository<TipoConcepto> _tipoConcepto;
         private Repository<TipoDocumento> _tipoDocumento;
         private Repository<TipoMoneda> _tipoMoneda;
         private Repository<TipoResponsable> _tipoResponsable;
         private Repository<Tributo> _tributo;
+        private ReceiptViewRepository _receiptView;
 
         public UnitOfWork(PachaSystemContext context)
         {
@@ -74,26 +76,26 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public ComprobanteRepository Comprobante
+        public ReceiptRepository Receipt
         {
             get
             {
-                if (_comprobante == null)
+                if (_receipt == null)
                 {
-                    _comprobante = new ComprobanteRepository(_context);
+                    _receipt = new ReceiptRepository(_context);
                 }
 
-                return _comprobante;
+                return _receipt;
             }
         }
 
-        public Repository<DetalleComprobante> DetalleComprobante
+        public Repository<ReceiptDetails> DetalleComprobante
         {
             get
             {
                 if (_detalleComprobante == null)
                 {
-                    _detalleComprobante = new Repository<DetalleComprobante>(_context);
+                    _detalleComprobante = new Repository<ReceiptDetails>(_context);
                 }
 
                 return _detalleComprobante;
@@ -113,13 +115,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<DetalleComprobante> ProductoComprobante
+        public Repository<ReceiptDetails> ProductoComprobante
         {
             get
             {
                 if (_productoComprobante == null)
                 {
-                    _productoComprobante = new Repository<DetalleComprobante>(_context);
+                    _productoComprobante = new Repository<ReceiptDetails>(_context);
                 }
 
                 return _productoComprobante;
@@ -217,7 +219,20 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public void Guardar()
+        public ReceiptViewRepository ReceiptView
+        {
+            get
+            {
+                if (_receiptView == null)
+                {
+                    _receiptView = new ReceiptViewRepository();
+                }
+
+                return _receiptView;
+            }
+        }
+
+        public void SaveChanges()
         {
             _context.SaveChanges();
         }

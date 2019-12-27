@@ -12,7 +12,11 @@
 
         public string Descripcion { get; set; }
 
+        public decimal BaseImponible { get; set; }
+
         public decimal Alicuota { get; set; }
+
+        public bool IsFixedAmount { get; set; }
 
         public short CategoriaTributoID { get; set; }
 

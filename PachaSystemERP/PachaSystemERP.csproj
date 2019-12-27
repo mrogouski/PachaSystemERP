@@ -86,9 +86,9 @@
   <ItemGroup>
     <Compile Include="Classes\CertificadoX509.cs" />
     <Compile Include="Classes\Configuracion.cs" />
-    <Compile Include="Classes\DetalleProducto.cs" />
     <Compile Include="Classes\FacturaElectronica.cs" />
     <Compile Include="Classes\GeneradorComprobante.cs" />
+    <Compile Include="Classes\ProductDetailsView.cs" />
     <Compile Include="Classes\TiqueAcceso.cs" />
     <Compile Include="Controls\CueText.cs">
       <SubType>Component</SubType>
@@ -114,35 +114,35 @@
     <Compile Include="Forms\ManejoTributos.Designer.cs">
       <DependentUpon>ManejoTributos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Factura.cs">
+    <Compile Include="Forms\FacturaB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Factura.Designer.cs">
-      <DependentUpon>Factura.cs</DependentUpon>
+    <Compile Include="Forms\FacturaB.Designer.cs">
+      <DependentUpon>FacturaB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ManejoClientes.cs">
+    <Compile Include="Forms\AddClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ManejoClientes.Designer.cs">
-      <DependentUpon>ManejoClientes.cs</DependentUpon>
+    <Compile Include="Forms\AddClient.Designer.cs">
+      <DependentUpon>AddClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MenuConfiguracion.cs">
+    <Compile Include="Forms\ConfigurationMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MenuConfiguracion.Designer.cs">
-      <DependentUpon>MenuConfiguracion.cs</DependentUpon>
+    <Compile Include="Forms\ConfigurationMenu.Designer.cs">
+      <DependentUpon>ConfigurationMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MenuPrincipal.cs">
+    <Compile Include="Forms\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MenuPrincipal.Designer.cs">
-      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    <Compile Include="Forms\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\VisorFactura.cs">
+    <Compile Include="Forms\ReceiptViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\VisorFactura.Designer.cs">
-      <DependentUpon>VisorFactura.cs</DependentUpon>
+    <Compile Include="Forms\ReceiptViewer.Designer.cs">
+      <DependentUpon>ReceiptViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,20 +156,20 @@
     <EmbeddedResource Include="Forms\ManejoTributos.resx">
       <DependentUpon>ManejoTributos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Factura.resx">
-      <DependentUpon>Factura.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FacturaB.resx">
+      <DependentUpon>FacturaB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ManejoClientes.resx">
-      <DependentUpon>ManejoClientes.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AddClient.resx">
+      <DependentUpon>AddClient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MenuConfiguracion.resx">
-      <DependentUpon>MenuConfiguracion.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ConfigurationMenu.resx">
+      <DependentUpon>ConfigurationMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MenuPrincipal.resx">
-      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VisorFactura.resx">
-      <DependentUpon>VisorFactura.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ReceiptViewer.resx">
+      <DependentUpon>ReceiptViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -185,7 +185,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\PachaSystem.Data.Views.ComprobanteView.datasource" />
+    <None Include="Properties\DataSources\PachaSystem.Data.Views.ReceiptView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class MenuConfiguracion
+    partial class ConfigurationMenu
     {
         /// <summary>
         /// Required designer variable.

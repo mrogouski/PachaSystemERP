@@ -28,7 +28,7 @@ namespace PachaSystemERP
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuPrincipal());
+            Application.Run(new Forms.MainMenu());
         }
     }
 }

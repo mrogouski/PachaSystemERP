@@ -20,9 +20,9 @@ namespace PachaSystem.Data.Helpers
 
         Repository<Cliente> Cliente { get; }
 
-        ComprobanteRepository Comprobante { get; }
+        ReceiptRepository Receipt { get; }
 
-        Repository<DetalleComprobante> DetalleComprobante { get; }
+        Repository<ReceiptDetails> DetalleComprobante { get; }
 
         Repository<Producto> Producto { get; }
 
@@ -40,6 +40,8 @@ namespace PachaSystem.Data.Helpers
 
         Repository<Tributo> TipoTributo { get; }
 
-        void Guardar();
+        ReceiptViewRepository ReceiptView { get; }
+
+        void SaveChanges();
     }
 }
