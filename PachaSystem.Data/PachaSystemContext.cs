@@ -42,7 +42,7 @@ namespace PachaSystem.Data
 
         public DbSet<Iva> Iva { get; set; }
 
-        public DbSet<Producto> Producto { get; set; }
+        public DbSet<Item> Producto { get; set; }
 
         public DbSet<CategoriaProducto> Rubro { get; set; }
 
@@ -75,7 +75,7 @@ namespace PachaSystem.Data
             modelBuilder.Entity<Cliente>().Property(x => x.NumeroDocumento).IsRequired();
             modelBuilder.Entity<Cliente>().Property(x => x.Domicilio).IsRequired();
 
-            modelBuilder.Entity<ReceiptDetails>().HasKey(x => new { x.ComprobanteID, x.ProductoID });
+            modelBuilder.Entity<ReceiptDetails>().HasKey(x => new { x.ReceiptID, x.ItemID });
 
             modelBuilder.Entity<DetalleTributo>().HasKey(x => new { x.ComprobanteID, x.TributoID });
 
@@ -84,8 +84,8 @@ namespace PachaSystem.Data
                 .WithOptional(x => x.AssociatedReceipt);
             modelBuilder.Entity<ComprobanteAsociado>().Property(x => x.NumeroComprobante).IsRequired();
 
-            modelBuilder.Entity<Producto>().Property(x => x.Codigo).IsRequired();
-            modelBuilder.Entity<Producto>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<Item>().Property(x => x.Code).IsRequired();
+            modelBuilder.Entity<Item>().Property(x => x.Description).IsRequired();
 
             modelBuilder.Entity<TipoComprobante>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<TipoComprobante>().Property(x => x.Descripcion).IsRequired();
@@ -94,7 +94,7 @@ namespace PachaSystem.Data
             modelBuilder.Entity<TipoConcepto>().Property(x => x.Descripcion).IsRequired();
 
             modelBuilder.Entity<Iva>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Iva>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<Iva>().Property(x => x.Name).IsRequired();
 
             modelBuilder.Entity<TipoDocumento>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<TipoDocumento>().Property(x => x.Descripcion).IsRequired();

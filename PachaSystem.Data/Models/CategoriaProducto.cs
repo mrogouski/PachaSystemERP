@@ -12,6 +12,6 @@
 
         public string Descripcion { get; set; }
 
-        public virtual ICollection<Producto> Productos { get; set; }
+        public virtual ICollection<Item> Productos { get; set; }
     }
 }

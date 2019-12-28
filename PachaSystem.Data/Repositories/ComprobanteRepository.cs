@@ -32,9 +32,9 @@ namespace PachaSystem.Data.Repositories
         public Receipt Get(Expression<Func<Receipt, bool>> filtro)
         {
             var query = (from c in _context.Comprobante
-                         join dc in _context.DetalleComprobante on c.ID equals dc.ComprobanteID
-                         join p in _context.Producto on dc.ProductoID equals p.ID
-                         join i in _context.Iva on p.IvaID equals i.ID
+                         join dc in _context.DetalleComprobante on c.ID equals dc.ReceiptID
+                         join p in _context.Producto on dc.ItemID equals p.ID
+                         join i in _context.Iva on p.VatID equals i.ID
                          //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                          //join t in _context.Tributo on dt.TributoID equals t.ID
                          //join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID

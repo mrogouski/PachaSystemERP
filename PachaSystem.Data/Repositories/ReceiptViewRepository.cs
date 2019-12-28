@@ -16,9 +16,9 @@ namespace PachaSystem.Data.Repositories
             using (var context = new PachaSystemContext())
             {
                 var query = (from c in context.Comprobante
-                             join dc in context.DetalleComprobante on c.ID equals dc.ComprobanteID
-                             join p in context.Producto on dc.ProductoID equals p.ID
-                             join i in context.Iva on p.IvaID equals i.ID
+                             join dc in context.DetalleComprobante on c.ID equals dc.ReceiptID
+                             join p in context.Producto on dc.ItemID equals p.ID
+                             join i in context.Iva on p.VatID equals i.ID
                              //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                              //join t in _context.Tributo on dt.TributoID equals t.ID
                              //join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID
@@ -46,14 +46,14 @@ namespace PachaSystem.Data.Repositories
                                  DocumentNumber = client.NumeroDocumento,
                                  FiscalCondition = client.TipoResponsable.Descripcion,
                                  Address = client.Domicilio,
-                                 ItemQuantity = dc.Cantidad,
-                                 TaxBase = dc.BaseImponible,
+                                 ItemQuantity = dc.Quantity,
+                                 TaxBase = dc.TaxBase,
                                  Subtotal = dc.Subtotal,
-                                 AmountVat = dc.ImporteIva,
-                                 ProductCode = p.Codigo,
-                                 ProductName = p.Descripcion,
-                                 UnitPrice = p.PrecioUnitario,
-                                 VatType = i.Descripcion,
+                                 AmountVat = dc.VatAmount,
+                                 ProductCode = p.Code,
+                                 ProductName = p.Description,
+                                 UnitPrice = p.UnitPrice,
+                                 VatType = i.Name,
                                  VatAliquot = i.Alicuota
                              }).ToList();
                 return query;

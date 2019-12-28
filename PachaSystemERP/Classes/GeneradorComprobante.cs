@@ -115,14 +115,14 @@
 
         public void AgregarProducto(string codigoProducto, int cantidad)
         {
-            var query = _unitOfWork.Producto.Get(x => x.Codigo == codigoProducto);
+            var query = _unitOfWork.Producto.Get(x => x.Code == codigoProducto);
             ProductDetailsView detalle = new ProductDetailsView();
             detalle.ProductID = query.ID;
-            detalle.Code = query.Codigo;
-            detalle.Name = query.Descripcion;
+            detalle.Code = query.Code;
+            detalle.Name = query.Description;
             detalle.Quantity = cantidad;
-            detalle.UnitPrice = query.PrecioUnitario;
-            detalle.VatAliquot = query.Iva.Alicuota;
+            detalle.UnitPrice = query.UnitPrice;
+            detalle.VatAliquot = query.Vat.Alicuota;
 
             _detalleProducto.Add(detalle);
             CantidadTotal = _detalleProducto.Sum(x => x.Quantity);
@@ -161,11 +161,11 @@
                 foreach (var item in _detalleProducto)
                 {
                     ReceiptDetails details = new ReceiptDetails();
-                    details.ComprobanteID = _comprobante.ID;
-                    details.Producto = _unitOfWork.Producto.Get(x => x.ID == item.ProductID);
-                    details.Cantidad = item.Quantity;
-                    details.ImporteIva = item.VatAmount;
-                    details.BaseImponible = item.TaxBase;
+                    details.ReceiptID = _comprobante.ID;
+                    details.Item = _unitOfWork.Producto.Get(x => x.ID == item.ProductID);
+                    details.Quantity = item.Quantity;
+                    details.VatAmount = item.VatAmount;
+                    details.TaxBase = item.TaxBase;
                     details.Subtotal = item.Subtotal;
 
                     _comprobante.ReceiptDetails.Add(details);

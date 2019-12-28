@@ -82,15 +82,15 @@ namespace PachaSystemERP.Classes
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="comprobante"></param>
+        /// <param name="receipt"></param>
         /// <returns></returns>
-        public CaeResponse GenerarComprobante(Receipt comprobante)
+        public CaeResponse GenerarComprobante(Receipt receipt)
         {
             try
             {
-                if (comprobante == null)
+                if (receipt == null)
                 {
-                    throw new ArgumentNullException(nameof(comprobante));
+                    throw new ArgumentNullException(nameof(receipt));
                 }
 
                 GetCredentials();
@@ -104,21 +104,10 @@ namespace PachaSystemERP.Classes
                 var request = new CaeRequest();
                 request.CabeceraRequest.CantidadDeRegistros = 1;
                 request.CabeceraRequest.PuntoDeVenta = Configuracion.PuntoVenta;
-                request.CabeceraRequest.TipoDeComprobante = comprobante.ReceiptTypeID;
+                request.CabeceraRequest.TipoDeComprobante = receipt.ReceiptTypeID;
 
                 var detalles = new CaeDetalleRequest();
-                detalles.Concepto = comprobante.ConceptTypeID;
-                detalles.ComprobanteDesde = comprobante.ReceiptNumber;
-                detalles.ComprobanteHasta = comprobante.ReceiptNumber;
-                detalles.FechaDeComprobante = comprobante.ReceiptDate.ToString("yyyyMMdd");
-                detalles.ImporteTotal = decimal.ToDouble(comprobante.TotalAmount);
-                detalles.ImporteNetoNoGravado = decimal.ToDouble(comprobante.NotTaxedNetAmount);
-                detalles.ImporteNeto = decimal.ToDouble(comprobante.NetAmount);
-                detalles.ImporteExento = decimal.ToDouble(comprobante.ExemptAmount);
-                detalles.ImporteIVA = decimal.ToDouble(comprobante.VatTotalAmount);
-                detalles.ImporteTributo = decimal.ToDouble(comprobante.TributeTotalAmount);
-                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Get(x => x.ID == comprobante.CurrencyType.ID).Codigo;
-                detalles.MonedaCotizacion = comprobante.CurrencyExchangeRate;
+
 
                 //if (comprobante.ComprobantesAsociados != null)
                 //{
@@ -128,24 +117,45 @@ namespace PachaSystemERP.Classes
                 //    }
                 //}
 
-                if (comprobante.ReceiptDetails != null)
+                if (receipt.ReceiptDetails != null)
                 {
-                    foreach (var item in comprobante.ReceiptDetails)
+                    foreach (var item in receipt.ReceiptDetails)
                     {
-                        detalles.AgregarIVA(item.Producto.IvaID, item.BaseImponible, item.ImporteIva);
+                        switch (item.Item.Vat.Name)
+                        {
+                            case "IVA 21%":
+                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+
+                                break;
+                            default:
+                                break;
+                        }
+
                     }
                 }
 
-                if (comprobante.Client.RazonSocial.Equals("CONSUMIDOR FINAL"))
+                if (receipt.Client.RazonSocial.Equals("CONSUMIDOR FINAL"))
                 {
-                    detalles.TipoDeDocumento = comprobante.Client.TipoDocumentoID;
+                    detalles.TipoDeDocumento = receipt.Client.TipoDocumentoID;
                 }
                 else
                 {
-                    detalles.TipoDeDocumento = comprobante.Client.TipoDocumentoID;
-                    detalles.NumeroDeDocumento = long.Parse(comprobante.Client.NumeroDocumento);
+                    detalles.TipoDeDocumento = receipt.Client.TipoDocumentoID;
+                    detalles.NumeroDeDocumento = long.Parse(receipt.Client.NumeroDocumento);
                 }
 
+                detalles.Concepto = receipt.ConceptTypeID;
+                detalles.ComprobanteDesde = receipt.ReceiptNumber;
+                detalles.ComprobanteHasta = receipt.ReceiptNumber;
+                detalles.FechaDeComprobante = receipt.ReceiptDate.ToString("yyyyMMdd");
+                detalles.ImporteTotal = decimal.ToDouble(receipt.TotalAmount);
+                detalles.ImporteNetoNoGravado = decimal.ToDouble(receipt.NotTaxedNetAmount);
+                detalles.ImporteNeto = decimal.ToDouble(receipt.NetAmount);
+                detalles.ImporteExento = decimal.ToDouble(receipt.ExemptAmount);
+                detalles.ImporteIVA = decimal.ToDouble(receipt.VatTotalAmount);
+                detalles.ImporteTributo = decimal.ToDouble(receipt.TributeTotalAmount);
+                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Get(x => x.ID == receipt.CurrencyType.ID).Codigo;
+                detalles.MonedaCotizacion = receipt.CurrencyExchangeRate;
                 request.DetalleRequest.Add(detalles);
 
                 var response = _wsfeClient.SolicitarCae(autorizacion, request);

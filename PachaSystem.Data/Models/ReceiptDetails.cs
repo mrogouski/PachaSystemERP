@@ -12,20 +12,20 @@ namespace PachaSystem.Data.Models
 
     public class ReceiptDetails
     {
-        public int ComprobanteID { get; set; }
+        public int ReceiptID { get; set; }
 
-        public int ProductoID { get; set; }
+        public int ItemID { get; set; }
 
-        public int Cantidad { get; set; }
+        public int Quantity { get; set; }
 
-        public decimal BaseImponible { get; set; }
+        public decimal TaxBase { get; set; }
 
         public decimal Subtotal { get; set; }
 
-        public decimal ImporteIva { get; set; }
+        public decimal VatAmount { get; set; }
 
-        public virtual Receipt Comprobante { get; set; }
+        public virtual Receipt Receipt { get; set; }
 
-        public Producto Producto { get; set; }
+        public Item Item { get; set; }
     }
 }

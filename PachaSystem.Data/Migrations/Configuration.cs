@@ -34,12 +34,12 @@ namespace PachaSystem.Data.Migrations
 
                 List<Iva> tipoCondicionIva = new List<Iva>()
                 {
-                    new Iva { ID = 1, Descripcion = "NO GRAVADO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 2, Descripcion = "EXENTO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 3, Descripcion = "0%", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 4, Descripcion = "10.5%", Alicuota = 10.5M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 5, Descripcion = "21%", Alicuota = 21M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 6, Descripcion = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true }
+                    new Iva { ID = 1, Name = "NO GRAVADO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
+                    new Iva { ID = 2, Name = "EXENTO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
+                    new Iva { ID = 3, Name = "0%", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
+                    new Iva { ID = 4, Name = "10.5%", Alicuota = 10.5M, ControladorFiscal = true, FacturaElectronica = true },
+                    new Iva { ID = 5, Name = "21%", Alicuota = 21M, ControladorFiscal = true, FacturaElectronica = true },
+                    new Iva { ID = 6, Name = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true }
                 };
                 context.Iva.AddRange(tipoCondicionIva);
 

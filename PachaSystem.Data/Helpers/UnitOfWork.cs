@@ -22,7 +22,7 @@ namespace PachaSystem.Data.Helpers
         private ReceiptRepository _receipt;
         private Repository<ReceiptDetails> _detalleComprobante;
         private Repository<Iva> _condicionIva;
-        private Repository<Producto> _producto;
+        private Repository<Item> _producto;
         private Repository<ReceiptDetails> _productoComprobante;
         private Repository<TipoComprobante> _tipoComprobante;
         private Repository<TipoConcepto> _tipoConcepto;
@@ -102,13 +102,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<Producto> Producto
+        public Repository<Item> Producto
         {
             get
             {
                 if (_producto == null)
                 {
-                    _producto = new Repository<Producto>(_context);
+                    _producto = new Repository<Item>(_context);
                 }
 
                 return _producto;

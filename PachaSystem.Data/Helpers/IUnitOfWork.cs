@@ -24,7 +24,7 @@ namespace PachaSystem.Data.Helpers
 
         Repository<ReceiptDetails> DetalleComprobante { get; }
 
-        Repository<Producto> Producto { get; }
+        Repository<Item> Producto { get; }
 
         Repository<TipoComprobante> TipoComprobante { get; }
 

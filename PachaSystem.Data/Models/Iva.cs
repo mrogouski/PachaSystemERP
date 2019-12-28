@@ -10,7 +10,7 @@
     {
         public short ID { get; set; }
 
-        public string Descripcion { get; set; }
+        public string Name { get; set; }
 
         public decimal Alicuota { get; set; }
 
@@ -18,6 +18,6 @@
 
         public bool FacturaElectronica { get; set; }
 
-        public virtual ICollection<Producto> Productos { get; set; }
+        public virtual ICollection<Item> Productos { get; set; }
     }
 }

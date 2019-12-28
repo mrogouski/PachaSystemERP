@@ -19,7 +19,6 @@ namespace PachaSystemERP.Forms
 
     public partial class FacturaB : Form
     {
-        private CueText _cueText;
         private ReceiptGenerator _receiptGenerator;
 
         /// <summary>
@@ -32,9 +31,11 @@ namespace PachaSystemERP.Forms
 
         private void MenuFacturacion_Load(object sender, EventArgs e)
         {
-            _cueText = new CueText();
-            _cueText.SetCueText(txtRazonSocial, "Consumidor Final");
-            _cueText.SetCueText(txtNumeroDeDocumento, "Consumidor Final");
+            using (var cueText = new CueText())
+            {
+                cueText.SetCueText(txtRazonSocial, "Consumidor Final");
+                cueText.SetCueText(txtNumeroDeDocumento, "Consumidor Final");
+            }
 
             Initialize();
 
@@ -142,12 +143,12 @@ namespace PachaSystemERP.Forms
                 {
                     using (var unitOfWork = new UnitOfWork(context))
                     {
-                        var producto = unitOfWork.Producto.Get(x => x.Codigo == txtCodigo.Text);
+                        var producto = unitOfWork.Producto.Get(x => x.Code == txtCodigo.Text);
 
                         if (producto != null)
                         {
-                            txtDescripcion.Text = producto.Descripcion;
-                            NudPrecioUnitario.Value = producto.PrecioUnitario;
+                            txtDescripcion.Text = producto.Description;
+                            NudPrecioUnitario.Value = producto.UnitPrice;
                         }
                     }
                 }
@@ -229,11 +230,11 @@ namespace PachaSystemERP.Forms
             {
                 using (var unitOfWork = new UnitOfWork(context))
                 {
-                    var query = unitOfWork.Producto.Get(x => x.Descripcion == txtDescripcion.Text);
+                    var query = unitOfWork.Producto.Get(x => x.Description == txtDescripcion.Text);
                     if (query != null)
                     {
-                        txtCodigo.Text = query.Codigo;
-                        NudPrecioUnitario.Value = query.PrecioUnitario;
+                        txtCodigo.Text = query.Code;
+                        NudPrecioUnitario.Value = query.UnitPrice;
                     }
                 }
             }
