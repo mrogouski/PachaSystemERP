@@ -44,14 +44,14 @@ namespace PachaSystemERP.Forms
 
         private void CargarArticulos()
         {
-            _context.Producto.Load();
-            _context.Iva.Load();
-            _context.Rubro.Load();
-            _context.UnidadMedida.Load();
+            _context.Items.Load();
+            _context.Vat.Load();
+            _context.ItemCategories.Load();
+            _context.MeasureUnits.Load();
 
             bindingSource= new BindingSource();
 
-            bindingSource.DataSource = _context.Producto.Local.ToBindingList();
+            bindingSource.DataSource = _context.Items.Local.ToBindingList();
 
             DgvArticulos.DataSource = bindingSource;
             DgvArticulos.Columns["ID"].Visible = false;
@@ -65,7 +65,7 @@ namespace PachaSystemERP.Forms
             DataGridViewComboBoxColumn ivaColumn = new DataGridViewComboBoxColumn();
             ivaColumn.DataPropertyName = "IvaID";
             ivaColumn.Name = "Alicuota IVA";
-            ivaColumn.DataSource = _context.Iva.Local.ToBindingList();
+            ivaColumn.DataSource = _context.Vat.Local.ToBindingList();
             ivaColumn.DisplayMember = "Descripcion";
             ivaColumn.ValueMember = "ID";
             DgvArticulos.Columns.Add(ivaColumn);
@@ -73,7 +73,7 @@ namespace PachaSystemERP.Forms
             DataGridViewComboBoxColumn categoryColumn = new DataGridViewComboBoxColumn();
             categoryColumn.DataPropertyName = "CategoriaProductoID";
             categoryColumn.Name = "Categoría";
-            categoryColumn.DataSource = _context.Rubro.Local.ToBindingList();
+            categoryColumn.DataSource = _context.ItemCategories.Local.ToBindingList();
             categoryColumn.DisplayMember = "Descripcion";
             categoryColumn.ValueMember = "ID";
             DgvArticulos.Columns.Add(categoryColumn);

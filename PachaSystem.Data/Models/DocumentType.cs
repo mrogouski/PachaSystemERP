@@ -6,12 +6,10 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class CategoriaProducto
+    public class DocumentType
     {
         public int ID { get; set; }
 
-        public string Descripcion { get; set; }
-
-        public virtual ICollection<Item> Productos { get; set; }
+        public string Description { get; set; }
     }
 }

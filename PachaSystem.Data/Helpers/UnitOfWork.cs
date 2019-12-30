@@ -16,20 +16,20 @@ namespace PachaSystem.Data.Helpers
     public class UnitOfWork : IUnitOfWork
     {
         private readonly PachaSystemContext _context;
-        private Repository<CategoriaProducto> _categoriaProducto;
-        private Repository<CategoriaTributo> _categoriaTributo;
-        private Repository<Cliente> _cliente;
+        private Repository<ItemCategory> _categoriaProducto;
+        private Repository<TributeCategory> _categoriaTributo;
+        private Repository<Client> _cliente;
         private ReceiptRepository _receipt;
         private Repository<ReceiptDetails> _detalleComprobante;
-        private Repository<Iva> _condicionIva;
+        private Repository<Vat> _condicionIva;
         private Repository<Item> _producto;
         private Repository<ReceiptDetails> _productoComprobante;
-        private Repository<TipoComprobante> _tipoComprobante;
-        private Repository<TipoConcepto> _tipoConcepto;
-        private Repository<TipoDocumento> _tipoDocumento;
-        private Repository<TipoMoneda> _tipoMoneda;
-        private Repository<TipoResponsable> _tipoResponsable;
-        private Repository<Tributo> _tributo;
+        private Repository<ReceiptType> _tipoComprobante;
+        private Repository<ConceptType> _tipoConcepto;
+        private Repository<DocumentType> _tipoDocumento;
+        private Repository<CurrencyType> _tipoMoneda;
+        private Repository<FiscalConditionType> _tipoResponsable;
+        private Repository<Tribute> _tributo;
         private ReceiptViewRepository _receiptView;
 
         public UnitOfWork(PachaSystemContext context)
@@ -37,39 +37,39 @@ namespace PachaSystem.Data.Helpers
             _context = context;
         }
 
-        public Repository<CategoriaProducto> CategoriaProducto
+        public Repository<ItemCategory> CategoriaProducto
         {
             get
             {
                 if (_categoriaProducto != null)
                 {
-                    _categoriaProducto = new Repository<CategoriaProducto>(_context);
+                    _categoriaProducto = new Repository<ItemCategory>(_context);
                 }
 
                 return _categoriaProducto;
             }
         }
 
-        public Repository<CategoriaTributo> CategoriaTributo
+        public Repository<TributeCategory> CategoriaTributo
         {
             get
             {
                 if (_categoriaTributo == null)
                 {
-                    _categoriaTributo = new Repository<CategoriaTributo>(_context);
+                    _categoriaTributo = new Repository<TributeCategory>(_context);
                 }
 
                 return _categoriaTributo;
             }
         }
 
-        public Repository<Cliente> Cliente
+        public Repository<Client> Cliente
         {
             get
             {
                 if (_cliente == null)
                 {
-                    _cliente = new Repository<Cliente>(_context);
+                    _cliente = new Repository<Client>(_context);
                 }
 
                 return _cliente;
@@ -128,91 +128,91 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<TipoComprobante> TipoComprobante
+        public Repository<ReceiptType> TipoComprobante
         {
             get
             {
                 if (_tipoComprobante == null)
                 {
-                    _tipoComprobante = new Repository<TipoComprobante>(_context);
+                    _tipoComprobante = new Repository<ReceiptType>(_context);
                 }
 
                 return _tipoComprobante;
             }
         }
 
-        public Repository<Iva> TipoCondicionIva
+        public Repository<Vat> TipoCondicionIva
         {
             get
             {
                 if (_condicionIva == null)
                 {
-                    _condicionIva = new Repository<Iva>(_context);
+                    _condicionIva = new Repository<Vat>(_context);
                 }
 
                 return _condicionIva;
             }
         }
 
-        public Repository<TipoConcepto> TipoConcepto
+        public Repository<ConceptType> TipoConcepto
         {
             get
             {
                 if (_tipoConcepto == null)
                 {
-                    _tipoConcepto = new Repository<TipoConcepto>(_context);
+                    _tipoConcepto = new Repository<ConceptType>(_context);
                 }
 
                 return _tipoConcepto;
             }
         }
 
-        public Repository<TipoDocumento> TipoDocumento
+        public Repository<DocumentType> TipoDocumento
         {
             get
             {
                 if (_tipoDocumento == null)
                 {
-                    _tipoDocumento = new Repository<TipoDocumento>(_context);
+                    _tipoDocumento = new Repository<DocumentType>(_context);
                 }
 
                 return _tipoDocumento;
             }
         }
 
-        public Repository<TipoMoneda> TipoMoneda
+        public Repository<CurrencyType> TipoMoneda
         {
             get
             {
                 if (_tipoMoneda == null)
                 {
-                    _tipoMoneda = new Repository<TipoMoneda>(_context);
+                    _tipoMoneda = new Repository<CurrencyType>(_context);
                 }
 
                 return _tipoMoneda;
             }
         }
 
-        public Repository<TipoResponsable> TipoResponsable
+        public Repository<FiscalConditionType> TipoResponsable
         {
             get
             {
                 if (_tipoResponsable == null)
                 {
-                    _tipoResponsable = new Repository<TipoResponsable>(_context);
+                    _tipoResponsable = new Repository<FiscalConditionType>(_context);
                 }
 
                 return _tipoResponsable;
             }
         }
 
-        public Repository<Tributo> TipoTributo
+        public Repository<Tribute> TipoTributo
         {
             get
             {
                 if (_tributo == null)
                 {
-                    _tributo = new Repository<Tributo>(_context);
+                    _tributo = new Repository<Tribute>(_context);
                 }
 
                 return _tributo;

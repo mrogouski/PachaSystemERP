@@ -33,7 +33,7 @@
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
             _comprobante = new Receipt();
-            _comprobante.ReceiptNumber = _facturaElectronica.ObtenerNumeroUltimoComprobante(tipoComprobanteId) + 1;
+            _comprobante.ReceiptNumber = _facturaElectronica.GetLastReceiptNumber(tipoComprobanteId) + 1;
             _comprobante.PointOfSale = Configuracion.PuntoVenta;
             _comprobante.ReceiptTypeID = tipoComprobanteId;
         }
@@ -122,7 +122,7 @@
             detalle.Name = query.Description;
             detalle.Quantity = cantidad;
             detalle.UnitPrice = query.UnitPrice;
-            detalle.VatAliquot = query.Vat.Alicuota;
+            detalle.VatAliquot = query.Vat.Aliquot;
 
             _detalleProducto.Add(detalle);
             CantidadTotal = _detalleProducto.Sum(x => x.Quantity);
@@ -131,12 +131,12 @@
 
         public void AgregarCliente(string razonSocial, int tipoDocumentoID, string numeroDocumento, int tipoResponsableID, string domicilio)
         {
-            Cliente cliente = new Cliente();
-            cliente.RazonSocial = razonSocial;
-            cliente.TipoDocumentoID = tipoDocumentoID;
-            cliente.NumeroDocumento = numeroDocumento;
-            cliente.TipoResponsableID = tipoResponsableID;
-            cliente.Domicilio = domicilio;
+            Client cliente = new Client();
+            cliente.BusinessName = razonSocial;
+            cliente.DocumentTypeID = tipoDocumentoID;
+            cliente.DocumentNumber = numeroDocumento;
+            cliente.FiscalConditionID = tipoResponsableID;
+            cliente.Address = domicilio;
             _comprobante.Client = cliente;
         }
 
@@ -173,12 +173,12 @@
 
                 if (_comprobante.Client == null)
                 {
-                    Cliente cliente = new Cliente();
-                    cliente = _unitOfWork.Cliente.Get(x => x.RazonSocial == "CONSUMIDOR FINAL");
+                    Client cliente = new Client();
+                    cliente = _unitOfWork.Cliente.Get(x => x.BusinessName == "CONSUMIDOR FINAL");
                     _comprobante.Client = cliente;
                 }
 
-                var response = _facturaElectronica.GenerarComprobante(_comprobante);
+                var response = _facturaElectronica.GenerateReceipt(_comprobante);
 
                 if (response.CabeceraResponse.Resultado != "A")
                 {

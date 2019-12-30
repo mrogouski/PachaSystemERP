@@ -26,15 +26,15 @@ namespace PachaSystem.Data.Repositories
 
         public void Add(Receipt entidad)
         {
-            _context.Comprobante.Add(entidad);
+            _context.Receipts.Add(entidad);
         }
 
         public Receipt Get(Expression<Func<Receipt, bool>> filtro)
         {
-            var query = (from c in _context.Comprobante
-                         join dc in _context.DetalleComprobante on c.ID equals dc.ReceiptID
-                         join p in _context.Producto on dc.ItemID equals p.ID
-                         join i in _context.Iva on p.VatID equals i.ID
+            var query = (from c in _context.Receipts
+                         join dc in _context.ReceiptDetails on c.ID equals dc.ReceiptID
+                         join p in _context.Items on dc.ItemID equals p.ID
+                         join i in _context.Vat on p.VatID equals i.ID
                          //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                          //join t in _context.Tributo on dt.TributoID equals t.ID
                          //join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID
@@ -47,17 +47,17 @@ namespace PachaSystem.Data.Repositories
 
         public IEnumerable<Receipt> GetAll(Expression<Func<Receipt, bool>> filtro)
         {
-            return _context.Comprobante.Where(filtro).ToList();
+            return _context.Receipts.Where(filtro).ToList();
         }
 
         public void Remove(Receipt entidad)
         {
-            _context.Comprobante.Remove(entidad);
+            _context.Receipts.Remove(entidad);
         }
 
         public int ObtenerNumeroUltimoComprobante()
         {
-            var query = (from c in _context.Comprobante
+            var query = (from c in _context.Receipts
                          select c.ID).DefaultIfEmpty().Max();
             return query;
         }

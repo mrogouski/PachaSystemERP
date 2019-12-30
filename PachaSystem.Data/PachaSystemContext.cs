@@ -30,35 +30,37 @@ namespace PachaSystem.Data
             //Database.Log = s => logger.Debug(s);
         }
 
-        public DbSet<CategoriaTributo> CategoriaTributo { get; set; }
+        public DbSet<AssociatedReceipt> AssociatedReceipts { get; set; }
 
-        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        public DbSet<Receipt> Comprobante { get; set; }
+        public DbSet<ConceptType> ConceptTypes { get; set; }
 
-        public DbSet<ReceiptDetails> DetalleComprobante { get; set; }
+        public DbSet<CurrencyType> CurrencyTypes { get; set; }
 
-        public DbSet<DetalleTributo> DetalleTributo { get; set; }
+        public DbSet<DocumentType> DocumentTypes { get; set; }
 
-        public DbSet<Iva> Iva { get; set; }
+        public DbSet<FiscalConditionType> FiscalConditionTypes { get; set; }
 
-        public DbSet<Item> Producto { get; set; }
+        public DbSet<Item> Items { get; set; }
 
-        public DbSet<CategoriaProducto> Rubro { get; set; }
+        public DbSet<ItemCategory> ItemCategories { get; set; }
 
-        public DbSet<TipoComprobante> TipoComprobante { get; set; }
+        public DbSet<MeasureUnit> MeasureUnits { get; set; }
 
-        public DbSet<TipoConcepto> TipoConcepto { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
 
-        public DbSet<TipoDocumento> TipoDocumento { get; set; }
+        public DbSet<ReceiptDetails> ReceiptDetails { get; set; }
 
-        public DbSet<TipoMoneda> TipoMoneda { get; set; }
+        public DbSet<ReceiptType> ReceiptTypes { get; set; }
 
-        public DbSet<TipoResponsable> TipoResponsable { get; set; }
+        public DbSet<Tribute> Tributes { get; set; }
 
-        public DbSet<Tributo> Tributo { get; set; }
+        public DbSet<TributeCategory> TributeCategories { get; set; }
 
-        public DbSet<UnidadMedida> UnidadMedida { get; set; }
+        public DbSet<TributeDetails> TributeDetails { get; set; }
+
+        public DbSet<Vat> Vat { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -67,50 +69,51 @@ namespace PachaSystem.Data
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Add(new DecimalPropertyConvention(19, 2));
 
-            modelBuilder.Entity<CategoriaProducto>().Property(x => x.Descripcion).IsRequired();
-
-            modelBuilder.Entity<CategoriaTributo>().Property(x => x.Descripcion).IsRequired();
-
-            modelBuilder.Entity<Cliente>().Property(x => x.RazonSocial).IsRequired();
-            modelBuilder.Entity<Cliente>().Property(x => x.NumeroDocumento).IsRequired();
-            modelBuilder.Entity<Cliente>().Property(x => x.Domicilio).IsRequired();
-
-            modelBuilder.Entity<ReceiptDetails>().HasKey(x => new { x.ReceiptID, x.ItemID });
-
-            modelBuilder.Entity<DetalleTributo>().HasKey(x => new { x.ComprobanteID, x.TributoID });
-
-            modelBuilder.Entity<ComprobanteAsociado>()
-                .HasRequired(x => x.Comprobante)
+            modelBuilder.Entity<AssociatedReceipt>()
+                .HasKey(x => x.ID)
+                .HasRequired(x => x.Receipt)
                 .WithOptional(x => x.AssociatedReceipt);
-            modelBuilder.Entity<ComprobanteAsociado>().Property(x => x.NumeroComprobante).IsRequired();
+            modelBuilder.Entity<AssociatedReceipt>().Property(x => x.ReceiptNumber).IsRequired();
+
+            modelBuilder.Entity<Client>().Property(x => x.BusinessName).IsRequired();
+            modelBuilder.Entity<Client>().Property(x => x.DocumentNumber).IsRequired();
+            modelBuilder.Entity<Client>().Property(x => x.Address).IsRequired();
+
+            modelBuilder.Entity<ConceptType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<ConceptType>().Property(x => x.Name).IsRequired();
+
+            modelBuilder.Entity<CurrencyType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<CurrencyType>().Property(x => x.Code).IsRequired();
+            modelBuilder.Entity<CurrencyType>().Property(x => x.Description).IsRequired();
+
+            modelBuilder.Entity<DocumentType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<DocumentType>().Property(x => x.Description).IsRequired();
+
+            modelBuilder.Entity<FiscalConditionType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<FiscalConditionType>().Property(x => x.Description).IsRequired();
 
             modelBuilder.Entity<Item>().Property(x => x.Code).IsRequired();
             modelBuilder.Entity<Item>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<TipoComprobante>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<TipoComprobante>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<ItemCategory>().Property(x => x.Name).IsRequired();
 
-            modelBuilder.Entity<TipoConcepto>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<TipoConcepto>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<MeasureUnit>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<MeasureUnit>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<Iva>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Iva>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<ReceiptDetails>().HasKey(x => new { x.ReceiptID, x.ItemID });
 
-            modelBuilder.Entity<TipoDocumento>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<TipoDocumento>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<ReceiptType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<ReceiptType>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<TipoMoneda>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<TipoMoneda>().Property(x => x.Codigo).IsRequired();
-            modelBuilder.Entity<TipoMoneda>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<Tribute>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Tribute>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<TipoResponsable>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<TipoResponsable>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<TributeCategory>().Property(x => x.Name).IsRequired();
 
-            modelBuilder.Entity<Tributo>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Tributo>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<TributeDetails>().HasKey(x => new { x.ReceiptID, x.TributeID });
 
-            modelBuilder.Entity<UnidadMedida>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<UnidadMedida>().Property(x => x.Descripcion).IsRequired();
+            modelBuilder.Entity<Vat>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Vat>().Property(x => x.Name).IsRequired();
         }
     }
 }

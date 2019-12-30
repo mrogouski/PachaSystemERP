@@ -6,12 +6,12 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class TipoMoneda
+    public class ItemCategory
     {
         public int ID { get; set; }
 
-        public string Codigo { get; set; }
+        public string Name { get; set; }
 
-        public string Descripcion { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

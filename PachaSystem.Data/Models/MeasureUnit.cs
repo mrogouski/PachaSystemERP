@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PachaSystem.Data.Models
 {
-    public class UnidadMedida
+    public class MeasureUnit
     {
         public int ID { get; set; }
 
-        public string Descripcion { get; set; }
+        public string Description { get; set; }
     }
 }

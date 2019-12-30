@@ -15,10 +15,10 @@ namespace PachaSystem.Data.Repositories
         {
             using (var context = new PachaSystemContext())
             {
-                var query = (from c in context.Comprobante
-                             join dc in context.DetalleComprobante on c.ID equals dc.ReceiptID
-                             join p in context.Producto on dc.ItemID equals p.ID
-                             join i in context.Iva on p.VatID equals i.ID
+                var query = (from c in context.Receipts
+                             join dc in context.ReceiptDetails on c.ID equals dc.ReceiptID
+                             join p in context.Items on dc.ItemID equals p.ID
+                             join i in context.Vat on p.VatID equals i.ID
                              //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                              //join t in _context.Tributo on dt.TributoID equals t.ID
                              //join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID
@@ -42,10 +42,10 @@ namespace PachaSystem.Data.Repositories
                                  ServiceStartDate = c.ServiceStartDate,
                                  ServiceEndingDate = c.ServiceFinishDate,
                                  PaymentExpirationDate = c.DueDate,
-                                 BusinessName = client.RazonSocial,
-                                 DocumentNumber = client.NumeroDocumento,
-                                 FiscalCondition = client.TipoResponsable.Descripcion,
-                                 Address = client.Domicilio,
+                                 BusinessName = client.BusinessName,
+                                 DocumentNumber = client.DocumentNumber,
+                                 FiscalCondition = client.FiscalConditionType.Description,
+                                 Address = client.Address,
                                  ItemQuantity = dc.Quantity,
                                  TaxBase = dc.TaxBase,
                                  Subtotal = dc.Subtotal,
@@ -54,7 +54,7 @@ namespace PachaSystem.Data.Repositories
                                  ProductName = p.Description,
                                  UnitPrice = p.UnitPrice,
                                  VatType = i.Name,
-                                 VatAliquot = i.Alicuota
+                                 VatAliquot = i.Aliquot
                              }).ToList();
                 return query;
             }

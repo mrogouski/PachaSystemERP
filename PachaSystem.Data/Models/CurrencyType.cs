@@ -6,10 +6,12 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class TipoConcepto
+    public class CurrencyType
     {
         public int ID { get; set; }
 
-        public string Descripcion { get; set; }
+        public string Code { get; set; }
+
+        public string Description { get; set; }
     }
 }

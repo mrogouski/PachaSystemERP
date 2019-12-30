@@ -49,7 +49,7 @@ namespace PachaSystemERP.Forms
             {
                 using (var unitOfWork = new UnitOfWork(context))
                 {
-                    var receiptType = unitOfWork.TipoComprobante.Get(x => x.Descripcion == "FACTURA B");
+                    var receiptType = unitOfWork.TipoComprobante.Get(x => x.Description == "FACTURA B");
                     _receiptGenerator = new ReceiptGenerator(receiptType.ID);
                 }
             }
@@ -206,7 +206,7 @@ namespace PachaSystemERP.Forms
             {
                 using (var unitOfWork = new UnitOfWork(context))
                 {
-                    var query = unitOfWork.TipoConcepto.Get(x => x.Descripcion == "PRODUCTOS");
+                    var query = unitOfWork.TipoConcepto.Get(x => x.Name == "PRODUCTOS");
 
                     var comprobante = _receiptGenerator.GenerarComprobante(query.ID);
                     if (comprobante == null)

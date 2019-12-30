@@ -27,8 +27,8 @@ namespace PachaSystemERP.Forms
         {
             InitializeComponent();
             _context = new PachaSystemContext();
-            _context.Tributo.Load();
-            _context.CategoriaTributo.Load();
+            _context.Tributes.Load();
+            _context.TributeCategories.Load();
         }
 
         private void ControlDeTributos_Load(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace PachaSystemERP.Forms
             var tributoBindingSource = new BindingSource();
             var categoriaBindingSource = new BindingSource();
 
-            tributoBindingSource.DataSource = _context.Tributo.Local.ToBindingList();
+            tributoBindingSource.DataSource = _context.Tributes.Local.ToBindingList();
 
             categoriaBindingSource.DataSource = tributoBindingSource;
             categoriaBindingSource.DataMember = "CategoriaTributoID";
@@ -46,7 +46,7 @@ namespace PachaSystemERP.Forms
             DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn();
             column.DataPropertyName = "CategoriaTributoID";
             column.Name = "Categoría de Tributo";
-            column.DataSource = _context.CategoriaTributo.Local.ToBindingList();
+            column.DataSource = _context.TributeCategories.Local.ToBindingList();
             column.DisplayMember = "Descripcion";
             column.ValueMember = "ID";
             dgvTributo.Columns.Add(column);

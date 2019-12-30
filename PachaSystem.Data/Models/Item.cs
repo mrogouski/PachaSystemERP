@@ -25,9 +25,9 @@
 
         public bool Discontinued { get; set; }
 
-        public virtual Iva Vat { get; set; }
+        public virtual Vat Vat { get; set; }
 
-        public virtual CategoriaProducto Category { get; set; }
+        public virtual ItemCategory Category { get; set; }
 
         public virtual ICollection<ReceiptDetails> ReceiptDetails { get; set; }
     }

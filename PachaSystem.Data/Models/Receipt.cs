@@ -57,18 +57,18 @@ namespace PachaSystem.Data.Models
 
         public int clientID { get; set; }
 
-        public virtual Cliente Client { get; set; }
+        public virtual Client Client { get; set; }
 
-        public virtual ComprobanteAsociado AssociatedReceipt { get; set; }
+        public virtual AssociatedReceipt AssociatedReceipt { get; set; }
 
         public virtual ICollection<ReceiptDetails> ReceiptDetails { get; set; }
 
-        public virtual TipoConcepto ConceptType { get; set; }
+        public virtual ConceptType ConceptType { get; set; }
 
-        public virtual TipoComprobante ReceiptType { get; set; }
+        public virtual ReceiptType ReceiptType { get; set; }
 
-        public virtual TipoMoneda CurrencyType { get; set; }
+        public virtual CurrencyType CurrencyType { get; set; }
 
-        public virtual ICollection<DetalleTributo> TributeDetails { get; set; }
+        public virtual ICollection<TributeDetails> TributeDetails { get; set; }
     }
 }

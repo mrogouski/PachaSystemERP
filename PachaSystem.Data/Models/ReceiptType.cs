@@ -6,14 +6,12 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class TipoDocumento
+    public class ReceiptType
     {
         public int ID { get; set; }
 
-        public string Descripcion { get; set; }
+        public string Description { get; set; }
 
-        public bool ControladorFiscal { get; set; }
-
-        public bool FacturaElectronica { get; set; }
+        public string Class { get; set; }
     }
 }

@@ -30,7 +30,6 @@ namespace PachaSystemERP.Classes
         private static readonly string _servicio = "wsfe";
         private string _token;
         private string _sign;
-        private long _cuit;
         private WsaaClient _wsaaClient;
         private WsfeClient _wsfeClient;
         private bool _testing;
@@ -42,12 +41,6 @@ namespace PachaSystemERP.Classes
         /// </summary>
         public FacturaElectronica()
         {
-            if (Configuracion.ModoFacturacion != ModoFacturacion.FacturaElectronica)
-            {
-                throw new ArgumentException("Configuración de la aplicacion inválida.");
-            }
-
-            _cuit = Configuracion.Cuit;
             if (Configuracion.ModoDeOperacion == ModoOperacion.Homologacion)
             {
                 _wsaaClient = new WsaaClient("WsaaHomologacion");
@@ -65,17 +58,19 @@ namespace PachaSystemERP.Classes
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        public string SincronizarNumeroComprobante(int receiptTypeId)
+        public string SinchronizeReceiptNumber(int receiptTypeId)
         {
             if (receiptTypeId != 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(receiptTypeId));
             }
 
-            int numeroComprobante = ObtenerNumeroUltimoComprobante(receiptTypeId) + 1;
+            int receiptNumber = GetLastReceiptNumber(receiptTypeId) + 1;
+
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
-            stringBuilder.Append(numeroComprobante.ToString("D8"));
+            stringBuilder.Append(receiptNumber.ToString("D8"));
+
             return stringBuilder.ToString();
         }
 
@@ -84,7 +79,7 @@ namespace PachaSystemERP.Classes
         /// </summary>
         /// <param name="receipt"></param>
         /// <returns></returns>
-        public CaeResponse GenerarComprobante(Receipt receipt)
+        public CaeResponse GenerateReceipt(Receipt receipt)
         {
             try
             {
@@ -94,9 +89,10 @@ namespace PachaSystemERP.Classes
                 }
 
                 GetCredentials();
-                Credentials autorizacion = new Credentials
+
+                Credentials credentials = new Credentials
                 {
-                    Cuit = _cuit,
+                    Cuit = Configuracion.Cuit,
                     Sign = _sign,
                     Token = _token,
                 };
@@ -108,14 +104,10 @@ namespace PachaSystemERP.Classes
 
                 var detalles = new CaeDetalleRequest();
 
-
-                //if (comprobante.ComprobantesAsociados != null)
-                //{
-                //    foreach (var item in comprobante.ComprobantesAsociados)
-                //    {
-                //        detalles.AgregarComprobanteAsociado(item.TipoComprobanteID, item.PuntoDeVenta, item.NumeroDocumento, item.Cuit, item.FechaComprobante.ToString("yyyyMMdd"));
-                //    }
-                //}
+                if (receipt.AssociatedReceipt != null)
+                {
+                    detalles.AgregarComprobanteAsociado(receipt.AssociatedReceipt.ReceiptTypeID, receipt.AssociatedReceipt.PointOfSale, receipt.AssociatedReceipt.ReceiptNumber, receipt.AssociatedReceipt.Cuit, receipt.AssociatedReceipt.ReceiptDate.ToString("yyyyMMdd"));
+                }
 
                 if (receipt.ReceiptDetails != null)
                 {
@@ -123,25 +115,42 @@ namespace PachaSystemERP.Classes
                     {
                         switch (item.Item.Vat.Name)
                         {
+                            case "No Gravado":
+                                receipt.NotTaxedNetAmount += item.VatAmount;
+                                break;
+                            case "Exento":
+                                receipt.ExemptAmount += item.VatAmount;
+                                break;
+                            case "IVA 0%":
+                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+                                receipt.VatTotalAmount += item.VatAmount;
+                                break;
+                            case "IVA 10,5%":
+                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+                                receipt.VatTotalAmount += item.VatAmount;
+                                break;
                             case "IVA 21%":
                                 detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
-
+                                receipt.VatTotalAmount += item.VatAmount;
+                                break;
+                            case "IVA 27%":
+                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+                                receipt.VatTotalAmount += item.VatAmount;
                                 break;
                             default:
                                 break;
                         }
-
                     }
                 }
 
-                if (receipt.Client.RazonSocial.Equals("CONSUMIDOR FINAL"))
+                if (receipt.Client.BusinessName.Equals("CONSUMIDOR FINAL"))
                 {
-                    detalles.TipoDeDocumento = receipt.Client.TipoDocumentoID;
+                    detalles.TipoDeDocumento = receipt.Client.DocumentTypeID;
                 }
                 else
                 {
-                    detalles.TipoDeDocumento = receipt.Client.TipoDocumentoID;
-                    detalles.NumeroDeDocumento = long.Parse(receipt.Client.NumeroDocumento);
+                    detalles.TipoDeDocumento = receipt.Client.DocumentTypeID;
+                    detalles.NumeroDeDocumento = long.Parse(receipt.Client.DocumentNumber);
                 }
 
                 detalles.Concepto = receipt.ConceptTypeID;
@@ -154,11 +163,11 @@ namespace PachaSystemERP.Classes
                 detalles.ImporteExento = decimal.ToDouble(receipt.ExemptAmount);
                 detalles.ImporteIVA = decimal.ToDouble(receipt.VatTotalAmount);
                 detalles.ImporteTributo = decimal.ToDouble(receipt.TributeTotalAmount);
-                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Get(x => x.ID == receipt.CurrencyType.ID).Codigo;
+                detalles.CodigoMoneda = _unitOfWork.TipoMoneda.Get(x => x.ID == receipt.CurrencyType.ID).Code;
                 detalles.MonedaCotizacion = receipt.CurrencyExchangeRate;
                 request.DetalleRequest.Add(detalles);
 
-                var response = _wsfeClient.SolicitarCae(autorizacion, request);
+                var response = _wsfeClient.SolicitarCae(credentials, request);
                 if (response == null)
                 {
                     throw new ArgumentNullException("response");
@@ -190,11 +199,11 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public TipoDeComprobanteResponse ObtenerTiposDeComprobante()
+        public TipoDeComprobanteResponse GetReceiptTypes()
         {
             GetCredentials();
             Credentials credentials = new Credentials();
-            credentials.Cuit = _cuit;
+            credentials.Cuit = Configuracion.Cuit;
             credentials.Sign = _sign;
             credentials.Token = _token;
 
@@ -214,7 +223,7 @@ namespace PachaSystemERP.Classes
         {
             GetCredentials();
             Credentials credenciales = new Credentials();
-            credenciales.Cuit = _cuit;
+            credenciales.Cuit = Configuracion.Cuit;
             credenciales.Sign = _sign;
             credenciales.Token = _token;
             try
@@ -238,7 +247,7 @@ namespace PachaSystemERP.Classes
         {
             GetCredentials();
             Credentials credenciales = new Credentials();
-            credenciales.Cuit = _cuit;
+            credenciales.Cuit = Configuracion.Cuit;
             credenciales.Sign = _sign;
             credenciales.Token = _token;
             try
@@ -264,7 +273,7 @@ namespace PachaSystemERP.Classes
 
             Credentials credenciales = new Credentials
             {
-                Cuit = _cuit,
+                Cuit = Configuracion.Cuit,
                 Sign = _sign,
                 Token = _token
             };
@@ -286,11 +295,11 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public int ObtenerNumeroUltimoComprobante(int tipoComprobante)
+        public int GetLastReceiptNumber(int tipoComprobante)
         {
             GetCredentials();
             Credentials credenciales = new Credentials();
-            credenciales.Cuit = _cuit;
+            credenciales.Cuit = Configuracion.Cuit;
             credenciales.Sign = _sign;
             credenciales.Token = _token;
 

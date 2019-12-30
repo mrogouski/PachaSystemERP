@@ -12,7 +12,7 @@ namespace PachaSystem.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(PachaSystemContext context)
@@ -21,286 +21,259 @@ namespace PachaSystem.Data.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            if (context.Database.Exists() == false)
+            if (context.ReceiptTypes.Count() != 4)
             {
-                List<TipoConcepto> tipoConcepto = new List<TipoConcepto>
-                {
-                    new TipoConcepto { ID = 1, Descripcion = "PRODUCTOS" },
-                    new TipoConcepto { ID = 2, Descripcion = "SERVICIOS" },
-                    new TipoConcepto { ID = 3, Descripcion = "PRODUCTOS Y SERVICIOS" },
-                    new TipoConcepto { ID = 4, Descripcion = "OTROS" }
-                };
-                context.TipoConcepto.AddRange(tipoConcepto);
-
-                List<Iva> tipoCondicionIva = new List<Iva>()
-                {
-                    new Iva { ID = 1, Name = "NO GRAVADO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 2, Name = "EXENTO", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 3, Name = "0%", Alicuota = 0M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 4, Name = "10.5%", Alicuota = 10.5M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 5, Name = "21%", Alicuota = 21M, ControladorFiscal = true, FacturaElectronica = true },
-                    new Iva { ID = 6, Name = "27%", Alicuota = 27M, ControladorFiscal = true, FacturaElectronica = true }
-                };
-                context.Iva.AddRange(tipoCondicionIva);
-
-                List<CategoriaTributo> categoriaTributo = new List<CategoriaTributo>()
-                {
-                    new CategoriaTributo { ID = 1, Descripcion = "Impuestos Nacionales", ControladorFiscal = false, FacturaElectronica = true },
-                    new CategoriaTributo { ID = 2, Descripcion = "Impuestos Provinciales", ControladorFiscal = false, FacturaElectronica = true },
-                    new CategoriaTributo { ID = 3, Descripcion = "Impuestos Municipales", ControladorFiscal = false, FacturaElectronica = true },
-                    new CategoriaTributo { ID = 4, Descripcion = "Impuestos Internos", ControladorFiscal = false, FacturaElectronica = true },
-                    new CategoriaTributo { ID = 99, Descripcion = "Otros", ControladorFiscal = false, FacturaElectronica = true }
-                };
-                context.CategoriaTributo.AddRange(categoriaTributo);
-
-                List<TipoResponsable> tipoResponsable = new List<TipoResponsable>
-                {
-                    new TipoResponsable { ID = 1, Descripcion = "IVA RESPONSABLE INSCRIPTO", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 2, Descripcion = "IVA RESPONSABLE NO INSCRIPTO", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoResponsable { ID = 3, Descripcion = "IVA NO RESPONSABLE", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 4, Descripcion = "IVA SUJETO EXENTO", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 5, Descripcion = "CONSUMIDOR FINAL", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 6, Descripcion = "RESPONSABLE MONOTRIBUTO", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 7, Descripcion = "SUJETO NO CATEGORIZADO", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 8, Descripcion = "PROVEEDOR DEL EXTERIOR", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoResponsable { ID = 9, Descripcion = "CLIENTE DEL EXTERIOR", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoResponsable { ID = 10, Descripcion = "IVA LIBERADO – LEY Nº 19.640", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoResponsable { ID = 11, Descripcion = "IVA RESPONSABLE INSCRIPTO – AGENTE DE PERCEPCION", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoResponsable { ID = 12, Descripcion = "PEQUEÑO CONTRIBUYENTE EVENTUAL", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 13, Descripcion = "MONOTRIBUTISTA SOCIAL", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoResponsable { ID = 14, Descripcion = "PEQUEÑO CONTRIBUYENTE EVENTUAL SOCIAL", ControladorFiscal = true, FacturaElectronica = true }
-                };
-                context.TipoResponsable.AddRange(tipoResponsable);
-
-                List<TipoDocumento> tipoDocumento = new List<TipoDocumento>
-                {
-                    new TipoDocumento { ID = 0, Descripcion = "CI POLICIA FEDERAL", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 1, Descripcion = "CI BUENOS AIRES", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 2, Descripcion = "CI CATAMARCA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 3, Descripcion = "CI CORDOBA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 4, Descripcion = "CI CORRIENTES", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 5, Descripcion = "CI ENTRE RIOS", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 6, Descripcion = "CI JUJUY", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 7, Descripcion = "CI MENDOZA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 8, Descripcion = "CI LA RIOJA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 9, Descripcion = "CI SALTA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 10, Descripcion = "CI SAN JUAN", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 11, Descripcion = "CI SAN LUIS", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 12, Descripcion = "CI SANTA FE", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 13, Descripcion = "CI SANTIAGO DEL ESTERO", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 14, Descripcion = "CI TUCUMAN", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 16, Descripcion = "CI CHACO", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 17, Descripcion = "CI CHUBUT", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 18, Descripcion = "CI FORMOSA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 19, Descripcion = "CI MISIONES", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 20, Descripcion = "CI NEUQUEN", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 21, Descripcion = "CI LA PAMPA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 22, Descripcion = "CI RIO NEGRO", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 23, Descripcion = "CI SANTA CRUZ", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 24, Descripcion = "CI TIERRA DEL FUEGO", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 80, Descripcion = "CUIT", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoDocumento { ID = 86, Descripcion = "CUIL", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoDocumento { ID = 87, Descripcion = "CDI", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 89, Descripcion = "LE", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoDocumento { ID = 90, Descripcion = "LC", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoDocumento { ID = 91, Descripcion = "CI EXTRANJERA", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 92, Descripcion = "EN TRAMITE", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 93, Descripcion = "ACTA DE NACIMIENTO", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 94, Descripcion = "PASAPORTE", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoDocumento { ID = 95, Descripcion = "CI BUENOS AIRES RNP", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoDocumento { ID = 96, Descripcion = "DNI", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoDocumento { ID = 99, Descripcion = "SIN IDENTIFICAR", ControladorFiscal = true, FacturaElectronica = true }
-                };
-                context.TipoDocumento.AddRange(tipoDocumento);
-
-                List<TipoMoneda> tipoMoneda = new List<TipoMoneda>
-                {
-                    new TipoMoneda { ID = 1, Codigo = "000", Descripcion = "OTRAS MONEDAS" },
-                    new TipoMoneda { ID = 2, Codigo = "PES", Descripcion = "PESOS" },
-                    new TipoMoneda { ID = 3, Codigo = "DOL", Descripcion = "DOLAR ESTADOUNIDENSE" },
-                    new TipoMoneda { ID = 4, Codigo = "002", Descripcion = "DOLAR EEUU LIBRE" },
-                    new TipoMoneda { ID = 5, Codigo = "003", Descripcion = "FRANCOS FRANCESES" },
-                    new TipoMoneda { ID = 6, Codigo = "004", Descripcion = "LIRAS ITALIANAS" },
-                    new TipoMoneda { ID = 7, Codigo = "005", Descripcion = "PESETAS" },
-                    new TipoMoneda { ID = 8, Codigo = "006", Descripcion = "MARCOS ALEMANES" },
-                    new TipoMoneda { ID = 9, Codigo = "007", Descripcion = "FLORINES HOLANDESES" },
-                    new TipoMoneda { ID = 10, Codigo = "008", Descripcion = "FRANCOS BELGAS" },
-                    new TipoMoneda { ID = 11, Codigo = "009", Descripcion = "FRANCOS SUIZOS" },
-                    new TipoMoneda { ID = 12, Codigo = "010", Descripcion = "PESOS MEJICANOS" },
-                    new TipoMoneda { ID = 13, Codigo = "011", Descripcion = "PESOS URUGUAYOS" },
-                    new TipoMoneda { ID = 14, Codigo = "012", Descripcion = "REAL" },
-                    new TipoMoneda { ID = 15, Codigo = "013", Descripcion = "ESCUDOS PORTUGUESES" },
-                    new TipoMoneda { ID = 16, Codigo = "014", Descripcion = "CORONAS DANESAS" },
-                    new TipoMoneda { ID = 17, Codigo = "015", Descripcion = "CORONAS NORUEGAS" },
-                    new TipoMoneda { ID = 18, Codigo = "016", Descripcion = "CORONAS SUECAS" },
-                    new TipoMoneda { ID = 19, Codigo = "017", Descripcion = "CHELINES AUTRIACOS" },
-                    new TipoMoneda { ID = 20, Codigo = "018", Descripcion = "DOLAR CANADIENSE" },
-                    new TipoMoneda { ID = 21, Codigo = "019", Descripcion = "YENES" },
-                    new TipoMoneda { ID = 22, Codigo = "021", Descripcion = "LIBRA ESTERLINA" },
-                    new TipoMoneda { ID = 23, Codigo = "022", Descripcion = "MARCOS FINLANDESES" },
-                    new TipoMoneda { ID = 24, Codigo = "023", Descripcion = "BOLIVAR (VENEZOLANO)" },
-                    new TipoMoneda { ID = 25, Codigo = "024", Descripcion = "CORONA CHECA" },
-                    new TipoMoneda { ID = 26, Codigo = "025", Descripcion = "DINAR (YUGOSLAVO)" },
-                    new TipoMoneda { ID = 27, Codigo = "026", Descripcion = "DOLAR AUSTRALIANO" },
-                    new TipoMoneda { ID = 28, Codigo = "027", Descripcion = "DRACMA (GRIEGO)" },
-                    new TipoMoneda { ID = 29, Codigo = "028", Descripcion = "FLORIN (ANTILLAS HOLA)" },
-                    new TipoMoneda { ID = 30, Codigo = "029", Descripcion = "GUARANI" },
-                    new TipoMoneda { ID = 31, Codigo = "030", Descripcion = "SHEKEL (ISRAEL)" },
-                    new TipoMoneda { ID = 32, Codigo = "031", Descripcion = "PESO BOLIVIANO" },
-                    new TipoMoneda { ID = 33, Codigo = "032", Descripcion = "PESO COLOMBIANO" },
-                    new TipoMoneda { ID = 34, Codigo = "033", Descripcion = "PESO CHILENO" },
-                    new TipoMoneda { ID = 35, Codigo = "034", Descripcion = "RAND (SUDAFRICANO)" },
-                    new TipoMoneda { ID = 36, Codigo = "035", Descripcion = "NUEVO SOL PERUANO" },
-                    new TipoMoneda { ID = 37, Codigo = "036", Descripcion = "SUCRE (ECUATORIANO)" },
-                    new TipoMoneda { ID = 38, Codigo = "040", Descripcion = "LEI RUMANOS" },
-                    new TipoMoneda { ID = 39, Codigo = "041", Descripcion = "DERECHOS ESPECIALES DE GIRO" },
-                    new TipoMoneda { ID = 40, Codigo = "042", Descripcion = "PESOS DOMINICANOS" },
-                    new TipoMoneda { ID = 41, Codigo = "043", Descripcion = "BALBOAS PANAMEÑAS" },
-                    new TipoMoneda { ID = 42, Codigo = "044", Descripcion = "CORDOBAS NICARAGÛENSES" },
-                    new TipoMoneda { ID = 43, Codigo = "045", Descripcion = "DIRHAM MARROQUÍES" },
-                    new TipoMoneda { ID = 44, Codigo = "046", Descripcion = "LIBRAS EGIPCIAS" },
-                    new TipoMoneda { ID = 45, Codigo = "047", Descripcion = "RIYALS SAUDITAS" },
-                    new TipoMoneda { ID = 46, Codigo = "048", Descripcion = "BRANCOS BELGAS FINANCIERAS" },
-                    new TipoMoneda { ID = 47, Codigo = "049", Descripcion = "GRAMOS DE ORO FINO" },
-                    new TipoMoneda { ID = 48, Codigo = "050", Descripcion = "LIBRAS IRLANDESAS" },
-                    new TipoMoneda { ID = 49, Codigo = "051", Descripcion = "DOLAR DE HONG KONG" },
-                    new TipoMoneda { ID = 50, Codigo = "052", Descripcion = "DOLAR DE SINGAPUR" },
-                    new TipoMoneda { ID = 51, Codigo = "053", Descripcion = "DOLAR DE JAMAICA" },
-                    new TipoMoneda { ID = 52, Codigo = "054", Descripcion = "DOLAR DE TAIWAN" },
-                    new TipoMoneda { ID = 53, Codigo = "055", Descripcion = "QUETZAL (GUATEMALTECOS)" },
-                    new TipoMoneda { ID = 54, Codigo = "056", Descripcion = "FORINT (HUNGRIA)" },
-                    new TipoMoneda { ID = 55, Codigo = "057", Descripcion = "BAHT (TAILANDIA)" },
-                    new TipoMoneda { ID = 56, Codigo = "058", Descripcion = "ECU" },
-                    new TipoMoneda { ID = 57, Codigo = "059", Descripcion = "DINAR KUWAITI" },
-                    new TipoMoneda { ID = 58, Codigo = "060", Descripcion = "EURO" },
-                    new TipoMoneda { ID = 59, Codigo = "061", Descripcion = "ZLTYS POLACOS" },
-                    new TipoMoneda { ID = 60, Codigo = "062", Descripcion = "RUPIAS HINDÚES" },
-                    new TipoMoneda { ID = 61, Codigo = "063", Descripcion = "LEMPIRAS HONDUREÑAS" },
-                    new TipoMoneda { ID = 62, Codigo = "064", Descripcion = "YUAN (REPUBLICA POPULAR CHINA)" }
-                };
-                context.TipoMoneda.AddRange(tipoMoneda);
-
-                List<TipoComprobante> tipoComprobante = new List<TipoComprobante>
-                { 
-                    new TipoComprobante { ID = 1, Descripcion = "FACTURA A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 2, Descripcion = "NOTA DE DEBITO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 3, Descripcion = "NOTA DE CREDITO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 4, Descripcion = "RECIBO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 5, Descripcion = "NOTA DE VENTA AL CONTADO A", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 6, Descripcion = "FACTURA B", Clase = "B", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 7, Descripcion = "NOTA DE DEBITO B", Clase = "B", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 8, Descripcion = "NOTA DE CREDITO B", Clase = "B", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 9, Descripcion = "RECIBO B", Clase = "B", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 10, Descripcion = "NOTA DE VENTA AL CONTADO B", Clase = "B", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 11, Descripcion = "FACTURA C", Clase = "C", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 12, Descripcion = "NOTA DE DEBITO C", Clase = "C", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 13, Descripcion = "NOTA DE CREDITO C", Clase = "C", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 15, Descripcion = "RECIBO C", Clase = "C", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 34, Descripcion = "COMPROBANTES A DEL ANEXO I, APARTADO A  INCISO F)  R.G. N° 1415", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 35, Descripcion = "COMPROBANTES B DEL ANEXO I, APARTADO A, INCISO F), R.G. N° 1415", Clase = "B", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 39, Descripcion = "OTROS COMPROBANTES A QUE CUMPLEN CON LA R G  N° 1415", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 40, Descripcion = "OTROS COMPROBANTES B QUE CUMPLAN CON LA R.G. N° 1415", Clase = "B", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 49, Descripcion = "COMPROBANTE DE COMPRA DE BIENES NO REGISTRABLES A CONSUMIDORES FINALES", Clase = "Bienes Usados", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 51, Descripcion = "FACTURA M", Clase = "M", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 52, Descripcion = "NOTA DE DEBITO M", Clase = "M", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 53, Descripcion = "NOTA DE CREDITO M", Clase = "M", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 54, Descripcion = "RECIBO M", Clase = "M", ControladorFiscal = true, FacturaElectronica = true },
-                    new TipoComprobante { ID = 60, Descripcion = "CUENTA DE VENTA Y LIQUIDO PRODUCTO A", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 61, Descripcion = "CUENTA DE VENTA Y LIQUIDO PRODUCTO B", Clase = "B", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 63, Descripcion = "LIQUIDACIONES A", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 64, Descripcion = "LIQUIDACIONES B", Clase = "B", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 81, Descripcion = "TIQUE FACTURA A", Clase = "A", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 82, Descripcion = "TIQUE FACTURA B", Clase = "B", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 83, Descripcion = "TIQUE", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 91, Descripcion = "REMITO R", Clase = "R", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 110, Descripcion = "TIQUE NOTA DE CREDITO", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 111, Descripcion = "TIQUE FACTURA C", Clase = "C", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 112, Descripcion = "TIQUE NOTA DE CREDITO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 113, Descripcion = "TIQUE NOTA DE CREDITO B", Clase = "B", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 114, Descripcion = "TIQUE NOTA DE CREDITO C", Clase = "C", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 115, Descripcion = "TIQUE NOTA DE DEBITO A", Clase = "A", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 116, Descripcion = "TIQUE NOTA DE DEBITO B", Clase = "B", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 117, Descripcion = "TIQUE NOTA DE DEBITO C", Clase = "C", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 118, Descripcion = "TIQUE FACTURA M", Clase = "M", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 119, Descripcion = "TIQUE NOTA DE CREDITO M", Clase = "M", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 120, Descripcion = "TIQUE NOTA DE DEBITO M", Clase = "M", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 201, Descripcion = "FACTURA DE CREDITO ELECTRONICA MIPYMES (FCE) A", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 202, Descripcion = "NOTA DE DEBITO ELECTRONICA MIPYMES (FCE) A", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 203, Descripcion = "NOTA DE CREDITO ELECTRONICA MIPYMES (FCE) A", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 206, Descripcion = "FACTURA DE CREDITO ELECTRONICA MIPYMES (FCE) B", Clase = "A", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 207, Descripcion = "NOTA DE DEBITO ELECTRONICA MIPYMES (FCE) B", Clase = "B", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 208, Descripcion = "NOTA DE CREDITO ELECTRONICA MIPYMES (FCE) B", Clase = "B", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 211, Descripcion = "FACTURA DE CREDITO ELECTRONICA MIPYMES (FCE) C", Clase = "C", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 212, Descripcion = "NOTA DE DEBITO ELECTRONICA MIPYMES (FCE) C", Clase = "C", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 213, Descripcion = "NOTA DE CREDITO ELECTRONICA MIPYMES (FCE) C", Clase = "C", ControladorFiscal = false, FacturaElectronica = true },
-                    new TipoComprobante { ID = 901, Descripcion = "REMITO X", Clase = "X", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 902, Descripcion = "RECIBO X", Clase = "X", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 903, Descripcion = "PRESUPUESTO X", Clase = "X", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 907, Descripcion = "COMPROBANTE DONACION", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false },
-                    new TipoComprobante { ID = 910, Descripcion = "GENERICO", Clase = "Otros", ControladorFiscal = true, FacturaElectronica = false }
-                };
-                context.TipoComprobante.AddRange(tipoComprobante);
-
-                List<UnidadMedida> unidadMedida = new List<UnidadMedida>
-                {
-                    new UnidadMedida { ID = 00, Descripcion = "Sin Descripcion" },
-                    new UnidadMedida { ID = 01, Descripcion = "Kilogramo" },
-                    new UnidadMedida { ID = 02, Descripcion = "Metro" },
-                    new UnidadMedida { ID = 03, Descripcion = "Metro Cuadrado" },
-                    new UnidadMedida { ID = 04, Descripcion = "Metro Cúbico" },
-                    new UnidadMedida { ID = 05, Descripcion = "Litro" },
-                    new UnidadMedida { ID = 06, Descripcion = "1000 Kilowatt Hora" },
-                    new UnidadMedida { ID = 07, Descripcion = "Unidad" },
-                    new UnidadMedida { ID = 08, Descripcion = "Par" },
-                    new UnidadMedida { ID = 09, Descripcion = "Docena" },
-                    new UnidadMedida { ID = 10, Descripcion = "Quilate" },
-                    new UnidadMedida { ID = 11, Descripcion = "Millar" },
-                    new UnidadMedida { ID = 14, Descripcion = "Gramo" },
-                    new UnidadMedida { ID = 15, Descripcion = "Milimetro" },
-                    new UnidadMedida { ID = 16, Descripcion = "Milimetro Cúbico" },
-                    new UnidadMedida { ID = 17, Descripcion = "Kilometro" },
-                    new UnidadMedida { ID = 18, Descripcion = "Hectolitro" },
-                    new UnidadMedida { ID = 20, Descripcion = "Centimetro" },
-                    new UnidadMedida { ID = 24, Descripcion = "Unidad Internacional De Actividad Hormonal" },
-                    new UnidadMedida { ID = 25, Descripcion = "Juego, Paquete, Mazo de Naipes" },
-                    new UnidadMedida { ID = 27, Descripcion = "Centimetro Cúbico" },
-                    new UnidadMedida { ID = 29, Descripcion = "Tonelada" },
-                    new UnidadMedida { ID = 30, Descripcion = "Decametro Cúbico" },
-                    new UnidadMedida { ID = 31, Descripcion = "Hectometro Cúbico" },
-                    new UnidadMedida { ID = 32, Descripcion = "Kilometro Cúbico" },
-                    new UnidadMedida { ID = 33, Descripcion = "Microgramo" },
-                    new UnidadMedida { ID = 34, Descripcion = "Nanogramo" },
-                    new UnidadMedida { ID = 35, Descripcion = "Picogramo" },
-                    new UnidadMedida { ID = 41, Descripcion = "Miligramo" },
-                    new UnidadMedida { ID = 47, Descripcion = "Mililitro" },
-                    new UnidadMedida { ID = 48, Descripcion = "Curie" },
-                    new UnidadMedida { ID = 49, Descripcion = "Milicurie" },
-                    new UnidadMedida { ID = 50, Descripcion = "Microcurie" },
-                    new UnidadMedida { ID = 51, Descripcion = "Unidad Internacional De Actividad Hormonal" },
-                    new UnidadMedida { ID = 52, Descripcion = "Mega Unidad Internacional De Actividad Hormonal" },
-                    new UnidadMedida { ID = 53, Descripcion = "Kilogramo Base" },
-                    new UnidadMedida { ID = 54, Descripcion = "Gruesa" },
-                    new UnidadMedida { ID = 61, Descripcion = "Kilogramo Bruto" },
-                    new UnidadMedida { ID = 62, Descripcion = "Unidad Internacional De Actividad Para Antibioticos" },
-                    new UnidadMedida { ID = 63, Descripcion = "Mega Unidad Internacional De Actividad Para Antibioticos" },
-                    new UnidadMedida { ID = 64, Descripcion = "Unidad Internacional De Actividad Para Inmunoglobulinas" },
-                    new UnidadMedida { ID = 65, Descripcion = "Mega Unidad Internacional De Actividad Para Inmunoglobulinas" },
-                    new UnidadMedida { ID = 66, Descripcion = "Kilogramo Activo" },
-                    new UnidadMedida { ID = 67, Descripcion = "Gramo Activo" },
-                    new UnidadMedida { ID = 68, Descripcion = "Gramo Base" },
-                    new UnidadMedida { ID = 96, Descripcion = "Pack" },
-                    //new UnidadMedida { ID = 63, Descripcion = "Horma" },
-                    new UnidadMedida { ID = 97, Descripcion = "Señas / Anticipos" },
-                    new UnidadMedida { ID = 98, Descripcion = "Otras Unidades" },
-                    new UnidadMedida { ID = 99, Descripcion = "Bonificación" },
-                };
-                context.UnidadMedida.AddRange(unidadMedida);
-
-                context.Cliente.Add(
-                    new Cliente { ID = 1, RazonSocial = "CONSUMIDOR FINAL", TipoDocumentoID = 99, NumeroDocumento = string.Empty, TipoResponsableID = 5, Domicilio = string.Empty });
-
-                base.Seed(context);
+                context.ConceptType.AddOrUpdate(x => x.ID,
+                        new ConceptType { ID = 1, Name = "Productos" },
+                        new ConceptType { ID = 2, Name = "Servicios" },
+                        new ConceptType { ID = 3, Name = "Productos y Servicios" },
+                        new ConceptType { ID = 4, Name = "Otros" });
             }
+
+            if (context.Vat.Count() != 6)
+            {
+                context.Vat.AddOrUpdate(x => x.ID,
+                    new Vat { ID = 1, Name = "No Gravado", Aliquot = 0M },
+                    new Vat { ID = 2, Name = "Exento", Aliquot = 0M },
+                    new Vat { ID = 3, Name = "0%", Aliquot = 0M },
+                    new Vat { ID = 4, Name = "10,5%", Aliquot = 10.5M },
+                    new Vat { ID = 5, Name = "21%", Aliquot = 21M },
+                    new Vat { ID = 6, Name = "27%", Aliquot = 27M });
+            }
+
+            if (context.TributeCategories.Count() != 5)
+            {
+                context.TributeCategories.AddOrUpdate(x => x.ID,
+                    new TributeCategory { ID = 1, Name = "Impuestos Nacionales" },
+                    new TributeCategory { ID = 2, Name = "Impuestos Provinciales" },
+                    new TributeCategory { ID = 3, Name = "Impuestos Municipales" },
+                    new TributeCategory { ID = 4, Name = "Impuestos Internos" },
+                    new TributeCategory { ID = 99, Name = "Otros" });
+            }
+
+            if (context.FiscalConditionTypes.Count() != 14)
+            {
+                context.FiscalConditionTypes.AddOrUpdate(x => x.ID,
+                    new FiscalConditionType { ID = 1, Description = "IVA RESPONSABLE INSCRIPTO" },
+                    new FiscalConditionType { ID = 2, Description = "IVA RESPONSABLE NO INSCRIPTO" },
+                    new FiscalConditionType { ID = 3, Description = "IVA NO RESPONSABLE" },
+                    new FiscalConditionType { ID = 4, Description = "IVA SUJETO EXENTO" },
+                    new FiscalConditionType { ID = 5, Description = "CONSUMIDOR FINAL" },
+                    new FiscalConditionType { ID = 6, Description = "RESPONSABLE MONOTRIBUTO" },
+                    new FiscalConditionType { ID = 7, Description = "SUJETO NO CATEGORIZADO" },
+                    new FiscalConditionType { ID = 8, Description = "PROVEEDOR DEL EXTERIOR" },
+                    new FiscalConditionType { ID = 9, Description = "CLIENTE DEL EXTERIOR" },
+                    new FiscalConditionType { ID = 10, Description = "IVA LIBERADO – LEY Nº 19.640" },
+                    new FiscalConditionType { ID = 11, Description = "IVA RESPONSABLE INSCRIPTO – AGENTE DE PERCEPCION" },
+                    new FiscalConditionType { ID = 12, Description = "PEQUEÑO CONTRIBUYENTE EVENTUAL" },
+                    new FiscalConditionType { ID = 13, Description = "MONOTRIBUTISTA SOCIAL" },
+                    new FiscalConditionType { ID = 14, Description = "PEQUEÑO CONTRIBUYENTE EVENTUAL SOCIAL" });
+            }
+
+            if (context.DocumentTypes.Count() != 36)
+            {
+                context.DocumentTypes.AddOrUpdate(x => x.ID,
+                    new DocumentType { ID = 0, Description = "CI POLICIA FEDERAL" },
+                    new DocumentType { ID = 1, Description = "CI BUENOS AIRES" },
+                    new DocumentType { ID = 2, Description = "CI CATAMARCA" },
+                    new DocumentType { ID = 3, Description = "CI CORDOBA" },
+                    new DocumentType { ID = 4, Description = "CI CORRIENTES" },
+                    new DocumentType { ID = 5, Description = "CI ENTRE RIOS" },
+                    new DocumentType { ID = 6, Description = "CI JUJUY" },
+                    new DocumentType { ID = 7, Description = "CI MENDOZA" },
+                    new DocumentType { ID = 8, Description = "CI LA RIOJA" },
+                    new DocumentType { ID = 9, Description = "CI SALTA" },
+                    new DocumentType { ID = 10, Description = "CI SAN JUAN" },
+                    new DocumentType { ID = 11, Description = "CI SAN LUIS" },
+                    new DocumentType { ID = 12, Description = "CI SANTA FE" },
+                    new DocumentType { ID = 13, Description = "CI SANTIAGO DEL ESTERO" },
+                    new DocumentType { ID = 14, Description = "CI TUCUMAN" },
+                    new DocumentType { ID = 16, Description = "CI CHACO" },
+                    new DocumentType { ID = 17, Description = "CI CHUBUT" },
+                    new DocumentType { ID = 18, Description = "CI FORMOSA" },
+                    new DocumentType { ID = 19, Description = "CI MISIONES" },
+                    new DocumentType { ID = 20, Description = "CI NEUQUEN" },
+                    new DocumentType { ID = 21, Description = "CI LA PAMPA" },
+                    new DocumentType { ID = 22, Description = "CI RIO NEGRO" },
+                    new DocumentType { ID = 23, Description = "CI SANTA CRUZ" },
+                    new DocumentType { ID = 24, Description = "CI TIERRA DEL FUEGO" },
+                    new DocumentType { ID = 80, Description = "CUIT" },
+                    new DocumentType { ID = 86, Description = "CUIL" },
+                    new DocumentType { ID = 87, Description = "CDI" },
+                    new DocumentType { ID = 89, Description = "LE" },
+                    new DocumentType { ID = 90, Description = "LC" },
+                    new DocumentType { ID = 91, Description = "CI EXTRANJERA" },
+                    new DocumentType { ID = 92, Description = "EN TRAMITE" },
+                    new DocumentType { ID = 93, Description = "ACTA DE NACIMIENTO" },
+                    new DocumentType { ID = 94, Description = "PASAPORTE" },
+                    new DocumentType { ID = 95, Description = "CI BUENOS AIRES RNP" },
+                    new DocumentType { ID = 96, Description = "DNI" },
+                    new DocumentType { ID = 99, Description = "SIN IDENTIFICAR" });
+            }
+
+            if (context.CurrencyTypes.Count() != 62)
+            {
+                context.CurrencyTypes.AddOrUpdate(x => x.ID,
+                    new CurrencyType { ID = 1, Code = "000", Description = "OTRAS MONEDAS" },
+                    new CurrencyType { ID = 2, Code = "PES", Description = "PESOS" },
+                    new CurrencyType { ID = 3, Code = "DOL", Description = "DOLAR ESTADOUNIDENSE" },
+                    new CurrencyType { ID = 4, Code = "002", Description = "DOLAR EEUU LIBRE" },
+                    new CurrencyType { ID = 5, Code = "003", Description = "FRANCOS FRANCESES" },
+                    new CurrencyType { ID = 6, Code = "004", Description = "LIRAS ITALIANAS" },
+                    new CurrencyType { ID = 7, Code = "005", Description = "PESETAS" },
+                    new CurrencyType { ID = 8, Code = "006", Description = "MARCOS ALEMANES" },
+                    new CurrencyType { ID = 9, Code = "007", Description = "FLORINES HOLANDESES" },
+                    new CurrencyType { ID = 10, Code = "008", Description = "FRANCOS BELGAS" },
+                    new CurrencyType { ID = 11, Code = "009", Description = "FRANCOS SUIZOS" },
+                    new CurrencyType { ID = 12, Code = "010", Description = "PESOS MEJICANOS" },
+                    new CurrencyType { ID = 13, Code = "011", Description = "PESOS URUGUAYOS" },
+                    new CurrencyType { ID = 14, Code = "012", Description = "REAL" },
+                    new CurrencyType { ID = 15, Code = "013", Description = "ESCUDOS PORTUGUESES" },
+                    new CurrencyType { ID = 16, Code = "014", Description = "CORONAS DANESAS" },
+                    new CurrencyType { ID = 17, Code = "015", Description = "CORONAS NORUEGAS" },
+                    new CurrencyType { ID = 18, Code = "016", Description = "CORONAS SUECAS" },
+                    new CurrencyType { ID = 19, Code = "017", Description = "CHELINES AUTRIACOS" },
+                    new CurrencyType { ID = 20, Code = "018", Description = "DOLAR CANADIENSE" },
+                    new CurrencyType { ID = 21, Code = "019", Description = "YENES" },
+                    new CurrencyType { ID = 22, Code = "021", Description = "LIBRA ESTERLINA" },
+                    new CurrencyType { ID = 23, Code = "022", Description = "MARCOS FINLANDESES" },
+                    new CurrencyType { ID = 24, Code = "023", Description = "BOLIVAR (VENEZOLANO)" },
+                    new CurrencyType { ID = 25, Code = "024", Description = "CORONA CHECA" },
+                    new CurrencyType { ID = 26, Code = "025", Description = "DINAR (YUGOSLAVO)" },
+                    new CurrencyType { ID = 27, Code = "026", Description = "DOLAR AUSTRALIANO" },
+                    new CurrencyType { ID = 28, Code = "027", Description = "DRACMA (GRIEGO)" },
+                    new CurrencyType { ID = 29, Code = "028", Description = "FLORIN (ANTILLAS HOLA)" },
+                    new CurrencyType { ID = 30, Code = "029", Description = "GUARANI" },
+                    new CurrencyType { ID = 31, Code = "030", Description = "SHEKEL (ISRAEL)" },
+                    new CurrencyType { ID = 32, Code = "031", Description = "PESO BOLIVIANO" },
+                    new CurrencyType { ID = 33, Code = "032", Description = "PESO COLOMBIANO" },
+                    new CurrencyType { ID = 34, Code = "033", Description = "PESO CHILENO" },
+                    new CurrencyType { ID = 35, Code = "034", Description = "RAND (SUDAFRICANO)" },
+                    new CurrencyType { ID = 36, Code = "035", Description = "NUEVO SOL PERUANO" },
+                    new CurrencyType { ID = 37, Code = "036", Description = "SUCRE (ECUATORIANO)" },
+                    new CurrencyType { ID = 38, Code = "040", Description = "LEI RUMANOS" },
+                    new CurrencyType { ID = 39, Code = "041", Description = "DERECHOS ESPECIALES DE GIRO" },
+                    new CurrencyType { ID = 40, Code = "042", Description = "PESOS DOMINICANOS" },
+                    new CurrencyType { ID = 41, Code = "043", Description = "BALBOAS PANAMEÑAS" },
+                    new CurrencyType { ID = 42, Code = "044", Description = "CORDOBAS NICARAGÛENSES" },
+                    new CurrencyType { ID = 43, Code = "045", Description = "DIRHAM MARROQUÍES" },
+                    new CurrencyType { ID = 44, Code = "046", Description = "LIBRAS EGIPCIAS" },
+                    new CurrencyType { ID = 45, Code = "047", Description = "RIYALS SAUDITAS" },
+                    new CurrencyType { ID = 46, Code = "048", Description = "BRANCOS BELGAS FINANCIERAS" },
+                    new CurrencyType { ID = 47, Code = "049", Description = "GRAMOS DE ORO FINO" },
+                    new CurrencyType { ID = 48, Code = "050", Description = "LIBRAS IRLANDESAS" },
+                    new CurrencyType { ID = 49, Code = "051", Description = "DOLAR DE HONG KONG" },
+                    new CurrencyType { ID = 50, Code = "052", Description = "DOLAR DE SINGAPUR" },
+                    new CurrencyType { ID = 51, Code = "053", Description = "DOLAR DE JAMAICA" },
+                    new CurrencyType { ID = 52, Code = "054", Description = "DOLAR DE TAIWAN" },
+                    new CurrencyType { ID = 53, Code = "055", Description = "QUETZAL (GUATEMALTECOS)" },
+                    new CurrencyType { ID = 54, Code = "056", Description = "FORINT (HUNGRIA)" },
+                    new CurrencyType { ID = 55, Code = "057", Description = "BAHT (TAILANDIA)" },
+                    new CurrencyType { ID = 56, Code = "058", Description = "ECU" },
+                    new CurrencyType { ID = 57, Code = "059", Description = "DINAR KUWAITI" },
+                    new CurrencyType { ID = 58, Code = "060", Description = "EURO" },
+                    new CurrencyType { ID = 59, Code = "061", Description = "ZLTYS POLACOS" },
+                    new CurrencyType { ID = 60, Code = "062", Description = "RUPIAS HINDÚES" },
+                    new CurrencyType { ID = 61, Code = "063", Description = "LEMPIRAS HONDUREÑAS" },
+                    new CurrencyType { ID = 62, Code = "064", Description = "YUAN (REPUBLICA POPULAR CHINA)" });
+            }
+
+            context.ReceiptTypes.AddOrUpdate(x => x.ID,
+                    new ReceiptType { ID = 1, Description = "FACTURA A", Class = "A" },
+                    new ReceiptType { ID = 2, Description = "NOTA DE DEBITO A", Class = "A" },
+                    new ReceiptType { ID = 3, Description = "NOTA DE CREDITO A", Class = "A" },
+                    new ReceiptType { ID = 4, Description = "RECIBO A", Class = "A" },
+                    new ReceiptType { ID = 5, Description = "NOTA DE VENTA AL CONTADO A", Class = "A" },
+                    new ReceiptType { ID = 6, Description = "FACTURA B", Class = "B" },
+                    new ReceiptType { ID = 7, Description = "NOTA DE DEBITO B", Class = "B" },
+                    new ReceiptType { ID = 8, Description = "NOTA DE CREDITO B", Class = "B" },
+                    new ReceiptType { ID = 9, Description = "RECIBO B", Class = "B" },
+                    new ReceiptType { ID = 10, Description = "NOTA DE VENTA AL CONTADO B", Class = "B" },
+                    new ReceiptType { ID = 11, Description = "FACTURA C", Class = "C" },
+                    new ReceiptType { ID = 12, Description = "NOTA DE DEBITO C", Class = "C" },
+                    new ReceiptType { ID = 13, Description = "NOTA DE CREDITO C", Class = "C" },
+                    new ReceiptType { ID = 15, Description = "RECIBO C", Class = "C" },
+                    new ReceiptType { ID = 34, Description = "COMPROBANTES A DEL ANEXO I, APARTADO A  INCISO F)  R.G. N° 1415", Class = "A" },
+                    new ReceiptType { ID = 35, Description = "COMPROBANTES B DEL ANEXO I, APARTADO A, INCISO F), R.G. N° 1415", Class = "B" },
+                    new ReceiptType { ID = 39, Description = "OTROS COMPROBANTES A QUE CUMPLEN CON LA R G  N° 1415", Class = "A" },
+                    new ReceiptType { ID = 40, Description = "OTROS COMPROBANTES B QUE CUMPLAN CON LA R.G. N° 1415", Class = "B" },
+                    new ReceiptType { ID = 51, Description = "FACTURA M", Class = "M" },
+                    new ReceiptType { ID = 52, Description = "NOTA DE DEBITO M", Class = "M" },
+                    new ReceiptType { ID = 53, Description = "NOTA DE CREDITO M", Class = "M" },
+                    new ReceiptType { ID = 54, Description = "RECIBO M", Class = "M" },
+                    new ReceiptType { ID = 60, Description = "CUENTA DE VENTA Y LIQUIDO PRODUCTO A", Class = "A" },
+                    new ReceiptType { ID = 61, Description = "CUENTA DE VENTA Y LIQUIDO PRODUCTO B", Class = "B" },
+                    new ReceiptType { ID = 63, Description = "LIQUIDACIONES A", Class = "A" },
+                    new ReceiptType { ID = 64, Description = "LIQUIDACIONES B", Class = "B" },
+                    new ReceiptType { ID = 201, Description = "FACTURA DE CREDITO ELECTRONICA MIPYMES (FCE) A", Class = "A" },
+                    new ReceiptType { ID = 202, Description = "NOTA DE DEBITO ELECTRONICA MIPYMES (FCE) A", Class = "A" },
+                    new ReceiptType { ID = 203, Description = "NOTA DE CREDITO ELECTRONICA MIPYMES (FCE) A", Class = "A" },
+                    new ReceiptType { ID = 206, Description = "FACTURA DE CREDITO ELECTRONICA MIPYMES (FCE) B", Class = "A" },
+                    new ReceiptType { ID = 207, Description = "NOTA DE DEBITO ELECTRONICA MIPYMES (FCE) B", Class = "B" },
+                    new ReceiptType { ID = 208, Description = "NOTA DE CREDITO ELECTRONICA MIPYMES (FCE) B", Class = "B" },
+                    new ReceiptType { ID = 211, Description = "FACTURA DE CREDITO ELECTRONICA MIPYMES (FCE) C", Class = "C" },
+                    new ReceiptType { ID = 212, Description = "NOTA DE DEBITO ELECTRONICA MIPYMES (FCE) C", Class = "C" },
+                    new ReceiptType { ID = 213, Description = "NOTA DE CREDITO ELECTRONICA MIPYMES (FCE) C", Class = "C" });
+
+            if (context.MeasureUnits.Count() != 54)
+            {
+                context.MeasureUnits.AddOrUpdate(x => x.ID,
+                        new MeasureUnit { ID = 00, Description = "Sin Descripcion" },
+                        new MeasureUnit { ID = 01, Description = "Kilogramo" },
+                        new MeasureUnit { ID = 02, Description = "Metro" },
+                        new MeasureUnit { ID = 03, Description = "Metro Cuadrado" },
+                        new MeasureUnit { ID = 04, Description = "Metro Cúbico" },
+                        new MeasureUnit { ID = 05, Description = "Litro" },
+                        new MeasureUnit { ID = 06, Description = "1000 Kilowatt Hora" },
+                        new MeasureUnit { ID = 07, Description = "Unidad" },
+                        new MeasureUnit { ID = 08, Description = "Par" },
+                        new MeasureUnit { ID = 09, Description = "Docena" },
+                        new MeasureUnit { ID = 10, Description = "Quilate" },
+                        new MeasureUnit { ID = 11, Description = "Millar" },
+                        new MeasureUnit { ID = 14, Description = "Gramo" },
+                        new MeasureUnit { ID = 15, Description = "Milimetro" },
+                        new MeasureUnit { ID = 16, Description = "Milimetro Cúbico" },
+                        new MeasureUnit { ID = 17, Description = "Kilometro" },
+                        new MeasureUnit { ID = 18, Description = "Hectolitro" },
+                        new MeasureUnit { ID = 20, Description = "Centimetro" },
+                        new MeasureUnit { ID = 24, Description = "Unidad Internacional De Actividad Hormonal" },
+                        new MeasureUnit { ID = 25, Description = "Juego, Paquete, Mazo de Naipes" },
+                        new MeasureUnit { ID = 27, Description = "Centimetro Cúbico" },
+                        new MeasureUnit { ID = 29, Description = "Tonelada" },
+                        new MeasureUnit { ID = 30, Description = "Decametro Cúbico" },
+                        new MeasureUnit { ID = 31, Description = "Hectometro Cúbico" },
+                        new MeasureUnit { ID = 32, Description = "Kilometro Cúbico" },
+                        new MeasureUnit { ID = 33, Description = "Microgramo" },
+                        new MeasureUnit { ID = 34, Description = "Nanogramo" },
+                        new MeasureUnit { ID = 35, Description = "Picogramo" },
+                        new MeasureUnit { ID = 41, Description = "Miligramo" },
+                        new MeasureUnit { ID = 47, Description = "Mililitro" },
+                        new MeasureUnit { ID = 48, Description = "Curie" },
+                        new MeasureUnit { ID = 49, Description = "Milicurie" },
+                        new MeasureUnit { ID = 50, Description = "Microcurie" },
+                        new MeasureUnit { ID = 51, Description = "Unidad Internacional De Actividad Hormonal" },
+                        new MeasureUnit { ID = 52, Description = "Mega Unidad Internacional De Actividad Hormonal" },
+                        new MeasureUnit { ID = 53, Description = "Kilogramo Base" },
+                        new MeasureUnit { ID = 54, Description = "Gruesa" },
+                        new MeasureUnit { ID = 61, Description = "Kilogramo Bruto" },
+                        new MeasureUnit { ID = 62, Description = "Unidad Internacional De Actividad Para Antibioticos" },
+                        new MeasureUnit { ID = 63, Description = "Mega Unidad Internacional De Actividad Para Antibioticos" },
+                        new MeasureUnit { ID = 64, Description = "Unidad Internacional De Actividad Para Inmunoglobulinas" },
+                        new MeasureUnit { ID = 65, Description = "Mega Unidad Internacional De Actividad Para Inmunoglobulinas" },
+                        new MeasureUnit { ID = 66, Description = "Kilogramo Activo" },
+                        new MeasureUnit { ID = 67, Description = "Gramo Activo" },
+                        new MeasureUnit { ID = 68, Description = "Gramo Base" },
+                        new MeasureUnit { ID = 96, Description = "Pack" },
+                        //new UnidadMedida { ID = 63, Descripcion = "Horma" },
+                        new MeasureUnit { ID = 97, Description = "Señas / Anticipos" },
+                        new MeasureUnit { ID = 98, Description = "Otras Unidades" },
+                        new MeasureUnit { ID = 99, Description = "Bonificación" });
+            }
+
+            context.Cliente.Add(
+                new Client { ID = 1, BusinessName = "CONSUMIDOR FINAL", DocumentTypeID = 99, DocumentNumber = string.Empty, FiscalConditionID = 5, Address = string.Empty });
+
+            base.Seed(context);
         }
     }
 }
