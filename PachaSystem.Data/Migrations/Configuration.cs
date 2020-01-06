@@ -21,9 +21,9 @@ namespace PachaSystem.Data.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            if (context.ReceiptTypes.Count() != 4)
+            if (context.ConceptTypes.Count() != 4)
             {
-                context.ConceptType.AddOrUpdate(x => x.ID,
+                context.ConceptTypes.AddOrUpdate(x => x.ID,
                         new ConceptType { ID = 1, Name = "Productos" },
                         new ConceptType { ID = 2, Name = "Servicios" },
                         new ConceptType { ID = 3, Name = "Productos y Servicios" },
@@ -33,12 +33,12 @@ namespace PachaSystem.Data.Migrations
             if (context.Vat.Count() != 6)
             {
                 context.Vat.AddOrUpdate(x => x.ID,
-                    new Vat { ID = 1, Name = "No Gravado", Aliquot = 0M },
-                    new Vat { ID = 2, Name = "Exento", Aliquot = 0M },
-                    new Vat { ID = 3, Name = "0%", Aliquot = 0M },
-                    new Vat { ID = 4, Name = "10,5%", Aliquot = 10.5M },
-                    new Vat { ID = 5, Name = "21%", Aliquot = 21M },
-                    new Vat { ID = 6, Name = "27%", Aliquot = 27M });
+                    new Vat { ID = 1, Description = "No Gravado", Aliquot = 0M },
+                    new Vat { ID = 2, Description = "Exento", Aliquot = 0M },
+                    new Vat { ID = 3, Description = "0%", Aliquot = 0M },
+                    new Vat { ID = 4, Description = "10,5%", Aliquot = 10.5M },
+                    new Vat { ID = 5, Description = "21%", Aliquot = 21M },
+                    new Vat { ID = 6, Description = "27%", Aliquot = 27M });
             }
 
             if (context.TributeCategories.Count() != 5)
@@ -270,7 +270,7 @@ namespace PachaSystem.Data.Migrations
                         new MeasureUnit { ID = 99, Description = "Bonificación" });
             }
 
-            context.Cliente.Add(
+            context.Clients.Add(
                 new Client { ID = 1, BusinessName = "CONSUMIDOR FINAL", DocumentTypeID = 99, DocumentNumber = string.Empty, FiscalConditionID = 5, Address = string.Empty });
 
             base.Seed(context);

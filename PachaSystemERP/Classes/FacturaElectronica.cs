@@ -106,35 +106,49 @@ namespace PachaSystemERP.Classes
 
                 if (receipt.AssociatedReceipt != null)
                 {
-                    detalles.AgregarComprobanteAsociado(receipt.AssociatedReceipt.ReceiptTypeID, receipt.AssociatedReceipt.PointOfSale, receipt.AssociatedReceipt.ReceiptNumber, receipt.AssociatedReceipt.Cuit, receipt.AssociatedReceipt.ReceiptDate.ToString("yyyyMMdd"));
+                    ComprobanteAsociado comprobanteAsociado = new ComprobanteAsociado();
+                    comprobanteAsociado.TipoDeComprobante = receipt.AssociatedReceipt.ReceiptTypeID;
+                    comprobanteAsociado.PuntoDeVenta = receipt.AssociatedReceipt.PointOfSale;
+                    comprobanteAsociado.NumeroDeComprobante = long.Parse(receipt.AssociatedReceipt.ReceiptNumber);
+                    comprobanteAsociado.Cuit = receipt.AssociatedReceipt.Cuit.ToString();
+                    comprobanteAsociado.FechaDeComprobante = receipt.AssociatedReceipt.ReceiptDate.ToString("yyyyMMdd");
+                    detalles.ComprobantesAsociados.Add(comprobanteAsociado);
                 }
 
                 if (receipt.ReceiptDetails != null)
                 {
                     foreach (var item in receipt.ReceiptDetails)
                     {
-                        switch (item.Item.Vat.Name)
+                        AlicuotaIva iva = new AlicuotaIva();
+                        iva.ID = item.Item.VatID;
+                        iva.BaseImponible = (double)item.TaxBase;
+                        iva.Importe = (double)item.VatAmount;
+
+                        switch (item.Item.Vat.ID)
                         {
-                            case "No Gravado":
+                            case 1:
                                 receipt.NotTaxedNetAmount += item.VatAmount;
                                 break;
-                            case "Exento":
+                            case 2:
                                 receipt.ExemptAmount += item.VatAmount;
                                 break;
-                            case "IVA 0%":
-                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+                            case 3:
+                                detalles.AlicuotaIVA.Add(iva);
+
                                 receipt.VatTotalAmount += item.VatAmount;
                                 break;
-                            case "IVA 10,5%":
-                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+                            case 4:
+                                detalles.AlicuotaIVA.Add(iva);
+
                                 receipt.VatTotalAmount += item.VatAmount;
                                 break;
-                            case "IVA 21%":
-                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+                            case 5:
+                                detalles.AlicuotaIVA.Add(iva);
+
                                 receipt.VatTotalAmount += item.VatAmount;
                                 break;
-                            case "IVA 27%":
-                                detalles.AgregarIVA(item.Item.VatID, item.TaxBase, item.VatAmount);
+                            case 6:
+                                detalles.AlicuotaIVA.Add(iva);
                                 receipt.VatTotalAmount += item.VatAmount;
                                 break;
                             default:

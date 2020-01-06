@@ -21,7 +21,7 @@
         private FacturaElectronica _facturaElectronica;
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
-        private Receipt _comprobante;
+        private Receipt _receipt;
         private List<ProductDetailsView> _detalleProducto;
         private int _cantidadTotal;
         private decimal _importeTotal;
@@ -32,10 +32,10 @@
             _facturaElectronica = new FacturaElectronica();
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
-            _comprobante = new Receipt();
-            _comprobante.ReceiptNumber = _facturaElectronica.GetLastReceiptNumber(tipoComprobanteId) + 1;
-            _comprobante.PointOfSale = Configuracion.PuntoVenta;
-            _comprobante.ReceiptTypeID = tipoComprobanteId;
+            _receipt = new Receipt();
+            _receipt.ReceiptNumber = _facturaElectronica.GetLastReceiptNumber(tipoComprobanteId) + 1;
+            _receipt.PointOfSale = Configuracion.PuntoVenta;
+            _receipt.ReceiptTypeID = tipoComprobanteId;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -109,13 +109,14 @@
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
-            stringBuilder.Append(_comprobante.ReceiptNumber.ToString("D8"));
+            stringBuilder.Append(_receipt.ReceiptNumber.ToString("D8"));
             return stringBuilder.ToString();
         }
 
         public void AgregarProducto(string codigoProducto, int cantidad)
         {
             var query = _unitOfWork.Producto.Get(x => x.Code == codigoProducto);
+
             ProductDetailsView detalle = new ProductDetailsView();
             detalle.ProductID = query.ID;
             detalle.Code = query.Code;
@@ -137,7 +138,7 @@
             cliente.DocumentNumber = numeroDocumento;
             cliente.FiscalConditionID = tipoResponsableID;
             cliente.Address = domicilio;
-            _comprobante.Client = cliente;
+            _receipt.Client = cliente;
         }
 
         public Receipt GenerarComprobante(int conceptTypeId)
@@ -148,37 +149,37 @@
             }
             else
             {
-                _comprobante.ConceptTypeID = conceptTypeId;
-                _comprobante.ReceiptDate = DateTime.Now;
-                _comprobante.CurrencyType = _unitOfWork.TipoMoneda.Get(x => x.ID == 2);
-                _comprobante.CurrencyExchangeRate = 1;
-                _comprobante.NetAmount = _detalleProducto.Sum(x => x.TaxBase);
-                _comprobante.NotTaxedNetAmount = 0;
-                _comprobante.ExemptAmount = 0;
-                _comprobante.VatTotalAmount = _detalleProducto.Sum(x => x.VatAmount);
-                _comprobante.TotalAmount = _comprobante.NetAmount + _comprobante.NotTaxedNetAmount + _comprobante.ExemptAmount + _comprobante.VatTotalAmount + _comprobante.TributeTotalAmount;
+                _receipt.ConceptTypeID = conceptTypeId;
+                _receipt.ReceiptDate = DateTime.Now;
+                _receipt.CurrencyType = _unitOfWork.TipoMoneda.Get(x => x.ID == 2);
+                _receipt.CurrencyExchangeRate = 1;
+                _receipt.NetAmount = _detalleProducto.Sum(x => x.TaxBase);
+                _receipt.NotTaxedNetAmount = 0;
+                _receipt.ExemptAmount = 0;
+                _receipt.VatTotalAmount = _detalleProducto.Sum(x => x.VatAmount);
+                _receipt.TotalAmount = _receipt.NetAmount + _receipt.NotTaxedNetAmount + _receipt.ExemptAmount + _receipt.VatTotalAmount + _receipt.TributeTotalAmount;
 
                 foreach (var item in _detalleProducto)
                 {
                     ReceiptDetails details = new ReceiptDetails();
-                    details.ReceiptID = _comprobante.ID;
+                    details.ReceiptID = _receipt.ID;
                     details.Item = _unitOfWork.Producto.Get(x => x.ID == item.ProductID);
                     details.Quantity = item.Quantity;
                     details.VatAmount = item.VatAmount;
                     details.TaxBase = item.TaxBase;
                     details.Subtotal = item.Subtotal;
 
-                    _comprobante.ReceiptDetails.Add(details);
+                    _receipt.ReceiptDetails.Add(details);
                 }
 
-                if (_comprobante.Client == null)
+                if (_receipt.Client == null)
                 {
                     Client cliente = new Client();
                     cliente = _unitOfWork.Cliente.Get(x => x.BusinessName == "CONSUMIDOR FINAL");
-                    _comprobante.Client = cliente;
+                    _receipt.Client = cliente;
                 }
 
-                var response = _facturaElectronica.GenerateReceipt(_comprobante);
+                var response = _facturaElectronica.GenerateReceipt(_receipt);
 
                 if (response.CabeceraResponse.Resultado != "A")
                 {
@@ -187,16 +188,20 @@
                         item.Observaciones.ForEach(s => _logger.Debug(s.Mensaje));
                     }
 
-                    response.Errores.ForEach(s => _logger.Debug(s));
+                    if (response.Errores != null)
+                    {
+                        response.Errores.ForEach(s => _logger.Debug(s));
+                    }
+                    
                     return null;
                 }
                 else
                 {
-                    _comprobante.Cae = response.DetalleResponse.Select(x => x.CAE).First();
-                    _comprobante.CaeExpirationDate = DateTime.ParseExact(response.DetalleResponse.Select(x => x.FechaVencimientoCAE).First(), "yyyyMMdd", CultureInfo.CurrentCulture);
-                    _unitOfWork.Receipt.Add(_comprobante);
+                    _receipt.Cae = response.DetalleResponse.Select(x => x.CAE).First();
+                    _receipt.CaeExpirationDate = DateTime.ParseExact(response.DetalleResponse.Select(x => x.FechaVencimientoCAE).First(), "yyyyMMdd", CultureInfo.CurrentCulture);
+                    _unitOfWork.Receipt.Add(_receipt);
                     _unitOfWork.SaveChanges();
-                    return _comprobante;
+                    return _receipt;
                 }
             }
         }

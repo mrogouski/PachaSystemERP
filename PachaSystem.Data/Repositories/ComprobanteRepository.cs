@@ -38,7 +38,7 @@ namespace PachaSystem.Data.Repositories
                          //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                          //join t in _context.Tributo on dt.TributoID equals t.ID
                          //join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID
-                         join client in _context.Cliente on c.clientID equals client.ID
+                         join client in _context.Clients on c.ClientID equals client.ID
                          select c)
                          .Where(filtro)
                          .FirstOrDefault();

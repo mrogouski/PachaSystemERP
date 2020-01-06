@@ -37,12 +37,9 @@ namespace PachaSystemERP.Forms
 
         private void AddNewClient_Load(object sender, EventArgs e)
         {
-            if (Configuracion.ModoFacturacion == ModoFacturacion.FacturaElectronica)
-            {
-                cbTipoDeDocumento.DataSource = _unitOfWork.TipoDocumento.GetAll(x => x.FacturaElectronica == true);
-                cbTipoDeDocumento.ValueMember = "Id";
-                cbTipoDeDocumento.DisplayMember = "Descripcion";
-            }
+            cbTipoDeDocumento.DataSource = _unitOfWork.TipoDocumento.GetAll();
+            cbTipoDeDocumento.ValueMember = "Id";
+            cbTipoDeDocumento.DisplayMember = "Descripcion";
         }
 
         private void BtnAccept_Click(object sender, EventArgs e)

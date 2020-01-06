@@ -113,7 +113,7 @@ namespace PachaSystem.Data
             modelBuilder.Entity<TributeDetails>().HasKey(x => new { x.ReceiptID, x.TributeID });
 
             modelBuilder.Entity<Vat>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Vat>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<Vat>().Property(x => x.Description).IsRequired();
         }
     }
 }

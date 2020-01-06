@@ -15,6 +15,7 @@ namespace PachaSystem.Data.Models
         public Receipt()
         {
             ReceiptDetails = new HashSet<ReceiptDetails>();
+            TributeDetails = new HashSet<TributeDetails>();
         }
 
         public int ID { get; set; }
@@ -55,7 +56,7 @@ namespace PachaSystem.Data.Models
 
         public double CurrencyExchangeRate { get; set; }
 
-        public int clientID { get; set; }
+        public int ClientID { get; set; }
 
         public virtual Client Client { get; set; }
 

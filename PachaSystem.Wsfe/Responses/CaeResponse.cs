@@ -16,6 +16,14 @@ namespace PachaSystem.Wsfe.Responses
         private List<Evento> _eventos;
         private List<Error> _errores;
 
+        public CaeResponse()
+        {
+            _cabeceraResponse = new CaeCabeceraResponse();
+            _detalleResponse = new List<CaeDetalleResponse>();
+            _eventos = new List<Evento>();
+            _errores = new List<Error>();
+        }
+
         [DataMember(Name = "FeCabResp", Order = 0)]
         public CaeCabeceraResponse CabeceraResponse
         {

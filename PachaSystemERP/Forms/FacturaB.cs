@@ -74,22 +74,19 @@ namespace PachaSystemERP.Forms
 
         private void CargarComboBox()
         {
-            if (Configuracion.ModoFacturacion == ModoFacturacion.FacturaElectronica)
+            using (var context = new PachaSystemContext())
             {
-                using (var context = new PachaSystemContext())
+                using (var unitOfWork = new UnitOfWork(context))
                 {
-                    using (var unitOfWork = new UnitOfWork(context))
-                    {
-                        cbTipoDocumento.DataSource = unitOfWork.TipoDocumento.GetAll(x => x.FacturaElectronica == true);
-                        cbTipoDocumento.ValueMember = "ID";
-                        cbTipoDocumento.DisplayMember = "Descripcion";
-                        cbTipoDocumento.SelectedValue = 99;
+                    cbTipoDocumento.DataSource = unitOfWork.TipoDocumento.GetAll();
+                    cbTipoDocumento.ValueMember = "ID";
+                    cbTipoDocumento.DisplayMember = "Descripcion";
+                    cbTipoDocumento.SelectedValue = 99;
 
-                        cbTipoResponsabilidadCliente.DataSource = unitOfWork.TipoResponsable.GetAll(x => x.FacturaElectronica == true);
-                        cbTipoResponsabilidadCliente.ValueMember = "ID";
-                        cbTipoResponsabilidadCliente.DisplayMember = "Descripcion";
-                        cbTipoResponsabilidadCliente.SelectedValue = 5;
-                    }
+                    cbTipoResponsabilidadCliente.DataSource = unitOfWork.TipoResponsable.GetAll();
+                    cbTipoResponsabilidadCliente.ValueMember = "ID";
+                    cbTipoResponsabilidadCliente.DisplayMember = "Descripcion";
+                    cbTipoResponsabilidadCliente.SelectedValue = 5;
                 }
             }
         }

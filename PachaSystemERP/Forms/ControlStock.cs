@@ -22,8 +22,6 @@ namespace PachaSystemERP.Forms
     public partial class ControlDeStock : Form
     {
         private PachaSystemContext _context;
-        private ErrorProvider _errorProvider;
-        private CueText _cueText;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ControlDeStock"/>.
@@ -32,13 +30,10 @@ namespace PachaSystemERP.Forms
         {
             InitializeComponent();
             _context = new PachaSystemContext();
-            _errorProvider = new ErrorProvider();
         }
 
         private void Inicializar()
         {
-            _cueText = new CueText();
-            _cueText.SetCueText(TxtBuscar, "Ingrese el nombre o código del producto...");
             CargarArticulos();
         }
 
@@ -49,38 +44,41 @@ namespace PachaSystemERP.Forms
             _context.ItemCategories.Load();
             _context.MeasureUnits.Load();
 
-            bindingSource= new BindingSource();
-
             bindingSource.DataSource = _context.Items.Local.ToBindingList();
 
             DgvArticulos.DataSource = bindingSource;
             DgvArticulos.Columns["ID"].Visible = false;
-            DgvArticulos.Columns["CategoriaProductoID"].Visible = false;
-            DgvArticulos.Columns["IvaID"].Visible = false;
-            DgvArticulos.Columns["CategoriaProducto"].Visible = false;
-            DgvArticulos.Columns["Iva"].Visible = false;
-            DgvArticulos.Columns["DetalleComprobante"].Visible = false;
-            DgvArticulos.Columns["FechaBaja"].Visible = false;
+            //DgvArticulos.Columns["ItemCategoryID"].Visible = false;
+            //DgvArticulos.Columns["IvaID"].Visible = false;
+            //DgvArticulos.Columns["CategoriaProducto"].Visible = false;
+            //DgvArticulos.Columns["Iva"].Visible = false;
+            //DgvArticulos.Columns["DetalleComprobante"].Visible = false;
+            //DgvArticulos.Columns["FechaBaja"].Visible = false;
 
             DataGridViewComboBoxColumn ivaColumn = new DataGridViewComboBoxColumn();
-            ivaColumn.DataPropertyName = "IvaID";
+            ivaColumn.DataPropertyName = "VatID";
             ivaColumn.Name = "Alicuota IVA";
             ivaColumn.DataSource = _context.Vat.Local.ToBindingList();
-            ivaColumn.DisplayMember = "Descripcion";
+            ivaColumn.DisplayMember = "Description";
             ivaColumn.ValueMember = "ID";
             DgvArticulos.Columns.Add(ivaColumn);
 
             DataGridViewComboBoxColumn categoryColumn = new DataGridViewComboBoxColumn();
-            categoryColumn.DataPropertyName = "CategoriaProductoID";
+            categoryColumn.DataPropertyName = "ItemCategoryID";
             categoryColumn.Name = "Categoría";
             categoryColumn.DataSource = _context.ItemCategories.Local.ToBindingList();
-            categoryColumn.DisplayMember = "Descripcion";
+            categoryColumn.DisplayMember = "Name";
             categoryColumn.ValueMember = "ID";
             DgvArticulos.Columns.Add(categoryColumn);
         }
 
         private void ControlDeStock_Load(object sender, EventArgs e)
         {
+            using (var cueText = new CueText())
+            {
+                cueText.SetCueText(TxtBuscar, "Ingrese el nombre o código del producto...");
+            }
+
             Inicializar();
         }
 
@@ -93,7 +91,7 @@ namespace PachaSystemERP.Forms
             }
             catch (DbEntityValidationException ex)
             {
-                _errorProvider.SetError(DgvArticulos, ex.EntityValidationErrors.ToString());
+                errorProvider.SetError(DgvArticulos, ex.EntityValidationErrors.ToString());
                 throw;
             }
         }

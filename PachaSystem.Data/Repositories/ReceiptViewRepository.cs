@@ -22,7 +22,7 @@ namespace PachaSystem.Data.Repositories
                              //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                              //join t in _context.Tributo on dt.TributoID equals t.ID
                              //join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID
-                             join client in context.Cliente on c.clientID equals client.ID
+                             join client in context.Clients on c.ClientID equals client.ID
                              where c.ID == id
                              select new ReceiptView
                              {
@@ -53,7 +53,7 @@ namespace PachaSystem.Data.Repositories
                                  ProductCode = p.Code,
                                  ProductName = p.Description,
                                  UnitPrice = p.UnitPrice,
-                                 VatType = i.Name,
+                                 VatType = i.Description,
                                  VatAliquot = i.Aliquot
                              }).ToList();
                 return query;

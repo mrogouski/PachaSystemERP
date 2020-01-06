@@ -34,6 +34,14 @@ namespace PachaSystem.Wsfe.Requests
         private List<Opcional> _opcionales;
         private List<Comprador> _compradores;
 
+        public DetalleRequest()
+        {
+            _comprobantesAsociados = new List<ComprobanteAsociado>();
+            _tributo = new List<Tributo>();
+            _opcionales = new List<Opcional>();
+            _compradores = new List<Comprador>();
+        }
+
         [DataMember(IsRequired = true, Name = "Concepto", Order = 0)]
         public int Concepto
         {
@@ -340,63 +348,6 @@ namespace PachaSystem.Wsfe.Requests
             {
                 _compradores = value;
             }
-        }
-
-        public void AgregarIVA(int id, decimal baseImponible, decimal importe)
-        {
-            if (_iva == null)
-            {
-                _iva = new List<AlicuotaIva>();
-            }
-
-            var iva = new AlicuotaIva();
-            iva.ID = id;
-            iva.BaseImponible = decimal.ToDouble(baseImponible);
-            iva.Importe = decimal.ToDouble(importe);
-            _iva.Add(iva);
-        }
-
-        public void AgregarTributo(short id, string descripcion, decimal alicuota, decimal baseImponible, decimal importe)
-        {
-            if (_tributo == null)
-            {
-                _tributo = new List<Tributo>();
-            }
-
-            var tributo = new Tributo();
-            tributo.ID = id;
-            tributo.Descripcion = descripcion;
-            tributo.Alicuota = decimal.ToDouble(alicuota);
-            tributo.BaseImponible = decimal.ToDouble(baseImponible);
-            tributo.Importe = decimal.ToDouble(importe);
-            _tributo.Add(tributo);
-        }
-
-        public void AgregarComprador(int tipoDocumento, string numeroDocumento, double porcentajeTitularidad)
-        {
-            if (_compradores == null)
-            {
-                _compradores = new List<Comprador>();
-            }
-
-            var comprador = new Comprador();
-            comprador.TipoDeDocumento = tipoDocumento;
-            comprador.NumeroDeDocumento = numeroDocumento;
-            comprador.PorcentajeTitularidad = porcentajeTitularidad;
-            _compradores.Add(comprador);
-        }
-
-        public void AgregarDatoOpcional(string id, string valor)
-        {
-            if (_opcionales == null)
-            {
-                _opcionales = new List<Opcional>();
-            }
-
-            var opcional = new Opcional();
-            opcional.ID = id;
-            opcional.Valor = valor;
-            _opcionales.Add(opcional);
         }
     }
 }
