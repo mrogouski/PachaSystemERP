@@ -23,9 +23,9 @@
 
     public partial class ReceiptViewer : Form
     {
-        private Receipt _receipt;
+        private Invoice _receipt;
 
-        public ReceiptViewer(Receipt receipt)
+        public ReceiptViewer(Invoice receipt)
         {
             _receipt = receipt;
             InitializeComponent();
@@ -65,7 +65,7 @@
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(Settings.Default.CUIT);
-            builder.Append(_receipt.ReceiptTypeID.ToString("D3"));
+            builder.Append(_receipt.InvoiceTypeID.ToString("D3"));
             builder.Append(_receipt.PointOfSale.ToString("D5"));
             builder.Append(_receipt.Cae);
             builder.Append(_receipt.CaeExpirationDate.ToString("yyyyMMdd"));

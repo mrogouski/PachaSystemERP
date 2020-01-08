@@ -8,7 +8,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class ProductDetailsView : INotifyPropertyChanged
+    public class ItemDetailsView : INotifyPropertyChanged
     {
         private int _productID;
         private string _code;

@@ -19,7 +19,7 @@ namespace PachaSystemERP.Forms
 
     public partial class FacturaB : Form
     {
-        private ReceiptGenerator _receiptGenerator;
+        private ReceiptBuilder _receiptGenerator;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="FacturaB"/>.
@@ -50,7 +50,7 @@ namespace PachaSystemERP.Forms
                 using (var unitOfWork = new UnitOfWork(context))
                 {
                     var receiptType = unitOfWork.TipoComprobante.Get(x => x.Description == "FACTURA B");
-                    _receiptGenerator = new ReceiptGenerator(receiptType.ID);
+                    _receiptGenerator = new ReceiptBuilder(receiptType.ID);
                 }
             }
 
@@ -183,7 +183,7 @@ namespace PachaSystemERP.Forms
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            _receiptGenerator.AgregarProducto(txtCodigo.Text, (int)NudCantidad.Value);
+            _receiptGenerator.AddItem(txtCodigo.Text, (int)NudCantidad.Value);
             bindingSource.ResetBindings(false);
             txtCodigo.Clear();
             txtDescripcion.Clear();

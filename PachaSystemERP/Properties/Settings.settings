@@ -34,5 +34,23 @@
     <Setting Name="PuntoVenta" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="TestingDN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"cn = wsaahomo,o = afip,c = ar,serialNumber = CUIT 33693450239"</Value>
+    </Setting>
+    <Setting Name="AccessTicketGenerationTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AccessTicketExpirationTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WebServiceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wsfe</Value>
+    </Setting>
+    <Setting Name="ProductionDN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"cn = wsaa,o = afip,c = ar,serialNumber = CUIT 33693450239"</Value>
+    </Setting>
+    <Setting Name="IsTestingMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

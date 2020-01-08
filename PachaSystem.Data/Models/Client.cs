@@ -20,7 +20,7 @@
 
         public string Address { get; set; }
 
-        public virtual ICollection<Receipt> Receipts { get; set; }
+        public virtual ICollection<Invoice> Receipts { get; set; }
 
         public virtual DocumentType DocumentType { get; set; }
 

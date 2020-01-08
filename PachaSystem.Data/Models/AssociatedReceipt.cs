@@ -24,6 +24,6 @@
 
         public virtual ReceiptType ReceiptType { get; set; }
 
-        public virtual Receipt Receipt { get; set; }
+        public virtual Invoice Receipt { get; set; }
     }
 }

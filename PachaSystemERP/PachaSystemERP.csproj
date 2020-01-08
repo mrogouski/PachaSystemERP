@@ -84,12 +84,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CertificadoX509.cs" />
     <Compile Include="Classes\Configuracion.cs" />
-    <Compile Include="Classes\FacturaElectronica.cs" />
-    <Compile Include="Classes\GeneradorComprobante.cs" />
-    <Compile Include="Classes\ProductDetailsView.cs" />
-    <Compile Include="Classes\TiqueAcceso.cs" />
+    <Compile Include="Classes\ElectronicInvoicing.cs" />
+    <Compile Include="Classes\InvoiceBuilder.cs" />
+    <Compile Include="Classes\ItemDetailsView.cs" />
+    <Compile Include="Classes\RequestAccessTicket.cs" />
     <Compile Include="Controls\CueText.cs">
       <SubType>Component</SubType>
     </Compile>

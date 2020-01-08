@@ -27,7 +27,7 @@ namespace PachaSystem.Data.Repositories
                              select new ReceiptView
                              {
                                  ReceiptID = c.ID,
-                                 ReceiptTypeID = c.ReceiptTypeID,
+                                 ReceiptTypeID = c.InvoiceTypeID,
                                  PointOfSale = c.PointOfSale,
                                  ReceiptNumber = c.ReceiptNumber,
                                  Cae = c.Cae,

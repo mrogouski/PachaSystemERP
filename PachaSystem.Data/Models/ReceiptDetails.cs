@@ -24,7 +24,7 @@ namespace PachaSystem.Data.Models
 
         public decimal VatAmount { get; set; }
 
-        public virtual Receipt Receipt { get; set; }
+        public virtual Invoice Receipt { get; set; }
 
         public Item Item { get; set; }
     }

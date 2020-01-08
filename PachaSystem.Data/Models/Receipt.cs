@@ -10,9 +10,9 @@ namespace PachaSystem.Data.Models
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Receipt
+    public class Invoice
     {
-        public Receipt()
+        public Invoice()
         {
             ReceiptDetails = new HashSet<ReceiptDetails>();
             TributeDetails = new HashSet<TributeDetails>();
@@ -20,7 +20,7 @@ namespace PachaSystem.Data.Models
 
         public int ID { get; set; }
 
-        public int ReceiptTypeID { get; set; }
+        public int InvoiceTypeID { get; set; }
 
         public int ConceptTypeID { get; set; }
 

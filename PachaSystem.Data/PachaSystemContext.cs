@@ -48,7 +48,7 @@ namespace PachaSystem.Data
 
         public DbSet<MeasureUnit> MeasureUnits { get; set; }
 
-        public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<Invoice> Receipts { get; set; }
 
         public DbSet<ReceiptDetails> ReceiptDetails { get; set; }
 

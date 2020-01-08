@@ -23,6 +23,6 @@ namespace PachaSystem.Wsaa
         /// Obtiene o establece las credenciales obtenidas del Web Service.
         /// </summary>
         [MessageBodyMember(Name = "loginCmsReturn", Namespace = "http://wsaa.view.sua.dvadac.desein.afip.gov", Order =0)]
-        public string Credenciales { get; set; }
+        public string Credentials { get; set; }
     }
 }

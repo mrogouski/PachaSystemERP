@@ -15,7 +15,7 @@ namespace PachaSystem.Data.Repositories
     using PachaSystem.Data.Models;
     using PachaSystem.Data.Views;
 
-    public class ReceiptRepository : IRepository<Receipt>
+    public class ReceiptRepository : IRepository<Invoice>
     {
         private PachaSystemContext _context;
 
@@ -24,12 +24,12 @@ namespace PachaSystem.Data.Repositories
             _context = context;
         }
 
-        public void Add(Receipt entidad)
+        public void Add(Invoice entidad)
         {
             _context.Receipts.Add(entidad);
         }
 
-        public Receipt Get(Expression<Func<Receipt, bool>> filtro)
+        public Invoice Get(Expression<Func<Invoice, bool>> filtro)
         {
             var query = (from c in _context.Receipts
                          join dc in _context.ReceiptDetails on c.ID equals dc.ReceiptID
@@ -45,12 +45,12 @@ namespace PachaSystem.Data.Repositories
             return query;
         }
 
-        public IEnumerable<Receipt> GetAll(Expression<Func<Receipt, bool>> filtro)
+        public IEnumerable<Invoice> GetAll(Expression<Func<Invoice, bool>> filtro)
         {
             return _context.Receipts.Where(filtro).ToList();
         }
 
-        public void Remove(Receipt entidad)
+        public void Remove(Invoice entidad)
         {
             _context.Receipts.Remove(entidad);
         }

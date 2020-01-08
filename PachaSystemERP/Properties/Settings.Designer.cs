@@ -105,5 +105,75 @@ namespace PachaSystemERP.Properties {
                 return ((int)(this["PuntoVenta"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"cn = wsaahomo,o = afip,c = ar,serialNumber = CUIT 33693450239\"")]
+        public string TestingDN {
+            get {
+                return ((string)(this["TestingDN"]));
+            }
+            set {
+                this["TestingDN"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime AccessTicketGenerationTime {
+            get {
+                return ((global::System.DateTime)(this["AccessTicketGenerationTime"]));
+            }
+            set {
+                this["AccessTicketGenerationTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime AccessTicketExpirationTime {
+            get {
+                return ((global::System.DateTime)(this["AccessTicketExpirationTime"]));
+            }
+            set {
+                this["AccessTicketExpirationTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("wsfe")]
+        public string WebServiceName {
+            get {
+                return ((string)(this["WebServiceName"]));
+            }
+            set {
+                this["WebServiceName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"cn = wsaa,o = afip,c = ar,serialNumber = CUIT 33693450239\"")]
+        public string ProductionDN {
+            get {
+                return ((string)(this["ProductionDN"]));
+            }
+            set {
+                this["ProductionDN"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsTestingMode {
+            get {
+                return ((bool)(this["IsTestingMode"]));
+            }
+            set {
+                this["IsTestingMode"] = value;
+            }
+        }
     }
 }
