@@ -6,6 +6,7 @@ namespace PachaSystemERP.Classes
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Security;
@@ -14,6 +15,9 @@ namespace PachaSystemERP.Classes
     using System.Threading.Tasks;
     using System.Xml;
     using NLog;
+    using PachaSystem.Data;
+    using PachaSystem.Data.Helpers;
+    using PachaSystem.Data.Models;
     using PachaSystem.Wsaa;
     using PachaSystem.Wsfe;
     using PachaSystem.Wsfe.Models;
@@ -28,14 +32,16 @@ namespace PachaSystemERP.Classes
         private string _sign;
         private WsaaClient _wsaaClient;
         private WsfeClient _wsfeClient;
+        private PachaSystemContext _context;
+        private UnitOfWork _unitOfWork;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="ElectronicInvoicing"/>.
         /// </summary>
         public ElectronicInvoicing()
         {
-            _wsaaClient = new WsaaClient();
-            _wsfeClient = new WsfeClient();
+            _context = new PachaSystemContext();
+            _unitOfWork = new UnitOfWork(_context);
 
             if (Settings.Default.IsTestingMode == true)
             {
@@ -70,13 +76,31 @@ namespace PachaSystemERP.Classes
         /// </summary>
         /// <param name="receipt"></param>
         /// <returns></returns>
-        public CaeResponse GenerateInvoice(CaeRequest request)
+        public Invoice GenerateInvoice(InvoiceBuilder builder)
         {
             var credentials = GetCredentials();
+            var invoice = builder.Build();
+            var request = GenerateRequest(invoice);
 
             var response = _wsfeClient.SolicitarCae(credentials, request);
 
-            if (response.Errores != null)
+            if (response.CabeceraResponse != null && response.CabeceraResponse.Resultado == "A")
+            {
+                foreach (var item in response.DetalleResponse)
+                {
+                    invoice.Cae = item.CAE;
+                    invoice.CaeExpirationDate = DateTime.ParseExact(item.FechaVencimientoCAE, "yyyyMMdd", CultureInfo.CurrentCulture);
+                    using (var context = new PachaSystemContext())
+                    {
+                        using (var unitOfWork = new UnitOfWork(context))
+                        {
+                            unitOfWork.Invoices.Add(invoice);
+                            unitOfWork.SaveChanges();
+                        }
+                    }
+                }
+            }
+            else if (response.Errores != null)
             {
                 foreach (var item in response.Errores)
                 {
@@ -91,7 +115,7 @@ namespace PachaSystemERP.Classes
                 }
             }
 
-            return response;
+            return invoice;
         }
 
         public TipoDeComprobanteResponse GetReceiptTypes()
@@ -129,7 +153,7 @@ namespace PachaSystemERP.Classes
         public int GetLastReceiptNumber(int tipoComprobante)
         {
             var credentials = GetCredentials();
-            var puntoDeVenta = Configuracion.PuntoVenta;
+            var puntoDeVenta = Settings.Default.PointOfSale;
             var response = _wsfeClient.ObtenerUltimoComprobante(credentials, puntoDeVenta, tipoComprobante);
 
             return response.NumeroDeComprobante;
@@ -216,6 +240,97 @@ namespace PachaSystemERP.Classes
             {
                 throw;
             }
+        }
+
+        private CaeRequest GenerateRequest(Invoice invoice)
+        {
+            var request = new CaeRequest();
+
+            request.CabeceraRequest.CantidadDeRegistros = 1;
+            request.CabeceraRequest.PuntoDeVenta = Settings.Default.PointOfSale;
+            request.CabeceraRequest.TipoDeComprobante = invoice.InvoiceTypeID;
+
+            var invoiceDetails = new CaeDetalleRequest();
+
+            if (invoice.AssociatedReceipt != null)
+            {
+                ComprobanteAsociado comprobanteAsociado = new ComprobanteAsociado();
+                comprobanteAsociado.TipoDeComprobante = invoice.AssociatedReceipt.InvoiceTypeID;
+                comprobanteAsociado.PuntoDeVenta = invoice.AssociatedReceipt.PointOfSale;
+                comprobanteAsociado.NumeroDeComprobante = long.Parse(invoice.AssociatedReceipt.InvoiceNumber);
+                comprobanteAsociado.Cuit = invoice.AssociatedReceipt.Cuit.ToString();
+                comprobanteAsociado.FechaDeComprobante = invoice.AssociatedReceipt.InvoiceDate.ToString("yyyyMMdd");
+                invoiceDetails.ComprobantesAsociados.Add(comprobanteAsociado);
+            }
+
+            if (invoice.InvoiceDetails != null)
+            {
+                foreach (var item in invoice.InvoiceDetails)
+                {
+                    AlicuotaIva iva = new AlicuotaIva();
+                    iva.ID = item.Item.VatID;
+                    iva.BaseImponible = (double)item.TaxBase;
+                    iva.Importe = (double)item.VatAmount;
+
+                    switch (item.Item.Vat.ID)
+                    {
+                        case 1:
+                            invoice.NotTaxedNetAmount += item.VatAmount;
+                            break;
+                        case 2:
+                            invoice.ExemptAmount += item.VatAmount;
+                            break;
+                        case 3:
+                            invoiceDetails.AlicuotaIVA.Add(iva);
+
+                            invoice.VatTotalAmount += item.VatAmount;
+                            break;
+                        case 4:
+                            invoiceDetails.AlicuotaIVA.Add(iva);
+
+                            invoice.VatTotalAmount += item.VatAmount;
+                            break;
+                        case 5:
+                            invoiceDetails.AlicuotaIVA.Add(iva);
+
+                            invoice.VatTotalAmount += item.VatAmount;
+                            break;
+                        case 6:
+                            invoiceDetails.AlicuotaIVA.Add(iva);
+                            invoice.VatTotalAmount += item.VatAmount;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            if (invoice.Client.BusinessName.Equals("CONSUMIDOR FINAL"))
+            {
+                invoiceDetails.TipoDeDocumento = invoice.Client.DocumentTypeID;
+            }
+            else
+            {
+                invoiceDetails.TipoDeDocumento = invoice.Client.DocumentTypeID;
+                invoiceDetails.NumeroDeDocumento = long.Parse(invoice.Client.DocumentNumber);
+            }
+
+            invoiceDetails.Concepto = invoice.ConceptTypeID;
+            invoiceDetails.ComprobanteDesde = invoice.InvoiceNumber;
+            invoiceDetails.ComprobanteHasta = invoice.InvoiceNumber;
+            invoiceDetails.FechaDeComprobante = invoice.ReceiptDate.ToString("yyyyMMdd");
+            invoiceDetails.ImporteTotal = decimal.ToDouble(invoice.TotalAmount);
+            invoiceDetails.ImporteNetoNoGravado = decimal.ToDouble(invoice.NotTaxedNetAmount);
+            invoiceDetails.ImporteNeto = decimal.ToDouble(invoice.NetAmount);
+            invoiceDetails.ImporteExento = decimal.ToDouble(invoice.ExemptAmount);
+            invoiceDetails.ImporteIVA = decimal.ToDouble(invoice.VatTotalAmount);
+            invoiceDetails.ImporteTributo = decimal.ToDouble(invoice.TributeTotalAmount);
+            invoiceDetails.CodigoMoneda = _unitOfWork.CurrencyTypes.Get(x => x.ID == invoice.CurrencyType.ID).Code;
+            invoiceDetails.MonedaCotizacion = invoice.CurrencyExchangeRate;
+
+            request.DetalleRequest.Add(invoiceDetails);
+
+            return request;
         }
     }
 }

@@ -37,9 +37,9 @@ namespace PachaSystemERP.Forms
 
         private void AddNewClient_Load(object sender, EventArgs e)
         {
-            cbTipoDeDocumento.DataSource = _unitOfWork.TipoDocumento.GetAll();
-            cbTipoDeDocumento.ValueMember = "Id";
-            cbTipoDeDocumento.DisplayMember = "Descripcion";
+            CbDocumentType.DataSource = _unitOfWork.DocumentTypes.GetAll();
+            CbDocumentType.ValueMember = "Id";
+            CbDocumentType.DisplayMember = "Descripcion";
         }
 
         private void BtnAccept_Click(object sender, EventArgs e)
@@ -50,6 +50,23 @@ namespace PachaSystemERP.Forms
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private bool ValidateEntry()
+        {
+            if (string.IsNullOrWhiteSpace(TxtBusinessName.Text)
+                && string.IsNullOrWhiteSpace(TxtDocumentNumber.Text)
+                && string.IsNullOrWhiteSpace(TxtAddress.Text)
+                && CbDocumentType.SelectedValue.Equals(99)
+                && CbFiscalCondition.SelectedValue.Equals(5))
+            {
+                return false;
+            }
+            else
+            {
+                errorProvider.Clear();
+                return true;
+            }
         }
     }
 }

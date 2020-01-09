@@ -6,24 +6,24 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class AssociatedReceipt
+    public class AssociatedInvoice
     {
         public int ID { get; set; }
 
-        public int ReceiptTypeID { get; set; }
+        public int InvoiceTypeID { get; set; }
 
         public int PointOfSale { get; set; }
 
-        public string ReceiptNumber { get; set; }
+        public long InvoiceNumber { get; set; }
 
         public long Cuit { get; set; }
 
-        public DateTime ReceiptDate { get; set; }
+        public DateTime InvoiceDate { get; set; }
 
-        public int ReceiptID { get; set; }
+        public int InvoiceID { get; set; }
 
-        public virtual ReceiptType ReceiptType { get; set; }
+        public virtual InvoiceType InvoiceType { get; set; }
 
-        public virtual Invoice Receipt { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }

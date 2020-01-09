@@ -16,7 +16,7 @@ namespace PachaSystem.Data.Repositories
             using (var context = new PachaSystemContext())
             {
                 var query = (from c in context.Receipts
-                             join dc in context.ReceiptDetails on c.ID equals dc.ReceiptID
+                             join dc in context.ReceiptDetails on c.ID equals dc.InvoiceID
                              join p in context.Items on dc.ItemID equals p.ID
                              join i in context.Vat on p.VatID equals i.ID
                              //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
@@ -29,7 +29,7 @@ namespace PachaSystem.Data.Repositories
                                  ReceiptID = c.ID,
                                  ReceiptTypeID = c.InvoiceTypeID,
                                  PointOfSale = c.PointOfSale,
-                                 ReceiptNumber = c.ReceiptNumber,
+                                 ReceiptNumber = c.InvoiceNumber,
                                  Cae = c.Cae,
                                  CaeExpirationDate = c.CaeExpirationDate,
                                  ReceiptDate = c.ReceiptDate,

@@ -14,7 +14,7 @@ namespace PachaSystem.Data.Models
     {
         public Invoice()
         {
-            ReceiptDetails = new HashSet<ReceiptDetails>();
+            InvoiceDetails = new HashSet<InvoiceDetails>();
             TributeDetails = new HashSet<TributeDetails>();
         }
 
@@ -26,7 +26,7 @@ namespace PachaSystem.Data.Models
 
         public int PointOfSale { get; set; }
 
-        public int ReceiptNumber { get; set; }
+        public int InvoiceNumber { get; set; }
 
         public string Cae { get; set; }
 
@@ -60,13 +60,13 @@ namespace PachaSystem.Data.Models
 
         public virtual Client Client { get; set; }
 
-        public virtual AssociatedReceipt AssociatedReceipt { get; set; }
+        public virtual AssociatedInvoice AssociatedReceipt { get; set; }
 
-        public virtual ICollection<ReceiptDetails> ReceiptDetails { get; set; }
+        public virtual ICollection<InvoiceDetails> InvoiceDetails { get; set; }
 
         public virtual ConceptType ConceptType { get; set; }
 
-        public virtual ReceiptType ReceiptType { get; set; }
+        public virtual InvoiceType InvoiceType { get; set; }
 
         public virtual CurrencyType CurrencyType { get; set; }
 

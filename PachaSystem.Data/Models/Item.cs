@@ -29,6 +29,6 @@
 
         public virtual ItemCategory Category { get; set; }
 
-        public virtual ICollection<ReceiptDetails> ReceiptDetails { get; set; }
+        public virtual ICollection<InvoiceDetails> ReceiptDetails { get; set; }
     }
 }

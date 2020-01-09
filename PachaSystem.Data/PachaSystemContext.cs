@@ -30,7 +30,7 @@ namespace PachaSystem.Data
             //Database.Log = s => logger.Debug(s);
         }
 
-        public DbSet<AssociatedReceipt> AssociatedReceipts { get; set; }
+        public DbSet<AssociatedInvoice> AssociatedReceipts { get; set; }
 
         public DbSet<Client> Clients { get; set; }
 
@@ -50,9 +50,9 @@ namespace PachaSystem.Data
 
         public DbSet<Invoice> Receipts { get; set; }
 
-        public DbSet<ReceiptDetails> ReceiptDetails { get; set; }
+        public DbSet<InvoiceDetails> ReceiptDetails { get; set; }
 
-        public DbSet<ReceiptType> ReceiptTypes { get; set; }
+        public DbSet<InvoiceType> ReceiptTypes { get; set; }
 
         public DbSet<Tribute> Tributes { get; set; }
 
@@ -69,11 +69,11 @@ namespace PachaSystem.Data
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Add(new DecimalPropertyConvention(19, 2));
 
-            modelBuilder.Entity<AssociatedReceipt>()
+            modelBuilder.Entity<AssociatedInvoice>()
                 .HasKey(x => x.ID)
-                .HasRequired(x => x.Receipt)
+                .HasRequired(x => x.Invoice)
                 .WithOptional(x => x.AssociatedReceipt);
-            modelBuilder.Entity<AssociatedReceipt>().Property(x => x.ReceiptNumber).IsRequired();
+            modelBuilder.Entity<AssociatedInvoice>().Property(x => x.InvoiceNumber).IsRequired();
 
             modelBuilder.Entity<Client>().Property(x => x.BusinessName).IsRequired();
             modelBuilder.Entity<Client>().Property(x => x.DocumentNumber).IsRequired();
@@ -100,10 +100,10 @@ namespace PachaSystem.Data
             modelBuilder.Entity<MeasureUnit>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<MeasureUnit>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<ReceiptDetails>().HasKey(x => new { x.ReceiptID, x.ItemID });
+            modelBuilder.Entity<InvoiceDetails>().HasKey(x => new { x.InvoiceID, x.ItemID });
 
-            modelBuilder.Entity<ReceiptType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<ReceiptType>().Property(x => x.Description).IsRequired();
+            modelBuilder.Entity<InvoiceType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<InvoiceType>().Property(x => x.Description).IsRequired();
 
             modelBuilder.Entity<Tribute>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Tribute>().Property(x => x.Description).IsRequired();

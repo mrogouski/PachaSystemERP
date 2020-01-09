@@ -14,31 +14,31 @@ namespace PachaSystem.Data.Helpers
 
     public interface IUnitOfWork : IDisposable
     {
-        Repository<ItemCategory> CategoriaProducto { get; }
+        Repository<ItemCategory> ItemCategories { get; }
 
-        Repository<TributeCategory> CategoriaTributo { get; }
+        Repository<TributeCategory> TributeCategories { get; }
 
-        Repository<Client> Cliente { get; }
+        Repository<Client> Clients { get; }
 
-        ReceiptRepository Receipt { get; }
+        ReceiptRepository Invoices { get; }
 
-        Repository<ReceiptDetails> DetalleComprobante { get; }
+        Repository<InvoiceDetails> InvoiceDetails { get; }
 
-        Repository<Item> Producto { get; }
+        Repository<Item> Items { get; }
 
-        Repository<ReceiptType> TipoComprobante { get; }
+        Repository<InvoiceType> InvoiceTypes { get; }
 
-        Repository<ConceptType> TipoConcepto { get; }
+        Repository<ConceptType> ConceptTypes { get; }
 
-        Repository<Vat> TipoCondicionIva { get; }
+        Repository<Vat> Vat { get; }
 
-        Repository<DocumentType> TipoDocumento { get; }
+        Repository<DocumentType> DocumentTypes { get; }
 
-        Repository<CurrencyType> TipoMoneda { get; }
+        Repository<CurrencyType> CurrencyTypes { get; }
 
-        Repository<FiscalConditionType> TipoResponsable { get; }
+        Repository<FiscalConditionType> FiscalConditionTypes { get; }
 
-        Repository<Tribute> TipoTributo { get; }
+        Repository<Tribute> Tributes { get; }
 
         ReceiptViewRepository ReceiptView { get; }
 

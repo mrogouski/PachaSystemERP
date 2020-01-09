@@ -10,9 +10,9 @@ namespace PachaSystem.Data.Models
     using System.Text;
     using System.Threading.Tasks;
 
-    public class ReceiptDetails
+    public class InvoiceDetails
     {
-        public int ReceiptID { get; set; }
+        public int InvoiceID { get; set; }
 
         public int ItemID { get; set; }
 
@@ -24,7 +24,7 @@ namespace PachaSystem.Data.Models
 
         public decimal VatAmount { get; set; }
 
-        public virtual Invoice Receipt { get; set; }
+        public virtual Invoice Invoice { get; set; }
 
         public Item Item { get; set; }
     }

@@ -73,9 +73,9 @@ namespace PachaSystemERP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20247825607")]
-        public string CUIT {
+        public long CUIT {
             get {
-                return ((string)(this["CUIT"]));
+                return ((long)(this["CUIT"]));
             }
         }
         
@@ -173,6 +173,15 @@ namespace PachaSystemERP.Properties {
             }
             set {
                 this["IsTestingMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int PointOfSale {
+            get {
+                return ((int)(this["PointOfSale"]));
             }
         }
     }

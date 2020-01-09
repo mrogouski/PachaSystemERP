@@ -22,7 +22,7 @@
     <Setting Name="CondicionFiscal" Type="System.String" Scope="Application">
       <Value Profile="(Default)">IVA Responsable Inscripto</Value>
     </Setting>
-    <Setting Name="CUIT" Type="System.String" Scope="Application">
+    <Setting Name="CUIT" Type="System.Int64" Scope="Application">
       <Value Profile="(Default)">20247825607</Value>
     </Setting>
     <Setting Name="IngresosBrutos" Type="System.String" Scope="Application">
@@ -51,6 +51,9 @@
     </Setting>
     <Setting Name="IsTestingMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PointOfSale" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

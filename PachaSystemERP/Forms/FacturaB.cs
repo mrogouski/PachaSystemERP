@@ -19,13 +19,19 @@ namespace PachaSystemERP.Forms
 
     public partial class FacturaB : Form
     {
-        private ReceiptBuilder _receiptGenerator;
+        private PachaSystemContext _context;
+        private UnitOfWork _unitOfWork;
+        private InvoiceBuilder _invoiceBuilder;
+        private ElectronicInvoicing _electronicInvoicing;
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="FacturaB"/>.
         /// </summary>
         public FacturaB()
         {
+            _context = new PachaSystemContext();
+            _unitOfWork = new UnitOfWork(_context);
+            _electronicInvoicing = new ElectronicInvoicing();
             InitializeComponent();
         }
 
@@ -39,22 +45,18 @@ namespace PachaSystemERP.Forms
 
             Initialize();
 
-            lblTotal.DataBindings.Add("Text", _receiptGenerator, "ImporteTotal", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C");
-            lblCantidadArticulos.DataBindings.Add("Text", _receiptGenerator, "CantidadTotal", true, DataSourceUpdateMode.OnPropertyChanged);
+            lblTotal.DataBindings.Add("Text", _invoiceBuilder, "ImporteTotal", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C");
+            lblCantidadArticulos.DataBindings.Add("Text", _invoiceBuilder, "CantidadTotal", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void Initialize()
         {
-            using (var context = new PachaSystemContext())
-            {
-                using (var unitOfWork = new UnitOfWork(context))
-                {
-                    var receiptType = unitOfWork.TipoComprobante.Get(x => x.Description == "FACTURA B");
-                    _receiptGenerator = new ReceiptBuilder(receiptType.ID);
-                }
-            }
+            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA B");
+            var conceptType = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos");
+            var invoiceNumber = _electronicInvoicing.GetLastReceiptNumber(invoiceType.ID) + 1;
+            _invoiceBuilder = new InvoiceBuilder(invoiceType.ID, conceptType.ID, invoiceNumber);
 
-            LblReceiptNumber.Text = _receiptGenerator.ReceiptNumber;
+            LblReceiptNumber.Text = _invoiceBuilder.ReceiptNumber;
 
             txtRazonSocial.Clear();
             cbTipoResponsabilidadCliente.SelectedValue = 0;
@@ -74,51 +76,27 @@ namespace PachaSystemERP.Forms
 
         private void CargarComboBox()
         {
-            using (var context = new PachaSystemContext())
-            {
-                using (var unitOfWork = new UnitOfWork(context))
-                {
-                    cbTipoDocumento.DataSource = unitOfWork.TipoDocumento.GetAll();
-                    cbTipoDocumento.ValueMember = "ID";
-                    cbTipoDocumento.DisplayMember = "Descripcion";
-                    cbTipoDocumento.SelectedValue = 99;
+            cbTipoDocumento.DataSource = _unitOfWork.DocumentTypes.GetAll();
+            cbTipoDocumento.ValueMember = "ID";
+            cbTipoDocumento.DisplayMember = "Descripcion";
+            cbTipoDocumento.SelectedValue = 99;
 
-                    cbTipoResponsabilidadCliente.DataSource = unitOfWork.TipoResponsable.GetAll();
-                    cbTipoResponsabilidadCliente.ValueMember = "ID";
-                    cbTipoResponsabilidadCliente.DisplayMember = "Descripcion";
-                    cbTipoResponsabilidadCliente.SelectedValue = 5;
-                }
-            }
+            cbTipoResponsabilidadCliente.DataSource = _unitOfWork.FiscalConditionTypes.GetAll();
+            cbTipoResponsabilidadCliente.ValueMember = "ID";
+            cbTipoResponsabilidadCliente.DisplayMember = "Descripcion";
+            cbTipoResponsabilidadCliente.SelectedValue = 5;
         }
 
         private void CargarDataGridView()
         {
-            bindingSource.DataSource = _receiptGenerator.DetalleFacturacion;
+            bindingSource.DataSource = _invoiceBuilder.InvoiceDetails;
 
             DgvArticles.DataSource = bindingSource;
             DgvArticles.Columns["ProductID"].Visible = false;
             DgvArticles.Columns["VatAliquot"].Visible = false;
             DgvArticles.Columns["VatAmount"].Visible = false;
             DgvArticles.Columns["TaxBase"].Visible = false;
-            
-        }
-
-        private bool ValidarDatosCliente()
-        {
-            if (string.IsNullOrWhiteSpace(txtRazonSocial.Text)
-                && string.IsNullOrWhiteSpace(txtNumeroDeDocumento.Text)
-                && string.IsNullOrWhiteSpace(txtDomicilio.Text)
-                && cbTipoDocumento.SelectedValue.Equals(99)
-                && cbTipoResponsabilidadCliente.SelectedValue.Equals(5))
-            {
-                return false;
-            }
-            else
-            {
-                errorProvider.Clear();
-                return true;
-            }
-        }
+        }      
 
         private void TxtNumeroDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -140,7 +118,7 @@ namespace PachaSystemERP.Forms
                 {
                     using (var unitOfWork = new UnitOfWork(context))
                     {
-                        var producto = unitOfWork.Producto.Get(x => x.Code == txtCodigo.Text);
+                        var producto = unitOfWork.Items.Get(x => x.Code == txtCodigo.Text);
 
                         if (producto != null)
                         {
@@ -183,7 +161,7 @@ namespace PachaSystemERP.Forms
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            _receiptGenerator.AddItem(txtCodigo.Text, (int)NudCantidad.Value);
+            _invoiceBuilder.AddItem(txtCodigo.Text, (int)NudCantidad.Value);
             bindingSource.ResetBindings(false);
             txtCodigo.Clear();
             txtDescripcion.Clear();
@@ -194,25 +172,15 @@ namespace PachaSystemERP.Forms
 
         private void BtnFacturar_Click(object sender, EventArgs e)
         {
-            if (ValidarDatosCliente())
-            {
-                _receiptGenerator.AgregarCliente(txtRazonSocial.Text, (int)cbTipoDocumento.SelectedValue, txtNumeroDeDocumento.Text, (int)cbTipoResponsabilidadCliente.SelectedValue, txtDomicilio.Text);
-            }
-
             using (var context = new PachaSystemContext())
             {
                 using (var unitOfWork = new UnitOfWork(context))
                 {
-                    var query = unitOfWork.TipoConcepto.Get(x => x.Name == "PRODUCTOS");
-
-                    var comprobante = _receiptGenerator.GenerarComprobante(query.ID);
-                    if (comprobante == null)
+                    _electronicInvoicing = new ElectronicInvoicing();
+                    var invoice = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
+                    if (invoice != null)
                     {
-                        MessageBox.Show("No se pudo generar el comprobante, revise el registro de errores");
-                    }
-                    else
-                    {
-                        var form = new ReceiptViewer(comprobante);
+                        var form = new ReceiptViewer(invoice);
                         form.ShowDialog();
                     }
                 }
@@ -223,17 +191,11 @@ namespace PachaSystemERP.Forms
 
         private void TxtDescripcion_TextChanged(object sender, EventArgs e)
         {
-            using (var context = new PachaSystemContext())
+            var query = _unitOfWork.Items.Get(x => x.Description == txtDescripcion.Text);
+            if (query != null)
             {
-                using (var unitOfWork = new UnitOfWork(context))
-                {
-                    var query = unitOfWork.Producto.Get(x => x.Description == txtDescripcion.Text);
-                    if (query != null)
-                    {
-                        txtCodigo.Text = query.Code;
-                        NudPrecioUnitario.Value = query.UnitPrice;
-                    }
-                }
+                txtCodigo.Text = query.Code;
+                NudPrecioUnitario.Value = query.UnitPrice;
             }
         }
     }

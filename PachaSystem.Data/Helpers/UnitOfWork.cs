@@ -16,20 +16,19 @@ namespace PachaSystem.Data.Helpers
     public class UnitOfWork : IUnitOfWork
     {
         private readonly PachaSystemContext _context;
-        private Repository<ItemCategory> _categoriaProducto;
-        private Repository<TributeCategory> _categoriaTributo;
-        private Repository<Client> _cliente;
+        private Repository<ItemCategory> _itemCategory;
+        private Repository<TributeCategory> _tributeCategory;
+        private Repository<Client> _client;
         private ReceiptRepository _receipt;
-        private Repository<ReceiptDetails> _detalleComprobante;
-        private Repository<Vat> _condicionIva;
-        private Repository<Item> _producto;
-        private Repository<ReceiptDetails> _productoComprobante;
-        private Repository<ReceiptType> _tipoComprobante;
-        private Repository<ConceptType> _tipoConcepto;
-        private Repository<DocumentType> _tipoDocumento;
-        private Repository<CurrencyType> _tipoMoneda;
-        private Repository<FiscalConditionType> _tipoResponsable;
-        private Repository<Tribute> _tributo;
+        private Repository<InvoiceDetails> _receiptDetails;
+        private Repository<Vat> _vat;
+        private Repository<Item> _item;
+        private Repository<InvoiceType> _receiptType;
+        private Repository<ConceptType> _conceptType;
+        private Repository<DocumentType> _documentType;
+        private Repository<CurrencyType> _currencyType;
+        private Repository<FiscalConditionType> _fiscalConditionType;
+        private Repository<Tribute> _tributeType;
         private ReceiptViewRepository _receiptView;
 
         public UnitOfWork(PachaSystemContext context)
@@ -37,46 +36,46 @@ namespace PachaSystem.Data.Helpers
             _context = context;
         }
 
-        public Repository<ItemCategory> CategoriaProducto
+        public Repository<ItemCategory> ItemCategories
         {
             get
             {
-                if (_categoriaProducto != null)
+                if (_itemCategory != null)
                 {
-                    _categoriaProducto = new Repository<ItemCategory>(_context);
+                    _itemCategory = new Repository<ItemCategory>(_context);
                 }
 
-                return _categoriaProducto;
+                return _itemCategory;
             }
         }
 
-        public Repository<TributeCategory> CategoriaTributo
+        public Repository<TributeCategory> TributeCategories
         {
             get
             {
-                if (_categoriaTributo == null)
+                if (_tributeCategory == null)
                 {
-                    _categoriaTributo = new Repository<TributeCategory>(_context);
+                    _tributeCategory = new Repository<TributeCategory>(_context);
                 }
 
-                return _categoriaTributo;
+                return _tributeCategory;
             }
         }
 
-        public Repository<Client> Cliente
+        public Repository<Client> Clients
         {
             get
             {
-                if (_cliente == null)
+                if (_client == null)
                 {
-                    _cliente = new Repository<Client>(_context);
+                    _client = new Repository<Client>(_context);
                 }
 
-                return _cliente;
+                return _client;
             }
         }
 
-        public ReceiptRepository Receipt
+        public ReceiptRepository Invoices
         {
             get
             {
@@ -89,133 +88,120 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<ReceiptDetails> DetalleComprobante
+        public Repository<InvoiceDetails> InvoiceDetails
         {
             get
             {
-                if (_detalleComprobante == null)
+                if (_receiptDetails == null)
                 {
-                    _detalleComprobante = new Repository<ReceiptDetails>(_context);
+                    _receiptDetails = new Repository<InvoiceDetails>(_context);
                 }
 
-                return _detalleComprobante;
+                return _receiptDetails;
             }
         }
 
-        public Repository<Item> Producto
+        public Repository<Item> Items
         {
             get
             {
-                if (_producto == null)
+                if (_item == null)
                 {
-                    _producto = new Repository<Item>(_context);
+                    _item = new Repository<Item>(_context);
                 }
 
-                return _producto;
+                return _item;
             }
         }
 
-        public Repository<ReceiptDetails> ProductoComprobante
+        public Repository<InvoiceType> InvoiceTypes
         {
             get
             {
-                if (_productoComprobante == null)
+                if (_receiptType == null)
                 {
-                    _productoComprobante = new Repository<ReceiptDetails>(_context);
+                    _receiptType = new Repository<InvoiceType>(_context);
                 }
 
-                return _productoComprobante;
+                return _receiptType;
             }
         }
 
-        public Repository<ReceiptType> TipoComprobante
+        public Repository<Vat> Vat
         {
             get
             {
-                if (_tipoComprobante == null)
+                if (_vat == null)
                 {
-                    _tipoComprobante = new Repository<ReceiptType>(_context);
+                    _vat = new Repository<Vat>(_context);
                 }
 
-                return _tipoComprobante;
+                return _vat;
             }
         }
 
-        public Repository<Vat> TipoCondicionIva
+        public Repository<ConceptType> ConceptTypes
         {
             get
             {
-                if (_condicionIva == null)
+                if (_conceptType == null)
                 {
-                    _condicionIva = new Repository<Vat>(_context);
+                    _conceptType = new Repository<ConceptType>(_context);
                 }
 
-                return _condicionIva;
+                return _conceptType;
             }
         }
 
-        public Repository<ConceptType> TipoConcepto
+        public Repository<DocumentType> DocumentTypes
         {
             get
             {
-                if (_tipoConcepto == null)
+                if (_documentType == null)
                 {
-                    _tipoConcepto = new Repository<ConceptType>(_context);
+                    _documentType = new Repository<DocumentType>(_context);
                 }
 
-                return _tipoConcepto;
+                return _documentType;
             }
         }
 
-        public Repository<DocumentType> TipoDocumento
+        public Repository<CurrencyType> CurrencyTypes
         {
             get
             {
-                if (_tipoDocumento == null)
+                if (_currencyType == null)
                 {
-                    _tipoDocumento = new Repository<DocumentType>(_context);
+                    _currencyType = new Repository<CurrencyType>(_context);
                 }
 
-                return _tipoDocumento;
+                return _currencyType;
             }
         }
 
-        public Repository<CurrencyType> TipoMoneda
+        public Repository<FiscalConditionType> FiscalConditionTypes
         {
             get
             {
-                if (_tipoMoneda == null)
+                if (_fiscalConditionType == null)
                 {
-                    _tipoMoneda = new Repository<CurrencyType>(_context);
+                    _fiscalConditionType = new Repository<FiscalConditionType>(_context);
                 }
 
-                return _tipoMoneda;
+                return _fiscalConditionType;
             }
         }
 
-        public Repository<FiscalConditionType> TipoResponsable
+        public Repository<Tribute> Tributes
         {
             get
             {
-                if (_tipoResponsable == null)
+                if (_tributeType == null)
                 {
-                    _tipoResponsable = new Repository<FiscalConditionType>(_context);
+                    _tributeType = new Repository<Tribute>(_context);
                 }
 
-                return _tipoResponsable;
-            }
-        }
-
-        public Repository<Tribute> TipoTributo
-        {
-            get
-            {
-                if (_tributo == null)
-                {
-                    _tributo = new Repository<Tribute>(_context);
-                }
-
-                return _tributo;
+                return _tributeType;
             }
         }
 
