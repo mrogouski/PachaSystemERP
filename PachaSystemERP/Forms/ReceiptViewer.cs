@@ -54,7 +54,7 @@
             parameters.Add(new ReportParameter("RazonSocial", Settings.Default.RazonSocial));
             parameters.Add(new ReportParameter("Domicilio", Settings.Default.Domicilio));
             parameters.Add(new ReportParameter("CondicionFiscal", Settings.Default.CondicionFiscal));
-            parameters.Add(new ReportParameter("CUIT", Settings.Default.CUIT));
+            parameters.Add(new ReportParameter("CUIT", Settings.Default.CUIT.ToString()));
             parameters.Add(new ReportParameter("IngresosBrutos", Settings.Default.IngresosBrutos));
             parameters.Add(new ReportParameter("FechaInicioActividades", Settings.Default.FechaInicioActividades.ToShortDateString()));
             parameters.Add(new ReportParameter("Cabecera", "Original"));

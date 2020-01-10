@@ -151,10 +151,12 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public void AddTributes()
+        public void AddTributes(int tributeId, decimal amount)
         {
-            Tribute tribute = new Tribute();
-            tribute.
+            var tributeDetails = new TributeDetails();
+            tributeDetails.TributeID = tributeId;
+            tributeDetails.Amount = amount;
+            _invoice.TributeDetails.Add(tributeDetails);
         }
 
         public Invoice Build()
@@ -187,7 +189,7 @@ namespace PachaSystemERP.Classes
                 if (_invoice.Client == null)
                 {
                     Client cliente = new Client();
-                    cliente = _unitOfWork.Clients.Get(x => x.BusinessName == "CONSUMIDOR FINAL");
+                    cliente = _unitOfWork.Clients.Get(x => x.BusinessName == "Consumidor Final");
                     _invoice.Client = cliente;
                 }
 

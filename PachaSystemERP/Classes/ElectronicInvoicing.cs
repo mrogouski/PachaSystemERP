@@ -257,7 +257,7 @@ namespace PachaSystemERP.Classes
                 ComprobanteAsociado comprobanteAsociado = new ComprobanteAsociado();
                 comprobanteAsociado.TipoDeComprobante = invoice.AssociatedReceipt.InvoiceTypeID;
                 comprobanteAsociado.PuntoDeVenta = invoice.AssociatedReceipt.PointOfSale;
-                comprobanteAsociado.NumeroDeComprobante = long.Parse(invoice.AssociatedReceipt.InvoiceNumber);
+                comprobanteAsociado.NumeroDeComprobante = invoice.AssociatedReceipt.InvoiceNumber;
                 comprobanteAsociado.Cuit = invoice.AssociatedReceipt.Cuit.ToString();
                 comprobanteAsociado.FechaDeComprobante = invoice.AssociatedReceipt.InvoiceDate.ToString("yyyyMMdd");
                 invoiceDetails.ComprobantesAsociados.Add(comprobanteAsociado);
