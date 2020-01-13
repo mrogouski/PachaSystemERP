@@ -37,16 +37,10 @@ namespace PachaSystemERP.Forms
 
         private void MenuFacturacion_Load(object sender, EventArgs e)
         {
-            using (var cueText = new CueText())
-            {
-                cueText.SetCueText(txtRazonSocial, "Consumidor Final");
-                cueText.SetCueText(txtNumeroDeDocumento, "Consumidor Final");
-            }
-
             Initialize();
 
-            lblTotal.DataBindings.Add("Text", _invoiceBuilder, "ImporteTotal", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C");
-            lblCantidadArticulos.DataBindings.Add("Text", _invoiceBuilder, "CantidadTotal", true, DataSourceUpdateMode.OnPropertyChanged);
+            lblTotal.DataBindings.Add("Text", _invoiceBuilder, "TotalAmount", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C");
+            lblCantidadArticulos.DataBindings.Add("Text", _invoiceBuilder, "TotalQuantity", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void Initialize()
@@ -58,86 +52,54 @@ namespace PachaSystemERP.Forms
 
             LblReceiptNumber.Text = _invoiceBuilder.ReceiptNumber;
 
-            txtRazonSocial.Clear();
-            cbTipoResponsabilidadCliente.SelectedValue = 0;
-            cbTipoDocumento.SelectedValue = 0;
-            txtNumeroDeDocumento.Clear();
-            txtDomicilio.Clear();
-
-            txtCodigo.Clear();
-            txtDescripcion.Clear();
-            NudCantidad.Value = 1;
-            NudPrecioUnitario.Value = 0;
+            TxtItemCode.Clear();
+            TxtItemName.Clear();
+            NudQuantity.Value = 1;
+            NudUnitPrice.Value = 0;
             NudSubtotal.Value = 0;
 
-            CargarComboBox();
-            CargarDataGridView();
+            LoadDataGridView();
         }
 
-        private void CargarComboBox()
-        {
-            cbTipoDocumento.DataSource = _unitOfWork.DocumentTypes.GetAll();
-            cbTipoDocumento.ValueMember = "ID";
-            cbTipoDocumento.DisplayMember = "Descripcion";
-            cbTipoDocumento.SelectedValue = 99;
-
-            cbTipoResponsabilidadCliente.DataSource = _unitOfWork.FiscalConditionTypes.GetAll();
-            cbTipoResponsabilidadCliente.ValueMember = "ID";
-            cbTipoResponsabilidadCliente.DisplayMember = "Descripcion";
-            cbTipoResponsabilidadCliente.SelectedValue = 5;
-        }
-
-        private void CargarDataGridView()
+        private void LoadDataGridView()
         {
             bindingSource.DataSource = _invoiceBuilder.InvoiceDetails;
 
             DgvArticles.DataSource = bindingSource;
-            DgvArticles.Columns["ProductID"].Visible = false;
+            DgvArticles.Columns["ItemID"].Visible = false;
             DgvArticles.Columns["VatAliquot"].Visible = false;
             DgvArticles.Columns["VatAmount"].Visible = false;
             DgvArticles.Columns["TaxBase"].Visible = false;
-        }      
-
-        private void TxtNumeroDocumento_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
         }
 
-        private void TxtCodigo_TextChanged(object sender, EventArgs e)
+        private void TxtItemCode_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtCodigo.Text))
+            if (!string.IsNullOrWhiteSpace(TxtItemCode.Text))
             {
                 using (var context = new PachaSystemContext())
                 {
                     using (var unitOfWork = new UnitOfWork(context))
                     {
-                        var producto = unitOfWork.Items.Get(x => x.Code == txtCodigo.Text);
+                        var producto = unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
 
                         if (producto != null)
                         {
-                            txtDescripcion.Text = producto.Description;
-                            NudPrecioUnitario.Value = producto.UnitPrice;
+                            TxtItemName.Text = producto.Description;
+                            NudUnitPrice.Value = producto.UnitPrice;
                         }
                     }
                 }
             }
             else
             {
-                txtDescripcion.Clear();
-                NudCantidad.Value = 1;
-                NudPrecioUnitario.Value = 0;
+                TxtItemName.Clear();
+                NudQuantity.Value = 1;
+                NudUnitPrice.Value = 0;
                 NudSubtotal.Value = 0;
             }
         }
 
-        private void TxtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtItemCode_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
             {
@@ -149,28 +111,34 @@ namespace PachaSystemERP.Forms
             }
         }
 
-        private void NudCantidad_ValueChanged(object sender, EventArgs e)
+        private void NudQuantity_ValueChanged(object sender, EventArgs e)
         {
-            NudSubtotal.Value = decimal.Round(NudCantidad.Value * NudPrecioUnitario.Value, 2, MidpointRounding.ToEven);
+            if (NudQuantity.Value != 0)
+            {
+                NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
+            }
         }
 
-        private void NudPrecioUnitario_ValueChanged(object sender, EventArgs e)
+        private void NudUnitPrice_ValueChanged(object sender, EventArgs e)
         {
-            NudSubtotal.Value = decimal.Round(NudCantidad.Value * NudPrecioUnitario.Value, 2, MidpointRounding.ToEven);
+            if (NudSubtotal.Value != 0)
+            {
+                NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
+            }
         }
 
-        private void BtnAceptar_Click(object sender, EventArgs e)
+        private void BtnAddItem_Click(object sender, EventArgs e)
         {
-            _invoiceBuilder.AddItem(txtCodigo.Text, (int)NudCantidad.Value);
+            _invoiceBuilder.AddItem(TxtItemCode.Text, (int)NudQuantity.Value);
             bindingSource.ResetBindings(false);
-            txtCodigo.Clear();
-            txtDescripcion.Clear();
-            NudCantidad.Value = 1;
-            NudPrecioUnitario.Value = 0.00M;
+            TxtItemCode.Clear();
+            TxtItemName.Clear();
+            NudQuantity.Value = 1;
+            NudUnitPrice.Value = 0.00M;
             NudSubtotal.Value = 0.00M;
         }
 
-        private void BtnFacturar_Click(object sender, EventArgs e)
+        private void BtnGenerateInvoice_Click(object sender, EventArgs e)
         {
             using (var context = new PachaSystemContext())
             {
@@ -189,13 +157,16 @@ namespace PachaSystemERP.Forms
             Initialize();
         }
 
-        private void TxtDescripcion_TextChanged(object sender, EventArgs e)
+        private void TxtItemName_TextChanged(object sender, EventArgs e)
         {
-            var query = _unitOfWork.Items.Get(x => x.Description == txtDescripcion.Text);
-            if (query != null)
+            if (!string.IsNullOrWhiteSpace(TxtItemName.Text))
             {
-                txtCodigo.Text = query.Code;
-                NudPrecioUnitario.Value = query.UnitPrice;
+                var query = _unitOfWork.Items.Get(x => x.Description == TxtItemName.Text);
+                if (query != null)
+                {
+                    TxtItemCode.Text = query.Code;
+                    NudUnitPrice.Value = query.UnitPrice;
+                }
             }
         }
     }

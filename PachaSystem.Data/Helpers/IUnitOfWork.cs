@@ -20,11 +20,11 @@ namespace PachaSystem.Data.Helpers
 
         Repository<Client> Clients { get; }
 
-        ReceiptRepository Invoices { get; }
+        InvoiceRepository Invoices { get; }
 
         Repository<InvoiceDetails> InvoiceDetails { get; }
 
-        Repository<Item> Items { get; }
+        ItemRepository Items { get; }
 
         Repository<InvoiceType> InvoiceTypes { get; }
 
@@ -40,7 +40,7 @@ namespace PachaSystem.Data.Helpers
 
         Repository<Tribute> Tributes { get; }
 
-        ReceiptViewRepository ReceiptView { get; }
+        InvoiceViewRepository ReceiptView { get; }
 
         void SaveChanges();
     }

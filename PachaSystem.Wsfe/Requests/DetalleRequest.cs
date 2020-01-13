@@ -34,14 +34,6 @@ namespace PachaSystem.Wsfe.Requests
         private List<Opcional> _opcionales;
         private List<Comprador> _compradores;
 
-        public DetalleRequest()
-        {
-            _comprobantesAsociados = new List<ComprobanteAsociado>();
-            _tributo = new List<Tributo>();
-            _opcionales = new List<Opcional>();
-            _compradores = new List<Comprador>();
-        }
-
         [DataMember(IsRequired = true, Name = "Concepto", Order = 0)]
         public int Concepto
         {
@@ -313,6 +305,11 @@ namespace PachaSystem.Wsfe.Requests
         {
             get
             {
+                if (_iva == null)
+                {
+                    _iva = new List<AlicuotaIva>();
+                }
+
                 return _iva;
             }
 

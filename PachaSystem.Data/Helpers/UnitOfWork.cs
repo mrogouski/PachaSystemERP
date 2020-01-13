@@ -19,17 +19,17 @@ namespace PachaSystem.Data.Helpers
         private Repository<ItemCategory> _itemCategory;
         private Repository<TributeCategory> _tributeCategory;
         private Repository<Client> _client;
-        private ReceiptRepository _receipt;
+        private InvoiceRepository _receipt;
         private Repository<InvoiceDetails> _receiptDetails;
         private Repository<Vat> _vat;
-        private Repository<Item> _item;
+        private ItemRepository _item;
         private Repository<InvoiceType> _receiptType;
         private Repository<ConceptType> _conceptType;
         private Repository<DocumentType> _documentType;
         private Repository<CurrencyType> _currencyType;
         private Repository<FiscalConditionType> _fiscalConditionType;
         private Repository<Tribute> _tributeType;
-        private ReceiptViewRepository _receiptView;
+        private InvoiceViewRepository _receiptView;
 
         public UnitOfWork(PachaSystemContext context)
         {
@@ -75,13 +75,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public ReceiptRepository Invoices
+        public InvoiceRepository Invoices
         {
             get
             {
                 if (_receipt == null)
                 {
-                    _receipt = new ReceiptRepository(_context);
+                    _receipt = new InvoiceRepository(_context);
                 }
 
                 return _receipt;
@@ -101,13 +101,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<Item> Items
+        public ItemRepository Items
         {
             get
             {
                 if (_item == null)
                 {
-                    _item = new Repository<Item>(_context);
+                    _item = new ItemRepository(_context);
                 }
 
                 return _item;
@@ -205,13 +205,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public ReceiptViewRepository ReceiptView
+        public InvoiceViewRepository ReceiptView
         {
             get
             {
                 if (_receiptView == null)
                 {
-                    _receiptView = new ReceiptViewRepository();
+                    _receiptView = new InvoiceViewRepository();
                 }
 
                 return _receiptView;

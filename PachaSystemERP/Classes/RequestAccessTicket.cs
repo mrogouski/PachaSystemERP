@@ -13,56 +13,24 @@ namespace PachaSystemERP.Classes
     using System.Text;
     using System.Xml.Linq;
 
-    /// <summary>
-    /// Representa un Request Access Ticket (TRA).
-    /// </summary>
     public static class RequestAccessTicket
     {
-        /// <summary>
-        /// DN del usuario que genero el Request Access Ticket (Opcional).
-        /// </summary>
-        private static string _userDN;
-
-        /// <summary>
-        /// DN del Web Service (Opcional).
-        /// </summary>
-        private static string _destino;
-
-        /// <summary>
-        /// ID unico que identifica al pedido de acceso.
-        /// </summary>
+        private static string _userDistinguishedName;
+        private static string _destinationDistinguishedName;
         private static uint _id;
-
-        /// <summary>
-        /// Fecha y hora en la que se genero el pedido de acceso.
-        /// </summary>
         private static DateTime _fechaDeGeneracion;
-
-        /// <summary>
-        /// Fecha y hora de expiracion del pedido de acceso.
-        /// </summary>
         private static DateTime _fechaDeExpiracion;
-
-        /// <summary>
-        /// Nombre del Web Service al que se quiere acceder.
-        /// </summary>
         private static string _servicio;
 
-        /// <summary>
-        /// Metodo que permite obtener el tique de solicitud de acceso firmado.
-        /// </summary>
-        /// <param name="testing">Valor que indica si se esta utilizando en el entorno de testeo o produccion.</param>
-        /// <param name="servicio">Nombre de identificacion del Web Service.</param>
-        /// <returns>Devuelve un tique de solicitud de acceso firmado.</returns>
         public static string Get()
         {
             if (Settings.Default.IsTestingMode)
             {
-                _destino = Settings.Default.TestingDN;
+                _destinationDistinguishedName = Settings.Default.TestingDN;
             }
             else
             {
-                _destino = Settings.Default.ProductionDN;
+                _destinationDistinguishedName = Settings.Default.ProductionDN;
             }
 
             _fechaDeGeneracion = DateTime.Now;
@@ -74,27 +42,20 @@ namespace PachaSystemERP.Classes
             return ticketFirmado;
         }
 
-        /// <summary>
-        /// Metodo que permite obtener el tique de solicitud de acceso firmado.
-        /// </summary>
-        /// <param name="testing">Valor que indica si se esta utilizando en el entorno de testeo o produccion.</param>
-        /// <param name="servicio">Nombre de identificacion del Web Service.</param>
-        /// <param name="origen">DN del usuario que genero el Request Access Ticket.</param>
-        /// <returns>Devuelve un tique de solicitud de acceso firmado.</returns>
         public static string Get(bool testing, string servicio, string origen)
         {
             if (testing)
             {
-                _userDN = origen;
-                _destino = "cn = wsaahomo,o = afip,c = ar,serialNumber = CUIT 33693450239";
+                _userDistinguishedName = origen;
+                _destinationDistinguishedName = "cn = wsaahomo,o = afip,c = ar,serialNumber = CUIT 33693450239";
                 _fechaDeGeneracion = DateTime.Now;
                 _fechaDeExpiracion = DateTime.Now.AddHours(+12);
                 _servicio = servicio;
             }
             else
             {
-                _userDN = origen;
-                _destino = "cn = wsaa,o = afip,c = ar,serialNumber = CUIT 33693450239";
+                _userDistinguishedName = origen;
+                _destinationDistinguishedName = "cn = wsaa,o = afip,c = ar,serialNumber = CUIT 33693450239";
                 _fechaDeGeneracion = DateTime.Now;
                 _fechaDeExpiracion = DateTime.Now.AddHours(+12);
                 _servicio = servicio;
@@ -105,18 +66,14 @@ namespace PachaSystemERP.Classes
             return signedTicket;
         }
 
-        /// <summary>
-        /// Genera un Request Access Ticket en formato XML.
-        /// </summary>
-        /// <returns>Devuelve un XML con los datos sumninistrados.</returns>
         private static XDocument Build()
         {
-            if (string.IsNullOrWhiteSpace(_userDN))
+            if (string.IsNullOrWhiteSpace(_userDistinguishedName))
             {
                 var xml = new XDocument(
                 new XElement(
                     "loginTicketRequest",
-                    new XElement("header", new XElement("destination", _destino), new XElement("uniqueId", _id), new XElement("generationTime", _fechaDeGeneracion), new XElement("expirationTime", _fechaDeExpiracion)),
+                    new XElement("header", new XElement("destination", _destinationDistinguishedName), new XElement("uniqueId", _id), new XElement("generationTime", _fechaDeGeneracion), new XElement("expirationTime", _fechaDeExpiracion)),
                     new XElement("service", _servicio)));
                 xml.Element("loginTicketRequest").SetAttributeValue("version", "1.0");
                 return xml;
@@ -125,16 +82,12 @@ namespace PachaSystemERP.Classes
             {
                 var xml = new XDocument(
                  new XElement(
-                     "loginTicketRequest", new XElement("header", new XElement("source", _userDN), new XElement("destination", _destino), new XElement("uniqueId", _id), new XElement("generationTime", _fechaDeGeneracion), new XElement("expirationTime", _fechaDeExpiracion)), new XElement("service", _servicio)));
+                     "loginTicketRequest", new XElement("header", new XElement("source", _userDistinguishedName), new XElement("destination", _destinationDistinguishedName), new XElement("uniqueId", _id), new XElement("generationTime", _fechaDeGeneracion), new XElement("expirationTime", _fechaDeExpiracion)), new XElement("service", _servicio)));
                 xml.Element("loginTicketRequest").SetAttributeValue("version", "1.0");
                 return xml;
             }
         }
 
-        /// <summary>
-        /// Firma digitalmente el Request Access Ticket.
-        /// </summary>
-        /// <returns>Un string codificado en Base64.</returns>
         private static string Sign(string ticket)
         {
             byte[] message = Encoding.UTF8.GetBytes(ticket);
@@ -170,7 +123,7 @@ namespace PachaSystemERP.Classes
                 certificate.Import(path, password, X509KeyStorageFlags.DefaultKeySet);
 
                 var distinguishedName = certificate.SubjectName;
-                _userDN = distinguishedName.Name;
+                _userDistinguishedName = distinguishedName.Name;
 
                 return certificate;
             }

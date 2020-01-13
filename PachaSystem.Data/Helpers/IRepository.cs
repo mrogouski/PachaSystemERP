@@ -16,8 +16,8 @@ namespace PachaSystem.Data.Helpers
 
         IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> expression = null);
 
-        void Add(TEntity Entity);
+        void Add(TEntity entity);
 
-        void Remove(TEntity Entity);
+        void Remove(TEntity entity);
     }
 }

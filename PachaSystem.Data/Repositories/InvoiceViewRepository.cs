@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PachaSystem.Data.Repositories
 {
-    public class ReceiptViewRepository
+    public class InvoiceViewRepository
     {
         public IEnumerable<ReceiptView> Get(int id)
         {

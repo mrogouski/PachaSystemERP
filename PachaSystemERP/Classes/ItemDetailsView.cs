@@ -10,7 +10,7 @@
 
     public class ItemDetailsView : INotifyPropertyChanged
     {
-        private int _productID;
+        private int _itemId;
         private string _code;
         private string _name;
         private int _quantity;
@@ -19,21 +19,21 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public int ProductID
+        public int ItemID
         {
             get
             {
-                return _productID;
+                return _itemId;
             }
 
             set
             {
-                if (_productID == value)
+                if (_itemId == value)
                 {
                     return;
                 }
 
-                _productID = value;
+                _itemId = value;
                 NotifyPropertyChanged();
             }
         }

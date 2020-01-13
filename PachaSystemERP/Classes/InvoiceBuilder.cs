@@ -22,9 +22,9 @@ namespace PachaSystemERP.Classes
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
         private Invoice _invoice;
-        private int _cantidadTotal;
-        private decimal _importeTotal;
-        private string _numeroComprobante;
+        private int _totalQuantity;
+        private decimal _totalAmount;
+        private string _invoiceNumber;
 
         public InvoiceBuilder(int invoiceTypeId, int conceptTypeId, int invoiceNumber)
         {
@@ -63,43 +63,44 @@ namespace PachaSystemERP.Classes
             set
             {
                 _itemDetailsView = value;
-            }
-        }
-
-        public int CantidadTotal
-        {
-            get
-            {
-                return _cantidadTotal;
-            }
-
-            private set
-            {
-                if (_cantidadTotal == value)
-                {
-                    return;
-                }
-
-                _cantidadTotal = value;
                 NotifyPropertyChanged();
             }
         }
 
-        public decimal ImporteTotal
+        public int TotalQuantity
         {
             get
             {
-                return _importeTotal;
+                return _totalQuantity;
             }
 
             private set
             {
-                if (_importeTotal == value)
+                if (_totalQuantity == value)
                 {
                     return;
                 }
 
-                _importeTotal = value;
+                _totalQuantity = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public decimal TotalAmount
+        {
+            get
+            {
+                return _totalAmount;
+            }
+
+            private set
+            {
+                if (_totalAmount == value)
+                {
+                    return;
+                }
+
+                _totalAmount = value;
                 NotifyPropertyChanged();
             }
         }
@@ -108,8 +109,8 @@ namespace PachaSystemERP.Classes
         {
             get
             {
-                _numeroComprobante = GetFormatedInvoiceNumber();
-                return _numeroComprobante;
+                _invoiceNumber = GetFormatedInvoiceNumber();
+                return _invoiceNumber;
             }
         }
 
@@ -145,9 +146,14 @@ namespace PachaSystemERP.Classes
                 ItemDetailsView itemDetails = new ItemDetailsView();
                 itemDetails.Code = item.Code;
                 itemDetails.Name = item.Description;
-                itemDetails.ProductID = item.ID;
+                itemDetails.ItemID = item.ID;
                 itemDetails.Quantity = quantity;
+                itemDetails.UnitPrice = item.UnitPrice;
+                itemDetails.VatAliquot = item.Vat.Aliquot;
                 _itemDetailsView.Add(itemDetails);
+
+                _totalAmount = _itemDetailsView.Sum(x => x.Subtotal);
+                _totalQuantity = _itemDetailsView.Sum(x => x.Quantity);
             }
         }
 
@@ -177,7 +183,7 @@ namespace PachaSystemERP.Classes
                 {
                     InvoiceDetails details = new InvoiceDetails();
                     details.InvoiceID = _invoice.ID;
-                    details.Item = _unitOfWork.Items.Get(x => x.ID == item.ProductID);
+                    details.Item = _unitOfWork.Items.Get(x => x.ID == item.ItemID);
                     details.Quantity = item.Quantity;
                     details.VatAmount = item.VatAmount;
                     details.TaxBase = item.TaxBase;

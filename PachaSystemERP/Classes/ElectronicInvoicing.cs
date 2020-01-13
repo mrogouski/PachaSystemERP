@@ -35,9 +35,6 @@ namespace PachaSystemERP.Classes
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ElectronicInvoicing"/>.
-        /// </summary>
         public ElectronicInvoicing()
         {
             _context = new PachaSystemContext();
@@ -71,11 +68,6 @@ namespace PachaSystemERP.Classes
             return stringBuilder.ToString();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="receipt"></param>
-        /// <returns></returns>
         public Invoice GenerateInvoice(InvoiceBuilder builder)
         {
             var credentials = GetCredentials();
@@ -166,9 +158,6 @@ namespace PachaSystemERP.Classes
             return response;
         }
 
-        /// <summary>
-        /// Solicita la autorizacion de acceso al Web Service especificado.
-        /// </summary>
         private Credentials GetCredentials()
         {
             if (LoadCredentials() == false)
@@ -194,10 +183,6 @@ namespace PachaSystemERP.Classes
             return credentials;
         }
 
-        /// <summary>
-        /// Lee las credenciales de acceso al Web Service para obtener el Token y Sign.
-        /// </summary>
-        /// <returns>Devuelve un valor que indica si se pudo obtener las credenciales o no.</returns>
         private bool LoadCredentials()
         {
             if (!File.Exists(@".\Resources\Credentials.xml"))
@@ -222,10 +207,6 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        /// <summary>
-        /// Solicita autorizacion de acceso al Web Service para obtiene el Token y Sign.
-        /// </summary>
-        /// <returns>Devuelve un texto en formato XML que contiene el Token, Sign, Fecha y Hora.</returns>
         private string RequestAccess()
         {
             try
@@ -305,7 +286,7 @@ namespace PachaSystemERP.Classes
                 }
             }
 
-            if (invoice.Client.BusinessName.Equals("CONSUMIDOR FINAL"))
+            if (invoice.Client.BusinessName.Equals("Consumidor Final"))
             {
                 invoiceDetails.TipoDeDocumento = invoice.Client.DocumentTypeID;
             }

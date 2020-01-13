@@ -108,7 +108,7 @@ namespace PachaSystemERP.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"cn = wsaahomo,o = afip,c = ar,serialNumber = CUIT 33693450239\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cn = wsaahomo,o = afip,c = ar,serialNumber = CUIT 33693450239")]
         public string TestingDN {
             get {
                 return ((string)(this["TestingDN"]));
@@ -154,7 +154,7 @@ namespace PachaSystemERP.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"cn = wsaa,o = afip,c = ar,serialNumber = CUIT 33693450239\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cn = wsaa,o = afip,c = ar,serialNumber = CUIT 33693450239")]
         public string ProductionDN {
             get {
                 return ((string)(this["ProductionDN"]));

@@ -29,7 +29,7 @@ namespace PachaSystem.Wsfe.Models
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Id");
+                    throw new ArgumentOutOfRangeException(nameof(ID));
                 }
                 else
                 {
@@ -50,7 +50,7 @@ namespace PachaSystem.Wsfe.Models
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Id");
+                    throw new ArgumentOutOfRangeException(nameof(BaseImponible));
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace PachaSystem.Wsfe.Models
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("Id");
+                    throw new ArgumentOutOfRangeException(nameof(Importe));
                 }
                 else
                 {

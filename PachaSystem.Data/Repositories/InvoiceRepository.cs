@@ -15,11 +15,11 @@ namespace PachaSystem.Data.Repositories
     using PachaSystem.Data.Models;
     using PachaSystem.Data.Views;
 
-    public class ReceiptRepository : IRepository<Invoice>
+    public class InvoiceRepository : IRepository<Invoice>
     {
         private PachaSystemContext _context;
 
-        public ReceiptRepository(PachaSystemContext context)
+        public InvoiceRepository(PachaSystemContext context)
         {
             _context = context;
         }
