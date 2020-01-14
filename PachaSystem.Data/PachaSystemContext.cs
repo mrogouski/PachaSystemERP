@@ -48,11 +48,11 @@ namespace PachaSystem.Data
 
         public DbSet<MeasureUnit> MeasureUnits { get; set; }
 
-        public DbSet<Invoice> Receipts { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
 
-        public DbSet<InvoiceDetails> ReceiptDetails { get; set; }
+        public DbSet<InvoiceDetails> InvoiceDetails { get; set; }
 
-        public DbSet<InvoiceType> ReceiptTypes { get; set; }
+        public DbSet<InvoiceType> InvoiceTypes { get; set; }
 
         public DbSet<Tribute> Tributes { get; set; }
 

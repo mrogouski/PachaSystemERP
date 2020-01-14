@@ -178,7 +178,7 @@ namespace PachaSystem.Data.Migrations
                     new CurrencyType { ID = 62, Code = "064", Description = "YUAN (REPUBLICA POPULAR CHINA)" });
             }
 
-            context.ReceiptTypes.AddOrUpdate(x => x.ID,
+            context.InvoiceTypes.AddOrUpdate(x => x.ID,
                     new InvoiceType { ID = 1, Description = "FACTURA A", Class = "A" },
                     new InvoiceType { ID = 2, Description = "NOTA DE DEBITO A", Class = "A" },
                     new InvoiceType { ID = 3, Description = "NOTA DE CREDITO A", Class = "A" },
@@ -273,7 +273,7 @@ namespace PachaSystem.Data.Migrations
             if (context.Clients.Count() == 0)
             {
                 context.Clients.AddOrUpdate(
-                    new Client { ID = 1, BusinessName = "Consumidor Final", DocumentTypeID = 99, DocumentNumber = string.Empty, FiscalConditionID = 5, Address = string.Empty });
+                    new Client { ID = 1, BusinessName = "Consumidor Final", DocumentTypeID = 99, DocumentNumber = 0, FiscalConditionID = 5, Address = string.Empty });
             }
 
             base.Seed(context);

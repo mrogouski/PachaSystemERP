@@ -76,18 +76,12 @@ namespace PachaSystemERP.Forms
         {
             if (!string.IsNullOrWhiteSpace(TxtItemCode.Text))
             {
-                using (var context = new PachaSystemContext())
-                {
-                    using (var unitOfWork = new UnitOfWork(context))
-                    {
-                        var producto = unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
+                var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
 
-                        if (producto != null)
-                        {
-                            TxtItemName.Text = producto.Description;
-                            NudUnitPrice.Value = producto.UnitPrice;
-                        }
-                    }
+                if (producto != null)
+                {
+                    TxtItemName.Text = producto.Description;
+                    NudUnitPrice.Value = producto.UnitPrice;
                 }
             }
             else
@@ -113,18 +107,12 @@ namespace PachaSystemERP.Forms
 
         private void NudQuantity_ValueChanged(object sender, EventArgs e)
         {
-            if (NudQuantity.Value != 0)
-            {
-                NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
-            }
+            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
         }
 
         private void NudUnitPrice_ValueChanged(object sender, EventArgs e)
         {
-            if (NudSubtotal.Value != 0)
-            {
-                NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
-            }
+            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
         }
 
         private void BtnAddItem_Click(object sender, EventArgs e)
@@ -140,18 +128,12 @@ namespace PachaSystemERP.Forms
 
         private void BtnGenerateInvoice_Click(object sender, EventArgs e)
         {
-            using (var context = new PachaSystemContext())
+            _electronicInvoicing = new ElectronicInvoicing();
+            var invoice = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
+            if (invoice != null)
             {
-                using (var unitOfWork = new UnitOfWork(context))
-                {
-                    _electronicInvoicing = new ElectronicInvoicing();
-                    var invoice = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
-                    if (invoice != null)
-                    {
-                        var form = new ReceiptViewer(invoice);
-                        form.ShowDialog();
-                    }
-                }
+                var form = new ReceiptViewer(invoice);
+                form.ShowDialog();
             }
 
             Initialize();

@@ -44,7 +44,7 @@ namespace PachaSystem.Data.Views
         /* Datos del Cliente */
         public string BusinessName { get; set; }
 
-        public string DocumentNumber { get; set; }
+        public long DocumentNumber { get; set; }
 
         public string FiscalCondition { get; set; }
 

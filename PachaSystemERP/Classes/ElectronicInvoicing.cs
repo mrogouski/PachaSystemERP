@@ -92,18 +92,31 @@ namespace PachaSystemERP.Classes
                     }
                 }
             }
-            else if (response.Errores != null)
+            else
             {
-                foreach (var item in response.Errores)
+                if (response.CabeceraResponse != null)
                 {
-                    _logger.Debug(item.Codigo + item.Mensaje);
+                    foreach (var item in response.DetalleResponse)
+                    {
+                        foreach (var observation in item.Observaciones)
+                        {
+                            _logger.Debug(observation.Codigo + observation.Mensaje);
+                        }
+                    }
                 }
-            }
-            else if (response.Eventos != null)
-            {
-                foreach (var item in response.Eventos)
+                if (response.Errores != null)
                 {
-                    _logger.Debug(item.Codigo + item.Mensaje);
+                    foreach (var item in response.Errores)
+                    {
+                        _logger.Debug(item.Codigo + item.Mensaje);
+                    }
+                }
+                if (response.Eventos != null)
+                {
+                    foreach (var item in response.Eventos)
+                    {
+                        _logger.Debug(item.Codigo + item.Mensaje);
+                    }
                 }
             }
 
@@ -244,56 +257,20 @@ namespace PachaSystemERP.Classes
                 invoiceDetails.ComprobantesAsociados.Add(comprobanteAsociado);
             }
 
-            if (invoice.InvoiceDetails != null)
+            var client = _unitOfWork.Clients.Get(x => x.ID == invoice.ClientID);
+            invoiceDetails.TipoDeDocumento = client.DocumentTypeID;
+            invoiceDetails.NumeroDeDocumento = client.DocumentNumber;
+
+            foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
-                foreach (var item in invoice.InvoiceDetails)
-                {
-                    AlicuotaIva iva = new AlicuotaIva();
-                    iva.ID = item.Item.VatID;
-                    iva.BaseImponible = (double)item.TaxBase;
-                    iva.Importe = (double)item.VatAmount;
-
-                    switch (item.Item.Vat.ID)
-                    {
-                        case 1:
-                            invoice.NotTaxedNetAmount += item.VatAmount;
-                            break;
-                        case 2:
-                            invoice.ExemptAmount += item.VatAmount;
-                            break;
-                        case 3:
-                            invoiceDetails.AlicuotaIVA.Add(iva);
-
-                            invoice.VatTotalAmount += item.VatAmount;
-                            break;
-                        case 4:
-                            invoiceDetails.AlicuotaIVA.Add(iva);
-
-                            invoice.VatTotalAmount += item.VatAmount;
-                            break;
-                        case 5:
-                            invoiceDetails.AlicuotaIVA.Add(iva);
-
-                            invoice.VatTotalAmount += item.VatAmount;
-                            break;
-                        case 6:
-                            invoiceDetails.AlicuotaIVA.Add(iva);
-                            invoice.VatTotalAmount += item.VatAmount;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-
-            if (invoice.Client.BusinessName.Equals("Consumidor Final"))
-            {
-                invoiceDetails.TipoDeDocumento = invoice.Client.DocumentTypeID;
-            }
-            else
-            {
-                invoiceDetails.TipoDeDocumento = invoice.Client.DocumentTypeID;
-                invoiceDetails.NumeroDeDocumento = long.Parse(invoice.Client.DocumentNumber);
+                var item = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.ItemID);
+                
+                AlicuotaIva iva = new AlicuotaIva();
+                iva.ID = item.VatID;
+                iva.BaseImponible = (double)invoiceDetail.TaxBase;
+                iva.Importe = (double)invoiceDetail.VatAmount;
+                
+                invoiceDetails.AlicuotaIVA.Add(iva);
             }
 
             invoiceDetails.Concepto = invoice.ConceptTypeID;
@@ -306,7 +283,7 @@ namespace PachaSystemERP.Classes
             invoiceDetails.ImporteExento = decimal.ToDouble(invoice.ExemptAmount);
             invoiceDetails.ImporteIVA = decimal.ToDouble(invoice.VatTotalAmount);
             invoiceDetails.ImporteTributo = decimal.ToDouble(invoice.TributeTotalAmount);
-            invoiceDetails.CodigoMoneda = _unitOfWork.CurrencyTypes.Get(x => x.ID == invoice.CurrencyType.ID).Code;
+            invoiceDetails.CodigoMoneda = _unitOfWork.CurrencyTypes.Get(x => x.ID == invoice.CurrencyTypeID).Code;
             invoiceDetails.MonedaCotizacion = invoice.CurrencyExchangeRate;
 
             request.DetalleRequest.Add(invoiceDetails);

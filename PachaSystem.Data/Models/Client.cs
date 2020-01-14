@@ -14,7 +14,7 @@
 
         public int DocumentTypeID { get; set; }
 
-        public string DocumentNumber { get; set; }
+        public long DocumentNumber { get; set; }
 
         public int FiscalConditionID { get; set; }
 

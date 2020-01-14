@@ -19,11 +19,11 @@ namespace PachaSystem.Data.Helpers
         private Repository<ItemCategory> _itemCategory;
         private Repository<TributeCategory> _tributeCategory;
         private Repository<Client> _client;
-        private InvoiceRepository _receipt;
-        private Repository<InvoiceDetails> _receiptDetails;
+        private InvoiceRepository _invoice;
+        private Repository<InvoiceDetails> _invoiceDetails;
         private Repository<Vat> _vat;
         private ItemRepository _item;
-        private Repository<InvoiceType> _receiptType;
+        private Repository<InvoiceType> _invoiceType;
         private Repository<ConceptType> _conceptType;
         private Repository<DocumentType> _documentType;
         private Repository<CurrencyType> _currencyType;
@@ -79,12 +79,12 @@ namespace PachaSystem.Data.Helpers
         {
             get
             {
-                if (_receipt == null)
+                if (_invoice == null)
                 {
-                    _receipt = new InvoiceRepository(_context);
+                    _invoice = new InvoiceRepository(_context);
                 }
 
-                return _receipt;
+                return _invoice;
             }
         }
 
@@ -92,12 +92,12 @@ namespace PachaSystem.Data.Helpers
         {
             get
             {
-                if (_receiptDetails == null)
+                if (_invoiceDetails == null)
                 {
-                    _receiptDetails = new Repository<InvoiceDetails>(_context);
+                    _invoiceDetails = new Repository<InvoiceDetails>(_context);
                 }
 
-                return _receiptDetails;
+                return _invoiceDetails;
             }
         }
 
@@ -118,12 +118,12 @@ namespace PachaSystem.Data.Helpers
         {
             get
             {
-                if (_receiptType == null)
+                if (_invoiceType == null)
                 {
-                    _receiptType = new Repository<InvoiceType>(_context);
+                    _invoiceType = new Repository<InvoiceType>(_context);
                 }
 
-                return _receiptType;
+                return _invoiceType;
             }
         }
 

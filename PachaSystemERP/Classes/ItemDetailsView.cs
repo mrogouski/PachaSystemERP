@@ -11,6 +11,7 @@
     public class ItemDetailsView : INotifyPropertyChanged
     {
         private int _itemId;
+        private int _vatId;
         private string _code;
         private string _name;
         private int _quantity;
@@ -34,6 +35,25 @@
                 }
 
                 _itemId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public int VatID
+        { 
+            get
+            {
+                return _vatId;
+            }
+
+            set
+            {
+                if (_vatId == value)
+                {
+                    return;
+                }
+
+                _vatId = value;
                 NotifyPropertyChanged();
             }
         }

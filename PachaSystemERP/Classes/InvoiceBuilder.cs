@@ -37,7 +37,8 @@ namespace PachaSystemERP.Classes
             _invoice.InvoiceTypeID = invoiceTypeId;
             _invoice.ConceptTypeID = conceptTypeId;
             _invoice.ReceiptDate = DateTime.Now;
-            _invoice.CurrencyType = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES");
+            var currencyType = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES");
+            _invoice.CurrencyTypeID = currencyType.ID;
             _invoice.CurrencyExchangeRate = 1;
         }
 
@@ -127,7 +128,7 @@ namespace PachaSystemERP.Classes
             _invoice.AssociatedReceipt = associatedInvoice;
         }
 
-        public void AddClient(string businessName, int documentTypeId, string documentNumber, int fiscalConditionId, string address)
+        public void AddClient(string businessName, int documentTypeId, long documentNumber, int fiscalConditionId, string address)
         {
             Client client = new Client();
             client.BusinessName = businessName;
@@ -147,6 +148,7 @@ namespace PachaSystemERP.Classes
                 itemDetails.Code = item.Code;
                 itemDetails.Name = item.Description;
                 itemDetails.ItemID = item.ID;
+                itemDetails.VatID = item.VatID;
                 itemDetails.Quantity = quantity;
                 itemDetails.UnitPrice = item.UnitPrice;
                 itemDetails.VatAliquot = item.Vat.Aliquot;
@@ -173,30 +175,42 @@ namespace PachaSystemERP.Classes
             }
             else
             {
-                _invoice.NetAmount = _itemDetailsView.Sum(x => x.TaxBase);
-                _invoice.NotTaxedNetAmount = 0;
-                _invoice.ExemptAmount = 0;
-                _invoice.VatTotalAmount = _itemDetailsView.Sum(x => x.VatAmount);
-                _invoice.TotalAmount = _invoice.NetAmount + _invoice.NotTaxedNetAmount + _invoice.ExemptAmount + _invoice.VatTotalAmount + _invoice.TributeTotalAmount;
-
                 foreach (var item in _itemDetailsView)
                 {
                     InvoiceDetails details = new InvoiceDetails();
-                    details.InvoiceID = _invoice.ID;
-                    details.Item = _unitOfWork.Items.Get(x => x.ID == item.ItemID);
+                    details.ItemID = item.ItemID;
                     details.Quantity = item.Quantity;
-                    details.VatAmount = item.VatAmount;
                     details.TaxBase = item.TaxBase;
                     details.Subtotal = item.Subtotal;
 
                     _invoice.InvoiceDetails.Add(details);
+
+                    switch (item.VatID)
+                    {
+                        case 1:
+                            _invoice.NotTaxedNetAmount += item.TaxBase;
+                            break;
+                        case 2:
+                            _invoice.ExemptAmount += item.TaxBase;
+                            break;
+                        case 3:
+                            details.VatAmount = item.VatAmount;
+                            _invoice.VatTotalAmount += item.VatAmount;
+                            break;
+                        default:
+                            details.VatAmount = item.VatAmount;
+                            _invoice.VatTotalAmount += item.VatAmount;
+                            break;
+                    }
                 }
+
+                _invoice.NetAmount = _itemDetailsView.Sum(x => x.TaxBase);
+                _invoice.TotalAmount = _invoice.NetAmount + _invoice.NotTaxedNetAmount + _invoice.ExemptAmount + _invoice.VatTotalAmount + _invoice.TributeTotalAmount;
 
                 if (_invoice.Client == null)
                 {
-                    Client cliente = new Client();
-                    cliente = _unitOfWork.Clients.Get(x => x.BusinessName == "Consumidor Final");
-                    _invoice.Client = cliente;
+                    var cliente = _unitOfWork.Clients.Get(x => x.BusinessName == "Consumidor Final");
+                    _invoice.ClientID = cliente.ID;
                 }
 
                 return _invoice;

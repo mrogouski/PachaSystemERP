@@ -15,8 +15,8 @@ namespace PachaSystem.Data.Repositories
         {
             using (var context = new PachaSystemContext())
             {
-                var query = (from c in context.Receipts
-                             join dc in context.ReceiptDetails on c.ID equals dc.InvoiceID
+                var query = (from c in context.Invoices
+                             join dc in context.InvoiceDetails on c.ID equals dc.InvoiceID
                              join p in context.Items on dc.ItemID equals p.ID
                              join i in context.Vat on p.VatID equals i.ID
                              //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
