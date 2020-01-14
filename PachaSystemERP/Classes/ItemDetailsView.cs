@@ -39,25 +39,6 @@
             }
         }
 
-        public int VatID
-        { 
-            get
-            {
-                return _vatId;
-            }
-
-            set
-            {
-                if (_vatId == value)
-                {
-                    return;
-                }
-
-                _vatId = value;
-                NotifyPropertyChanged();
-            }
-        }
-
         public string Code
         {
             get
@@ -130,6 +111,25 @@
                 }
 
                 _unitPrice = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public int VatID
+        {
+            get
+            {
+                return _vatId;
+            }
+
+            set
+            {
+                if (_vatId == value)
+                {
+                    return;
+                }
+
+                _vatId = value;
                 NotifyPropertyChanged();
             }
         }

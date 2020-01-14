@@ -175,36 +175,8 @@ namespace PachaSystemERP.Classes
             }
             else
             {
-                foreach (var item in _itemDetailsView)
-                {
-                    InvoiceDetails details = new InvoiceDetails();
-                    details.ItemID = item.ItemID;
-                    details.Quantity = item.Quantity;
-                    details.TaxBase = item.TaxBase;
-                    details.Subtotal = item.Subtotal;
+                CalculateVat();
 
-                    _invoice.InvoiceDetails.Add(details);
-
-                    switch (item.VatID)
-                    {
-                        case 1:
-                            _invoice.NotTaxedNetAmount += item.TaxBase;
-                            break;
-                        case 2:
-                            _invoice.ExemptAmount += item.TaxBase;
-                            break;
-                        case 3:
-                            details.VatAmount = item.VatAmount;
-                            _invoice.VatTotalAmount += item.VatAmount;
-                            break;
-                        default:
-                            details.VatAmount = item.VatAmount;
-                            _invoice.VatTotalAmount += item.VatAmount;
-                            break;
-                    }
-                }
-
-                _invoice.NetAmount = _itemDetailsView.Sum(x => x.TaxBase);
                 _invoice.TotalAmount = _invoice.NetAmount + _invoice.NotTaxedNetAmount + _invoice.ExemptAmount + _invoice.VatTotalAmount + _invoice.TributeTotalAmount;
 
                 if (_invoice.Client == null)
@@ -223,6 +195,39 @@ namespace PachaSystemERP.Classes
             stringBuilder.Append(Settings.Default.PointOfSale.ToString("D5"));
             stringBuilder.Append(_invoice.InvoiceNumber.ToString("D8"));
             return stringBuilder.ToString();
+        }
+
+        private void CalculateVat()
+        {
+            foreach (var item in _itemDetailsView)
+            {
+                InvoiceDetails details = new InvoiceDetails();
+                details.ItemID = item.ItemID;
+                details.Quantity = item.Quantity;
+                details.TaxBase = item.TaxBase;
+                details.Subtotal = item.Subtotal;
+
+                switch (item.VatID)
+                {
+                    case 1:
+                        _invoice.NotTaxedNetAmount += item.TaxBase;
+                        break;
+                    case 2:
+                        _invoice.ExemptAmount += item.TaxBase;
+                        break;
+                    case 3:
+                        details.VatAmount = item.VatAmount;
+                        _invoice.VatTotalAmount += item.VatAmount;
+                        break;
+                    default:
+                        details.VatAmount = item.VatAmount;
+                        _invoice.VatTotalAmount += item.VatAmount;
+                        _invoice.NetAmount += item.TaxBase;
+                        break;
+                }
+
+                _invoice.InvoiceDetails.Add(details);
+            }
         }
     }
 }

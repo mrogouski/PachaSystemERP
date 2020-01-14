@@ -244,7 +244,7 @@ namespace PachaSystemERP.Classes
             request.CabeceraRequest.PuntoDeVenta = Settings.Default.PointOfSale;
             request.CabeceraRequest.TipoDeComprobante = invoice.InvoiceTypeID;
 
-            var invoiceDetails = new CaeDetalleRequest();
+            var requestDetails = new CaeDetalleRequest();
 
             if (invoice.AssociatedReceipt != null)
             {
@@ -254,39 +254,62 @@ namespace PachaSystemERP.Classes
                 comprobanteAsociado.NumeroDeComprobante = invoice.AssociatedReceipt.InvoiceNumber;
                 comprobanteAsociado.Cuit = invoice.AssociatedReceipt.Cuit.ToString();
                 comprobanteAsociado.FechaDeComprobante = invoice.AssociatedReceipt.InvoiceDate.ToString("yyyyMMdd");
-                invoiceDetails.ComprobantesAsociados.Add(comprobanteAsociado);
+                requestDetails.ComprobantesAsociados.Add(comprobanteAsociado);
             }
 
             var client = _unitOfWork.Clients.Get(x => x.ID == invoice.ClientID);
-            invoiceDetails.TipoDeDocumento = client.DocumentTypeID;
-            invoiceDetails.NumeroDeDocumento = client.DocumentNumber;
+            requestDetails.TipoDeDocumento = client.DocumentTypeID;
+            requestDetails.NumeroDeDocumento = client.DocumentNumber;
 
             foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
                 var item = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.ItemID);
-                
-                AlicuotaIva iva = new AlicuotaIva();
-                iva.ID = item.VatID;
-                iva.BaseImponible = (double)invoiceDetail.TaxBase;
-                iva.Importe = (double)invoiceDetail.VatAmount;
-                
-                invoiceDetails.AlicuotaIVA.Add(iva);
+
+                var iva = new AlicuotaIva();
+
+                switch (item.VatID)
+                {
+                    case 3:
+                        iva.ID = item.VatID;
+                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
+                        iva.Importe = (double)invoiceDetail.VatAmount;
+                        requestDetails.AlicuotaIVA.Add(iva);
+                        break;
+                    case 4:
+                        iva.ID = item.VatID;
+                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
+                        iva.Importe = (double)invoiceDetail.VatAmount;
+                        requestDetails.AlicuotaIVA.Add(iva);
+                        break;
+                    case 5:
+                        iva.ID = item.VatID;
+                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
+                        iva.Importe = (double)invoiceDetail.VatAmount;
+                        requestDetails.AlicuotaIVA.Add(iva);
+                        break;
+                    case 6:
+                        iva.ID = item.VatID;
+                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
+                        iva.Importe = (double)invoiceDetail.VatAmount;
+                        requestDetails.AlicuotaIVA.Add(iva);
+                        break;
+                }
             }
 
-            invoiceDetails.Concepto = invoice.ConceptTypeID;
-            invoiceDetails.ComprobanteDesde = invoice.InvoiceNumber;
-            invoiceDetails.ComprobanteHasta = invoice.InvoiceNumber;
-            invoiceDetails.FechaDeComprobante = invoice.ReceiptDate.ToString("yyyyMMdd");
-            invoiceDetails.ImporteTotal = decimal.ToDouble(invoice.TotalAmount);
-            invoiceDetails.ImporteNetoNoGravado = decimal.ToDouble(invoice.NotTaxedNetAmount);
-            invoiceDetails.ImporteNeto = decimal.ToDouble(invoice.NetAmount);
-            invoiceDetails.ImporteExento = decimal.ToDouble(invoice.ExemptAmount);
-            invoiceDetails.ImporteIVA = decimal.ToDouble(invoice.VatTotalAmount);
-            invoiceDetails.ImporteTributo = decimal.ToDouble(invoice.TributeTotalAmount);
-            invoiceDetails.CodigoMoneda = _unitOfWork.CurrencyTypes.Get(x => x.ID == invoice.CurrencyTypeID).Code;
-            invoiceDetails.MonedaCotizacion = invoice.CurrencyExchangeRate;
+            requestDetails.Concepto = invoice.ConceptTypeID;
+            requestDetails.ComprobanteDesde = invoice.InvoiceNumber;
+            requestDetails.ComprobanteHasta = invoice.InvoiceNumber;
+            requestDetails.FechaDeComprobante = invoice.ReceiptDate.ToString("yyyyMMdd");
+            requestDetails.ImporteTotal = decimal.ToDouble(invoice.TotalAmount);
+            requestDetails.ImporteNetoNoGravado = decimal.ToDouble(invoice.NotTaxedNetAmount);
+            requestDetails.ImporteNeto = decimal.ToDouble(invoice.NetAmount);
+            requestDetails.ImporteExento = decimal.ToDouble(invoice.ExemptAmount);
+            requestDetails.ImporteIVA = decimal.ToDouble(invoice.VatTotalAmount);
+            requestDetails.ImporteTributo = decimal.ToDouble(invoice.TributeTotalAmount);
+            requestDetails.CodigoMoneda = _unitOfWork.CurrencyTypes.Get(x => x.ID == invoice.CurrencyTypeID).Code;
+            requestDetails.MonedaCotizacion = invoice.CurrencyExchangeRate;
 
-            request.DetalleRequest.Add(invoiceDetails);
+            request.DetalleRequest.Add(requestDetails);
 
             return request;
         }

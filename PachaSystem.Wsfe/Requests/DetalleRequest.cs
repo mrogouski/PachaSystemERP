@@ -305,11 +305,6 @@ namespace PachaSystem.Wsfe.Requests
         {
             get
             {
-                if (_iva == null)
-                {
-                    _iva = new List<AlicuotaIva>();
-                }
-
                 return _iva;
             }
 
@@ -345,6 +340,20 @@ namespace PachaSystem.Wsfe.Requests
             {
                 _compradores = value;
             }
+        }
+
+        public void AgregarIva(int ivaId, decimal baseImponible, decimal importe)
+        {
+            if (_iva == null)
+            {
+                _iva = new List<AlicuotaIva>();
+            }
+
+            var iva = new AlicuotaIva();
+            iva.ID = ivaId;
+            iva.BaseImponible = decimal.ToDouble(baseImponible);
+            iva.Importe = decimal.ToDouble(importe);
+            _iva.Add(iva);
         }
     }
 }
