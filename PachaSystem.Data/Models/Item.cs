@@ -25,10 +25,6 @@
 
         public int MeasureUnitID { get; set; }
 
-        public bool IsNotTaxed { get; set; }
-
-        public bool IsExempt { get; set; }
-
         public bool Discontinued { get; set; }
 
         public virtual Vat Vat { get; set; }

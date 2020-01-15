@@ -105,7 +105,7 @@ namespace PachaSystem.Data
             modelBuilder.Entity<Tribute>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Tribute>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<TributeCategory>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<TributeCategory>().Property(x => x.Description).IsRequired();
 
             modelBuilder.Entity<TributeDetails>().HasKey(x => new { x.ReceiptID, x.TributeID });
 

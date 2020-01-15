@@ -149,14 +149,9 @@ namespace PachaSystemERP.Classes
                 itemDetails.Name = item.Description;
                 itemDetails.Quantity = quantity;
                 itemDetails.UnitPrice = item.UnitPrice;
-                itemDetails.IsNotTaxed = item.IsNotTaxed;
-                itemDetails.IsExempt = item.IsExempt;
                 itemDetails.ItemID = item.ID;
-                if (item.Vat != null)
-                {
-                    itemDetails.VatID = item.VatID.Value;
-                    itemDetails.VatAliquot = item.Vat.Aliquot;
-                }
+                itemDetails.VatID = item.VatID.Value;
+                itemDetails.VatAliquot = item.Vat.Aliquot;
                 _itemDetailsView.Add(itemDetails);
 
                 _totalAmount = _itemDetailsView.Sum(x => x.Subtotal);
@@ -212,19 +207,19 @@ namespace PachaSystemERP.Classes
                 invoiceDetails.TaxBase = details.TaxBase;
                 invoiceDetails.Subtotal = details.Subtotal;
 
-                if (details.IsNotTaxed)
+                switch (details.VatID)
                 {
-                    _invoice.NotTaxedNetAmount += details.TaxBase;
-                }
-                else if (details.IsExempt)
-                {
-                    _invoice.ExemptAmount += details.TaxBase;
-                }
-                else
-                {
-                    invoiceDetails.VatAmount = details.VatAmount;
-                    _invoice.VatTotalAmount += details.VatAmount;
-                    _invoice.NetAmount += details.TaxBase;
+                    case 1:
+                        _invoice.NotTaxedNetAmount += details.TaxBase;
+                        break;
+                    case 2:
+                        _invoice.ExemptAmount += details.TaxBase;
+                        break;
+                    default:
+                        invoiceDetails.VatAmount = details.VatAmount;
+                        _invoice.VatTotalAmount += details.VatAmount;
+                        _invoice.NetAmount += details.TaxBase;
+                        break;
                 }
 
                 _invoice.InvoiceDetails.Add(invoiceDetails);

@@ -541,7 +541,6 @@
             <Rectangle Name="Rectangle3">
               <ReportItems>
                 <Textbox Name="Textbox7">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -580,7 +579,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox8">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -625,7 +623,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox15">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -659,7 +656,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox14">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -716,7 +712,6 @@
                   </Style>
                 </Line>
                 <Textbox Name="Textbox10">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -733,6 +728,7 @@
                           <Style>
                             <FontSize>9pt</FontSize>
                             <FontWeight>Normal</FontWeight>
+                            <Format>D5</Format>
                           </Style>
                         </TextRun>
                         <TextRun>
@@ -748,7 +744,7 @@
                           <Style>
                             <FontSize>9pt</FontSize>
                             <FontWeight>Normal</FontWeight>
-                            <Format>0000</Format>
+                            <Format>D8</Format>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -772,7 +768,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox19">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -817,7 +812,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox21">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -862,7 +856,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox18">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -907,7 +900,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox20">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -947,6 +939,38 @@
                   </Style>
                 </Textbox>
                 <Rectangle Name="Rectangle2">
+                  <ReportItems>
+                    <Textbox Name="Textbox29">
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>COD. </Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox29</rd:DefaultName>
+                      <Top>0.98307cm</Top>
+                      <Height>0.5cm</Height>
+                      <Width>1.5cm</Width>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
                   <KeepTogether>true</KeepTogether>
                   <Left>8.75cm</Left>
                   <Height>1.5cm</Height>
@@ -959,7 +983,6 @@
                   </Style>
                 </Rectangle>
                 <Textbox Name="Textbox9">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -982,39 +1005,6 @@
                   <Height>1cm</Height>
                   <Width>1.5cm</Width>
                   <ZIndex>11</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox29">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>COD. </Value>
-                          <Style>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox29</rd:DefaultName>
-                  <Top>0.98307cm</Top>
-                  <Left>8.75cm</Left>
-                  <Height>0.5cm</Height>
-                  <Width>1.5cm</Width>
-                  <ZIndex>12</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -1085,7 +1075,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox4">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -1130,7 +1119,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox12">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -1313,10 +1301,88 @@
               </Style>
             </Rectangle>
             <Rectangle Name="Rectangle5">
+              <ReportItems>
+                <Textbox Name="Textbox27">
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>Periodo Facturado Desde: </Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                        <TextRun>
+                          <Value>=Fields!ServiceStartDate.Value</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox27</rd:DefaultName>
+                  <Top>0.00569cm</Top>
+                  <Left>0.25cm</Left>
+                  <Height>0.6cm</Height>
+                  <Width>6cm</Width>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+                <Textbox Name="Textbox30">
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>Fecha de Vto. para el pago: </Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                        <TextRun>
+                          <Value>=Fields!PaymentExpirationDate.Value</Value>
+                          <Style>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Normal</FontWeight>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox30</rd:DefaultName>
+                  <Left>12.28528cm</Left>
+                  <Height>0.6cm</Height>
+                  <Width>6cm</Width>
+                  <ZIndex>1</ZIndex>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+              </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>5.26458cm</Top>
+              <Top>5.25889cm</Top>
               <Left>0.06546cm</Left>
-              <Height>0.6cm</Height>
+              <Height>0.60569cm</Height>
               <Width>19cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -1325,48 +1391,7 @@
                 </Border>
               </Style>
             </Rectangle>
-            <Textbox Name="Textbox27">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Periodo Facturado Desde: </Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>=Fields!ServiceStartDate.Value</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Normal</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox27</rd:DefaultName>
-              <Top>5.26458cm</Top>
-              <Left>0.29364cm</Left>
-              <Height>0.6cm</Height>
-              <Width>7.5cm</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
             <Textbox Name="Textbox28">
-              <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
@@ -1391,50 +1416,10 @@
               </Paragraphs>
               <rd:DefaultName>Textbox28</rd:DefaultName>
               <Top>5.26458cm</Top>
-              <Left>7.79364cm</Left>
+              <Left>6.35074cm</Left>
               <Height>0.6cm</Height>
-              <Width>4cm</Width>
-              <ZIndex>5</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox30">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Fecha de Vto. para el pago: </Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>=Fields!PaymentExpirationDate.Value</Value>
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Normal</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox30</rd:DefaultName>
-              <Top>5.22361cm</Top>
-              <Left>11.79364cm</Left>
-              <Height>0.6cm</Height>
-              <Width>6.94821cm</Width>
-              <ZIndex>6</ZIndex>
+              <Width>6cm</Width>
+              <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1473,7 +1458,6 @@
               </Style>
             </Image>
             <Textbox Name="Textbox6">
-              <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
@@ -1511,7 +1495,6 @@
               </Style>
             </Textbox>
             <Textbox Name="Textbox16">
-              <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
@@ -1553,7 +1536,6 @@
             <Rectangle Name="Rectangle6">
               <ReportItems>
                 <Textbox Name="Textbox23">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -1590,7 +1572,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox24">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -1622,7 +1603,6 @@
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox25">
-                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>

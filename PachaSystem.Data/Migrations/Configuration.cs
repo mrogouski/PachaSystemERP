@@ -29,9 +29,11 @@ namespace PachaSystem.Data.Migrations
                     new ConceptType { ID = 3, Name = "Productos y Servicios" });
             }
 
-            if (context.Vat.Count() != 6)
+            if (context.Vat.Count() != 8)
             {
                 context.Vat.AddOrUpdate(x => x.ID,
+                    new Vat { ID = 1, Description = "No Gravado", Aliquot = 0M },
+                    new Vat { ID = 2, Description = "Exento", Aliquot = 0M },
                     new Vat { ID = 3, Description = "0%", Aliquot = 0M },
                     new Vat { ID = 4, Description = "10,5%", Aliquot = 10.5M },
                     new Vat { ID = 5, Description = "21%", Aliquot = 21M },
@@ -40,14 +42,20 @@ namespace PachaSystem.Data.Migrations
                     new Vat { ID = 9, Description = "2.5%", Aliquot = 2.5M });
             }
 
-            if (context.TributeCategories.Count() != 5)
+            if (context.TributeCategories.Count() != 11)
             {
                 context.TributeCategories.AddOrUpdate(x => x.ID,
-                    new TributeCategory { ID = 1, Name = "Impuestos Nacionales" },
-                    new TributeCategory { ID = 2, Name = "Impuestos Provinciales" },
-                    new TributeCategory { ID = 3, Name = "Impuestos Municipales" },
-                    new TributeCategory { ID = 4, Name = "Impuestos Internos" },
-                    new TributeCategory { ID = 99, Name = "Otros" });
+                    new TributeCategory { ID = 01, Description = "Impuestos nacionales" },
+                    new TributeCategory { ID = 02, Description = "Impuestos provinciales" },
+                    new TributeCategory { ID = 03, Description = "Impuestos municipales" },
+                    new TributeCategory { ID = 04, Description = "Impuestos internos" },
+                    new TributeCategory { ID = 05, Description = "IIBB" },
+                    new TributeCategory { ID = 06, Description = "Percepción de IVA" },
+                    new TributeCategory { ID = 07, Description = "Percepción de IIBB" },
+                    new TributeCategory { ID = 08, Description = "Percepciones por Impuestos Municipales" },
+                    new TributeCategory { ID = 09, Description = "Otras Percepciones" },
+                    new TributeCategory { ID = 13, Description = "Percepción de IVA a no Categorizado" },
+                    new TributeCategory { ID = 99, Description = "Otros" });
             }
 
             if (context.FiscalConditionTypes.Count() != 14)
