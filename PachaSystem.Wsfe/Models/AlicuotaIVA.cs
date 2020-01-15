@@ -59,7 +59,7 @@ namespace PachaSystem.Wsfe.Models
             }
         }
 
-        [DataMember(EmitDefaultValue = false, IsRequired = true, Name = "Importe", Order = 2)]
+        [DataMember(EmitDefaultValue = true, IsRequired = true, Name = "Importe", Order = 2)]
         public double Importe
         {
             get

@@ -21,24 +21,23 @@ namespace PachaSystem.Data.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-            if (context.ConceptTypes.Count() != 4)
+            if (context.ConceptTypes.Count() != 3)
             {
                 context.ConceptTypes.AddOrUpdate(x => x.ID,
                     new ConceptType { ID = 1, Name = "Productos" },
                     new ConceptType { ID = 2, Name = "Servicios" },
-                    new ConceptType { ID = 3, Name = "Productos y Servicios" },
-                    new ConceptType { ID = 4, Name = "Otros" });
+                    new ConceptType { ID = 3, Name = "Productos y Servicios" });
             }
 
             if (context.Vat.Count() != 6)
             {
                 context.Vat.AddOrUpdate(x => x.ID,
-                    new Vat { ID = 1, Description = "No Gravado", Aliquot = 0M },
-                    new Vat { ID = 2, Description = "Exento", Aliquot = 0M },
                     new Vat { ID = 3, Description = "0%", Aliquot = 0M },
                     new Vat { ID = 4, Description = "10,5%", Aliquot = 10.5M },
                     new Vat { ID = 5, Description = "21%", Aliquot = 21M },
-                    new Vat { ID = 6, Description = "27%", Aliquot = 27M });
+                    new Vat { ID = 6, Description = "27%", Aliquot = 27M },
+                    new Vat { ID = 8, Description = "5%", Aliquot = 5M },
+                    new Vat { ID = 9, Description = "2.5%", Aliquot = 2.5M });
             }
 
             if (context.TributeCategories.Count() != 5)
@@ -273,7 +272,7 @@ namespace PachaSystem.Data.Migrations
             if (context.Clients.Count() == 0)
             {
                 context.Clients.AddOrUpdate(
-                    new Client { ID = 1, BusinessName = "Consumidor Final", DocumentTypeID = 99, DocumentNumber = 0, FiscalConditionID = 5, Address = string.Empty });
+                    new Customer { ID = 1, BusinessName = "Consumidor Final", DocumentTypeID = 99, DocumentNumber = 0, FiscalConditionTypeID = 5, Address = string.Empty });
             }
 
             base.Seed(context);

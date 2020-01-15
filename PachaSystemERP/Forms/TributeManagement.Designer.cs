@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class ControlDeTributos
+    partial class TributeManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -100,7 +100,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ControlDeTributos";
             this.Text = "ControlDeTributos";
-            this.Load += new System.EventHandler(this.ControlDeTributos_Load);
+            this.Load += new System.EventHandler(this.TributeManagement_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTributo)).EndInit();
             this.ResumeLayout(false);

@@ -45,7 +45,7 @@
 
         private void TsbStock_Click(object sender, EventArgs e)
         {
-            var form = new ControlDeStock
+            var form = new StockManagement
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,
@@ -58,7 +58,7 @@
 
         private void tributosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new ControlDeTributos();
+            var form = new TributeManagement();
             form.ShowDialog();
         }
 
@@ -78,6 +78,19 @@
         private void TsbClientes_Click(object sender, EventArgs e)
         {
             var form = new AddClient
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                Dock = DockStyle.Fill,
+            };
+            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Add(form);
+            form.Show();
+        }
+
+        private void tsmiVatView_Click(object sender, EventArgs e)
+        {
+            var form = new VatTypeView
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,

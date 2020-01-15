@@ -8,7 +8,7 @@
 
     public class Vat
     {
-        public short ID { get; set; }
+        public int ID { get; set; }
 
         public string Description { get; set; }
 

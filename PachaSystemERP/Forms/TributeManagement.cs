@@ -16,14 +16,11 @@ namespace PachaSystemERP.Forms
     using System.Windows.Forms;
     using PachaSystem.Data;
 
-    public partial class ControlDeTributos : Form
+    public partial class TributeManagement : Form
     {
         private PachaSystemContext _context;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="ControlDeTributos"/>.
-        /// </summary>
-        public ControlDeTributos()
+        public TributeManagement()
         {
             InitializeComponent();
             _context = new PachaSystemContext();
@@ -31,7 +28,7 @@ namespace PachaSystemERP.Forms
             _context.TributeCategories.Load();
         }
 
-        private void ControlDeTributos_Load(object sender, EventArgs e)
+        private void TributeManagement_Load(object sender, EventArgs e)
         {
             var tributoBindingSource = new BindingSource();
             var categoriaBindingSource = new BindingSource();
@@ -39,15 +36,15 @@ namespace PachaSystemERP.Forms
             tributoBindingSource.DataSource = _context.Tributes.Local.ToBindingList();
 
             categoriaBindingSource.DataSource = tributoBindingSource;
-            categoriaBindingSource.DataMember = "CategoriaTributoID";
+            categoriaBindingSource.DataMember = "TributeCategoryID";
 
             dgvTributo.DataSource = tributoBindingSource;
 
             DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn();
-            column.DataPropertyName = "CategoriaTributoID";
+            column.DataPropertyName = "TributeCategoryID";
             column.Name = "Categoría de Tributo";
             column.DataSource = _context.TributeCategories.Local.ToBindingList();
-            column.DisplayMember = "Descripcion";
+            column.DisplayMember = "Name";
             column.ValueMember = "ID";
             dgvTributo.Columns.Add(column);
         }

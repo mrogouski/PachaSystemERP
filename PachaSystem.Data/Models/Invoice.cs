@@ -58,7 +58,7 @@ namespace PachaSystem.Data.Models
 
         public int ClientID { get; set; }
 
-        public virtual Client Client { get; set; }
+        public virtual Customer Client { get; set; }
 
         public virtual AssociatedInvoice AssociatedReceipt { get; set; }
 

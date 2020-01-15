@@ -22,6 +22,8 @@ namespace PachaSystem.Data.Models
 
         public decimal Subtotal { get; set; }
 
+        public decimal VatAliquot { get; set; }
+
         public decimal VatAmount { get; set; }
 
         public virtual Invoice Invoice { get; set; }

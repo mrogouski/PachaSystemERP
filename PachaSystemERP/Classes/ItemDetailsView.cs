@@ -11,11 +11,13 @@
     public class ItemDetailsView : INotifyPropertyChanged
     {
         private int _itemId;
-        private int _vatId;
         private string _code;
         private string _name;
         private int _quantity;
         private decimal _unitPrice;
+        private bool _isNotTaxed;
+        private bool _isExempt;
+        private int _vatId;
         private decimal _vatAliquot;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -111,6 +113,44 @@
                 }
 
                 _unitPrice = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsNotTaxed
+        {
+            get
+            {
+                return _isNotTaxed;
+            }
+
+            set
+            {
+                if (_isNotTaxed == value)
+                {
+                    return;
+                }
+
+                _isNotTaxed = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool IsExempt
+        {
+            get
+            {
+                return _isExempt;
+            }
+
+            set
+            {
+                if (_isExempt == value)
+                {
+                    return;
+                }
+
+                _isExempt = value;
                 NotifyPropertyChanged();
             }
         }

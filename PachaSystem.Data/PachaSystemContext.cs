@@ -20,9 +20,6 @@ namespace PachaSystem.Data
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="PachaSystemContext"/>.
-        /// </summary>
         public PachaSystemContext()
             : base("PachaSystemERP.Properties.Settings.PachaSystemERPConnectionString")
         {
@@ -30,9 +27,9 @@ namespace PachaSystem.Data
             //Database.Log = s => logger.Debug(s);
         }
 
-        public DbSet<AssociatedInvoice> AssociatedReceipts { get; set; }
+        public DbSet<AssociatedInvoice> AssociatedInvoices { get; set; }
 
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<Customer> Clients { get; set; }
 
         public DbSet<ConceptType> ConceptTypes { get; set; }
 
@@ -75,9 +72,9 @@ namespace PachaSystem.Data
                 .WithOptional(x => x.AssociatedReceipt);
             modelBuilder.Entity<AssociatedInvoice>().Property(x => x.InvoiceNumber).IsRequired();
 
-            modelBuilder.Entity<Client>().Property(x => x.BusinessName).IsRequired();
-            modelBuilder.Entity<Client>().Property(x => x.DocumentNumber).IsRequired();
-            modelBuilder.Entity<Client>().Property(x => x.Address).IsRequired();
+            modelBuilder.Entity<Customer>().Property(x => x.BusinessName).IsRequired();
+            modelBuilder.Entity<Customer>().Property(x => x.DocumentNumber).IsRequired();
+            modelBuilder.Entity<Customer>().Property(x => x.Address).IsRequired();
 
             modelBuilder.Entity<ConceptType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<ConceptType>().Property(x => x.Name).IsRequired();

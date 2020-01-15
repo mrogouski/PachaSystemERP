@@ -139,7 +139,7 @@ namespace PachaSystemERP.Classes
             return response.TiposDeDocumento;
         }
 
-        public List<TipoDeTributo> ObtenerTiposDeTributo()
+        public List<TipoDeTributo> GetTributeTypes()
         {
             var credentials = GetCredentials();
             var response = _wsfeClient.ObtenerTiposDeTributo(credentials);
@@ -147,12 +147,20 @@ namespace PachaSystemERP.Classes
             return response.TiposDeTributo;
         }
 
-        public List<TipoDeMoneda> ObtenerTiposDeMoneda()
+        public List<TipoDeMoneda> GetCurrencyTypes()
         {
             var credentials = GetCredentials();
             var response = _wsfeClient.ObtenerTiposDeMoneda(credentials);
 
             return response.TiposDeMoneda;
+        }
+
+        public List<TipoDeIva> GetVatTypes()
+        {
+            var credentials = GetCredentials();
+            var response = _wsfeClient.ObtenerTiposDeIva(credentials);
+
+            return response.TiposDeIva;
         }
 
         public int GetLastReceiptNumber(int tipoComprobante)
@@ -263,36 +271,10 @@ namespace PachaSystemERP.Classes
 
             foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
-                var item = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.ItemID);
-
-                var iva = new AlicuotaIva();
-
-                switch (item.VatID)
+                var query = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.ItemID);
+                if (query.IsNotTaxed == false && query.IsExempt == false)
                 {
-                    case 3:
-                        iva.ID = item.VatID;
-                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
-                        iva.Importe = (double)invoiceDetail.VatAmount;
-                        requestDetails.AlicuotaIVA.Add(iva);
-                        break;
-                    case 4:
-                        iva.ID = item.VatID;
-                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
-                        iva.Importe = (double)invoiceDetail.VatAmount;
-                        requestDetails.AlicuotaIVA.Add(iva);
-                        break;
-                    case 5:
-                        iva.ID = item.VatID;
-                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
-                        iva.Importe = (double)invoiceDetail.VatAmount;
-                        requestDetails.AlicuotaIVA.Add(iva);
-                        break;
-                    case 6:
-                        iva.ID = item.VatID;
-                        iva.BaseImponible = (double)invoiceDetail.TaxBase;
-                        iva.Importe = (double)invoiceDetail.VatAmount;
-                        requestDetails.AlicuotaIVA.Add(iva);
-                        break;
+                    requestDetails.AgregarIva(query.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
                 }
             }
 

@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class ControlDeStock
+    partial class StockManagement
     {
         /// <summary>
         /// Required designer variable.

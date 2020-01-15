@@ -19,16 +19,24 @@
 
         public decimal UnitPrice { get; set; }
 
-        public short VatID { get; set; }
+        public int? VatID { get; set; }
 
-        public int? CategoryID { get; set; }
+        public int? ItemCategoryID { get; set; }
+
+        public int MeasureUnitID { get; set; }
+
+        public bool IsNotTaxed { get; set; }
+
+        public bool IsExempt { get; set; }
 
         public bool Discontinued { get; set; }
 
         public virtual Vat Vat { get; set; }
 
-        public virtual ItemCategory Category { get; set; }
+        public virtual ItemCategory ItemCategory { get; set; }
 
-        public virtual ICollection<InvoiceDetails> ReceiptDetails { get; set; }
+        public virtual ICollection<InvoiceDetails> InvoiceDetails { get; set; }
+
+        public virtual MeasureUnit MeasureUnit { get; set; }
     }
 }

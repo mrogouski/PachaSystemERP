@@ -101,17 +101,17 @@
     <Compile Include="Forms\ControlCategoria.Designer.cs">
       <DependentUpon>ControlCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ControlStock.cs">
+    <Compile Include="Forms\StockManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ControlStock.Designer.cs">
-      <DependentUpon>ControlStock.cs</DependentUpon>
+    <Compile Include="Forms\StockManagement.Designer.cs">
+      <DependentUpon>StockManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ManejoTributos.cs">
+    <Compile Include="Forms\TributeManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ManejoTributos.Designer.cs">
-      <DependentUpon>ManejoTributos.cs</DependentUpon>
+    <Compile Include="Forms\TributeManagement.Designer.cs">
+      <DependentUpon>TributeManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FacturaB.cs">
       <SubType>Form</SubType>
@@ -143,17 +143,23 @@
     <Compile Include="Forms\ReceiptViewer.Designer.cs">
       <DependentUpon>ReceiptViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\VatTypeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VatTypeView.Designer.cs">
+      <DependentUpon>VatTypeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Forms\ControlCategoria.resx">
       <DependentUpon>ControlCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ControlStock.resx">
-      <DependentUpon>ControlStock.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StockManagement.resx">
+      <DependentUpon>StockManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ManejoTributos.resx">
-      <DependentUpon>ManejoTributos.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\TributeManagement.resx">
+      <DependentUpon>TributeManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FacturaB.resx">
       <DependentUpon>FacturaB.cs</DependentUpon>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReceiptViewer.resx">
       <DependentUpon>ReceiptViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VatTypeView.resx">
+      <DependentUpon>VatTypeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

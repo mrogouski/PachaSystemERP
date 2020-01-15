@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Client
+    public class Customer
     {
         public int ID { get; set; }
 
@@ -16,11 +16,11 @@
 
         public long DocumentNumber { get; set; }
 
-        public int FiscalConditionID { get; set; }
+        public int FiscalConditionTypeID { get; set; }
 
         public string Address { get; set; }
 
-        public virtual ICollection<Invoice> Receipts { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
 
         public virtual DocumentType DocumentType { get; set; }
 
