@@ -10,15 +10,15 @@
 
     public class ItemDetailsView : INotifyPropertyChanged
     {
-        private int _itemId;
+        private int _ID;
         private string _code;
         private string _name;
         private int _quantity;
         private decimal _unitPrice;
-        private bool _isNotTaxed;
-        private bool _isExempt;
-        private int _vatId;
         private decimal _vatAliquot;
+        private decimal _vatAmount;
+        private decimal _taxBase;
+        private decimal _subtotal;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -26,18 +26,16 @@
         {
             get
             {
-                return _itemId;
+                return _ID;
             }
 
             set
             {
-                if (_itemId == value)
+                if (_ID != value)
                 {
-                    return;
+                    _ID = value;
+                    NotifyPropertyChanged();
                 }
-
-                _itemId = value;
-                NotifyPropertyChanged();
             }
         }
 
@@ -50,13 +48,11 @@
 
             set
             {
-                if (_code == value)
+                if (_code != value)
                 {
-                    return;
+                    _code = value;
+                    NotifyPropertyChanged();
                 }
-
-                _code = value;
-                NotifyPropertyChanged();
             }
         }
 
@@ -69,13 +65,11 @@
 
             set
             {
-                if (_name == value)
+                if (_name != value)
                 {
-                    return;
+                    _name = value;
+                    NotifyPropertyChanged();
                 }
-
-                _name = value;
-                NotifyPropertyChanged();
             }
         }
 
@@ -88,13 +82,11 @@
 
             set
             {
-                if (_quantity == value)
+                if (_quantity != value)
                 {
-                    return;
+                    _quantity = value;
+                    NotifyPropertyChanged();
                 }
-
-                _quantity = value;
-                NotifyPropertyChanged();
             }
         }
 
@@ -107,70 +99,11 @@
 
             set
             {
-                if (_unitPrice == value)
+                if (_unitPrice != value)
                 {
-                    return;
+                    _unitPrice = value;
+                    NotifyPropertyChanged();
                 }
-
-                _unitPrice = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public bool IsNotTaxed
-        {
-            get
-            {
-                return _isNotTaxed;
-            }
-
-            set
-            {
-                if (_isNotTaxed == value)
-                {
-                    return;
-                }
-
-                _isNotTaxed = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public bool IsExempt
-        {
-            get
-            {
-                return _isExempt;
-            }
-
-            set
-            {
-                if (_isExempt == value)
-                {
-                    return;
-                }
-
-                _isExempt = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        public int VatID
-        {
-            get
-            {
-                return _vatId;
-            }
-
-            set
-            {
-                if (_vatId == value)
-                {
-                    return;
-                }
-
-                _vatId = value;
-                NotifyPropertyChanged();
             }
         }
 
@@ -183,13 +116,11 @@
 
             set
             {
-                if (_vatAliquot == value)
+                if (_vatAliquot != value)
                 {
-                    return;
+                    _vatAliquot = value;
+                    NotifyPropertyChanged();
                 }
-
-                _vatAliquot = value;
-                NotifyPropertyChanged();
             }
         }
 
@@ -197,13 +128,15 @@
         {
             get
             {
-                if (_vatAliquot > 0)
+                return _vatAmount;
+            }
+
+            set
+            {
+                if (_vatAmount != value)
                 {
-                    return decimal.Round(TaxBase * (_vatAliquot / 100), 2, MidpointRounding.ToEven);
-                }
-                else
-                {
-                    return 0;
+                    _vatAmount = value;
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -212,7 +145,16 @@
         {
             get
             {
-                return decimal.Round(_unitPrice * _quantity, 2, MidpointRounding.ToEven);
+                return _taxBase;
+            }
+
+            set
+            {
+                if (_taxBase != value)
+                {
+                    _taxBase = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -220,7 +162,16 @@
         {
             get
             {
-                return decimal.Round((TaxBase + VatAmount), 2, MidpointRounding.ToEven);
+                return _subtotal;
+            }
+
+            set
+            {
+                if (_subtotal != value)
+                {
+                    _subtotal = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 

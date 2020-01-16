@@ -48,7 +48,8 @@ namespace PachaSystemERP.Forms
             var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA B");
             var conceptType = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos");
             var invoiceNumber = _electronicInvoicing.GetLastReceiptNumber(invoiceType.ID) + 1;
-            _invoiceBuilder = new InvoiceBuilder(invoiceType.ID, conceptType.ID, invoiceNumber);
+            var currencyType = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES");
+            _invoiceBuilder = new InvoiceBuilder(invoiceNumber, invoiceType, conceptType, currencyType);
 
             LblReceiptNumber.Text = _invoiceBuilder.ReceiptNumber;
 

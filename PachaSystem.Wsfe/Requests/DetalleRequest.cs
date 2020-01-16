@@ -355,5 +355,21 @@ namespace PachaSystem.Wsfe.Requests
             iva.Importe = decimal.ToDouble(importe);
             _iva.Add(iva);
         }
+
+        public void AgregarTributo(short tributoID, string descripcion, decimal baseImponible, decimal alicuota, decimal importe)
+        {
+            if (_tributo == null)
+            {
+                _tributo = new List<Tributo>();
+            }
+
+            var tributo = new Tributo();
+            tributo.ID = tributoID;
+            tributo.Descripcion = descripcion;
+            tributo.BaseImponible = decimal.ToDouble(baseImponible);
+            tributo.Alicuota = decimal.ToDouble(alicuota);
+            tributo.Importe = decimal.ToDouble(importe);
+            _tributo.Add(tributo);
+        }
     }
 }

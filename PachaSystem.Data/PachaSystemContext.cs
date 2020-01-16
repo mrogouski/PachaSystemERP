@@ -102,8 +102,7 @@ namespace PachaSystem.Data
             modelBuilder.Entity<InvoiceType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<InvoiceType>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<Tribute>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Tribute>().Property(x => x.Description).IsRequired();
+            modelBuilder.Entity<Tribute>().HasKey(x => x.ID).Property(x => x.Description).IsRequired();
 
             modelBuilder.Entity<TributeCategory>().Property(x => x.Description).IsRequired();
 

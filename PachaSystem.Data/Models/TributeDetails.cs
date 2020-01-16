@@ -12,6 +12,8 @@ namespace PachaSystem.Data.Models
 
         public int TributeID { get; set; }
 
+        public decimal Aliquot { get; set; }
+
         public decimal Amount { get; set; }
 
         public virtual Tribute Tribute { get; set; }

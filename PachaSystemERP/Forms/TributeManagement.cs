@@ -44,7 +44,7 @@ namespace PachaSystemERP.Forms
             column.DataPropertyName = "TributeCategoryID";
             column.Name = "Categoría de Tributo";
             column.DataSource = _context.TributeCategories.Local.ToBindingList();
-            column.DisplayMember = "Name";
+            column.DisplayMember = "Description";
             column.ValueMember = "ID";
             dgvTributo.Columns.Add(column);
         }

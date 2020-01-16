@@ -71,7 +71,7 @@ namespace PachaSystemERP.Classes
         public Invoice GenerateInvoice(InvoiceBuilder builder)
         {
             var credentials = GetCredentials();
-            var invoice = builder.Build();
+            var invoice = builder.GetInvoiceData();
             var request = GenerateRequest(invoice);
 
             var response = _wsfeClient.SolicitarCae(credentials, request);
@@ -276,6 +276,12 @@ namespace PachaSystemERP.Classes
                 {
                     requestDetails.AgregarIva(query.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
                 }
+            }
+
+            foreach (var item in invoice.TributeDetails)
+            {
+                var query = _unitOfWork.Tributes.Get(x => x.ID == item.TributeID);
+                requestDetails.AgregarTributo((short)query.ID, query.Description, query.TaxBase, query.Aliquot, item.Amount);
             }
 
             requestDetails.Concepto = invoice.ConceptTypeID;
