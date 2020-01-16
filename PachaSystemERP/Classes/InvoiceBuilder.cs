@@ -207,6 +207,7 @@ namespace PachaSystemERP.Classes
 
             if (tributes != null && tributes.Count() > 0)
             {
+                _invoice.TributeDetails.Clear();
                 foreach (var item in tributes)
                 {
                     var tributeDetails = new TributeDetails();
