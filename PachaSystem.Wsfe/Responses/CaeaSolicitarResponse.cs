@@ -4,10 +4,9 @@
 
 namespace PachaSystem.Wsfe.Responses
 {
+    using PachaSystem.Wsfe.Models;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using PachaSystem.Wsfe.Models;
-    using PachaSystem.Wsfe.Requests;
 
     [DataContract(Name = "FECAEAGetResponse", Namespace = "http://ar.gov.afip.dif.FEV1/")]
     public class CaeaSolicitarResponse

@@ -4,16 +4,12 @@
 
 namespace PachaSystem.Data.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Linq;
-    using System.Linq.Expressions;
-    using System.Text;
-    using System.Threading.Tasks;
     using PachaSystem.Data.Helpers;
     using PachaSystem.Data.Models;
-    using PachaSystem.Data.Views;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
 
     public class InvoiceRepository : IRepository<Invoice>
     {

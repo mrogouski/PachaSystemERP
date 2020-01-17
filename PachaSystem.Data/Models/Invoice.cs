@@ -6,9 +6,6 @@ namespace PachaSystem.Data.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Invoice
     {
@@ -32,7 +29,7 @@ namespace PachaSystem.Data.Models
 
         public DateTime CaeExpirationDate { get; set; }
 
-        public DateTime ReceiptDate { get; set; }
+        public DateTime InvoiceDate { get; set; }
 
         public decimal TotalAmount { get; set; }
 

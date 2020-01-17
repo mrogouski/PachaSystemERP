@@ -4,17 +4,12 @@
 
 namespace PachaSystem.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity;
-    using System.Data.Entity.ModelConfiguration.Conventions;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using NLog;
     using PachaSystem.Data.Migrations;
     using PachaSystem.Data.Models;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
+    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class PachaSystemContext : DbContext
     {
@@ -106,7 +101,7 @@ namespace PachaSystem.Data
 
             modelBuilder.Entity<TributeCategory>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<TributeDetails>().HasKey(x => new { x.ReceiptID, x.TributeID });
+            modelBuilder.Entity<TributeDetails>().HasKey(x => new { x.InvoiceID, x.TributeID });
 
             modelBuilder.Entity<Vat>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Vat>().Property(x => x.Description).IsRequired();

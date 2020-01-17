@@ -4,12 +4,11 @@
 
 namespace PachaSystem.Wsfe
 {
+    using PachaSystem.Wsfe.Requests;
+    using PachaSystem.Wsfe.Responses;
     using System.ServiceModel;
     using System.ServiceModel.Channels;
     using System.Threading.Tasks;
-    using PachaSystem.Wsfe.Models;
-    using PachaSystem.Wsfe.Requests;
-    using PachaSystem.Wsfe.Responses;
 
     /// <summary>
     /// Representa el cliente del servicio web de factura electronica.

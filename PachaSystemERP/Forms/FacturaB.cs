@@ -4,26 +4,18 @@
 
 namespace PachaSystemERP.Forms
 {
-    using System;
-    using System.Data;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
     using PachaSystem.Data;
     using PachaSystem.Data.Helpers;
-    using PachaSystem.Data.Models;
     using PachaSystemERP.Classes;
-    using PachaSystemERP.Controles;
-    using PachaSystemERP.Enums;
+    using System;
+    using System.Windows.Forms;
 
     public partial class FacturaB : Form
     {
         private PachaSystemContext _context;
-        private UnitOfWork _unitOfWork;
-        private InvoiceBuilder _invoiceBuilder;
         private ElectronicInvoicing _electronicInvoicing;
-
+        private InvoiceBuilder _invoiceBuilder;
+        private UnitOfWork _unitOfWork;
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="FacturaB"/>.
         /// </summary>
@@ -35,12 +27,28 @@ namespace PachaSystemERP.Forms
             InitializeComponent();
         }
 
-        private void MenuFacturacion_Load(object sender, EventArgs e)
+        private void BtnAddItem_Click(object sender, EventArgs e)
         {
-            Initialize();
+            _invoiceBuilder.AddItem(TxtItemCode.Text, (int)NudQuantity.Value);
+            bindingSource.ResetBindings(false);
+            TxtItemCode.Clear();
+            TxtItemName.Clear();
+            NudQuantity.Value = 1;
+            NudUnitPrice.Value = 0.00M;
+            NudSubtotal.Value = 0.00M;
+        }
 
-            lblTotal.DataBindings.Add("Text", _invoiceBuilder, "TotalAmount", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C");
-            lblCantidadArticulos.DataBindings.Add("Text", _invoiceBuilder, "TotalQuantity", true, DataSourceUpdateMode.OnPropertyChanged);
+        private void BtnGenerateInvoice_Click(object sender, EventArgs e)
+        {
+            _electronicInvoicing = new ElectronicInvoicing();
+            var invoice = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
+            if (invoice != null)
+            {
+                var form = new ReceiptViewer(invoice);
+                form.ShowDialog();
+            }
+
+            Initialize();
         }
 
         private void Initialize()
@@ -73,6 +81,35 @@ namespace PachaSystemERP.Forms
             DgvArticles.Columns["TaxBase"].Visible = false;
         }
 
+        private void MenuFacturacion_Load(object sender, EventArgs e)
+        {
+            Initialize();
+
+            lblTotal.DataBindings.Add("Text", _invoiceBuilder, "TotalAmount", true, DataSourceUpdateMode.OnPropertyChanged, 0, "C");
+            lblCantidadArticulos.DataBindings.Add("Text", _invoiceBuilder, "TotalQuantity", true, DataSourceUpdateMode.OnPropertyChanged);
+        }
+        private void NudQuantity_ValueChanged(object sender, EventArgs e)
+        {
+            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
+        }
+
+        private void NudUnitPrice_ValueChanged(object sender, EventArgs e)
+        {
+            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
+        }
+
+        private void TxtItemCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
         private void TxtItemCode_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TxtItemCode.Text))
@@ -93,53 +130,6 @@ namespace PachaSystemERP.Forms
                 NudSubtotal.Value = 0;
             }
         }
-
-        private void TxtItemCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void NudQuantity_ValueChanged(object sender, EventArgs e)
-        {
-            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
-        }
-
-        private void NudUnitPrice_ValueChanged(object sender, EventArgs e)
-        {
-            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
-        }
-
-        private void BtnAddItem_Click(object sender, EventArgs e)
-        {
-            _invoiceBuilder.AddItem(TxtItemCode.Text, (int)NudQuantity.Value);
-            bindingSource.ResetBindings(false);
-            TxtItemCode.Clear();
-            TxtItemName.Clear();
-            NudQuantity.Value = 1;
-            NudUnitPrice.Value = 0.00M;
-            NudSubtotal.Value = 0.00M;
-        }
-
-        private void BtnGenerateInvoice_Click(object sender, EventArgs e)
-        {
-            _electronicInvoicing = new ElectronicInvoicing();
-            var invoice = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
-            if (invoice != null)
-            {
-                var form = new ReceiptViewer(invoice);
-                form.ShowDialog();
-            }
-
-            Initialize();
-        }
-
         private void TxtItemName_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TxtItemName.Text))
@@ -151,6 +141,30 @@ namespace PachaSystemERP.Forms
                     NudUnitPrice.Value = query.UnitPrice;
                 }
             }
+        }
+
+        private void BtnCancelItem_Click(object sender, EventArgs e)
+        {
+            TxtItemCode.Clear();
+            TxtItemName.Clear();
+            NudQuantity.Value = 1;
+            NudUnitPrice.Value = 0;
+            NudSubtotal.Value = 0;
+        }
+
+        private void BtnCancelInvoice_Click(object sender, EventArgs e)
+        {
+            Initialize();
+        }
+
+        private void NudQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
+        }
+
+        private void NudQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
         }
     }
 }

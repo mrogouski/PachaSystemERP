@@ -10,7 +10,7 @@ namespace PachaSystem.Wsaa
     /// <summary>
     /// Define el comportamiento del canal de solicitud/respuesta del cliente WSAA.
     /// </summary>
-    [ServiceContract(Name ="LoginCMS", Namespace = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms")]
+    [ServiceContract(Name = "LoginCMS", Namespace = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms")]
     public interface IWsaaClient
     {
         /// <summary>
@@ -18,8 +18,8 @@ namespace PachaSystem.Wsaa
         /// </summary>
         /// <param name="request">Representa el mensaje de solicitud.</param>
         /// <returns>Un <see cref="LoginResponse"/> representando el resultado de la solicitud.</returns>
-        [OperationContract(Action ="", ReplyAction ="*")]
-        [FaultContract(typeof(LoginFault), Action ="", Name ="fault")]
+        [OperationContract(Action = "", ReplyAction = "*")]
+        [FaultContract(typeof(LoginFault), Action = "", Name = "fault")]
         LoginResponse Login(LoginRequest request);
 
         /// <summary>

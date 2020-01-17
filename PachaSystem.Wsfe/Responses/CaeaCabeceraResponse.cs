@@ -6,7 +6,7 @@ namespace PachaSystem.Wsfe.Responses
 {
     using System.Runtime.Serialization;
 
-    [DataContract(Name = "FECAEACabResponse", Namespace ="http://ar.gov.afip.dif.FEV1/")]
+    [DataContract(Name = "FECAEACabResponse", Namespace = "http://ar.gov.afip.dif.FEV1/")]
     public class CaeaCabeceraResponse : CabeceraResponse
     {
     }

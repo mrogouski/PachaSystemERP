@@ -1,14 +1,15 @@
 ﻿namespace PachaSystem.Data.Models
 {
     using PachaSystem.Data.Enums;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Item
     {
+        public Item()
+        {
+            InvoiceDetails = new HashSet<InvoiceDetails>();
+        }
+
         public int ID { get; set; }
 
         public ItemType ItemTypeID { get; set; }

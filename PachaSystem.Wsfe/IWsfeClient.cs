@@ -4,10 +4,10 @@
 
 namespace PachaSystem.Wsfe
 {
-    using System.ServiceModel;
-    using System.Threading.Tasks;
     using PachaSystem.Wsfe.Requests;
     using PachaSystem.Wsfe.Responses;
+    using System.ServiceModel;
+    using System.Threading.Tasks;
 
     [ServiceContract(Name = "ServiceSoap", Namespace = "http://ar.gov.afip.dif.FEV1/")]
     public interface IWsfeClient

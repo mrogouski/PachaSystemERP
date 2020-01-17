@@ -4,16 +4,6 @@
 
 namespace PachaSystemERP.Classes
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Security;
-    using System.ServiceModel;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Xml;
     using NLog;
     using PachaSystem.Data;
     using PachaSystem.Data.Helpers;
@@ -24,6 +14,13 @@ namespace PachaSystemERP.Classes
     using PachaSystem.Wsfe.Requests;
     using PachaSystem.Wsfe.Responses;
     using PachaSystemERP.Properties;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.ServiceModel;
+    using System.Text;
+    using System.Xml;
 
     public class ElectronicInvoicing
     {
@@ -287,7 +284,7 @@ namespace PachaSystemERP.Classes
             requestDetails.Concepto = invoice.ConceptTypeID;
             requestDetails.ComprobanteDesde = invoice.InvoiceNumber;
             requestDetails.ComprobanteHasta = invoice.InvoiceNumber;
-            requestDetails.FechaDeComprobante = invoice.ReceiptDate.ToString("yyyyMMdd");
+            requestDetails.FechaDeComprobante = invoice.InvoiceDate.ToString("yyyyMMdd");
             requestDetails.ImporteTotal = decimal.ToDouble(invoice.TotalAmount);
             requestDetails.ImporteNetoNoGravado = decimal.ToDouble(invoice.NotTaxedNetAmount);
             requestDetails.ImporteNeto = decimal.ToDouble(invoice.NetAmount);

@@ -4,14 +4,8 @@
 
 namespace PachaSystem.Data.Helpers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using PachaSystem.Data.Models;
     using PachaSystem.Data.Repositories;
-    using PachaSystem.Data.Views;
 
     public class UnitOfWork : IUnitOfWork
     {
@@ -224,6 +218,7 @@ namespace PachaSystem.Data.Helpers
         }
 
         #region IDisposable Support
+
         private bool disposedValue = false; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
@@ -257,6 +252,7 @@ namespace PachaSystem.Data.Helpers
             // TODO: uncomment the following line if the finalizer is overridden above.
             // GC.SuppressFinalize(this);
         }
-        #endregion
+
+        #endregion IDisposable Support
     }
 }

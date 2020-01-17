@@ -1,9 +1,6 @@
 namespace PachaSystem.Data.Migrations
 {
     using PachaSystem.Data.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -19,7 +16,7 @@ namespace PachaSystem.Data.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
             if (context.ConceptTypes.Count() != 3)
             {

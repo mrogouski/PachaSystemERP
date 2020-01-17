@@ -1,10 +1,6 @@
-﻿using NLog;
-using PachaSystem.Data;
+﻿using PachaSystem.Data;
 using PachaSystem.Data.Helpers;
 using PachaSystem.Data.Models;
-using PachaSystem.Wsfe.Models;
-using PachaSystem.Wsfe.Requests;
-using PachaSystemERP.Enums;
 using PachaSystemERP.Properties;
 using System;
 using System.Collections.Generic;
@@ -12,7 +8,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PachaSystemERP.Classes
 {
@@ -25,6 +20,7 @@ namespace PachaSystemERP.Classes
         private decimal _totalAmount;
         private int _totalQuantity;
         private UnitOfWork _unitOfWork;
+
         public InvoiceBuilder(int invoiceNumber, InvoiceType invoiceType, ConceptType conceptType, CurrencyType currencyType)
         {
             _context = new PachaSystemContext();
@@ -34,7 +30,7 @@ namespace PachaSystemERP.Classes
             _invoice.PointOfSale = Configuracion.PuntoVenta;
             _invoice.InvoiceTypeID = invoiceType.ID;
             _invoice.ConceptTypeID = conceptType.ID;
-            _invoice.ReceiptDate = DateTime.Now;
+            _invoice.InvoiceDate = DateTime.Now;
             _invoice.CurrencyTypeID = currencyType.ID;
             _invoice.CurrencyExchangeRate = 1;
         }
@@ -137,6 +133,7 @@ namespace PachaSystemERP.Classes
                     case 1:
                         _invoice.NotTaxedNetAmount += invoiceDetails.TaxBase;
                         break;
+
                     case 2:
                         _invoice.ExemptAmount += invoiceDetails.TaxBase;
                         break;
@@ -150,7 +147,7 @@ namespace PachaSystemERP.Classes
 
                 _invoice.InvoiceDetails.Add(invoiceDetails);
 
-                if (_invoice.InvoiceTypeID == 1 || _invoice.InvoiceTypeID == 6)
+                if ((_invoice.InvoiceTypeID == 1 || _invoice.InvoiceTypeID == 6) && _invoice.NetAmount > 0)
                 {
                     AddTributes();
                 }

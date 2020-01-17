@@ -9,7 +9,7 @@ namespace PachaSystem.Wsaa
     /// <summary>
     /// Representa un mensaje de respuesta del Web Service de Autenticación y Autorización (WSAA).
     /// </summary>
-    [MessageContract(WrapperName ="loginCmsResponse", WrapperNamespace = "http://wsaa.view.sua.dvadac.desein.afip.gov")]
+    [MessageContract(WrapperName = "loginCmsResponse", WrapperNamespace = "http://wsaa.view.sua.dvadac.desein.afip.gov")]
     public class LoginResponse
     {
         /// <summary>
@@ -22,7 +22,7 @@ namespace PachaSystem.Wsaa
         /// <summary>
         /// Obtiene o establece las credenciales obtenidas del Web Service.
         /// </summary>
-        [MessageBodyMember(Name = "loginCmsReturn", Namespace = "http://wsaa.view.sua.dvadac.desein.afip.gov", Order =0)]
+        [MessageBodyMember(Name = "loginCmsReturn", Namespace = "http://wsaa.view.sua.dvadac.desein.afip.gov", Order = 0)]
         public string Credentials { get; set; }
     }
 }

@@ -65,7 +65,7 @@
     <Compile Include="Helpers\UnitOfWork.cs" />
     <Compile Include="Enums\ItemType.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AssociatedReceipt.cs" />
+    <Compile Include="Models\AssociatedInvoice.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\ConceptType.cs" />
     <Compile Include="Models\CurrencyType.cs" />

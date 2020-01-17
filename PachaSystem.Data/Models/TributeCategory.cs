@@ -1,13 +1,14 @@
 ﻿namespace PachaSystem.Data.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class TributeCategory
     {
+        public TributeCategory()
+        {
+            Tributes = new HashSet<Tribute>();
+        }
+
         public short ID { get; set; }
 
         public string Description { get; set; }

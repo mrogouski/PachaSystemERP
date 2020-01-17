@@ -27,7 +27,7 @@ namespace PachaSystem.Wsfe.Models
             }
         }
 
-        [DataMember(Name ="Desc", Order =1)]
+        [DataMember(Name = "Desc", Order = 1)]
         public string Descripcion
         {
             get
@@ -40,7 +40,7 @@ namespace PachaSystem.Wsfe.Models
             }
         }
 
-        [DataMember(Name ="FchDesde", Order =2)]
+        [DataMember(Name = "FchDesde", Order = 2)]
         public string FchDesde
         {
             get
@@ -53,7 +53,7 @@ namespace PachaSystem.Wsfe.Models
             }
         }
 
-        [DataMember(Name ="FchHasta", Order =3)]
+        [DataMember(Name = "FchHasta", Order = 3)]
         public string FchHasta
         {
             get

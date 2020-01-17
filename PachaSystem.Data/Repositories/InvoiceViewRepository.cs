@@ -1,11 +1,6 @@
-﻿using PachaSystem.Data.Helpers;
-using PachaSystem.Data.Views;
-using System;
+﻿using PachaSystem.Data.Views;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PachaSystem.Data.Repositories
 {
@@ -32,7 +27,7 @@ namespace PachaSystem.Data.Repositories
                                  ReceiptNumber = c.InvoiceNumber,
                                  Cae = c.Cae,
                                  CaeExpirationDate = c.CaeExpirationDate,
-                                 ReceiptDate = c.ReceiptDate,
+                                 ReceiptDate = c.InvoiceDate,
                                  TotalAmount = c.TotalAmount,
                                  NetAmountNotTaxed = c.NotTaxedNetAmount,
                                  NetAmount = c.NetAmount,

@@ -4,9 +4,9 @@
 
 namespace PachaSystemERP.Classes
 {
+    using PachaSystemERP.Enums;
     using System;
     using System.Configuration;
-    using PachaSystemERP.Enums;
 
     public static class Configuracion
     {

@@ -6,7 +6,6 @@ namespace PachaSystem.Wsfe.Models
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using PachaSystem.Wsfe.Models;
 
     [DataContract(Name = "FECAEAGet", Namespace = "http://ar.gov.afip.dif.FEV1/")]
     public class CaeaSolicitar

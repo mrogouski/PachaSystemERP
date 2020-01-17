@@ -211,6 +211,8 @@
             0,
             0});
             this.NudQuantity.ValueChanged += new System.EventHandler(this.NudQuantity_ValueChanged);
+            this.NudQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NudQuantity_KeyDown);
+            this.NudQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NudQuantity_KeyPress);
             // 
             // label3
             // 
@@ -241,8 +243,8 @@
             this.NudUnitPrice.Enabled = false;
             this.NudUnitPrice.Location = new System.Drawing.Point(124, 42);
             this.NudUnitPrice.Maximum = new decimal(new int[] {
-            10000,
-            0,
+            1316134911,
+            2328,
             0,
             0});
             this.NudUnitPrice.Name = "NudUnitPrice";
@@ -268,8 +270,8 @@
             this.NudSubtotal.Enabled = false;
             this.NudSubtotal.Location = new System.Drawing.Point(366, 42);
             this.NudSubtotal.Maximum = new decimal(new int[] {
-            10000,
-            0,
+            1316134911,
+            2328,
             0,
             0});
             this.NudSubtotal.Name = "NudSubtotal";
@@ -307,6 +309,7 @@
             this.BtnCancelItem.TabIndex = 16;
             this.BtnCancelItem.Text = "Cancelar";
             this.BtnCancelItem.UseVisualStyleBackColor = true;
+            this.BtnCancelItem.Click += new System.EventHandler(this.BtnCancelItem_Click);
             // 
             // BtnCancelInvoice
             // 
@@ -318,6 +321,7 @@
             this.BtnCancelInvoice.TabIndex = 8;
             this.BtnCancelInvoice.Text = "Cancelar";
             this.BtnCancelInvoice.UseVisualStyleBackColor = true;
+            this.BtnCancelInvoice.Click += new System.EventHandler(this.BtnCancelInvoice_Click);
             // 
             // BtnGenerateInvoice
             // 

@@ -5,20 +5,12 @@
     using PachaSystem.Data;
     using PachaSystem.Data.Helpers;
     using PachaSystem.Data.Models;
-    using PachaSystem.Data.Views;
-    using PachaSystemERP.Classes;
     using PachaSystemERP.Properties;
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Data.SqlClient;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
-    using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
 
     public partial class ReceiptViewer : Form

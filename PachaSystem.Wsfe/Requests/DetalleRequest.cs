@@ -4,9 +4,9 @@
 
 namespace PachaSystem.Wsfe.Requests
 {
+    using PachaSystem.Wsfe.Models;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using PachaSystem.Wsfe.Models;
 
     [DataContract(Name = "FEDetRequest", Namespace = "http://ar.gov.afip.dif.FEV1/")]
     public class DetalleRequest
@@ -349,11 +349,21 @@ namespace PachaSystem.Wsfe.Requests
                 _iva = new List<AlicuotaIva>();
             }
 
-            var iva = new AlicuotaIva();
-            iva.ID = ivaId;
-            iva.BaseImponible = decimal.ToDouble(baseImponible);
-            iva.Importe = decimal.ToDouble(importe);
-            _iva.Add(iva);
+            var currentIva = _iva.Find(x => x.ID == ivaId);
+
+            if (currentIva != null)
+            {
+                currentIva.BaseImponible += decimal.ToDouble(baseImponible);
+                currentIva.Importe += decimal.ToDouble(importe);
+            }
+            else
+            {
+                var iva = new AlicuotaIva();
+                iva.ID = ivaId;
+                iva.BaseImponible = decimal.ToDouble(baseImponible);
+                iva.Importe = decimal.ToDouble(importe);
+                _iva.Add(iva);
+            }
         }
 
         public void AgregarTributo(short tributoID, string descripcion, decimal baseImponible, decimal alicuota, decimal importe)
