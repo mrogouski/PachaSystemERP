@@ -12,7 +12,7 @@ namespace PachaSystem.Data.Helpers
         private readonly PachaSystemContext _context;
         private Repository<ItemCategory> _itemCategory;
         private Repository<TributeCategory> _tributeCategory;
-        private Repository<Customer> _client;
+        private Repository<Customer> _customers;
         private InvoiceRepository _invoice;
         private Repository<InvoiceDetails> _invoiceDetails;
         private Repository<Vat> _vat;
@@ -56,16 +56,16 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<Customer> Clients
+        public Repository<Customer> Customers
         {
             get
             {
-                if (_client == null)
+                if (_customers == null)
                 {
-                    _client = new Repository<Customer>(_context);
+                    _customers = new Repository<Customer>(_context);
                 }
 
-                return _client;
+                return _customers;
             }
         }
 

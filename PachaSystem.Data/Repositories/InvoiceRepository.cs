@@ -25,6 +25,11 @@ namespace PachaSystem.Data.Repositories
             _context.Invoices.Add(entidad);
         }
 
+        public Invoice Find(int id)
+        {
+            return _context.Invoices.Find(id);
+        }
+
         public Invoice Get(Expression<Func<Invoice, bool>> filtro)
         {
             var query = (from c in _context.Invoices
@@ -39,6 +44,11 @@ namespace PachaSystem.Data.Repositories
                          .Where(filtro)
                          .FirstOrDefault();
             return query;
+        }
+
+        public IEnumerable<Invoice> GetAll()
+        {
+            return _context.Invoices.ToList();
         }
 
         public IEnumerable<Invoice> GetAll(Expression<Func<Invoice, bool>> filtro)

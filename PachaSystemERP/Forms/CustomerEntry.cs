@@ -10,15 +10,15 @@ namespace PachaSystemERP.Forms
     using System;
     using System.Windows.Forms;
 
-    public partial class AddClient : Form
+    public partial class CustomerEntry : Form
     {
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="AddClient"/>.
+        /// Inicializa una nueva instancia de la clase <see cref="CustomerEntry"/>.
         /// </summary>
-        public AddClient()
+        public CustomerEntry()
         {
             InitializeComponent();
             _context = new PachaSystemContext();
@@ -27,11 +27,13 @@ namespace PachaSystemERP.Forms
 
         private void AddNewClient_Load(object sender, EventArgs e)
         {
-            DgvCustomers.DataSource = _unitOfWork.Clients.GetAll();
-
             CbDocumentType.DataSource = _unitOfWork.DocumentTypes.GetAll();
-            CbDocumentType.ValueMember = "Id";
-            CbDocumentType.DisplayMember = "Descripcion";
+            CbDocumentType.ValueMember = "ID";
+            CbDocumentType.DisplayMember = "Description";
+            
+            CbFiscalCondition.DataSource = _unitOfWork.FiscalConditionTypes.GetAll();
+            CbFiscalCondition.ValueMember = "ID";
+            CbFiscalCondition.DisplayMember = "Description";
         }
 
         private void BtnAccept_Click(object sender, EventArgs e)
@@ -39,12 +41,14 @@ namespace PachaSystemERP.Forms
             if (ValidateEntry())
             {
                 Customer customer = new Customer();
+                customer.Code = TxtCode.Text;
                 customer.BusinessName = TxtBusinessName.Text;
                 customer.DocumentTypeID = (int)CbDocumentType.SelectedValue;
                 customer.DocumentNumber = long.Parse(TxtDocumentNumber.Text);
                 customer.FiscalConditionTypeID = (int)CbFiscalCondition.SelectedValue;
+                customer.Email = TxtEmail.Text;
                 customer.Address = TxtAddress.Text;
-                _unitOfWork.Clients.Add(customer);
+                _unitOfWork.Customers.Add(customer);
                 _unitOfWork.SaveChanges();
             }
         }
@@ -56,6 +60,11 @@ namespace PachaSystemERP.Forms
 
         private bool ValidateEntry()
         {
+            if (string.IsNullOrWhiteSpace(TxtCode.Text))
+            {
+                errorProvider.SetError(TxtCode, "Este campo no debe estar vacío");
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(TxtBusinessName.Text))
             {
                 errorProvider.SetError(TxtBusinessName, "Este campo no debe estar vacío");
@@ -64,6 +73,11 @@ namespace PachaSystemERP.Forms
             if (string.IsNullOrWhiteSpace(TxtDocumentNumber.Text))
             {
                 errorProvider.SetError(TxtDocumentNumber, "Este campo no debe estar vacío");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(TxtEmail.Text))
+            {
+                errorProvider.SetError(TxtEmail, "Este campo no debe estar vacío");
                 return false;
             }
             if (string.IsNullOrWhiteSpace(TxtAddress.Text))

@@ -25,12 +25,22 @@ namespace PachaSystem.Data.Repositories
             }
         }
 
+        public Item Find(int id)
+        {
+            return _context.Items.Find(id);
+        }
+
         public Item Get(Expression<Func<Item, bool>> expression = null)
         {
             return _context.Items.Where(expression).Include(x => x.Vat).FirstOrDefault();
         }
 
-        public IEnumerable<Item> GetAll(Expression<Func<Item, bool>> expression = null)
+        public IEnumerable<Item> GetAll()
+        {
+            return _context.Items.ToList();
+        }
+
+        public IEnumerable<Item> GetAll(Expression<Func<Item, bool>> expression)
         {
             return _context.Items.Where(expression).ToList();
         }

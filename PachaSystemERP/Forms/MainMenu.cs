@@ -69,7 +69,7 @@
 
         private void TsbClientes_Click(object sender, EventArgs e)
         {
-            var form = new AddClient
+            var form = new CustomerManagement
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,

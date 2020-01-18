@@ -14,7 +14,7 @@ namespace PachaSystem.Data.Helpers
 
         Repository<TributeCategory> TributeCategories { get; }
 
-        Repository<Customer> Clients { get; }
+        Repository<Customer> Customers { get; }
 
         InvoiceRepository Invoices { get; }
 

@@ -101,6 +101,12 @@
     <Compile Include="Forms\ControlCategoria.Designer.cs">
       <DependentUpon>ControlCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CustomerManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomerManagement.Designer.cs">
+      <DependentUpon>CustomerManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StockManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,11 +125,11 @@
     <Compile Include="Forms\FacturaB.Designer.cs">
       <DependentUpon>FacturaB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddClient.cs">
+    <Compile Include="Forms\CustomerEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddClient.Designer.cs">
-      <DependentUpon>AddClient.cs</DependentUpon>
+    <Compile Include="Forms\CustomerEntry.Designer.cs">
+      <DependentUpon>CustomerEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ConfigurationMenu.cs">
       <SubType>Form</SubType>
@@ -155,6 +161,9 @@
     <EmbeddedResource Include="Forms\ControlCategoria.resx">
       <DependentUpon>ControlCategoria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomerManagement.resx">
+      <DependentUpon>CustomerManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\StockManagement.resx">
       <DependentUpon>StockManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,8 +173,8 @@
     <EmbeddedResource Include="Forms\FacturaB.resx">
       <DependentUpon>FacturaB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddClient.resx">
-      <DependentUpon>AddClient.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CustomerEntry.resx">
+      <DependentUpon>CustomerEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>

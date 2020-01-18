@@ -262,7 +262,7 @@ namespace PachaSystemERP.Classes
                 requestDetails.ComprobantesAsociados.Add(comprobanteAsociado);
             }
 
-            var client = _unitOfWork.Clients.Get(x => x.ID == invoice.ClientID);
+            var client = _unitOfWork.Customers.Get(x => x.ID == invoice.ClientID);
             requestDetails.TipoDeDocumento = client.DocumentTypeID;
             requestDetails.NumeroDeDocumento = client.DocumentNumber;
 

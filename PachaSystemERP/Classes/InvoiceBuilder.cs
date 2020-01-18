@@ -186,7 +186,7 @@ namespace PachaSystemERP.Classes
         {
             if (_invoice.Client == null)
             {
-                var cliente = _unitOfWork.Clients.Get(x => x.BusinessName == "Consumidor Final");
+                var cliente = _unitOfWork.Customers.Get(x => x.BusinessName == "Consumidor Final");
                 _invoice.ClientID = cliente.ID;
             }
 

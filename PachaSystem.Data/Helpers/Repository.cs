@@ -20,21 +20,25 @@
             _context.Set<TEntity>().Add(entity);
         }
 
+        public TEntity Find(int id)
+        {
+            return _context.Set<TEntity>().Find(id);
+        }
+
         public TEntity Get(Expression<Func<TEntity, bool>> expression = null)
         {
             return _context.Set<TEntity>().Where(expression).FirstOrDefault();
         }
 
-        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> expression = null)
+        public IEnumerable<TEntity> GetAll()
         {
-            if (expression != null)
-            {
-                return _context.Set<TEntity>().Where(expression).ToList();
-            }
-            else
-            {
-                return _context.Set<TEntity>().ToList();
-            }
+            return _context.Set<TEntity>().ToList();
+        }
+
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> expression)
+        {
+
+            return _context.Set<TEntity>().Where(expression).ToList();
         }
 
         public void Remove(TEntity entity)
