@@ -61,6 +61,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tributosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiVatView = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpciones = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelMenuPrincipal = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBarMenuPrincipal = new System.Windows.Forms.ToolStripProgressBar();
-            this.tsmiVatView = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsbInvoicesHistory = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -90,7 +91,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbComprobantes,
             this.tsbStock,
-            this.tsbClientes});
+            this.tsbClientes,
+            this.TsbInvoicesHistory});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 38);
@@ -293,20 +295,20 @@
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -314,7 +316,7 @@
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.cutToolStripMenuItem.Text = "Cu&t";
             // 
             // copyToolStripMenuItem
@@ -323,7 +325,7 @@
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.copyToolStripMenuItem.Text = "&Copy";
             // 
             // pasteToolStripMenuItem
@@ -332,26 +334,33 @@
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.pasteToolStripMenuItem.Text = "&Paste";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(141, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
             // tributosToolStripMenuItem
             // 
             this.tributosToolStripMenuItem.Name = "tributosToolStripMenuItem";
-            this.tributosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tributosToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.tributosToolStripMenuItem.Text = "Tributos";
             this.tributosToolStripMenuItem.Click += new System.EventHandler(this.tributosToolStripMenuItem_Click);
+            // 
+            // tsmiVatView
+            // 
+            this.tsmiVatView.Name = "tsmiVatView";
+            this.tsmiVatView.Size = new System.Drawing.Size(144, 22);
+            this.tsmiVatView.Text = "IVA";
+            this.tsmiVatView.Click += new System.EventHandler(this.tsmiVatView_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -359,19 +368,19 @@
             this.customizeToolStripMenuItem,
             this.tsmiOpciones});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // tsmiOpciones
             // 
             this.tsmiOpciones.Name = "tsmiOpciones";
-            this.tsmiOpciones.Size = new System.Drawing.Size(180, 22);
+            this.tsmiOpciones.Size = new System.Drawing.Size(130, 22);
             this.tsmiOpciones.Text = "&Opciones";
             this.tsmiOpciones.Click += new System.EventHandler(this.TsmiOpciones_Click);
             // 
@@ -483,12 +492,15 @@
             this.toolStripProgressBarMenuPrincipal.Name = "toolStripProgressBarMenuPrincipal";
             this.toolStripProgressBarMenuPrincipal.Size = new System.Drawing.Size(100, 16);
             // 
-            // tsmiVatView
+            // TsbInvoicesHistory
             // 
-            this.tsmiVatView.Name = "tsmiVatView";
-            this.tsmiVatView.Size = new System.Drawing.Size(180, 22);
-            this.tsmiVatView.Text = "IVA";
-            this.tsmiVatView.Click += new System.EventHandler(this.tsmiVatView_Click);
+            this.TsbInvoicesHistory.Image = ((System.Drawing.Image)(resources.GetObject("TsbInvoicesHistory.Image")));
+            this.TsbInvoicesHistory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbInvoicesHistory.Name = "TsbInvoicesHistory";
+            this.TsbInvoicesHistory.Size = new System.Drawing.Size(55, 35);
+            this.TsbInvoicesHistory.Text = "Historial";
+            this.TsbInvoicesHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbInvoicesHistory.Click += new System.EventHandler(this.TsbInvoicesHistory_Click);
             // 
             // MainMenu
             // 
@@ -569,5 +581,6 @@
         private System.Windows.Forms.ToolStripMenuItem facturaCToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsbClientes;
         private System.Windows.Forms.ToolStripMenuItem tsmiVatView;
+        private System.Windows.Forms.ToolStripButton TsbInvoicesHistory;
     }
 }

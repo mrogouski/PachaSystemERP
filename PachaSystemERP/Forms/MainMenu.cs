@@ -92,5 +92,18 @@
             pnlPrincipal.Controls.Add(form);
             form.Show();
         }
+
+        private void TsbInvoicesHistory_Click(object sender, EventArgs e)
+        {
+            var form = new InvoiceHistoryView
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                Dock = DockStyle.Fill,
+            };
+            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Add(form);
+            form.Show();
+        }
     }
 }
