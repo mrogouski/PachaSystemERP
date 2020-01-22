@@ -56,7 +56,8 @@
 
         private void FacturaBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new FacturaB()
+            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA A");
+            var form = new FacturaB(invoiceType)
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,
@@ -96,6 +97,20 @@
         private void TsbInvoicesHistory_Click(object sender, EventArgs e)
         {
             var form = new InvoiceHistoryView
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                Dock = DockStyle.Fill,
+            };
+            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Add(form);
+            form.Show();
+        }
+
+        private void ToolStripMenuItemFacturaA_Click(object sender, EventArgs e)
+        {
+            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA A");
+            var form = new FacturaB(invoiceType)
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,

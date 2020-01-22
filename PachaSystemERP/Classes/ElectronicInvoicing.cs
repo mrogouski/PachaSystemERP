@@ -176,7 +176,7 @@ namespace PachaSystemERP.Classes
             return response;
         }
 
-        private Credentials GetCredentials()
+        private Credenciales GetCredentials()
         {
             if (LoadCredentials() == false)
             {
@@ -193,7 +193,7 @@ namespace PachaSystemERP.Classes
                 xml.Save(@".\Resources\Credentials.xml");
             }
 
-            var credentials = new Credentials();
+            var credentials = new Credenciales();
             credentials.Cuit = Configuracion.Cuit;
             credentials.Sign = _sign;
             credentials.Token = _token;

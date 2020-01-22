@@ -32,13 +32,14 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbComprobantes = new System.Windows.Forms.ToolStripDropDownButton();
             this.facturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.facturaAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FacturaBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemFacturaA = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemFacturaB = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notaDeDébitoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notaDeCréditoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbStock = new System.Windows.Forms.ToolStripButton();
             this.tsbClientes = new System.Windows.Forms.ToolStripButton();
+            this.TsbInvoicesHistory = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelMenuPrincipal = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBarMenuPrincipal = new System.Windows.Forms.ToolStripProgressBar();
-            this.TsbInvoicesHistory = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -115,42 +115,43 @@
             // facturaToolStripMenuItem
             // 
             this.facturaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.facturaAToolStripMenuItem,
-            this.FacturaBToolStripMenuItem,
+            this.ToolStripMenuItemFacturaA,
+            this.ToolStripMenuItemFacturaB,
             this.facturaCToolStripMenuItem});
             this.facturaToolStripMenuItem.Name = "facturaToolStripMenuItem";
-            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.facturaToolStripMenuItem.Text = "Factura";
             // 
-            // facturaAToolStripMenuItem
+            // ToolStripMenuItemFacturaA
             // 
-            this.facturaAToolStripMenuItem.Name = "facturaAToolStripMenuItem";
-            this.facturaAToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.facturaAToolStripMenuItem.Text = "Factura A";
+            this.ToolStripMenuItemFacturaA.Name = "ToolStripMenuItemFacturaA";
+            this.ToolStripMenuItemFacturaA.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItemFacturaA.Text = "Factura A";
+            this.ToolStripMenuItemFacturaA.Click += new System.EventHandler(this.ToolStripMenuItemFacturaA_Click);
             // 
-            // FacturaBToolStripMenuItem
+            // ToolStripMenuItemFacturaB
             // 
-            this.FacturaBToolStripMenuItem.Name = "FacturaBToolStripMenuItem";
-            this.FacturaBToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.FacturaBToolStripMenuItem.Text = "Factura B";
-            this.FacturaBToolStripMenuItem.Click += new System.EventHandler(this.FacturaBToolStripMenuItem_Click);
+            this.ToolStripMenuItemFacturaB.Name = "ToolStripMenuItemFacturaB";
+            this.ToolStripMenuItemFacturaB.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItemFacturaB.Text = "Factura B";
+            this.ToolStripMenuItemFacturaB.Click += new System.EventHandler(this.FacturaBToolStripMenuItem_Click);
             // 
             // facturaCToolStripMenuItem
             // 
             this.facturaCToolStripMenuItem.Name = "facturaCToolStripMenuItem";
-            this.facturaCToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.facturaCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.facturaCToolStripMenuItem.Text = "Factura C";
             // 
             // notaDeDébitoToolStripMenuItem
             // 
             this.notaDeDébitoToolStripMenuItem.Name = "notaDeDébitoToolStripMenuItem";
-            this.notaDeDébitoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.notaDeDébitoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.notaDeDébitoToolStripMenuItem.Text = "Nota de Débito";
             // 
             // notaDeCréditoToolStripMenuItem
             // 
             this.notaDeCréditoToolStripMenuItem.Name = "notaDeCréditoToolStripMenuItem";
-            this.notaDeCréditoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.notaDeCréditoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.notaDeCréditoToolStripMenuItem.Text = "Nota de Crédito";
             // 
             // tsbStock
@@ -172,6 +173,16 @@
             this.tsbClientes.Text = "Clientes";
             this.tsbClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbClientes.Click += new System.EventHandler(this.TsbClientes_Click);
+            // 
+            // TsbInvoicesHistory
+            // 
+            this.TsbInvoicesHistory.Image = ((System.Drawing.Image)(resources.GetObject("TsbInvoicesHistory.Image")));
+            this.TsbInvoicesHistory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbInvoicesHistory.Name = "TsbInvoicesHistory";
+            this.TsbInvoicesHistory.Size = new System.Drawing.Size(55, 35);
+            this.TsbInvoicesHistory.Text = "Historial";
+            this.TsbInvoicesHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.TsbInvoicesHistory.Click += new System.EventHandler(this.TsbInvoicesHistory_Click);
             // 
             // menuStrip1
             // 
@@ -492,16 +503,6 @@
             this.toolStripProgressBarMenuPrincipal.Name = "toolStripProgressBarMenuPrincipal";
             this.toolStripProgressBarMenuPrincipal.Size = new System.Drawing.Size(100, 16);
             // 
-            // TsbInvoicesHistory
-            // 
-            this.TsbInvoicesHistory.Image = ((System.Drawing.Image)(resources.GetObject("TsbInvoicesHistory.Image")));
-            this.TsbInvoicesHistory.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TsbInvoicesHistory.Name = "TsbInvoicesHistory";
-            this.TsbInvoicesHistory.Size = new System.Drawing.Size(55, 35);
-            this.TsbInvoicesHistory.Text = "Historial";
-            this.TsbInvoicesHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.TsbInvoicesHistory.Click += new System.EventHandler(this.TsbInvoicesHistory_Click);
-            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,8 +577,8 @@
         private System.Windows.Forms.ToolStripMenuItem notaDeCréditoToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelMenuPrincipal;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBarMenuPrincipal;
-        private System.Windows.Forms.ToolStripMenuItem facturaAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem FacturaBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFacturaA;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFacturaB;
         private System.Windows.Forms.ToolStripMenuItem facturaCToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsbClientes;
         private System.Windows.Forms.ToolStripMenuItem tsmiVatView;

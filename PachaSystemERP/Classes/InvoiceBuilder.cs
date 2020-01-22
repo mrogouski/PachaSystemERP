@@ -20,6 +20,7 @@ namespace PachaSystemERP.Classes
         private decimal _totalAmount;
         private int _totalQuantity;
         private UnitOfWork _unitOfWork;
+        private bool _customerAdded = false;
 
         public InvoiceBuilder(int invoiceNumber, InvoiceType invoiceType, ConceptType conceptType, CurrencyType currencyType)
         {
@@ -99,6 +100,23 @@ namespace PachaSystemERP.Classes
             }
         }
 
+        public bool CustomerAdded
+        {
+            get
+            {
+                return _customerAdded;
+            }
+
+            private set
+            {
+                if (_customerAdded != value)
+                {
+                    _customerAdded = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         public void AddAssociatedInvoice(DateTime invoiceDate, int invoiceNumber)
         {
             var associatedInvoice = new AssociatedInvoice();
@@ -115,6 +133,7 @@ namespace PachaSystemERP.Classes
         public void AddCustomer(int customerID)
         {
             _invoice.ClientID = customerID;
+            CustomerAdded = true;
         }
 
         public void AddItem(string itemCode, int quantity)

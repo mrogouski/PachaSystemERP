@@ -16,12 +16,15 @@ namespace PachaSystemERP.Forms
     {
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
+
         public CustomerManagement()
         {
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
             InitializeComponent();
         }
+
+        public int CustomerID { get; set; }
 
         private void CustomerManagement_Load(object sender, EventArgs e)
         {

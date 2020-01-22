@@ -85,16 +85,16 @@ namespace PachaSystemERP.Forms
                 errorProvider.SetError(TxtAddress, "Este campo no debe estar vacío");
                 return false;
             }
-            if (CbDocumentType.SelectedValue.Equals(99))
-            {
-                errorProvider.SetError(CbDocumentType, "El valor ingresado es incorrecto");
-                return false;
-            }
-            if (CbFiscalCondition.SelectedValue.Equals(5))
-            {
-                errorProvider.SetError(CbFiscalCondition, "El valor ingresado es incorrecto");
-                return false;
-            }
+            //if (CbDocumentType.SelectedValue.Equals(99))
+            //{
+            //    errorProvider.SetError(CbDocumentType, "El valor ingresado es incorrecto");
+            //    return false;
+            //}
+            //if (CbFiscalCondition.SelectedValue.Equals(5))
+            //{
+            //    errorProvider.SetError(CbFiscalCondition, "El valor ingresado es incorrecto");
+            //    return false;
+            //}
             else
             {
                 errorProvider.Clear();

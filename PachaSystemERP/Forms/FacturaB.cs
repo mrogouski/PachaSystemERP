@@ -6,6 +6,7 @@ namespace PachaSystemERP.Forms
 {
     using PachaSystem.Data;
     using PachaSystem.Data.Helpers;
+    using PachaSystem.Data.Models;
     using PachaSystemERP.Classes;
     using System;
     using System.Windows.Forms;
@@ -16,14 +17,14 @@ namespace PachaSystemERP.Forms
         private ElectronicInvoicing _electronicInvoicing;
         private InvoiceBuilder _invoiceBuilder;
         private UnitOfWork _unitOfWork;
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="FacturaB"/>.
-        /// </summary>
-        public FacturaB()
+        private InvoiceType _invoiceType;
+
+        public FacturaB(InvoiceType invoiceType)
         {
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
             _electronicInvoicing = new ElectronicInvoicing();
+            _invoiceType = invoiceType;
             InitializeComponent();
         }
 
@@ -36,6 +37,11 @@ namespace PachaSystemERP.Forms
             NudQuantity.Value = 1;
             NudUnitPrice.Value = 0.00M;
             NudSubtotal.Value = 0.00M;
+
+            if (_invoiceBuilder.TotalAmount > 10000 && _invoiceBuilder.CustomerAdded == false)
+            {
+                MessageBox.Show("Al pasarse el monto total de $10000, la identificación del cliente es obligatoria");
+            }
         }
 
         private void BtnGenerateInvoice_Click(object sender, EventArgs e)
@@ -53,11 +59,10 @@ namespace PachaSystemERP.Forms
 
         private void Initialize()
         {
-            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA B");
             var conceptType = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos");
-            var invoiceNumber = _electronicInvoicing.GetLastReceiptNumber(invoiceType.ID) + 1;
+            var invoiceNumber = _electronicInvoicing.GetLastReceiptNumber(_invoiceType.ID) + 1;
             var currencyType = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES");
-            _invoiceBuilder = new InvoiceBuilder(invoiceNumber, invoiceType, conceptType, currencyType);
+            _invoiceBuilder = new InvoiceBuilder(invoiceNumber, _invoiceType, conceptType, currencyType);
 
             LblReceiptNumber.Text = _invoiceBuilder.ReceiptNumber;
 
@@ -157,14 +162,14 @@ namespace PachaSystemERP.Forms
             Initialize();
         }
 
-        private void NudQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        private void BtnSelectCustomer_Click(object sender, EventArgs e)
         {
-            //NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
-        }
-
-        private void NudQuantity_KeyDown(object sender, KeyEventArgs e)
-        {
-            NudSubtotal.Value = decimal.Round(NudQuantity.Value * NudUnitPrice.Value, 2, MidpointRounding.ToEven);
+            var form = new CustomerManagement();
+            var dialogResult = form.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                _invoiceBuilder.AddCustomer();
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace PachaSystem.Wsfe.Requests
     using System.Runtime.Serialization;
 
     [DataContract(Name = "FEAuthRequest", Namespace = "http://ar.gov.afip.dif.FEV1/")]
-    public class Credentials
+    public class Credenciales
     {
         private string _token;
         private string _sign;
