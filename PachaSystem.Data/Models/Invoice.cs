@@ -53,9 +53,9 @@ namespace PachaSystem.Data.Models
 
         public double CurrencyExchangeRate { get; set; }
 
-        public int ClientID { get; set; }
+        public int CustomerID { get; set; }
 
-        public virtual Customer Client { get; set; }
+        public virtual Customer Customer { get; set; }
 
         public virtual AssociatedInvoice AssociatedReceipt { get; set; }
 

@@ -14,6 +14,7 @@ namespace PachaSystemERP.Forms
     public partial class FacturaB : Form
     {
         private PachaSystemContext _context;
+        private Invoice _invoice;
         private ElectronicInvoicing _electronicInvoicing;
         private InvoiceBuilder _invoiceBuilder;
         private UnitOfWork _unitOfWork;
@@ -38,7 +39,7 @@ namespace PachaSystemERP.Forms
             NudUnitPrice.Value = 0.00M;
             NudSubtotal.Value = 0.00M;
 
-            if (_invoiceBuilder.TotalAmount > 10000 && _invoiceBuilder.CustomerAdded == false)
+            if (_invoiceBuilder.TotalAmount > 10000 && _invoiceBuilder.CustomerID > 1)
             {
                 MessageBox.Show("Al pasarse el monto total de $10000, la identificación del cliente es obligatoria");
             }
@@ -59,10 +60,15 @@ namespace PachaSystemERP.Forms
 
         private void Initialize()
         {
-            var conceptType = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos");
-            var invoiceNumber = _electronicInvoicing.GetLastReceiptNumber(_invoiceType.ID) + 1;
-            var currencyType = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES");
-            _invoiceBuilder = new InvoiceBuilder(invoiceNumber, _invoiceType, conceptType, currencyType);
+            _invoice = new Invoice();
+            _invoice.ConceptTypeID = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos").ID;
+            _invoice.InvoiceNumber = _electronicInvoicing.GetLastReceiptNumber(_invoiceType.ID) + 1;
+            _invoice.CurrencyTypeID = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES").ID;
+            _invoice.InvoiceTypeID = _invoiceType.ID;
+            _invoice.InvoiceDate = DateTime.Now;
+            _invoice.PointOfSale = Configuracion.PuntoVenta;
+            _invoice.CurrencyExchangeRate = 1;
+            _invoiceBuilder = new InvoiceBuilder(_invoice);
 
             LblReceiptNumber.Text = _invoiceBuilder.ReceiptNumber;
 
@@ -164,11 +170,20 @@ namespace PachaSystemERP.Forms
 
         private void BtnSelectCustomer_Click(object sender, EventArgs e)
         {
-            var form = new CustomerManagement();
+            var form = new CustomerManagement(_invoice);
             var dialogResult = form.ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
-                _invoiceBuilder.AddCustomer();
+                var customer = _unitOfWork.Customers.Get(x => x.ID == _invoice.CustomerID);
+                if (_invoice.InvoiceTypeID == 1 && customer.DocumentTypeID != 80)
+                {
+                    MessageBox.Show("El cliente seleccionado es invalido para la operacion que desea realizar");
+                }
+                else
+                {
+                    TxtCustomerCode.Text = customer.Code;
+                    TxtCustomerName.Text = customer.BusinessName;
+                }
             }
         }
     }

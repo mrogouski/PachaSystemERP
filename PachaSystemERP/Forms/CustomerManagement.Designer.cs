@@ -72,6 +72,7 @@
             this.DgvCustomers.ReadOnly = true;
             this.DgvCustomers.Size = new System.Drawing.Size(753, 179);
             this.DgvCustomers.TabIndex = 0;
+            this.DgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCustomers_CellContentClick);
             // 
             // BtnNewCustomer
             // 

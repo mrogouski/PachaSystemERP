@@ -15,25 +15,16 @@ namespace PachaSystemERP.Classes
     {
         private PachaSystemContext _context;
         private Invoice _invoice;
-        private string _invoiceNumber;
         private List<ItemDetailsView> _itemDetailsView;
         private decimal _totalAmount;
         private int _totalQuantity;
         private UnitOfWork _unitOfWork;
-        private bool _customerAdded = false;
 
-        public InvoiceBuilder(int invoiceNumber, InvoiceType invoiceType, ConceptType conceptType, CurrencyType currencyType)
+        public InvoiceBuilder(Invoice invoice)
         {
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
-            _invoice = new Invoice();
-            _invoice.InvoiceNumber = invoiceNumber;
-            _invoice.PointOfSale = Configuracion.PuntoVenta;
-            _invoice.InvoiceTypeID = invoiceType.ID;
-            _invoice.ConceptTypeID = conceptType.ID;
-            _invoice.InvoiceDate = DateTime.Now;
-            _invoice.CurrencyTypeID = currencyType.ID;
-            _invoice.CurrencyExchangeRate = 1;
+            _invoice = invoice;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -61,8 +52,8 @@ namespace PachaSystemERP.Classes
         {
             get
             {
-                _invoiceNumber = GetFormatedInvoiceNumber();
-                return _invoiceNumber;
+                var invoiceNumber = GetFormatedInvoiceNumber();
+                return invoiceNumber;
             }
         }
 
@@ -100,31 +91,22 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public bool CustomerAdded
+        public int CustomerID
         {
             get
             {
-                return _customerAdded;
-            }
-
-            private set
-            {
-                if (_customerAdded != value)
-                {
-                    _customerAdded = value;
-                    NotifyPropertyChanged();
-                }
+                return _invoice.CustomerID;
             }
         }
 
-        public void AddAssociatedInvoice(DateTime invoiceDate, int invoiceNumber)
+        public void AddAssociatedInvoice(DateTime invoiceDate, int invoiceNumber, int invoiceTypeID)
         {
             var associatedInvoice = new AssociatedInvoice();
             associatedInvoice.Cuit = Settings.Default.CUIT;
             associatedInvoice.PointOfSale = Settings.Default.PointOfSale;
             associatedInvoice.InvoiceDate = invoiceDate;
             associatedInvoice.InvoiceNumber = invoiceNumber;
-            associatedInvoice.InvoiceTypeID = _invoice.InvoiceTypeID;
+            associatedInvoice.InvoiceTypeID = invoiceTypeID;
             associatedInvoice.InvoiceID = _invoice.ID;
 
             _invoice.AssociatedReceipt = associatedInvoice;
@@ -132,8 +114,7 @@ namespace PachaSystemERP.Classes
 
         public void AddCustomer(int customerID)
         {
-            _invoice.ClientID = customerID;
-            CustomerAdded = true;
+            _invoice.CustomerID = customerID;
         }
 
         public void AddItem(string itemCode, int quantity)
@@ -190,23 +171,12 @@ namespace PachaSystemERP.Classes
             }
         }
 
-        public void AddNewCustomer(string businessName, int documentTypeId, long documentNumber, int fiscalConditionId, string address)
-        {
-            Customer client = new Customer();
-            client.BusinessName = businessName;
-            client.DocumentTypeID = documentTypeId;
-            client.DocumentNumber = documentNumber;
-            client.FiscalConditionTypeID = fiscalConditionId;
-            client.Address = address;
-            _invoice.Client = client;
-        }
-
         public Invoice GetInvoiceData()
         {
-            if (_invoice.Client == null)
+            if (_invoice.CustomerID == 0)
             {
                 var cliente = _unitOfWork.Customers.Get(x => x.BusinessName == "Consumidor Final");
-                _invoice.ClientID = cliente.ID;
+                _invoice.CustomerID = cliente.ID;
             }
 
             return _invoice;
