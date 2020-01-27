@@ -38,6 +38,8 @@ namespace PachaSystem.Data.Helpers
 
         InvoiceViewRepository ReceiptView { get; }
 
+        Repository<MeasureUnit> MeasureUnit { get; }
+
         void SaveChanges();
     }
 }

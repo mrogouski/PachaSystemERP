@@ -6,15 +6,15 @@
     using System;
     using System.Windows.Forms;
 
-    public partial class MainMenu : Form
+    public partial class PachaSystemMainMenu : Form
     {
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="MainMenu"/>.
+        /// Inicializa una nueva instancia de la clase <see cref="PachaSystemMainMenu"/>.
         /// </summary>
-        public MainMenu()
+        public PachaSystemMainMenu()
         {
             InitializeComponent();
             Configuracion.CargarConfiguracion();

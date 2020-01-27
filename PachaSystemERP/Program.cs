@@ -1,4 +1,5 @@
 ﻿using PachaSystem.Data;
+using PachaSystemERP.Forms;
 using System;
 using System.Globalization;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace PachaSystemERP
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.MainMenu());
+            Application.Run(new AddItem());
         }
     }
 }

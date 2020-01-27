@@ -10,6 +10,7 @@ namespace PachaSystem.Data.Helpers
     public class UnitOfWork : IUnitOfWork
     {
         private readonly PachaSystemContext _context;
+        private Repository<MeasureUnit> _measureUnit;
         private Repository<ItemCategory> _itemCategory;
         private Repository<TributeCategory> _tributeCategory;
         private Repository<Customer> _customers;
@@ -28,6 +29,19 @@ namespace PachaSystem.Data.Helpers
         public UnitOfWork(PachaSystemContext context)
         {
             _context = context;
+        }
+
+        public Repository<MeasureUnit> MeasureUnit
+        {
+            get
+            {
+                if (_measureUnit == null)
+                {
+                    _measureUnit = new Repository<MeasureUnit>(_context);
+                }
+
+                return _measureUnit;
+            }
         }
 
         public Repository<ItemCategory> ItemCategories

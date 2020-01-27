@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class MainMenu
+    partial class PachaSystemMainMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PachaSystemMainMenu));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbComprobantes = new System.Windows.Forms.ToolStripDropDownButton();
             this.facturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

@@ -22,6 +22,8 @@
 
         public int? VatID { get; set; }
 
+        public decimal FinalPrice { get; set; }
+
         public int? ItemCategoryID { get; set; }
 
         public int MeasureUnitID { get; set; }
