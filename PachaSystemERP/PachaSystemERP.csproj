@@ -123,6 +123,18 @@
     <Compile Include="Forms\InvoiceHistoryView.Designer.cs">
       <DependentUpon>InvoiceHistoryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InvoiceSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InvoiceSelection.Designer.cs">
+      <DependentUpon>InvoiceSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PachaSystemMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PachaSystemMainMenu.Designer.cs">
+      <DependentUpon>PachaSystemMainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StockManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,11 +147,11 @@
     <Compile Include="Forms\TributeManagement.Designer.cs">
       <DependentUpon>TributeManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FacturaB.cs">
+    <Compile Include="Forms\Invoicing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FacturaB.Designer.cs">
-      <DependentUpon>FacturaB.cs</DependentUpon>
+    <Compile Include="Forms\Invoicing.Designer.cs">
+      <DependentUpon>Invoicing.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomerEntry.cs">
       <SubType>Form</SubType>
@@ -152,12 +164,6 @@
     </Compile>
     <Compile Include="Forms\ConfigurationMenu.Designer.cs">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MainMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MainMenu.Designer.cs">
-      <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ReceiptViewer.cs">
       <SubType>Form</SubType>
@@ -186,23 +192,26 @@
     <EmbeddedResource Include="Forms\InvoiceHistoryView.resx">
       <DependentUpon>InvoiceHistoryView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InvoiceSelection.resx">
+      <DependentUpon>InvoiceSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PachaSystemMainMenu.resx">
+      <DependentUpon>PachaSystemMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\StockManagement.resx">
       <DependentUpon>StockManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TributeManagement.resx">
       <DependentUpon>TributeManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FacturaB.resx">
-      <DependentUpon>FacturaB.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Invoicing.resx">
+      <DependentUpon>Invoicing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomerEntry.resx">
       <DependentUpon>CustomerEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReceiptViewer.resx">
       <DependentUpon>ReceiptViewer.cs</DependentUpon>

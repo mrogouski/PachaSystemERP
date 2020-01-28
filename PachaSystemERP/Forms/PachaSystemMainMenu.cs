@@ -23,10 +23,9 @@
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        private void MenuPrincipal_Load(object sender, EventArgs e)
+        private void PachaSystemMainMenu_Load(object sender, EventArgs e)
         {
             toolStripStatusLabelMenuPrincipal.Text = "Bienvenido";
-            toolStripProgressBarMenuPrincipal.Style = ProgressBarStyle.Blocks;
         }
 
         private void TsmiOpciones_Click(object sender, EventArgs e)
@@ -48,16 +47,16 @@
             form.Show();
         }
 
-        private void tributosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TsmiTributos_Click(object sender, EventArgs e)
         {
             var form = new TributeManagement();
             form.ShowDialog();
         }
 
-        private void FacturaBToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TsmiFacturaB_Click(object sender, EventArgs e)
         {
             var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA A");
-            var form = new FacturaB(invoiceType)
+            var form = new Invoicing(invoiceType)
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,
@@ -81,7 +80,7 @@
             form.Show();
         }
 
-        private void tsmiVatView_Click(object sender, EventArgs e)
+        private void TsmiVatView_Click(object sender, EventArgs e)
         {
             var form = new VatTypeView
             {
@@ -107,10 +106,10 @@
             form.Show();
         }
 
-        private void ToolStripMenuItemFacturaA_Click(object sender, EventArgs e)
+        private void TsmiFacturaA_Click(object sender, EventArgs e)
         {
             var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA A");
-            var form = new FacturaB(invoiceType)
+            var form = new Invoicing(invoiceType)
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,
@@ -119,6 +118,25 @@
             pnlPrincipal.Controls.Clear();
             pnlPrincipal.Controls.Add(form);
             form.Show();
+        }
+
+        private void TsmiFacturaC_Click(object sender, EventArgs e)
+        {
+            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA C");
+            var form = new Invoicing(invoiceType)
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                Dock = DockStyle.Fill,
+            };
+            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Add(form);
+            form.Show();
+        }
+
+        private void TsmiNotaDeDébito_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

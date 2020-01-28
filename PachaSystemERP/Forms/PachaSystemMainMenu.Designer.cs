@@ -32,9 +32,9 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbComprobantes = new System.Windows.Forms.ToolStripDropDownButton();
             this.facturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemFacturaA = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemFacturaB = new System.Windows.Forms.ToolStripMenuItem();
-            this.facturaCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiFacturaA = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiFacturaB = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiFacturaC = new System.Windows.Forms.ToolStripMenuItem();
             this.notaDeDébitoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notaDeCréditoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbStock = new System.Windows.Forms.ToolStripButton();
@@ -81,6 +81,12 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelMenuPrincipal = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBarMenuPrincipal = new System.Windows.Forms.ToolStripProgressBar();
+            this.TsmiNotaDeDébito = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiNotaDeDebitoB = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiNotaDeDébitoC = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiNotaDeCréditoA = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiNotaDeCréditoB = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiNotaDeCréditoC = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -115,41 +121,50 @@
             // facturaToolStripMenuItem
             // 
             this.facturaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemFacturaA,
-            this.ToolStripMenuItemFacturaB,
-            this.facturaCToolStripMenuItem});
+            this.TsmiFacturaA,
+            this.TsmiFacturaB,
+            this.TsmiFacturaC});
             this.facturaToolStripMenuItem.Name = "facturaToolStripMenuItem";
             this.facturaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.facturaToolStripMenuItem.Text = "Factura";
             // 
-            // ToolStripMenuItemFacturaA
+            // TsmiFacturaA
             // 
-            this.ToolStripMenuItemFacturaA.Name = "ToolStripMenuItemFacturaA";
-            this.ToolStripMenuItemFacturaA.Size = new System.Drawing.Size(180, 22);
-            this.ToolStripMenuItemFacturaA.Text = "Factura A";
-            this.ToolStripMenuItemFacturaA.Click += new System.EventHandler(this.ToolStripMenuItemFacturaA_Click);
+            this.TsmiFacturaA.Name = "TsmiFacturaA";
+            this.TsmiFacturaA.Size = new System.Drawing.Size(180, 22);
+            this.TsmiFacturaA.Text = "Factura A";
+            this.TsmiFacturaA.Click += new System.EventHandler(this.TsmiFacturaA_Click);
             // 
-            // ToolStripMenuItemFacturaB
+            // TsmiFacturaB
             // 
-            this.ToolStripMenuItemFacturaB.Name = "ToolStripMenuItemFacturaB";
-            this.ToolStripMenuItemFacturaB.Size = new System.Drawing.Size(180, 22);
-            this.ToolStripMenuItemFacturaB.Text = "Factura B";
-            this.ToolStripMenuItemFacturaB.Click += new System.EventHandler(this.FacturaBToolStripMenuItem_Click);
+            this.TsmiFacturaB.Name = "TsmiFacturaB";
+            this.TsmiFacturaB.Size = new System.Drawing.Size(180, 22);
+            this.TsmiFacturaB.Text = "Factura B";
+            this.TsmiFacturaB.Click += new System.EventHandler(this.TsmiFacturaB_Click);
             // 
-            // facturaCToolStripMenuItem
+            // TsmiFacturaC
             // 
-            this.facturaCToolStripMenuItem.Name = "facturaCToolStripMenuItem";
-            this.facturaCToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.facturaCToolStripMenuItem.Text = "Factura C";
+            this.TsmiFacturaC.Name = "TsmiFacturaC";
+            this.TsmiFacturaC.Size = new System.Drawing.Size(180, 22);
+            this.TsmiFacturaC.Text = "Factura C";
+            this.TsmiFacturaC.Click += new System.EventHandler(this.TsmiFacturaC_Click);
             // 
             // notaDeDébitoToolStripMenuItem
             // 
+            this.notaDeDébitoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsmiNotaDeDébito,
+            this.TsmiNotaDeDebitoB,
+            this.TsmiNotaDeDébitoC});
             this.notaDeDébitoToolStripMenuItem.Name = "notaDeDébitoToolStripMenuItem";
             this.notaDeDébitoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.notaDeDébitoToolStripMenuItem.Text = "Nota de Débito";
             // 
             // notaDeCréditoToolStripMenuItem
             // 
+            this.notaDeCréditoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsmiNotaDeCréditoA,
+            this.TsmiNotaDeCréditoB,
+            this.TsmiNotaDeCréditoC});
             this.notaDeCréditoToolStripMenuItem.Name = "notaDeCréditoToolStripMenuItem";
             this.notaDeCréditoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.notaDeCréditoToolStripMenuItem.Text = "Nota de Crédito";
@@ -364,14 +379,14 @@
             this.tributosToolStripMenuItem.Name = "tributosToolStripMenuItem";
             this.tributosToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.tributosToolStripMenuItem.Text = "Tributos";
-            this.tributosToolStripMenuItem.Click += new System.EventHandler(this.tributosToolStripMenuItem_Click);
+            this.tributosToolStripMenuItem.Click += new System.EventHandler(this.TsmiTributos_Click);
             // 
             // tsmiVatView
             // 
             this.tsmiVatView.Name = "tsmiVatView";
             this.tsmiVatView.Size = new System.Drawing.Size(144, 22);
             this.tsmiVatView.Text = "IVA";
-            this.tsmiVatView.Click += new System.EventHandler(this.tsmiVatView_Click);
+            this.tsmiVatView.Click += new System.EventHandler(this.TsmiVatView_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -503,7 +518,44 @@
             this.toolStripProgressBarMenuPrincipal.Name = "toolStripProgressBarMenuPrincipal";
             this.toolStripProgressBarMenuPrincipal.Size = new System.Drawing.Size(100, 16);
             // 
-            // MainMenu
+            // TsmiNotaDeDébito
+            // 
+            this.TsmiNotaDeDébito.Name = "TsmiNotaDeDébito";
+            this.TsmiNotaDeDébito.Size = new System.Drawing.Size(180, 22);
+            this.TsmiNotaDeDébito.Text = "Nota de Débito A";
+            this.TsmiNotaDeDébito.Click += new System.EventHandler(this.TsmiNotaDeDébito_Click);
+            // 
+            // TsmiNotaDeDebitoB
+            // 
+            this.TsmiNotaDeDebitoB.Name = "TsmiNotaDeDebitoB";
+            this.TsmiNotaDeDebitoB.Size = new System.Drawing.Size(180, 22);
+            this.TsmiNotaDeDebitoB.Text = "Nota de Debito B";
+            // 
+            // TsmiNotaDeDébitoC
+            // 
+            this.TsmiNotaDeDébitoC.Name = "TsmiNotaDeDébitoC";
+            this.TsmiNotaDeDébitoC.Size = new System.Drawing.Size(180, 22);
+            this.TsmiNotaDeDébitoC.Text = "Nota de Débito C";
+            // 
+            // TsmiNotaDeCréditoA
+            // 
+            this.TsmiNotaDeCréditoA.Name = "TsmiNotaDeCréditoA";
+            this.TsmiNotaDeCréditoA.Size = new System.Drawing.Size(180, 22);
+            this.TsmiNotaDeCréditoA.Text = "Nota de Crédito A";
+            // 
+            // TsmiNotaDeCréditoB
+            // 
+            this.TsmiNotaDeCréditoB.Name = "TsmiNotaDeCréditoB";
+            this.TsmiNotaDeCréditoB.Size = new System.Drawing.Size(180, 22);
+            this.TsmiNotaDeCréditoB.Text = "Nota de Crédito B";
+            // 
+            // TsmiNotaDeCréditoC
+            // 
+            this.TsmiNotaDeCréditoC.Name = "TsmiNotaDeCréditoC";
+            this.TsmiNotaDeCréditoC.Size = new System.Drawing.Size(180, 22);
+            this.TsmiNotaDeCréditoC.Text = "Nota de Crédito C";
+            // 
+            // PachaSystemMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -513,12 +565,12 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainMenu";
+            this.Name = "PachaSystemMainMenu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Facturación Electronica";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.MenuPrincipal_Load);
+            this.Load += new System.EventHandler(this.PachaSystemMainMenu_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -577,11 +629,17 @@
         private System.Windows.Forms.ToolStripMenuItem notaDeCréditoToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelMenuPrincipal;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBarMenuPrincipal;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFacturaA;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFacturaB;
-        private System.Windows.Forms.ToolStripMenuItem facturaCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TsmiFacturaA;
+        private System.Windows.Forms.ToolStripMenuItem TsmiFacturaB;
+        private System.Windows.Forms.ToolStripMenuItem TsmiFacturaC;
         private System.Windows.Forms.ToolStripButton tsbClientes;
         private System.Windows.Forms.ToolStripMenuItem tsmiVatView;
         private System.Windows.Forms.ToolStripButton TsbInvoicesHistory;
+        private System.Windows.Forms.ToolStripMenuItem TsmiNotaDeDébito;
+        private System.Windows.Forms.ToolStripMenuItem TsmiNotaDeDebitoB;
+        private System.Windows.Forms.ToolStripMenuItem TsmiNotaDeDébitoC;
+        private System.Windows.Forms.ToolStripMenuItem TsmiNotaDeCréditoA;
+        private System.Windows.Forms.ToolStripMenuItem TsmiNotaDeCréditoB;
+        private System.Windows.Forms.ToolStripMenuItem TsmiNotaDeCréditoC;
     }
 }

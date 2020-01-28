@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class FacturaB
+    partial class Invoicing
     {
         /// <summary>
         /// Required designer variable.
@@ -47,25 +47,25 @@
             this.BtnAddItem = new System.Windows.Forms.Button();
             this.BtnCancelInvoice = new System.Windows.Forms.Button();
             this.BtnGenerateInvoice = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblCantidadArticulos = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.GbInvoiceDetails = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.LblInvoiceType = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblCantidadArticulos = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.LblReceiptNumber = new System.Windows.Forms.Label();
             this.GbCustomer = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtCustomerCode = new System.Windows.Forms.TextBox();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.TxtCustomerName = new System.Windows.Forms.TextBox();
             this.BtnSelectCustomer = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.GbItemDetails.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -336,52 +336,6 @@
             this.BtnGenerateInvoice.UseVisualStyleBackColor = true;
             this.BtnGenerateInvoice.Click += new System.EventHandler(this.BtnGenerateInvoice_Click);
             // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 49);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(177, 13);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Cantidad de Articulos:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblCantidadArticulos
-            // 
-            this.lblCantidadArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCantidadArticulos.AutoSize = true;
-            this.lblCantidadArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidadArticulos.Location = new System.Drawing.Point(186, 49);
-            this.lblCantidadArticulos.Name = "lblCantidadArticulos";
-            this.lblCantidadArticulos.Size = new System.Drawing.Size(177, 13);
-            this.lblCantidadArticulos.TabIndex = 10;
-            this.lblCantidadArticulos.Text = "[TotalItemQuantity]";
-            this.lblCantidadArticulos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(369, 49);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(177, 13);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "Total:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(552, 49);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(177, 13);
-            this.lblTotal.TabIndex = 12;
-            this.lblTotal.Text = "[TotalAmount]";
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // GbInvoiceDetails
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.GbInvoiceDetails, 4);
@@ -402,7 +356,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label13, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.LblInvoiceType, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label14, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblTotal, 3, 1);
             this.tableLayoutPanel4.Controls.Add(this.label12, 2, 1);
@@ -430,16 +384,16 @@
             this.label11.Text = "Tipo de Comprobante:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label13
+            // LblInvoiceType
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(186, 12);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(177, 13);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "Factura B";
+            this.LblInvoiceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblInvoiceType.AutoSize = true;
+            this.LblInvoiceType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblInvoiceType.Location = new System.Drawing.Point(186, 12);
+            this.LblInvoiceType.Name = "LblInvoiceType";
+            this.LblInvoiceType.Size = new System.Drawing.Size(177, 13);
+            this.LblInvoiceType.TabIndex = 1;
+            this.LblInvoiceType.Text = "[InvoiceType]";
             // 
             // label14
             // 
@@ -452,6 +406,52 @@
             this.label14.TabIndex = 2;
             this.label14.Text = "Numero de Comprobante:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(552, 49);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(177, 13);
+            this.lblTotal.TabIndex = 12;
+            this.lblTotal.Text = "[TotalAmount]";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(369, 49);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(177, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Total:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCantidadArticulos
+            // 
+            this.lblCantidadArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCantidadArticulos.AutoSize = true;
+            this.lblCantidadArticulos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidadArticulos.Location = new System.Drawing.Point(186, 49);
+            this.lblCantidadArticulos.Name = "lblCantidadArticulos";
+            this.lblCantidadArticulos.Size = new System.Drawing.Size(177, 13);
+            this.lblCantidadArticulos.TabIndex = 10;
+            this.lblCantidadArticulos.Text = "[TotalItemQuantity]";
+            this.lblCantidadArticulos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 49);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(177, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Cantidad de Articulos:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LblReceiptNumber
             // 
@@ -516,10 +516,6 @@
             this.TxtCustomerCode.Size = new System.Drawing.Size(177, 20);
             this.TxtCustomerCode.TabIndex = 1;
             // 
-            // errorProvider
-            // 
-            this.errorProvider.ContainerControl = this;
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -549,6 +545,10 @@
             this.BtnSelectCustomer.Text = "Seleccionar";
             this.BtnSelectCustomer.UseVisualStyleBackColor = true;
             this.BtnSelectCustomer.Click += new System.EventHandler(this.BtnSelectCustomer_Click);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // FacturaB
             // 
@@ -608,7 +608,7 @@
         private System.Windows.Forms.GroupBox GbInvoiceDetails;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label LblInvoiceType;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label LblReceiptNumber;
         private System.Windows.Forms.ErrorProvider errorProvider;

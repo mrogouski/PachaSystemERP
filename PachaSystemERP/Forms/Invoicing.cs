@@ -11,7 +11,7 @@ namespace PachaSystemERP.Forms
     using System;
     using System.Windows.Forms;
 
-    public partial class FacturaB : Form
+    public partial class Invoicing : Form
     {
         private PachaSystemContext _context;
         private Invoice _invoice;
@@ -20,7 +20,7 @@ namespace PachaSystemERP.Forms
         private UnitOfWork _unitOfWork;
         private InvoiceType _invoiceType;
 
-        public FacturaB(InvoiceType invoiceType)
+        public Invoicing(InvoiceType invoiceType)
         {
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
@@ -39,7 +39,7 @@ namespace PachaSystemERP.Forms
             NudUnitPrice.Value = 0.00M;
             NudSubtotal.Value = 0.00M;
 
-            if (_invoiceBuilder.TotalAmount > 10000 && _invoiceBuilder.CustomerID > 1)
+            if (_invoiceBuilder.TotalAmount > 10000 && _invoiceBuilder.CustomerID == 1)
             {
                 MessageBox.Show("Al pasarse el monto total de $10000, la identificación del cliente es obligatoria");
             }
@@ -70,6 +70,7 @@ namespace PachaSystemERP.Forms
             _invoice.CurrencyExchangeRate = 1;
             _invoiceBuilder = new InvoiceBuilder(_invoice);
 
+            LblInvoiceType.Text = _invoiceType.Description;
             LblReceiptNumber.Text = _invoiceBuilder.ReceiptNumber;
 
             TxtItemCode.Clear();
