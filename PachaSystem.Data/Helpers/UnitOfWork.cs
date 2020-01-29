@@ -22,9 +22,8 @@ namespace PachaSystem.Data.Helpers
         private Repository<ConceptType> _conceptType;
         private Repository<DocumentType> _documentType;
         private Repository<CurrencyType> _currencyType;
-        private Repository<FiscalConditionType> _fiscalConditionType;
+        private Repository<FiscalCondition> _fiscalConditionType;
         private Repository<Tribute> _tributeType;
-        private InvoiceViewRepository _receiptView;
 
         public UnitOfWork(PachaSystemContext context)
         {
@@ -187,13 +186,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<FiscalConditionType> FiscalConditionTypes
+        public Repository<FiscalCondition> FiscalConditionTypes
         {
             get
             {
                 if (_fiscalConditionType == null)
                 {
-                    _fiscalConditionType = new Repository<FiscalConditionType>(_context);
+                    _fiscalConditionType = new Repository<FiscalCondition>(_context);
                 }
 
                 return _fiscalConditionType;
@@ -210,19 +209,6 @@ namespace PachaSystem.Data.Helpers
                 }
 
                 return _tributeType;
-            }
-        }
-
-        public InvoiceViewRepository ReceiptView
-        {
-            get
-            {
-                if (_receiptView == null)
-                {
-                    _receiptView = new InvoiceViewRepository();
-                }
-
-                return _receiptView;
             }
         }
 

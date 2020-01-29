@@ -25,10 +25,18 @@
 
         public string Address { get; set; }
 
+        public string PostalCode { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public string Country { get; set; }
+
         public virtual ICollection<Invoice> Invoices { get; set; }
 
         public virtual DocumentType DocumentType { get; set; }
 
-        public virtual FiscalConditionType FiscalConditionType { get; set; }
+        public virtual FiscalCondition FiscalConditionType { get; set; }
     }
 }

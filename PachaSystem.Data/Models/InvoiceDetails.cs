@@ -10,6 +10,19 @@ namespace PachaSystem.Data.Models
 
         public int ItemID { get; set; }
 
+        public string ItemDescription
+        {
+            get
+            {
+                if (Item == null)
+                {
+                    return string.Empty;
+                }
+
+                return Item.Description;
+            }
+        }
+
         public int Quantity { get; set; }
 
         public decimal TaxBase { get; set; }

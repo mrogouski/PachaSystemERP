@@ -1,6 +1,6 @@
 ﻿namespace PachaSystemERP.Forms
 {
-    partial class ReceiptViewer
+    partial class InvoiceViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -30,45 +30,45 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.RvReceipt = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).BeginInit();
+            this.RvInvoice = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.invoiceViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // RvReceipt
             // 
-            this.RvReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RvInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "ReceiptViewDataSet";
-            reportDataSource1.Value = this.receiptViewBindingSource;
-            this.RvReceipt.LocalReport.DataSources.Add(reportDataSource1);
-            this.RvReceipt.LocalReport.ReportEmbeddedResource = "PachaSystemERP.Reports.Factura.rdlc";
-            this.RvReceipt.Location = new System.Drawing.Point(0, 0);
-            this.RvReceipt.Name = "RvReceipt";
-            this.RvReceipt.ServerReport.BearerToken = null;
-            this.RvReceipt.Size = new System.Drawing.Size(800, 450);
-            this.RvReceipt.TabIndex = 0;
+            reportDataSource1.Value = this.invoiceViewBindingSource;
+            this.RvInvoice.LocalReport.DataSources.Add(reportDataSource1);
+            this.RvInvoice.LocalReport.ReportEmbeddedResource = "PachaSystemERP.Reports.Factura.rdlc";
+            this.RvInvoice.Location = new System.Drawing.Point(0, 0);
+            this.RvInvoice.Name = "RvReceipt";
+            this.RvInvoice.ServerReport.BearerToken = null;
+            this.RvInvoice.Size = new System.Drawing.Size(800, 450);
+            this.RvInvoice.TabIndex = 0;
             // 
             // receiptViewBindingSource
             // 
-            this.receiptViewBindingSource.DataSource = typeof(PachaSystem.Data.Views.ReceiptView);
+            this.invoiceViewBindingSource.DataSource = typeof(PachaSystem.Data.Views.InvoiceView);
             // 
             // ReceiptViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.RvReceipt);
+            this.Controls.Add(this.RvInvoice);
             this.Name = "ReceiptViewer";
             this.Text = "VisorFactura";
             this.Load += new System.EventHandler(this.ReceiptViewer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer RvReceipt;
-        private System.Windows.Forms.BindingSource receiptViewBindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer RvInvoice;
+        private System.Windows.Forms.BindingSource invoiceViewBindingSource;
     }
 }

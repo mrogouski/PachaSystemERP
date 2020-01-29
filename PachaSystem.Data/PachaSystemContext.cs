@@ -24,7 +24,7 @@ namespace PachaSystem.Data
 
         public DbSet<AssociatedInvoice> AssociatedInvoices { get; set; }
 
-        public DbSet<Customer> Clients { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public DbSet<ConceptType> ConceptTypes { get; set; }
 
@@ -32,7 +32,7 @@ namespace PachaSystem.Data
 
         public DbSet<DocumentType> DocumentTypes { get; set; }
 
-        public DbSet<FiscalConditionType> FiscalConditionTypes { get; set; }
+        public DbSet<FiscalCondition> FiscalConditionTypes { get; set; }
 
         public DbSet<Item> Items { get; set; }
 
@@ -81,8 +81,8 @@ namespace PachaSystem.Data
             modelBuilder.Entity<DocumentType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<DocumentType>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<FiscalConditionType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<FiscalConditionType>().Property(x => x.Description).IsRequired();
+            modelBuilder.Entity<FiscalCondition>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<FiscalCondition>().Property(x => x.Description).IsRequired();
 
             modelBuilder.Entity<Item>().Property(x => x.Code).IsRequired();
             modelBuilder.Entity<Item>().Property(x => x.Description).IsRequired();

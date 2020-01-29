@@ -55,7 +55,7 @@
 
         private void TsmiFacturaB_Click(object sender, EventArgs e)
         {
-            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA A");
+            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA B");
             var form = new Invoicing(invoiceType)
             {
                 FormBorderStyle = FormBorderStyle.None,

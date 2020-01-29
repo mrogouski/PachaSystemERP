@@ -58,20 +58,20 @@ namespace PachaSystem.Data.Migrations
             if (context.FiscalConditionTypes.Count() != 14)
             {
                 context.FiscalConditionTypes.AddOrUpdate(x => x.ID,
-                    new FiscalConditionType { ID = 1, Description = "IVA Responsable Inscripto" },
-                    new FiscalConditionType { ID = 2, Description = "IVA Responsable No Inscripto" },
-                    new FiscalConditionType { ID = 3, Description = "IVA No Responsable" },
-                    new FiscalConditionType { ID = 4, Description = "IVA Sujeto Exento" },
-                    new FiscalConditionType { ID = 5, Description = "Consumidor Final" },
-                    new FiscalConditionType { ID = 6, Description = "Responsable Monotributo" },
-                    new FiscalConditionType { ID = 7, Description = "Sujeto No Categorizado" },
-                    new FiscalConditionType { ID = 8, Description = "Proveedor Del Exterior" },
-                    new FiscalConditionType { ID = 9, Description = "Cliente Del Exterior" },
-                    new FiscalConditionType { ID = 10, Description = "IVA Liberado – Ley Nº 19.640" },
-                    new FiscalConditionType { ID = 11, Description = "IVA Responsable Inscripto – Agente De Percepción" },
-                    new FiscalConditionType { ID = 12, Description = "Pequeño Contribuyente Eventual" },
-                    new FiscalConditionType { ID = 13, Description = "Monotributista Social" },
-                    new FiscalConditionType { ID = 14, Description = "Pequeño Contribuyente Eventual Social" });
+                    new FiscalCondition { ID = 1, Description = "IVA Responsable Inscripto" },
+                    new FiscalCondition { ID = 2, Description = "IVA Responsable No Inscripto" },
+                    new FiscalCondition { ID = 3, Description = "IVA No Responsable" },
+                    new FiscalCondition { ID = 4, Description = "IVA Sujeto Exento" },
+                    new FiscalCondition { ID = 5, Description = "Consumidor Final" },
+                    new FiscalCondition { ID = 6, Description = "Responsable Monotributo" },
+                    new FiscalCondition { ID = 7, Description = "Sujeto No Categorizado" },
+                    new FiscalCondition { ID = 8, Description = "Proveedor Del Exterior" },
+                    new FiscalCondition { ID = 9, Description = "Cliente Del Exterior" },
+                    new FiscalCondition { ID = 10, Description = "IVA Liberado – Ley Nº 19.640" },
+                    new FiscalCondition { ID = 11, Description = "IVA Responsable Inscripto – Agente De Percepción" },
+                    new FiscalCondition { ID = 12, Description = "Pequeño Contribuyente Eventual" },
+                    new FiscalCondition { ID = 13, Description = "Monotributista Social" },
+                    new FiscalCondition { ID = 14, Description = "Pequeño Contribuyente Eventual Social" });
             }
 
             if (context.DocumentTypes.Count() != 36)
@@ -274,9 +274,9 @@ namespace PachaSystem.Data.Migrations
                     new MeasureUnit { ID = 99, Description = "Bonificación" });
             }
 
-            if (context.Clients.Count() == 0)
+            if (context.Customers.Count() == 0)
             {
-                context.Clients.AddOrUpdate(
+                context.Customers.AddOrUpdate(
                     new Customer { ID = 1, BusinessName = "Consumidor Final", DocumentTypeID = 99, DocumentNumber = 0, FiscalConditionTypeID = 5, Address = string.Empty });
             }
 

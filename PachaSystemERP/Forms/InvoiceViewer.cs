@@ -13,11 +13,11 @@
     using System.Text;
     using System.Windows.Forms;
 
-    public partial class ReceiptViewer : Form
+    public partial class InvoiceViewer : Form
     {
         private Invoice _receipt;
 
-        public ReceiptViewer(Invoice receipt)
+        public InvoiceViewer(Invoice receipt)
         {
             _receipt = receipt;
             InitializeComponent();
@@ -31,8 +31,8 @@
             {
                 using (var unitOfWork = new UnitOfWork(context))
                 {
-                    this.receiptViewBindingSource.DataSource = unitOfWork.ReceiptView.Get(_receipt.ID);
-                    this.RvReceipt.RefreshReport();
+                    this.invoiceViewBindingSource.DataSource = unitOfWork.Invoices.Get(_receipt.ID);
+                    this.RvInvoice.RefreshReport();
                 }
             }
         }
@@ -50,7 +50,7 @@
             parameters.Add(new ReportParameter("IngresosBrutos", Settings.Default.IngresosBrutos));
             parameters.Add(new ReportParameter("FechaInicioActividades", Settings.Default.FechaInicioActividades.ToShortDateString()));
             parameters.Add(new ReportParameter("Cabecera", "Original"));
-            RvReceipt.LocalReport.SetParameters(parameters);
+            RvInvoice.LocalReport.SetParameters(parameters);
         }
 
         private string GenerateBarcode()

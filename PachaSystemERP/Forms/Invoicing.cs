@@ -9,6 +9,7 @@ namespace PachaSystemERP.Forms
     using PachaSystem.Data.Models;
     using PachaSystemERP.Classes;
     using System;
+    using System.Linq;
     using System.Windows.Forms;
 
     public partial class Invoicing : Form
@@ -32,7 +33,6 @@ namespace PachaSystemERP.Forms
         private void BtnAddItem_Click(object sender, EventArgs e)
         {
             _invoiceBuilder.AddItem(TxtItemCode.Text, (int)NudQuantity.Value);
-            bindingSource.ResetBindings(false);
             TxtItemCode.Clear();
             TxtItemName.Clear();
             NudQuantity.Value = 1;
@@ -43,6 +43,8 @@ namespace PachaSystemERP.Forms
             {
                 MessageBox.Show("Al pasarse el monto total de $10000, la identificación del cliente es obligatoria");
             }
+
+            LoadDataGridView();
         }
 
         private void BtnGenerateInvoice_Click(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace PachaSystemERP.Forms
             var invoice = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
             if (invoice != null)
             {
-                var form = new ReceiptViewer(invoice);
+                var form = new InvoiceViewer(invoice);
                 form.ShowDialog();
             }
 
@@ -78,19 +80,20 @@ namespace PachaSystemERP.Forms
             NudQuantity.Value = 1;
             NudUnitPrice.Value = 0;
             NudSubtotal.Value = 0;
-
-            LoadDataGridView();
         }
 
         private void LoadDataGridView()
         {
-            bindingSource.DataSource = _invoiceBuilder.InvoiceDetails;
+            //bindingSource.DataSource = _invoiceBuilder.InvoiceDetails;
+            bindingSource.DataSource = null;
+            bindingSource.DataSource = _invoice;
+            bindingSource.DataMember = "InvoiceDetails";
 
-            DgvArticles.DataSource = bindingSource;
-            DgvArticles.Columns["ItemID"].Visible = false;
-            DgvArticles.Columns["VatAliquot"].Visible = false;
-            DgvArticles.Columns["VatAmount"].Visible = false;
-            DgvArticles.Columns["TaxBase"].Visible = false;
+            DgvItems.DataSource = bindingSource;
+            DgvItems.Columns["ItemID"].Visible = false;
+            DgvItems.Columns["VatAliquot"].Visible = false;
+            DgvItems.Columns["VatAmount"].Visible = false;
+            DgvItems.Columns["TaxBase"].Visible = false;
         }
 
         private void MenuFacturacion_Load(object sender, EventArgs e)
@@ -126,12 +129,23 @@ namespace PachaSystemERP.Forms
         {
             if (!string.IsNullOrWhiteSpace(TxtItemCode.Text))
             {
-                var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
-
-                if (producto != null)
+                if (_invoice.InvoiceTypeID == 11)
                 {
-                    TxtItemName.Text = producto.Description;
-                    NudUnitPrice.Value = producto.UnitPrice;
+                    var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text && x.VatID < 3);
+                    if (producto != null)
+                    {
+                        TxtItemName.Text = producto.Description;
+                        NudUnitPrice.Value = producto.UnitPrice;
+                    }
+                }
+                else
+                {
+                    var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
+                    if (producto != null)
+                    {
+                        TxtItemName.Text = producto.Description;
+                        NudUnitPrice.Value = producto.UnitPrice;
+                    }
                 }
             }
             else

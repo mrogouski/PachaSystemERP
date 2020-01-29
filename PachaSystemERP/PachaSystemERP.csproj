@@ -165,11 +165,11 @@
     <Compile Include="Forms\ConfigurationMenu.Designer.cs">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ReceiptViewer.cs">
+    <Compile Include="Forms\InvoiceViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ReceiptViewer.Designer.cs">
-      <DependentUpon>ReceiptViewer.cs</DependentUpon>
+    <Compile Include="Forms\InvoiceViewer.Designer.cs">
+      <DependentUpon>InvoiceViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\VatTypeView.cs">
       <SubType>Form</SubType>
@@ -213,8 +213,8 @@
     <EmbeddedResource Include="Forms\ConfigurationMenu.resx">
       <DependentUpon>ConfigurationMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ReceiptViewer.resx">
-      <DependentUpon>ReceiptViewer.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\InvoiceViewer.resx">
+      <DependentUpon>InvoiceViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VatTypeView.resx">
       <DependentUpon>VatTypeView.cs</DependentUpon>

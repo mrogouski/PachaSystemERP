@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public class FiscalConditionType
+    public class FiscalCondition
     {
-        public FiscalConditionType()
+        public FiscalCondition()
         {
             Customers = new HashSet<Customer>();
         }

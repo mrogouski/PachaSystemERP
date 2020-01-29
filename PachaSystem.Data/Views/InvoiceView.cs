@@ -4,22 +4,22 @@ using System.Collections.Generic;
 
 namespace PachaSystem.Data.Views
 {
-    public class ReceiptView
+    public class InvoiceView
     {
         /* Datos del Comprobante */
-        public int ReceiptID { get; set; }
+        public int InvoiceID { get; set; }
 
-        public int ReceiptTypeID { get; set; }
+        public int InvoiceTypeID { get; set; }
 
         public int PointOfSale { get; set; }
 
-        public int ReceiptNumber { get; set; }
+        public int InvoiceNumber { get; set; }
 
         public string Cae { get; set; }
 
         public DateTime CaeExpirationDate { get; set; }
 
-        public DateTime ReceiptDate { get; set; }
+        public DateTime InvoiceDate { get; set; }
 
         public decimal TotalAmount { get; set; }
 

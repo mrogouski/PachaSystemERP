@@ -32,11 +32,9 @@ namespace PachaSystem.Data.Helpers
 
         Repository<CurrencyType> CurrencyTypes { get; }
 
-        Repository<FiscalConditionType> FiscalConditionTypes { get; }
+        Repository<FiscalCondition> FiscalConditionTypes { get; }
 
         Repository<Tribute> Tributes { get; }
-
-        InvoiceViewRepository ReceiptView { get; }
 
         Repository<MeasureUnit> MeasureUnit { get; }
 

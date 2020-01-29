@@ -85,6 +85,7 @@ namespace PachaSystemERP.Classes
                         {
                             unitOfWork.Invoices.Add(invoice);
                             unitOfWork.SaveChanges();
+                            return invoice;
                         }
                     }
                 }
@@ -117,7 +118,7 @@ namespace PachaSystemERP.Classes
                 }
             }
 
-            return invoice;
+            return null;
         }
 
         public TipoDeComprobanteResponse GetReceiptTypes()
@@ -268,7 +269,7 @@ namespace PachaSystemERP.Classes
 
             foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
-                var query = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.ItemID);
+                var query = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.Item.ID);
                 if (query.VatID > 2)
                 {
                     requestDetails.AgregarIva(query.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);

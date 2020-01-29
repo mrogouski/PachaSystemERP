@@ -36,7 +36,7 @@
             this.TxtItemCode = new System.Windows.Forms.TextBox();
             this.TxtItemName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.DgvArticles = new System.Windows.Forms.DataGridView();
+            this.DgvItems = new System.Windows.Forms.DataGridView();
             this.NudQuantity = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.NudUnitPrice = new System.Windows.Forms.NumericUpDown();
@@ -69,7 +69,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.GbItemDetails.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvArticles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudUnitPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSubtotal)).BeginInit();
@@ -130,7 +130,7 @@
             this.tableLayoutPanel2.Controls.Add(this.TxtItemCode, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.TxtItemName, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label4, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.DgvArticles, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.DgvItems, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.NudQuantity, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.label3, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.NudUnitPrice, 2, 3);
@@ -196,16 +196,16 @@
             // 
             // DgvArticles
             // 
-            this.DgvArticles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DgvArticles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvArticles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgvArticles.Location = new System.Drawing.Point(3, 3);
-            this.DgvArticles.Name = "DgvArticles";
-            this.DgvArticles.ReadOnly = true;
-            this.tableLayoutPanel2.SetRowSpan(this.DgvArticles, 6);
-            this.DgvArticles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvArticles.Size = new System.Drawing.Size(426, 260);
-            this.DgvArticles.TabIndex = 2;
+            this.DgvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DgvItems.Location = new System.Drawing.Point(3, 3);
+            this.DgvItems.Name = "DgvArticles";
+            this.DgvItems.ReadOnly = true;
+            this.tableLayoutPanel2.SetRowSpan(this.DgvItems, 6);
+            this.DgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvItems.Size = new System.Drawing.Size(426, 260);
+            this.DgvItems.TabIndex = 2;
             // 
             // NudQuantity
             // 
@@ -565,7 +565,7 @@
             this.GbItemDetails.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvArticles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudUnitPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSubtotal)).EndInit();
@@ -584,7 +584,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView DgvArticles;
+        private System.Windows.Forms.DataGridView DgvItems;
         private System.Windows.Forms.GroupBox GbItemDetails;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label2;

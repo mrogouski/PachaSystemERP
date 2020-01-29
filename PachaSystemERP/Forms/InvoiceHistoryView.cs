@@ -40,7 +40,7 @@ namespace PachaSystemERP.Forms
                                       //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                                       //join t in _context.Tributo on dt.TributoID equals t.ID
                                       //join ct in _context.CategoriaTributo on t.CategoriaTributoID equals ct.ID
-                                      join client in _context.Clients on c.CustomerID equals client.ID
+                                      join client in _context.Customers on c.CustomerID equals client.ID
                                       select new
                                       {
                                           c.ID,
