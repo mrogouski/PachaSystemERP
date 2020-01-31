@@ -11,7 +11,7 @@ namespace PachaSystem.Data.Helpers
     {
         private readonly PachaSystemContext _context;
         private Repository<MeasureUnit> _measureUnit;
-        private Repository<ItemCategory> _itemCategory;
+        private Repository<ProductCategory> _itemCategory;
         private Repository<TributeCategory> _tributeCategory;
         private Repository<Customer> _customers;
         private InvoiceRepository _invoice;
@@ -43,13 +43,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<ItemCategory> ItemCategories
+        public Repository<ProductCategory> ItemCategories
         {
             get
             {
                 if (_itemCategory != null)
                 {
-                    _itemCategory = new Repository<ItemCategory>(_context);
+                    _itemCategory = new Repository<ProductCategory>(_context);
                 }
 
                 return _itemCategory;

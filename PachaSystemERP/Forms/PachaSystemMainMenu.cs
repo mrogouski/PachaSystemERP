@@ -11,9 +11,6 @@
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
 
-        /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="PachaSystemMainMenu"/>.
-        /// </summary>
         public PachaSystemMainMenu()
         {
             InitializeComponent();
@@ -28,61 +25,9 @@
             toolStripStatusLabelMenuPrincipal.Text = "Bienvenido";
         }
 
-        private void TsmiOpciones_Click(object sender, EventArgs e)
-        {
-            var form = new ConfigurationMenu();
-            form.Show();
-        }
-
-        private void TsbStock_Click(object sender, EventArgs e)
-        {
-            var form = new StockManagement
-            {
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                Dock = DockStyle.Fill,
-            };
-            pnlPrincipal.Controls.Clear();
-            pnlPrincipal.Controls.Add(form);
-            form.Show();
-        }
-
-        private void TsmiTributos_Click(object sender, EventArgs e)
-        {
-            var form = new TributeManagement();
-            form.ShowDialog();
-        }
-
-        private void TsmiFacturaB_Click(object sender, EventArgs e)
-        {
-            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA B");
-            var form = new Invoicing(invoiceType)
-            {
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                Dock = DockStyle.Fill,
-            };
-            pnlPrincipal.Controls.Clear();
-            pnlPrincipal.Controls.Add(form);
-            form.Show();
-        }
-
         private void TsbClientes_Click(object sender, EventArgs e)
         {
             var form = new CustomerManagement
-            {
-                FormBorderStyle = FormBorderStyle.None,
-                TopLevel = false,
-                Dock = DockStyle.Fill,
-            };
-            pnlPrincipal.Controls.Clear();
-            pnlPrincipal.Controls.Add(form);
-            form.Show();
-        }
-
-        private void TsmiVatView_Click(object sender, EventArgs e)
-        {
-            var form = new VatTypeView
             {
                 FormBorderStyle = FormBorderStyle.None,
                 TopLevel = false,
@@ -106,9 +51,36 @@
             form.Show();
         }
 
+        private void TsbStock_Click(object sender, EventArgs e)
+        {
+            var form = new StockManagement
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                Dock = DockStyle.Fill,
+            };
+            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Add(form);
+            form.Show();
+        }
+
         private void TsmiFacturaA_Click(object sender, EventArgs e)
         {
             var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA A");
+            var form = new Invoicing(invoiceType)
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                Dock = DockStyle.Fill,
+            };
+            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Add(form);
+            form.Show();
+        }
+
+        private void TsmiFacturaB_Click(object sender, EventArgs e)
+        {
+            var invoiceType = _unitOfWork.InvoiceTypes.Get(x => x.Description == "FACTURA B");
             var form = new Invoicing(invoiceType)
             {
                 FormBorderStyle = FormBorderStyle.None,
@@ -137,6 +109,31 @@
         private void TsmiNotaDeDébito_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TsmiOpciones_Click(object sender, EventArgs e)
+        {
+            var form = new ConfigurationMenu();
+            form.Show();
+        }
+
+        private void TsmiTributos_Click(object sender, EventArgs e)
+        {
+            var form = new TributeManagement();
+            form.ShowDialog();
+        }
+
+        private void TsmiVatView_Click(object sender, EventArgs e)
+        {
+            var form = new VatTypeView
+            {
+                FormBorderStyle = FormBorderStyle.None,
+                TopLevel = false,
+                Dock = DockStyle.Fill,
+            };
+            pnlPrincipal.Controls.Clear();
+            pnlPrincipal.Controls.Add(form);
+            form.Show();
         }
     }
 }

@@ -270,7 +270,7 @@ namespace PachaSystemERP.Classes
             foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
                 var query = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.Item.ID);
-                if (query.VatID > 2)
+                if (query.VatID > 2 && invoice.InvoiceTypeID != 11)
                 {
                     requestDetails.AgregarIva(query.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
                 }

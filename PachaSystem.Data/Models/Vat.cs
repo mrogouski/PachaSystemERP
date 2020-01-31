@@ -6,7 +6,7 @@
     {
         public Vat()
         {
-            Items = new HashSet<Item>();
+            Items = new HashSet<Product>();
         }
 
         public int ID { get; set; }
@@ -15,6 +15,6 @@
 
         public decimal Aliquot { get; set; }
 
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<Product> Items { get; set; }
     }
 }

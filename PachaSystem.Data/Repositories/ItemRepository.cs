@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace PachaSystem.Data.Repositories
 {
-    public class ItemRepository : IRepository<Item>
+    public class ItemRepository : IRepository<Product>
     {
         private PachaSystemContext _context;
 
@@ -17,39 +17,39 @@ namespace PachaSystem.Data.Repositories
             _context = context;
         }
 
-        public void Add(Item entity)
+        public void Add(Product entity)
         {
             if (entity != null)
             {
-                _context.Items.Add(entity);
+                _context.Products.Add(entity);
             }
         }
 
-        public Item Find(int id)
+        public Product Find(int id)
         {
-            return _context.Items.Find(id);
+            return _context.Products.Find(id);
         }
 
-        public Item Get(Expression<Func<Item, bool>> expression = null)
+        public Product Get(Expression<Func<Product, bool>> expression = null)
         {
-            return _context.Items.Where(expression).Include(x => x.Vat).FirstOrDefault();
+            return _context.Products.Where(expression).Include(x => x.Vat).FirstOrDefault();
         }
 
-        public IEnumerable<Item> GetAll()
+        public IEnumerable<Product> GetAll()
         {
-            return _context.Items.ToList();
+            return _context.Products.ToList();
         }
 
-        public IEnumerable<Item> GetAll(Expression<Func<Item, bool>> expression)
+        public IEnumerable<Product> GetAll(Expression<Func<Product, bool>> expression)
         {
-            return _context.Items.Where(expression).ToList();
+            return _context.Products.Where(expression).ToList();
         }
 
-        public void Remove(Item entity)
+        public void Remove(Product entity)
         {
             if (entity != null)
             {
-                _context.Items.Remove(entity);
+                _context.Products.Remove(entity);
             }
         }
     }

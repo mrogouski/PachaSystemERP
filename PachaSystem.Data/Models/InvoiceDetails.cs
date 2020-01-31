@@ -35,6 +35,6 @@ namespace PachaSystem.Data.Models
 
         public virtual Invoice Invoice { get; set; }
 
-        public Item Item { get; set; }
+        public Product Item { get; set; }
     }
 }

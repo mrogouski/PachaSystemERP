@@ -35,7 +35,7 @@ namespace PachaSystemERP.Forms
         {
             DgvInvoices.DataSource = (from c in _context.Invoices
                                       join dc in _context.InvoiceDetails on c.ID equals dc.InvoiceID
-                                      join p in _context.Items on dc.ItemID equals p.ID
+                                      join p in _context.Products on dc.ItemID equals p.ID
                                       join i in _context.Vat on p.VatID equals i.ID
                                       //join dt in _context.DetalleTributo on c.ID equals dt.ComprobanteID
                                       //join t in _context.Tributo on dt.TributoID equals t.ID

@@ -10,7 +10,7 @@ namespace PachaSystem.Data.Helpers
 
     public interface IUnitOfWork : IDisposable
     {
-        Repository<ItemCategory> ItemCategories { get; }
+        Repository<ProductCategory> ItemCategories { get; }
 
         Repository<TributeCategory> TributeCategories { get; }
 

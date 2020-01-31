@@ -3,10 +3,10 @@
 namespace PachaSystem.Data.Enums
 {
     [Flags]
-    public enum ItemType
+    public enum ProductType
     {
-        Product = 1,
-        Service = 2,
+        Goods = 1,
+        Services = 2,
         Both = 4
     }
 }

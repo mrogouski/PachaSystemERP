@@ -56,7 +56,7 @@ namespace PachaSystem.Data.Views
 
         public decimal AmountVat { get; set; }
         /* Datos del Producto */
-        public IEnumerable<Item> Product { get; set; }
+        public IEnumerable<Product> Product { get; set; }
 
         public string ProductCode { get; set; }
 

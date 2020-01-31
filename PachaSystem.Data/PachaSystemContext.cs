@@ -24,34 +24,22 @@ namespace PachaSystem.Data
 
         public DbSet<AssociatedInvoice> AssociatedInvoices { get; set; }
 
-        public DbSet<Customer> Customers { get; set; }
-
         public DbSet<ConceptType> ConceptTypes { get; set; }
-
         public DbSet<CurrencyType> CurrencyTypes { get; set; }
-
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
 
         public DbSet<FiscalCondition> FiscalConditionTypes { get; set; }
 
-        public DbSet<Item> Items { get; set; }
-
-        public DbSet<ItemCategory> ItemCategories { get; set; }
-
-        public DbSet<MeasureUnit> MeasureUnits { get; set; }
-
-        public DbSet<Invoice> Invoices { get; set; }
-
         public DbSet<InvoiceDetails> InvoiceDetails { get; set; }
-
+        public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceType> InvoiceTypes { get; set; }
-
-        public DbSet<Tribute> Tributes { get; set; }
-
+        public DbSet<MeasureUnit> MeasureUnits { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<TributeCategory> TributeCategories { get; set; }
-
         public DbSet<TributeDetails> TributeDetails { get; set; }
-
+        public DbSet<Tribute> Tributes { get; set; }
         public DbSet<Vat> Vat { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -84,10 +72,10 @@ namespace PachaSystem.Data
             modelBuilder.Entity<FiscalCondition>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<FiscalCondition>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<Item>().Property(x => x.Code).IsRequired();
-            modelBuilder.Entity<Item>().Property(x => x.Description).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Code).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<ItemCategory>().Property(x => x.Name).IsRequired();
+            modelBuilder.Entity<ProductCategory>().Property(x => x.Name).IsRequired();
 
             modelBuilder.Entity<MeasureUnit>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<MeasureUnit>().Property(x => x.Description).IsRequired();

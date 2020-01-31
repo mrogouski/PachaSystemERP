@@ -132,21 +132,28 @@ namespace PachaSystemERP.Classes
                     invoiceDetails.TaxBase = decimal.Round(item.UnitPrice * invoiceDetails.Quantity, 2, MidpointRounding.ToEven);
                     invoiceDetails.Subtotal = decimal.Round((invoiceDetails.TaxBase + invoiceDetails.VatAmount), 2, MidpointRounding.ToEven);
 
-                    switch (item.VatID)
+                    if (_invoice.InvoiceTypeID != 11)
                     {
-                        case 1:
-                            _invoice.NotTaxedNetAmount += invoiceDetails.TaxBase;
-                            break;
+                        switch (item.VatID)
+                        {
+                            case 1:
+                                _invoice.NotTaxedNetAmount += invoiceDetails.TaxBase;
+                                break;
 
-                        case 2:
-                            _invoice.ExemptAmount += invoiceDetails.TaxBase;
-                            break;
-                        default:
-                            invoiceDetails.VatAliquot = item.Vat.Aliquot;
-                            invoiceDetails.VatAmount = decimal.Round(invoiceDetails.TaxBase * (item.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
-                            _invoice.VatTotalAmount += invoiceDetails.VatAmount;
-                            _invoice.NetAmount += invoiceDetails.TaxBase;
-                            break;
+                            case 2:
+                                _invoice.ExemptAmount += invoiceDetails.TaxBase;
+                                break;
+                            default:
+                                invoiceDetails.VatAliquot = item.Vat.Aliquot;
+                                invoiceDetails.VatAmount = decimal.Round(invoiceDetails.TaxBase * (item.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
+                                _invoice.VatTotalAmount += invoiceDetails.VatAmount;
+                                _invoice.NetAmount += invoiceDetails.TaxBase;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        _invoice.NetAmount += invoiceDetails.TaxBase;
                     }
 
                     _invoice.InvoiceDetails.Add(invoiceDetails);
@@ -157,21 +164,28 @@ namespace PachaSystemERP.Classes
                     addedItem.TaxBase = decimal.Round(item.UnitPrice * addedItem.Quantity, 2, MidpointRounding.ToEven);
                     addedItem.Subtotal = decimal.Round((addedItem.TaxBase + addedItem.VatAmount), 2, MidpointRounding.ToEven);
 
-                    switch (item.VatID)
+                    if (_invoice.InvoiceTypeID != 11)
                     {
-                        case 1:
-                            _invoice.NotTaxedNetAmount += addedItem.TaxBase;
-                            break;
+                        switch (item.VatID)
+                        {
+                            case 1:
+                                _invoice.NotTaxedNetAmount += addedItem.TaxBase;
+                                break;
 
-                        case 2:
-                            _invoice.ExemptAmount += addedItem.TaxBase;
-                            break;
-                        default:
-                            addedItem.VatAliquot = item.Vat.Aliquot;
-                            addedItem.VatAmount = decimal.Round(addedItem.TaxBase * (item.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
-                            _invoice.VatTotalAmount += addedItem.VatAmount;
-                            _invoice.NetAmount += addedItem.TaxBase;
-                            break;
+                            case 2:
+                                _invoice.ExemptAmount += addedItem.TaxBase;
+                                break;
+                            default:
+                                addedItem.VatAliquot = item.Vat.Aliquot;
+                                addedItem.VatAmount = decimal.Round(addedItem.TaxBase * (item.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
+                                _invoice.VatTotalAmount += addedItem.VatAmount;
+                                _invoice.NetAmount += addedItem.TaxBase;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        _invoice.NetAmount += addedItem.TaxBase;
                     }
                 }
 

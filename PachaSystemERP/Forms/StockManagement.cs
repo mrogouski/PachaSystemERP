@@ -28,18 +28,18 @@ namespace PachaSystemERP.Forms
 
         private void LoadItems()
         {
-            _context.Items.Load();
+            _context.Products.Load();
             _context.Vat.Load();
-            _context.ItemCategories.Load();
+            _context.ProductCategories.Load();
             _context.MeasureUnits.Load();
 
-            bindingSource.DataSource = _context.Items.Local.ToBindingList();
+            bindingSource.DataSource = _context.Products.Local.ToBindingList();
 
             DgvArticulos.DataSource = bindingSource;
             DgvArticulos.Columns["ID"].Visible = false;
-            DgvArticulos.Columns["ItemCategoryID"].Visible = false;
+            DgvArticulos.Columns["ProductCategoryID"].Visible = false;
             DgvArticulos.Columns["VatID"].Visible = false;
-            DgvArticulos.Columns["ItemCategory"].Visible = false;
+            DgvArticulos.Columns["ProductCategory"].Visible = false;
             DgvArticulos.Columns["Vat"].Visible = false;
             DgvArticulos.Columns["InvoiceDetails"].Visible = false;
 
@@ -54,7 +54,7 @@ namespace PachaSystemERP.Forms
             DataGridViewComboBoxColumn categoryColumn = new DataGridViewComboBoxColumn();
             categoryColumn.DataPropertyName = "ItemCategoryID";
             categoryColumn.Name = "Categoría";
-            categoryColumn.DataSource = _context.ItemCategories.Local.ToBindingList();
+            categoryColumn.DataSource = _context.ProductCategories.Local.ToBindingList();
             categoryColumn.DisplayMember = "Name";
             categoryColumn.ValueMember = "ID";
             DgvArticulos.Columns.Add(categoryColumn);

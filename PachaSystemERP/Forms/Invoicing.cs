@@ -84,16 +84,23 @@ namespace PachaSystemERP.Forms
 
         private void LoadDataGridView()
         {
-            //bindingSource.DataSource = _invoiceBuilder.InvoiceDetails;
             bindingSource.DataSource = null;
-            bindingSource.DataSource = _invoice;
-            bindingSource.DataMember = "InvoiceDetails";
+            bindingSource.DataSource = from invoiceDetails in _invoice.InvoiceDetails
+                                       select new 
+                                       { 
+                                           invoiceDetails.ItemID, 
+                                           invoiceDetails.Item.Description, 
+                                           invoiceDetails.Item.UnitPrice 
+                                       };
+            
+            //bindingSource.DataSource = _invoice;
+            //bindingSource.DataMember = "InvoiceDetails";
 
             DgvItems.DataSource = bindingSource;
-            DgvItems.Columns["ItemID"].Visible = false;
-            DgvItems.Columns["VatAliquot"].Visible = false;
-            DgvItems.Columns["VatAmount"].Visible = false;
-            DgvItems.Columns["TaxBase"].Visible = false;
+            //DgvItems.Columns["ItemID"].Visible = false;
+            //DgvItems.Columns["VatAliquot"].Visible = false;
+            //DgvItems.Columns["VatAmount"].Visible = false;
+            //DgvItems.Columns["TaxBase"].Visible = false;
         }
 
         private void MenuFacturacion_Load(object sender, EventArgs e)
@@ -129,23 +136,11 @@ namespace PachaSystemERP.Forms
         {
             if (!string.IsNullOrWhiteSpace(TxtItemCode.Text))
             {
-                if (_invoice.InvoiceTypeID == 11)
+                var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
+                if (producto != null)
                 {
-                    var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text && x.VatID < 3);
-                    if (producto != null)
-                    {
-                        TxtItemName.Text = producto.Description;
-                        NudUnitPrice.Value = producto.UnitPrice;
-                    }
-                }
-                else
-                {
-                    var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
-                    if (producto != null)
-                    {
-                        TxtItemName.Text = producto.Description;
-                        NudUnitPrice.Value = producto.UnitPrice;
-                    }
+                    TxtItemName.Text = producto.Description;
+                    NudUnitPrice.Value = producto.UnitPrice;
                 }
             }
             else
@@ -156,6 +151,7 @@ namespace PachaSystemERP.Forms
                 NudSubtotal.Value = 0;
             }
         }
+
         private void TxtItemName_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TxtItemName.Text))

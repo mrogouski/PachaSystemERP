@@ -2,17 +2,17 @@
 {
     using System.Collections.Generic;
 
-    public class ItemCategory
+    public class ProductCategory
     {
-        public ItemCategory()
+        public ProductCategory()
         {
-            Items = new HashSet<Item>();
+            Products = new HashSet<Product>();
         }
 
         public int ID { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

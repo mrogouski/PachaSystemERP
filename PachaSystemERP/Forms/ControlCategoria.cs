@@ -20,7 +20,7 @@ namespace PachaSystemERP.Forms
         {
             InitializeComponent();
             _context = new PachaSystemContext();
-            _context.ItemCategories.Load();
+            _context.ProductCategories.Load();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace PachaSystemERP.Forms
         private void ControlDeCategoria_Load(object sender, EventArgs e)
         {
             var bindingSource = new BindingSource();
-            bindingSource.DataSource = _context.ItemCategories.Local.ToBindingList();
+            bindingSource.DataSource = _context.ProductCategories.Local.ToBindingList();
             dgvCategoria.DataSource = bindingSource;
         }
     }
