@@ -250,9 +250,9 @@ namespace PachaSystemERP.Classes
 
             foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
-                if (invoiceDetail.Item.VatID > 2 && invoice.InvoiceTypeID != 11)
+                if (invoiceDetail.Product.VatID > 2 && invoice.InvoiceTypeID != 11)
                 {
-                    requestDetails.AgregarIva(invoiceDetail.Item.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
+                    requestDetails.AgregarIva(invoiceDetail.Product.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
                 }
             }
 
@@ -261,7 +261,7 @@ namespace PachaSystemERP.Classes
                 requestDetails.AgregarTributo((short)item.Tribute.ID, item.Tribute.Description, item.Tribute.TaxBase, item.Tribute.Aliquot, item.Amount);
             }
 
-            requestDetails.Concepto = invoice.ConceptTypeID;
+            requestDetails.Concepto = invoice.ConceptType.ID;
             requestDetails.ComprobanteDesde = invoice.InvoiceNumber;
             requestDetails.ComprobanteHasta = invoice.InvoiceNumber;
             requestDetails.FechaDeComprobante = invoice.InvoiceDate.ToString("yyyyMMdd");

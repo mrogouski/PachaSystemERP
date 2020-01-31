@@ -80,7 +80,7 @@ namespace PachaSystem.Data
             modelBuilder.Entity<MeasureUnit>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<MeasureUnit>().Property(x => x.Description).IsRequired();
 
-            modelBuilder.Entity<InvoiceDetails>().HasKey(x => new { x.InvoiceID, x.ItemID });
+            modelBuilder.Entity<InvoiceDetails>().HasKey(x => new { x.InvoiceID, x.ProductID });
 
             modelBuilder.Entity<InvoiceType>().Property(x => x.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<InvoiceType>().Property(x => x.Description).IsRequired();

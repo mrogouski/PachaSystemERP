@@ -8,18 +8,18 @@ namespace PachaSystem.Data.Models
     {
         public int InvoiceID { get; set; }
 
-        public int ItemID { get; set; }
+        public int ProductID { get; set; }
 
         public string ItemDescription
         {
             get
             {
-                if (Item == null)
+                if (Product == null)
                 {
                     return string.Empty;
                 }
 
-                return Item.Description;
+                return Product.Description;
             }
         }
 
@@ -35,6 +35,6 @@ namespace PachaSystem.Data.Models
 
         public virtual Invoice Invoice { get; set; }
 
-        public Product Item { get; set; }
+        public Product Product { get; set; }
     }
 }

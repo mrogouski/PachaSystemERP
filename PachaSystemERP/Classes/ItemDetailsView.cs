@@ -51,7 +51,7 @@
             }
         }
 
-        public string Name
+        public string Description
         {
             get
             {

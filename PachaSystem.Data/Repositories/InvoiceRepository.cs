@@ -35,7 +35,7 @@ namespace PachaSystem.Data.Repositories
         {
             var query = (from invoice in _context.Invoices
                          join invoiceDetails in _context.InvoiceDetails on invoice.ID equals invoiceDetails.InvoiceID
-                         join items in _context.Products on invoiceDetails.ItemID equals items.ID
+                         join items in _context.Products on invoiceDetails.ProductID equals items.ID
                          join vat in _context.Vat on items.VatID equals vat.ID
                          join tributeDetails in _context.TributeDetails on invoice.ID equals tributeDetails.InvoiceID
                          join tribute in _context.Tributes on tributeDetails.TributeID equals tribute.ID
@@ -81,7 +81,7 @@ namespace PachaSystem.Data.Repositories
         {
             var query = (from invoice in _context.Invoices
                          join invoiceDetails in _context.InvoiceDetails on invoice.ID equals invoiceDetails.InvoiceID
-                         join items in _context.Products on invoiceDetails.ItemID equals items.ID
+                         join items in _context.Products on invoiceDetails.ProductID equals items.ID
                          join vat in _context.Vat on items.VatID equals vat.ID
                          join tributeDetails in _context.TributeDetails on invoice.ID equals tributeDetails.InvoiceID
                          join tribute in _context.Tributes on tributeDetails.TributeID equals tribute.ID

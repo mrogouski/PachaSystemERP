@@ -33,11 +33,11 @@
             this.GbItemDetails = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this.TxtItemCode = new System.Windows.Forms.TextBox();
-            this.TxtItemName = new System.Windows.Forms.TextBox();
+            this.TxtProductCode = new System.Windows.Forms.TextBox();
+            this.TxtProductDescription = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.DgvItems = new System.Windows.Forms.DataGridView();
-            this.NudQuantity = new System.Windows.Forms.NumericUpDown();
+            this.NudProductQuantity = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.NudUnitPrice = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
@@ -70,7 +70,7 @@
             this.GbItemDetails.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProductQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudUnitPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSubtotal)).BeginInit();
             this.GbInvoiceDetails.SuspendLayout();
@@ -127,11 +127,11 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel2.Controls.Add(this.label2, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.TxtItemCode, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.TxtItemName, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.TxtProductCode, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.TxtProductDescription, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.label4, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.DgvItems, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.NudQuantity, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.NudProductQuantity, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.label3, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.NudUnitPrice, 2, 3);
             this.tableLayoutPanel2.Controls.Add(this.label5, 1, 3);
@@ -165,23 +165,23 @@
             // 
             // TxtItemCode
             // 
-            this.TxtItemCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtItemCode.Location = new System.Drawing.Point(585, 12);
-            this.TxtItemCode.Name = "TxtItemCode";
-            this.TxtItemCode.Size = new System.Drawing.Size(144, 20);
-            this.TxtItemCode.TabIndex = 15;
-            this.TxtItemCode.TextChanged += new System.EventHandler(this.TxtItemCode_TextChanged);
+            this.TxtProductCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtProductCode.Location = new System.Drawing.Point(585, 12);
+            this.TxtProductCode.Name = "TxtItemCode";
+            this.TxtProductCode.Size = new System.Drawing.Size(144, 20);
+            this.TxtProductCode.TabIndex = 15;
+            this.TxtProductCode.TextChanged += new System.EventHandler(this.TxtItemCode_TextChanged);
             // 
             // TxtItemName
             // 
-            this.TxtItemName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.TxtItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.TxtItemName.Location = new System.Drawing.Point(585, 56);
-            this.TxtItemName.Name = "TxtItemName";
-            this.TxtItemName.Size = new System.Drawing.Size(144, 20);
-            this.TxtItemName.TabIndex = 5;
-            this.TxtItemName.TextChanged += new System.EventHandler(this.TxtItemName_TextChanged);
+            this.TxtProductDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtProductDescription.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TxtProductDescription.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.TxtProductDescription.Location = new System.Drawing.Point(585, 56);
+            this.TxtProductDescription.Name = "TxtItemName";
+            this.TxtProductDescription.Size = new System.Drawing.Size(144, 20);
+            this.TxtProductDescription.TabIndex = 5;
+            this.TxtProductDescription.TextChanged += new System.EventHandler(this.TxtItemName_TextChanged);
             // 
             // label4
             // 
@@ -209,22 +209,22 @@
             // 
             // NudQuantity
             // 
-            this.NudQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.NudQuantity.Location = new System.Drawing.Point(585, 100);
-            this.NudQuantity.Minimum = new decimal(new int[] {
+            this.NudProductQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.NudProductQuantity.Location = new System.Drawing.Point(585, 100);
+            this.NudProductQuantity.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.NudQuantity.Name = "NudQuantity";
-            this.NudQuantity.Size = new System.Drawing.Size(144, 20);
-            this.NudQuantity.TabIndex = 10;
-            this.NudQuantity.Value = new decimal(new int[] {
+            this.NudProductQuantity.Name = "NudQuantity";
+            this.NudProductQuantity.Size = new System.Drawing.Size(144, 20);
+            this.NudProductQuantity.TabIndex = 10;
+            this.NudProductQuantity.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.NudQuantity.ValueChanged += new System.EventHandler(this.NudQuantity_ValueChanged);
+            this.NudProductQuantity.ValueChanged += new System.EventHandler(this.NudQuantity_ValueChanged);
             // 
             // label3
             // 
@@ -566,7 +566,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProductQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudUnitPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudSubtotal)).EndInit();
             this.GbInvoiceDetails.ResumeLayout(false);
@@ -588,15 +588,15 @@
         private System.Windows.Forms.GroupBox GbItemDetails;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TxtItemName;
+        private System.Windows.Forms.TextBox TxtProductDescription;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown NudQuantity;
+        private System.Windows.Forms.NumericUpDown NudProductQuantity;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown NudUnitPrice;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown NudSubtotal;
-        private System.Windows.Forms.TextBox TxtItemCode;
+        private System.Windows.Forms.TextBox TxtProductCode;
         private System.Windows.Forms.Button BtnAddItem;
         private System.Windows.Forms.Button BtnCancelItem;
         private System.Windows.Forms.Button BtnGenerateInvoice;

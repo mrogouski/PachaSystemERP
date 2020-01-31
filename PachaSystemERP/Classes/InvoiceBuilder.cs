@@ -15,35 +15,50 @@ namespace PachaSystemERP.Classes
     {
         private PachaSystemContext _context;
         private Invoice _invoice;
-        private List<ItemDetailsView> _itemDetailsView;
+        private List<ItemDetailsView> _invoiceDetailsView;
         private decimal _totalAmount;
         private int _totalQuantity;
         private UnitOfWork _unitOfWork;
 
-        public InvoiceBuilder(Invoice invoice)
+        public InvoiceBuilder(InvoiceType invoiceType, int invoiceNumber)
         {
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
-            _invoice = invoice;
+            _invoice = new Invoice();
+            _invoice.ConceptType = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos");
+            _invoice.InvoiceNumber = invoiceNumber;
+            _invoice.CurrencyType = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES");
+            _invoice.InvoiceType = invoiceType;
+            _invoice.InvoiceDate = DateTime.Now;
+            _invoice.PointOfSale = Settings.Default.PointOfSale;
+            _invoice.CurrencyExchangeRate = 1;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<ItemDetailsView> InvoiceDetails
+        public int CustomerID
         {
             get
             {
-                if (_itemDetailsView == null)
+                return _invoice.CustomerID;
+            }
+        }
+
+        public List<ItemDetailsView> InvoiceDetailsView
+        {
+            get
+            {
+                if (_invoiceDetailsView == null)
                 {
-                    _itemDetailsView = new List<ItemDetailsView>();
+                    _invoiceDetailsView = new List<ItemDetailsView>();
                 }
 
-                return _itemDetailsView;
+                return _invoiceDetailsView;
             }
 
             private set
             {
-                _itemDetailsView = value;
+                _invoiceDetailsView = value;
                 NotifyPropertyChanged();
             }
         }
@@ -61,7 +76,7 @@ namespace PachaSystemERP.Classes
         {
             get
             {
-                return _totalAmount;
+                return _invoice.TotalAmount;
             }
 
             private set
@@ -78,24 +93,18 @@ namespace PachaSystemERP.Classes
         {
             get
             {
-                return _totalQuantity;
+                return _invoice.InvoiceDetails.Sum(x => x.Quantity);
             }
 
             private set
             {
-                if (_totalQuantity != value)
+                if (_totalQuantity == value)
                 {
-                    _totalQuantity = value;
-                    NotifyPropertyChanged();
+                    return;
                 }
-            }
-        }
 
-        public int CustomerID
-        {
-            get
-            {
-                return _invoice.CustomerID;
+                _totalQuantity = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -117,24 +126,21 @@ namespace PachaSystemERP.Classes
             _invoice.CustomerID = customerID;
         }
 
-        public void AddItem(string itemCode, int quantity)
+        public void AddItem(string productCode, int quantity)
         {
-            var item = _unitOfWork.Products.Get(x => x.Code == itemCode);
-
-            if (item != null)
+            var product = _unitOfWork.Products.Get(x => x.Code == productCode);
+            if (product != null)
             {
-                var addedItem = _invoice.InvoiceDetails.SingleOrDefault(x => x.ItemID == item.ID);
-                if (addedItem == null)
+                if (_invoice.InvoiceDetails.Any(x => x.ProductID == product.ID))
                 {
-                    InvoiceDetails invoiceDetails = new InvoiceDetails();
-                    invoiceDetails.Item = item;
-                    invoiceDetails.Quantity = quantity;
-                    invoiceDetails.TaxBase = decimal.Round(item.UnitPrice * invoiceDetails.Quantity, 2, MidpointRounding.ToEven);
+                    var invoiceDetails = _invoice.InvoiceDetails.SingleOrDefault(x => x.ProductID == product.ID);
+                    invoiceDetails.Quantity += quantity;
+                    invoiceDetails.TaxBase = decimal.Round(product.UnitPrice * invoiceDetails.Quantity, 2, MidpointRounding.ToEven);
                     invoiceDetails.Subtotal = decimal.Round((invoiceDetails.TaxBase + invoiceDetails.VatAmount), 2, MidpointRounding.ToEven);
 
                     if (_invoice.InvoiceTypeID != 11)
                     {
-                        switch (item.VatID)
+                        switch (product.VatID)
                         {
                             case 1:
                                 _invoice.NotTaxedNetAmount += invoiceDetails.TaxBase;
@@ -144,8 +150,40 @@ namespace PachaSystemERP.Classes
                                 _invoice.ExemptAmount += invoiceDetails.TaxBase;
                                 break;
                             default:
-                                invoiceDetails.VatAliquot = item.Vat.Aliquot;
-                                invoiceDetails.VatAmount = decimal.Round(invoiceDetails.TaxBase * (item.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
+                                invoiceDetails.VatAliquot = product.Vat.Aliquot;
+                                invoiceDetails.VatAmount = decimal.Round(invoiceDetails.TaxBase * (product.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
+                                _invoice.VatTotalAmount += invoiceDetails.VatAmount;
+                                _invoice.NetAmount += invoiceDetails.TaxBase;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        _invoice.NetAmount += invoiceDetails.TaxBase;
+                    }
+                }
+                else
+                {
+                    InvoiceDetails invoiceDetails = new InvoiceDetails();
+                    invoiceDetails.Product = product;
+                    invoiceDetails.Quantity = quantity;
+                    invoiceDetails.TaxBase = decimal.Round(product.UnitPrice * invoiceDetails.Quantity, 2, MidpointRounding.ToEven);
+                    invoiceDetails.Subtotal = decimal.Round((invoiceDetails.TaxBase + invoiceDetails.VatAmount), 2, MidpointRounding.ToEven);
+
+                    if (_invoice.InvoiceTypeID != 11)
+                    {
+                        switch (product.VatID)
+                        {
+                            case 1:
+                                _invoice.NotTaxedNetAmount += invoiceDetails.TaxBase;
+                                break;
+
+                            case 2:
+                                _invoice.ExemptAmount += invoiceDetails.TaxBase;
+                                break;
+                            default:
+                                invoiceDetails.VatAliquot = product.Vat.Aliquot;
+                                invoiceDetails.VatAmount = decimal.Round(invoiceDetails.TaxBase * (product.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
                                 _invoice.VatTotalAmount += invoiceDetails.VatAmount;
                                 _invoice.NetAmount += invoiceDetails.TaxBase;
                                 break;
@@ -157,60 +195,39 @@ namespace PachaSystemERP.Classes
                     }
 
                     _invoice.InvoiceDetails.Add(invoiceDetails);
-                }
-                else
-                {
-                    addedItem.Quantity += quantity;
-                    addedItem.TaxBase = decimal.Round(item.UnitPrice * addedItem.Quantity, 2, MidpointRounding.ToEven);
-                    addedItem.Subtotal = decimal.Round((addedItem.TaxBase + addedItem.VatAmount), 2, MidpointRounding.ToEven);
 
-                    if (_invoice.InvoiceTypeID != 11)
+                    if ((_invoice.InvoiceTypeID == 1 || _invoice.InvoiceTypeID == 6) && _invoice.NetAmount > 0)
                     {
-                        switch (item.VatID)
-                        {
-                            case 1:
-                                _invoice.NotTaxedNetAmount += addedItem.TaxBase;
-                                break;
-
-                            case 2:
-                                _invoice.ExemptAmount += addedItem.TaxBase;
-                                break;
-                            default:
-                                addedItem.VatAliquot = item.Vat.Aliquot;
-                                addedItem.VatAmount = decimal.Round(addedItem.TaxBase * (item.Vat.Aliquot / 100), 2, MidpointRounding.ToEven);
-                                _invoice.VatTotalAmount += addedItem.VatAmount;
-                                _invoice.NetAmount += addedItem.TaxBase;
-                                break;
-                        }
+                        AddTributes();
                     }
-                    else
-                    {
-                        _invoice.NetAmount += addedItem.TaxBase;
-                    }
+
+                    _invoice.TotalAmount = _invoice.NetAmount + _invoice.NotTaxedNetAmount + _invoice.ExemptAmount + _invoice.VatTotalAmount + _invoice.TributeTotalAmount;
                 }
-
-                if ((_invoice.InvoiceTypeID == 1 || _invoice.InvoiceTypeID == 6) && _invoice.NetAmount > 0)
-                {
-                    AddTributes();
-                }
-
-                _invoice.TotalAmount = _invoice.NetAmount + _invoice.NotTaxedNetAmount + _invoice.ExemptAmount + _invoice.VatTotalAmount + _invoice.TributeTotalAmount;
-
-                TotalAmount = _invoice.TotalAmount;
-                TotalQuantity = _invoice.InvoiceDetails.Sum(x => x.Quantity);
-
-                //ItemDetailsView itemDetails = new ItemDetailsView();
-                //itemDetails.ItemID = invoiceDetails.ItemID;
-                //itemDetails.Code = item.Code;
-                //itemDetails.Name = item.Description;
-                //itemDetails.Quantity = quantity;
-                //itemDetails.UnitPrice = item.UnitPrice;
-                //itemDetails.VatAliquot = invoiceDetails.VatAliquot;
-                //itemDetails.VatAmount = invoiceDetails.VatAmount;
-                //itemDetails.TaxBase = invoiceDetails.TaxBase;
-                //itemDetails.Subtotal = invoiceDetails.Subtotal;
-                //_itemDetailsView.Add(itemDetails);
             }
+
+            UpdateInvoiceData();
+        }
+
+        private void UpdateInvoiceData()
+        {
+            _invoiceDetailsView.Clear();
+            foreach (var item in _invoice.InvoiceDetails)
+            {
+                ItemDetailsView itemDetailsView = new ItemDetailsView();
+                itemDetailsView.ItemID = item.ProductID;
+                itemDetailsView.Code = item.Product.Code;
+                itemDetailsView.Description = item.Product.Description;
+                itemDetailsView.UnitPrice = item.Product.UnitPrice;
+                itemDetailsView.Quantity = item.Quantity;
+                itemDetailsView.TaxBase = item.TaxBase;
+                itemDetailsView.VatAliquot = item.VatAliquot;
+                itemDetailsView.VatAmount = item.VatAmount;
+                itemDetailsView.Subtotal = item.Subtotal;
+                _invoiceDetailsView.Add(itemDetailsView);
+            }
+
+            TotalAmount = _invoice.TotalAmount;
+            TotalQuantity = _invoice.InvoiceDetails.Sum(x => x.Quantity);
         }
 
         public Invoice GetInvoiceData()
