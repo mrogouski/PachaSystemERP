@@ -37,36 +37,36 @@ namespace PachaSystemERP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Pacha System")]
-        public string NombreFantasia {
+        public string FantasyName {
             get {
-                return ((string)(this["NombreFantasia"]));
+                return ((string)(this["FantasyName"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Walter Gonzalez Adolfo")]
-        public string RazonSocial {
+        public string BussinesName {
             get {
-                return ((string)(this["RazonSocial"]));
+                return ((string)(this["BussinesName"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Alvar Nuñez 0 Dpto 22, Puerto Iguazu, Misiones")]
-        public string Domicilio {
+        public string Address {
             get {
-                return ((string)(this["Domicilio"]));
+                return ((string)(this["Address"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("IVA Responsable Inscripto")]
-        public string CondicionFiscal {
+        public string FiscalCondition {
             get {
-                return ((string)(this["CondicionFiscal"]));
+                return ((string)(this["FiscalCondition"]));
             }
         }
         
@@ -82,39 +82,27 @@ namespace PachaSystemERP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20247825607")]
-        public string IngresosBrutos {
+        public string GrossIncome {
             get {
-                return ((string)(this["IngresosBrutos"]));
+                return ((string)(this["GrossIncome"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2005-11-01")]
-        public global::System.DateTime FechaInicioActividades {
+        public global::System.DateTime StartDateActivities {
             get {
-                return ((global::System.DateTime)(this["FechaInicioActividades"]));
+                return ((global::System.DateTime)(this["StartDateActivities"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int PuntoVenta {
-            get {
-                return ((int)(this["PuntoVenta"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("cn = wsaahomo,o = afip,c = ar,serialNumber = CUIT 33693450239")]
         public string TestingDN {
             get {
                 return ((string)(this["TestingDN"]));
-            }
-            set {
-                this["TestingDN"] = value;
             }
         }
         
@@ -140,39 +128,30 @@ namespace PachaSystemERP.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("wsfe")]
         public string WebServiceName {
             get {
                 return ((string)(this["WebServiceName"]));
             }
-            set {
-                this["WebServiceName"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("cn = wsaa,o = afip,c = ar,serialNumber = CUIT 33693450239")]
         public string ProductionDN {
             get {
                 return ((string)(this["ProductionDN"]));
             }
-            set {
-                this["ProductionDN"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsTestingMode {
             get {
                 return ((bool)(this["IsTestingMode"]));
-            }
-            set {
-                this["IsTestingMode"] = value;
             }
         }
         

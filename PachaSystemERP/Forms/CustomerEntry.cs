@@ -31,7 +31,7 @@ namespace PachaSystemERP.Forms
             CbDocumentType.ValueMember = "ID";
             CbDocumentType.DisplayMember = "Description";
             
-            CbFiscalCondition.DataSource = _unitOfWork.FiscalConditionTypes.GetAll();
+            CbFiscalCondition.DataSource = _unitOfWork.FiscalConditions.GetAll();
             CbFiscalCondition.ValueMember = "ID";
             CbFiscalCondition.DisplayMember = "Description";
         }

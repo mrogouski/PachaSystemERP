@@ -10,7 +10,7 @@ namespace PachaSystem.Data.Helpers
 
     public interface IUnitOfWork : IDisposable
     {
-        Repository<ProductCategory> ItemCategories { get; }
+        Repository<ProductCategory> ProductCategories { get; }
 
         Repository<TributeCategory> TributeCategories { get; }
 
@@ -20,7 +20,7 @@ namespace PachaSystem.Data.Helpers
 
         Repository<InvoiceDetails> InvoiceDetails { get; }
 
-        ItemRepository Items { get; }
+        ProductRepository Products { get; }
 
         Repository<InvoiceType> InvoiceTypes { get; }
 
@@ -32,7 +32,7 @@ namespace PachaSystem.Data.Helpers
 
         Repository<CurrencyType> CurrencyTypes { get; }
 
-        Repository<FiscalCondition> FiscalConditionTypes { get; }
+        Repository<FiscalCondition> FiscalConditions { get; }
 
         Repository<Tribute> Tributes { get; }
 

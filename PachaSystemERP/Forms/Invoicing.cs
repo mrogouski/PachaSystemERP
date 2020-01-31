@@ -9,6 +9,7 @@ namespace PachaSystemERP.Forms
     using PachaSystem.Data.Models;
     using PachaSystemERP.Classes;
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -50,25 +51,32 @@ namespace PachaSystemERP.Forms
         private void BtnGenerateInvoice_Click(object sender, EventArgs e)
         {
             _electronicInvoicing = new ElectronicInvoicing();
-            var invoice = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
-            if (invoice != null)
+            var response = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
+            if (response != null)
             {
-                var form = new InvoiceViewer(invoice);
-                form.ShowDialog();
-            }
+                foreach (var item in response.DetalleResponse)
+                {
+                    _invoice.Cae = item.CAE;
+                    _invoice.CaeExpirationDate = DateTime.ParseExact(item.FechaVencimientoCAE, "yyyyMMdd", CultureInfo.CurrentCulture);
+                }
+                _unitOfWork.Invoices.Add(_invoice);
+                _unitOfWork.SaveChanges();
 
-            Initialize();
+                var form = new InvoiceViewer(_invoice);
+                form.ShowDialog();
+                Initialize();
+            }
         }
 
         private void Initialize()
         {
             _invoice = new Invoice();
-            _invoice.ConceptTypeID = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos").ID;
+            _invoice.ConceptType = _unitOfWork.ConceptTypes.Get(x => x.Name == "Productos");
             _invoice.InvoiceNumber = _electronicInvoicing.GetLastReceiptNumber(_invoiceType.ID) + 1;
-            _invoice.CurrencyTypeID = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES").ID;
+            _invoice.CurrencyType = _unitOfWork.CurrencyTypes.Get(x => x.Code == "PES");
             _invoice.InvoiceTypeID = _invoiceType.ID;
             _invoice.InvoiceDate = DateTime.Now;
-            _invoice.PointOfSale = Configuracion.PuntoVenta;
+            _invoice.PointOfSale = PachaSystemApplicationConfiguration.PuntoVenta;
             _invoice.CurrencyExchangeRate = 1;
             _invoiceBuilder = new InvoiceBuilder(_invoice);
 
@@ -136,7 +144,7 @@ namespace PachaSystemERP.Forms
         {
             if (!string.IsNullOrWhiteSpace(TxtItemCode.Text))
             {
-                var producto = _unitOfWork.Items.Get(x => x.Code == TxtItemCode.Text);
+                var producto = _unitOfWork.Products.Get(x => x.Code == TxtItemCode.Text);
                 if (producto != null)
                 {
                     TxtItemName.Text = producto.Description;
@@ -156,11 +164,11 @@ namespace PachaSystemERP.Forms
         {
             if (!string.IsNullOrWhiteSpace(TxtItemName.Text))
             {
-                var query = _unitOfWork.Items.Get(x => x.Description == TxtItemName.Text);
-                if (query != null)
+                var product = _unitOfWork.Products.Get(x => x.Description == TxtItemName.Text);
+                if (product != null)
                 {
-                    TxtItemCode.Text = query.Code;
-                    NudUnitPrice.Value = query.UnitPrice;
+                    TxtItemCode.Text = product.Code;
+                    NudUnitPrice.Value = product.UnitPrice;
                 }
             }
         }
@@ -192,8 +200,9 @@ namespace PachaSystemERP.Forms
                 }
                 else
                 {
-                    TxtCustomerCode.Text = customer.Code;
-                    TxtCustomerName.Text = customer.BusinessName;
+                    _invoice.Customer = customer;
+                    TxtCustomerCode.Text = _invoice.Customer.Code;
+                    TxtCustomerName.Text = _invoice.Customer.BusinessName;
                 }
             }
         }

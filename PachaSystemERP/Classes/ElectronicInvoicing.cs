@@ -29,14 +29,9 @@ namespace PachaSystemERP.Classes
         private string _sign;
         private WsaaClient _wsaaClient;
         private WsfeClient _wsfeClient;
-        private PachaSystemContext _context;
-        private UnitOfWork _unitOfWork;
 
         public ElectronicInvoicing()
         {
-            _context = new PachaSystemContext();
-            _unitOfWork = new UnitOfWork(_context);
-
             if (Settings.Default.IsTestingMode == true)
             {
                 _wsaaClient = new WsaaClient("WsaaHomologacion");
@@ -59,13 +54,13 @@ namespace PachaSystemERP.Classes
             int receiptNumber = GetLastReceiptNumber(invoiceTypeId) + 1;
 
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append(Configuracion.PuntoVenta.ToString("D5"));
+            stringBuilder.Append(PachaSystemApplicationConfiguration.PuntoVenta.ToString("D5"));
             stringBuilder.Append(receiptNumber.ToString("D8"));
 
             return stringBuilder.ToString();
         }
 
-        public Invoice GenerateInvoice(InvoiceBuilder builder)
+        public CaeResponse  GenerateInvoice(InvoiceBuilder builder)
         {
             var credentials = GetCredentials();
             var invoice = builder.GetInvoiceData();
@@ -75,20 +70,7 @@ namespace PachaSystemERP.Classes
 
             if (response.CabeceraResponse != null && response.CabeceraResponse.Resultado == "A")
             {
-                foreach (var item in response.DetalleResponse)
-                {
-                    invoice.Cae = item.CAE;
-                    invoice.CaeExpirationDate = DateTime.ParseExact(item.FechaVencimientoCAE, "yyyyMMdd", CultureInfo.CurrentCulture);
-                    using (var context = new PachaSystemContext())
-                    {
-                        using (var unitOfWork = new UnitOfWork(context))
-                        {
-                            unitOfWork.Invoices.Add(invoice);
-                            unitOfWork.SaveChanges();
-                            return invoice;
-                        }
-                    }
-                }
+                return response;
             }
             else
             {
@@ -195,7 +177,7 @@ namespace PachaSystemERP.Classes
             }
 
             var credentials = new Credenciales();
-            credentials.Cuit = Configuracion.Cuit;
+            credentials.Cuit = PachaSystemApplicationConfiguration.Cuit;
             credentials.Sign = _sign;
             credentials.Token = _token;
 
@@ -263,23 +245,20 @@ namespace PachaSystemERP.Classes
                 requestDetails.ComprobantesAsociados.Add(comprobanteAsociado);
             }
 
-            var customer = _unitOfWork.Customers.Get(x => x.ID == invoice.CustomerID);
-            requestDetails.TipoDeDocumento = customer.DocumentTypeID;
-            requestDetails.NumeroDeDocumento = customer.DocumentNumber;
+            requestDetails.TipoDeDocumento = invoice.Customer.DocumentTypeID;
+            requestDetails.NumeroDeDocumento = invoice.Customer.DocumentNumber;
 
             foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
-                var query = _unitOfWork.Items.Get(x => x.ID == invoiceDetail.Item.ID);
-                if (query.VatID > 2 && invoice.InvoiceTypeID != 11)
+                if (invoiceDetail.Item.VatID > 2 && invoice.InvoiceTypeID != 11)
                 {
-                    requestDetails.AgregarIva(query.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
+                    requestDetails.AgregarIva(invoiceDetail.Item.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
                 }
             }
 
             foreach (var item in invoice.TributeDetails)
             {
-                var query = _unitOfWork.Tributes.Get(x => x.ID == item.TributeID);
-                requestDetails.AgregarTributo((short)query.ID, query.Description, query.TaxBase, query.Aliquot, item.Amount);
+                requestDetails.AgregarTributo((short)item.Tribute.ID, item.Tribute.Description, item.Tribute.TaxBase, item.Tribute.Aliquot, item.Amount);
             }
 
             requestDetails.Concepto = invoice.ConceptTypeID;
@@ -292,7 +271,7 @@ namespace PachaSystemERP.Classes
             requestDetails.ImporteExento = decimal.ToDouble(invoice.ExemptAmount);
             requestDetails.ImporteIVA = decimal.ToDouble(invoice.VatTotalAmount);
             requestDetails.ImporteTributo = decimal.ToDouble(invoice.TributeTotalAmount);
-            requestDetails.CodigoMoneda = _unitOfWork.CurrencyTypes.Get(x => x.ID == invoice.CurrencyTypeID).Code;
+            requestDetails.CodigoMoneda = invoice.CurrencyType.Code;
             requestDetails.MonedaCotizacion = invoice.CurrencyExchangeRate;
 
             request.DetalleRequest.Add(requestDetails);

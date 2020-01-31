@@ -14,7 +14,7 @@
         public PachaSystemMainMenu()
         {
             InitializeComponent();
-            Configuracion.CargarConfiguracion();
+            PachaSystemApplicationConfiguration.CargarConfiguracion();
             _context = new PachaSystemContext();
             _context.Database.Initialize(false);
             _unitOfWork = new UnitOfWork(_context);

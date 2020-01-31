@@ -8,11 +8,11 @@ using System.Linq.Expressions;
 
 namespace PachaSystem.Data.Repositories
 {
-    public class ItemRepository : IRepository<Product>
+    public class ProductRepository : IRepository<Product>
     {
         private PachaSystemContext _context;
 
-        public ItemRepository(PachaSystemContext context)
+        public ProductRepository(PachaSystemContext context)
         {
             _context = context;
         }

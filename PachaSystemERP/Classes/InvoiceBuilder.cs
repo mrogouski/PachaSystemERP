@@ -119,7 +119,7 @@ namespace PachaSystemERP.Classes
 
         public void AddItem(string itemCode, int quantity)
         {
-            var item = _unitOfWork.Items.Get(x => x.Code == itemCode);
+            var item = _unitOfWork.Products.Get(x => x.Code == itemCode);
 
             if (item != null)
             {
@@ -217,8 +217,7 @@ namespace PachaSystemERP.Classes
         {
             if (_invoice.CustomerID == 0)
             {
-                var cliente = _unitOfWork.Customers.Get(x => x.BusinessName == "Consumidor Final");
-                _invoice.CustomerID = cliente.ID;
+                _invoice.Customer = _unitOfWork.Customers.Get(x => x.BusinessName == "Consumidor Final");
             }
 
             return _invoice;

@@ -17,7 +17,7 @@ namespace PachaSystem.Data.Helpers
         private InvoiceRepository _invoice;
         private Repository<InvoiceDetails> _invoiceDetails;
         private Repository<Vat> _vat;
-        private ItemRepository _item;
+        private ProductRepository _item;
         private Repository<InvoiceType> _invoiceType;
         private Repository<ConceptType> _conceptType;
         private Repository<DocumentType> _documentType;
@@ -43,7 +43,7 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<ProductCategory> ItemCategories
+        public Repository<ProductCategory> ProductCategories
         {
             get
             {
@@ -108,13 +108,13 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public ItemRepository Items
+        public ProductRepository Products
         {
             get
             {
                 if (_item == null)
                 {
-                    _item = new ItemRepository(_context);
+                    _item = new ProductRepository(_context);
                 }
 
                 return _item;
@@ -186,7 +186,7 @@ namespace PachaSystem.Data.Helpers
             }
         }
 
-        public Repository<FiscalCondition> FiscalConditionTypes
+        public Repository<FiscalCondition> FiscalConditions
         {
             get
             {

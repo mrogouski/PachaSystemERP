@@ -109,8 +109,8 @@ namespace PachaSystemERP.Classes
 
         private static X509Certificate2 ImportCertificate()
         {
-            string password = Configuracion.PasswordCertificado ?? throw new ArgumentNullException(nameof(password));
-            string path = Configuracion.RutaCertificado ?? throw new ArgumentNullException(nameof(path));
+            string password = PachaSystemApplicationConfiguration.PasswordCertificado ?? throw new ArgumentNullException(nameof(password));
+            string path = PachaSystemApplicationConfiguration.RutaCertificado ?? throw new ArgumentNullException(nameof(path));
 
             if (!File.Exists(Path.GetFullPath(path)))
             {

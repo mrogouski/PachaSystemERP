@@ -2,8 +2,6 @@
 {
     using Microsoft.Reporting.WinForms;
     using NBarCodes;
-    using PachaSystem.Data;
-    using PachaSystem.Data.Helpers;
     using PachaSystem.Data.Models;
     using PachaSystemERP.Properties;
     using System;
@@ -15,52 +13,42 @@
 
     public partial class InvoiceViewer : Form
     {
-        private Invoice _receipt;
-
-        public InvoiceViewer(Invoice receipt)
+        public InvoiceViewer(Invoice invoice)
         {
-            _receipt = receipt;
+            this.invoiceViewBindingSource.DataSource = invoice;
+            var barcode = GenerateBarcode(invoice);
+            LoadReportParameters(barcode);
             InitializeComponent();
         }
 
         private void ReceiptViewer_Load(object sender, EventArgs e)
         {
-            LoadReportParameters();
-
-            using (var context = new PachaSystemContext())
-            {
-                using (var unitOfWork = new UnitOfWork(context))
-                {
-                    this.invoiceViewBindingSource.DataSource = unitOfWork.Invoices.Get(_receipt.ID);
-                    this.RvInvoice.RefreshReport();
-                }
-            }
+            this.RvInvoice.RefreshReport();
         }
 
-        private void LoadReportParameters()
+        private void LoadReportParameters(string barcode)
         {
-            var barcode = GenerateBarcode();
             ReportParameterCollection parameters = new ReportParameterCollection();
             parameters.Add(new ReportParameter("Barcode", barcode));
-            parameters.Add(new ReportParameter("NombreFantasia", Settings.Default.NombreFantasia));
-            parameters.Add(new ReportParameter("RazonSocial", Settings.Default.RazonSocial));
-            parameters.Add(new ReportParameter("Domicilio", Settings.Default.Domicilio));
-            parameters.Add(new ReportParameter("CondicionFiscal", Settings.Default.CondicionFiscal));
+            parameters.Add(new ReportParameter("NombreFantasia", Settings.Default.FantasyName));
+            parameters.Add(new ReportParameter("RazonSocial", Settings.Default.BussinesName));
+            parameters.Add(new ReportParameter("Domicilio", Settings.Default.Address));
+            parameters.Add(new ReportParameter("CondicionFiscal", Settings.Default.FiscalCondition));
             parameters.Add(new ReportParameter("CUIT", Settings.Default.CUIT.ToString()));
-            parameters.Add(new ReportParameter("IngresosBrutos", Settings.Default.IngresosBrutos));
-            parameters.Add(new ReportParameter("FechaInicioActividades", Settings.Default.FechaInicioActividades.ToShortDateString()));
+            parameters.Add(new ReportParameter("IngresosBrutos", Settings.Default.GrossIncome));
+            parameters.Add(new ReportParameter("FechaInicioActividades", Settings.Default.StartDateActivities.ToShortDateString()));
             parameters.Add(new ReportParameter("Cabecera", "Original"));
             RvInvoice.LocalReport.SetParameters(parameters);
         }
 
-        private string GenerateBarcode()
+        private string GenerateBarcode(Invoice invoice)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(Settings.Default.CUIT);
-            builder.Append(_receipt.InvoiceTypeID.ToString("D3"));
-            builder.Append(_receipt.PointOfSale.ToString("D5"));
-            builder.Append(_receipt.Cae);
-            builder.Append(_receipt.CaeExpirationDate.ToString("yyyyMMdd"));
+            builder.Append(invoice.InvoiceTypeID.ToString("D3"));
+            builder.Append(invoice.PointOfSale.ToString("D5"));
+            builder.Append(invoice.Cae);
+            builder.Append(invoice.CaeExpirationDate.ToString("yyyyMMdd"));
 
             BarCodeSettings settings = new BarCodeSettings();
             settings.Data = builder.ToString();

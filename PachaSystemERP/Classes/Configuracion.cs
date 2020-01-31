@@ -4,11 +4,10 @@
 
 namespace PachaSystemERP.Classes
 {
-    using PachaSystemERP.Enums;
     using System;
     using System.Configuration;
 
-    public static class Configuracion
+    public static class PachaSystemApplicationConfiguration
     {
         public static long Cuit { get; set; }
 
@@ -17,10 +16,6 @@ namespace PachaSystemERP.Classes
         public static string RutaCertificado { get; set; }
 
         public static string PasswordCertificado { get; set; }
-
-        public static ModoFacturacion ModoFacturacion { get; set; }
-
-        public static ModoOperacion ModoDeOperacion { get; set; }
 
         public static int PuntoVenta { get; set; }
 
@@ -33,12 +28,12 @@ namespace PachaSystemERP.Classes
             Responsabilidad = int.Parse(settings["TipoResponsable"].Value);
             RutaCertificado = settings["RutaCertificado"].Value;
             PasswordCertificado = settings["PasswordCertificado"].Value;
-            ModoFacturacion = (ModoFacturacion)Enum.Parse(typeof(ModoFacturacion), settings["ModoDeFacturacion"].Value);
-            if (ModoFacturacion == ModoFacturacion.FacturaElectronica)
-            {
-                ModoDeOperacion = (ModoOperacion)Enum.Parse(typeof(ModoOperacion), settings["ModoDeOperacion"].Value);
-                PuntoVenta = int.Parse(settings["PuntoDeVenta"].Value);
-            }
+            //ModoFacturacion = (ModoFacturacion)Enum.Parse(typeof(ModoFacturacion), settings["ModoDeFacturacion"].Value);
+            //if (ModoFacturacion == ModoFacturacion.FacturaElectronica)
+            //{
+            //    ModoDeOperacion = (ModoOperacion)Enum.Parse(typeof(ModoOperacion), settings["ModoDeOperacion"].Value);
+            //    PuntoVenta = int.Parse(settings["PuntoDeVenta"].Value);
+            //}
 
             EncriptarConfiguracion();
         }

@@ -28,22 +28,22 @@
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            Configuracion.RutaCertificado = txtRutaDelCertificado.Text;
-            Configuracion.PasswordCertificado = txtPassword.Text;
+            PachaSystemApplicationConfiguration.RutaCertificado = txtRutaDelCertificado.Text;
+            PachaSystemApplicationConfiguration.PasswordCertificado = txtPassword.Text;
             if (long.TryParse(MtbCuit.Text, out long cuit))
             {
-                Configuracion.Cuit = cuit;
+                PachaSystemApplicationConfiguration.Cuit = cuit;
             }
 
-            Configuracion.GuardarConfiguracion();
+            PachaSystemApplicationConfiguration.GuardarConfiguracion();
             Close();
         }
 
         private void Configuracion_Load(object sender, EventArgs e)
         {
-            MtbCuit.Text = Configuracion.Cuit.ToString();
-            txtRutaDelCertificado.Text = Configuracion.RutaCertificado;
-            txtPassword.Text = Configuracion.PasswordCertificado;
+            MtbCuit.Text = PachaSystemApplicationConfiguration.Cuit.ToString();
+            txtRutaDelCertificado.Text = PachaSystemApplicationConfiguration.RutaCertificado;
+            txtPassword.Text = PachaSystemApplicationConfiguration.PasswordCertificado;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
