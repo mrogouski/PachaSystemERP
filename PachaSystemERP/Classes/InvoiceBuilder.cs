@@ -230,7 +230,7 @@ namespace PachaSystemERP.Classes
             TotalQuantity = _invoice.InvoiceDetails.Sum(x => x.Quantity);
         }
 
-        public Invoice GetInvoiceData()
+        public Invoice GetInvoice()
         {
             if (_invoice.CustomerID == 0)
             {
@@ -243,6 +243,19 @@ namespace PachaSystemERP.Classes
         public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public int InvoiceTypeID
+        {
+            get
+            {
+                if (_invoice == null)
+                {
+                    return 0;
+                }
+
+                return _invoice.InvoiceTypeID;
+            }
         }
 
         private void AddTributes()
@@ -279,6 +292,14 @@ namespace PachaSystemERP.Classes
             stringBuilder.Append(Settings.Default.PointOfSale.ToString("D5"));
             stringBuilder.Append(_invoice.InvoiceNumber.ToString("D8"));
             return stringBuilder.ToString();
+        }
+
+        public void AddCae(string cae, DateTime caeExpirationDate)
+        {
+            _invoice.Cae = cae;
+            _invoice.CaeExpirationDate = caeExpirationDate;
+            _unitOfWork.Invoices.Add(_invoice);
+            _unitOfWork.SaveChanges();
         }
     }
 }

@@ -17,7 +17,6 @@ namespace PachaSystemERP.Forms
     {
         private PachaSystemContext _context;
         private ElectronicInvoicing _electronicInvoicing;
-        private Invoice _invoice;
         private InvoiceBuilder _invoiceBuilder;
         private InvoiceType _invoiceType;
         private UnitOfWork _unitOfWork;
@@ -63,18 +62,17 @@ namespace PachaSystemERP.Forms
 
         private void BtnGenerateInvoice_Click(object sender, EventArgs e)
         {
-            var response = _electronicInvoicing.GenerateInvoice(_invoiceBuilder);
+            var invoice = _invoiceBuilder.GetInvoice();
+            var response = _electronicInvoicing.GenerateInvoice(invoice);
             if (response != null)
             {
                 foreach (var item in response.DetalleResponse)
                 {
-                    _invoice.Cae = item.CAE;
-                    _invoice.CaeExpirationDate = DateTime.ParseExact(item.FechaVencimientoCAE, "yyyyMMdd", CultureInfo.CurrentCulture);
+                    var caeExpirationDate = DateTime.ParseExact(item.FechaVencimientoCAE, "yyyyMMdd", CultureInfo.CurrentCulture);
+                    _invoiceBuilder.AddCae(item.CAE, caeExpirationDate);
                 }
-                _unitOfWork.Invoices.Add(_invoice);
-                _unitOfWork.SaveChanges();
 
-                var form = new InvoiceViewer(_invoice);
+                var form = new InvoiceViewer(invoice);
                 form.ShowDialog();
                 Initialize();
             }
@@ -82,20 +80,21 @@ namespace PachaSystemERP.Forms
 
         private void BtnSelectCustomer_Click(object sender, EventArgs e)
         {
-            var form = new CustomerManagement(_invoice);
-            var dialogResult = form.ShowDialog();
-            if (dialogResult == DialogResult.OK)
+            using (var form = new CustomerManagement())
             {
-                var customer = _unitOfWork.Customers.Get(x => x.ID == _invoice.CustomerID);
-                if (_invoice.InvoiceTypeID == 1 && customer.DocumentTypeID != 80)
+                var dialogResult = form.ShowDialog();
+                if (dialogResult == DialogResult.OK)
                 {
-                    MessageBox.Show("El cliente seleccionado es invalido para la operacion que desea realizar");
-                }
-                else
-                {
-                    _invoice.Customer = customer;
-                    TxtCustomerCode.Text = _invoice.Customer.Code;
-                    TxtCustomerName.Text = _invoice.Customer.BusinessName;
+                    if (_invoiceBuilder.InvoiceTypeID == 1 && customer.DocumentTypeID != 80)
+                    {
+                        MessageBox.Show("El cliente seleccionado es invalido para la operacion que desea realizar");
+                    }
+                    else
+                    {
+                        _invoiceBuilder.AddCustomer(form.CustomerID);
+                        TxtCustomerCode.Text = form.Customer.Code;
+                        TxtCustomerName.Text = form.Customer.BusinessName;
+                    }
                 }
             }
         }
