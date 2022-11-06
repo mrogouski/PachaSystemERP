@@ -78,9 +78,12 @@ namespace PachaSystemERP.Classes
                 {
                     foreach (var item in response.DetalleResponse)
                     {
-                        foreach (var observation in item.Observaciones)
+                        if (item.Observaciones != null)
                         {
-                            _logger.Debug(observation.Codigo + observation.Mensaje);
+                            foreach (var observation in item.Observaciones)
+                            {
+                                _logger.Debug(observation.Codigo + observation.Mensaje);
+                            }
                         }
                     }
                 }
@@ -230,7 +233,7 @@ namespace PachaSystemERP.Classes
 
             request.CabeceraRequest.CantidadDeRegistros = 1;
             request.CabeceraRequest.PuntoDeVenta = Settings.Default.PointOfSale;
-            request.CabeceraRequest.TipoDeComprobante = invoice.InvoiceTypeID;
+            request.CabeceraRequest.TipoDeComprobante = invoice.InvoiceType.ID;
 
             var requestDetails = new CaeDetalleRequest();
 
@@ -245,12 +248,12 @@ namespace PachaSystemERP.Classes
                 requestDetails.ComprobantesAsociados.Add(comprobanteAsociado);
             }
 
-            requestDetails.TipoDeDocumento = invoice.Customer.DocumentTypeID;
+            requestDetails.TipoDeDocumento = invoice.Customer.DocumentType.ID;
             requestDetails.NumeroDeDocumento = invoice.Customer.DocumentNumber;
 
             foreach (var invoiceDetail in invoice.InvoiceDetails)
             {
-                if (invoiceDetail.Product.VatID > 2 && invoice.InvoiceTypeID != 11)
+                if (invoiceDetail.Product.Vat.ID > 2 && invoice.InvoiceType.ID != 11)
                 {
                     requestDetails.AgregarIva(invoiceDetail.Product.VatID.Value, invoiceDetail.TaxBase, invoiceDetail.VatAmount);
                 }

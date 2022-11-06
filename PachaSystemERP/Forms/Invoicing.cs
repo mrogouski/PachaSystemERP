@@ -68,10 +68,12 @@ namespace PachaSystemERP.Forms
             {
                 foreach (var item in response.DetalleResponse)
                 {
+                    _invoice = _invoiceBuilder.GetInvoiceData();
                     _invoice.Cae = item.CAE;
                     _invoice.CaeExpirationDate = DateTime.ParseExact(item.FechaVencimientoCAE, "yyyyMMdd", CultureInfo.CurrentCulture);
                 }
-                _unitOfWork.Invoices.Add(_invoice);
+
+                //_unitOfWork.Invoices.Add(_invoice);
                 _unitOfWork.SaveChanges();
 
                 var form = new InvoiceViewer(_invoice);

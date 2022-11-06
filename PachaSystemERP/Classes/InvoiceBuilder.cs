@@ -131,14 +131,14 @@ namespace PachaSystemERP.Classes
             var product = _unitOfWork.Products.Get(x => x.Code == productCode);
             if (product != null)
             {
-                if (_invoice.InvoiceDetails.Any(x => x.ProductID == product.ID))
+                if (_invoice.InvoiceDetails.Any(x => x.Product.ID == product.ID))
                 {
                     var invoiceDetails = _invoice.InvoiceDetails.SingleOrDefault(x => x.ProductID == product.ID);
                     invoiceDetails.Quantity += quantity;
                     invoiceDetails.TaxBase = decimal.Round(product.UnitPrice * invoiceDetails.Quantity, 2, MidpointRounding.ToEven);
                     invoiceDetails.Subtotal = decimal.Round((invoiceDetails.TaxBase + invoiceDetails.VatAmount), 2, MidpointRounding.ToEven);
 
-                    if (_invoice.InvoiceTypeID != 11)
+                    if (_invoice.InvoiceType.ID != 11)
                     {
                         switch (product.VatID)
                         {
@@ -170,7 +170,7 @@ namespace PachaSystemERP.Classes
                     invoiceDetails.TaxBase = decimal.Round(product.UnitPrice * invoiceDetails.Quantity, 2, MidpointRounding.ToEven);
                     invoiceDetails.Subtotal = decimal.Round((invoiceDetails.TaxBase + invoiceDetails.VatAmount), 2, MidpointRounding.ToEven);
 
-                    if (_invoice.InvoiceTypeID != 11)
+                    if (_invoice.InvoiceType.ID != 11)
                     {
                         switch (product.VatID)
                         {
@@ -196,7 +196,7 @@ namespace PachaSystemERP.Classes
 
                     _invoice.InvoiceDetails.Add(invoiceDetails);
 
-                    if ((_invoice.InvoiceTypeID == 1 || _invoice.InvoiceTypeID == 6) && _invoice.NetAmount > 0)
+                    if ((_invoice.InvoiceType.ID == 1 || _invoice.InvoiceType.ID == 6) && _invoice.NetAmount > 0)
                     {
                         AddTributes();
                     }
@@ -214,7 +214,7 @@ namespace PachaSystemERP.Classes
             foreach (var item in _invoice.InvoiceDetails)
             {
                 ItemDetailsView itemDetailsView = new ItemDetailsView();
-                itemDetailsView.ItemID = item.ProductID;
+                itemDetailsView.ItemID = item.Product.ID;
                 itemDetailsView.Code = item.Product.Code;
                 itemDetailsView.Description = item.Product.Description;
                 itemDetailsView.UnitPrice = item.Product.UnitPrice;
@@ -232,7 +232,7 @@ namespace PachaSystemERP.Classes
 
         public Invoice GetInvoiceData()
         {
-            if (_invoice.CustomerID == 0)
+            if (_invoice.Customer == null || _invoice.Customer.ID == 0)
             {
                 _invoice.Customer = _unitOfWork.Customers.Get(x => x.BusinessName == "Consumidor Final");
             }

@@ -15,6 +15,7 @@
     {
         public InvoiceViewer(Invoice invoice)
         {
+            this.invoiceViewBindingSource = new BindingSource();
             this.invoiceViewBindingSource.DataSource = invoice;
             var barcode = GenerateBarcode(invoice);
             LoadReportParameters(barcode);
@@ -28,6 +29,7 @@
 
         private void LoadReportParameters(string barcode)
         {
+            RvInvoice = new ReportViewer();
             ReportParameterCollection parameters = new ReportParameterCollection();
             parameters.Add(new ReportParameter("Barcode", barcode));
             parameters.Add(new ReportParameter("NombreFantasia", Settings.Default.FantasyName));
