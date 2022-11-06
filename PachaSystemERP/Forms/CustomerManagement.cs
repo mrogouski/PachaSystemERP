@@ -17,20 +17,13 @@ namespace PachaSystemERP.Forms
     {
         private PachaSystemContext _context;
         private UnitOfWork _unitOfWork;
-        private Invoice _invoice;
+
+        public int CustomerID { get; set; }
 
         public CustomerManagement()
         {
             _context = new PachaSystemContext();
             _unitOfWork = new UnitOfWork(_context);
-            InitializeComponent();
-        }
-
-        public CustomerManagement(Invoice invoice)
-        {
-            _context = new PachaSystemContext();
-            _unitOfWork = new UnitOfWork(_context);
-            _invoice = invoice;
             InitializeComponent();
         }
 
@@ -53,15 +46,12 @@ namespace PachaSystemERP.Forms
         {
             DgvCustomers.DataSource = _unitOfWork.Customers.GetAll();
 
-            if (_invoice != null)
-            {
-                var selectColumn = new DataGridViewButtonColumn();
-                selectColumn.HeaderText = string.Empty;
-                selectColumn.Name = "select";
-                selectColumn.Text = "Seleccionar";
-                selectColumn.UseColumnTextForButtonValue = true;
-                DgvCustomers.Columns.Add(selectColumn);
-            }
+            var selectColumn = new DataGridViewButtonColumn();
+            selectColumn.HeaderText = string.Empty;
+            selectColumn.Name = "select";
+            selectColumn.Text = "Seleccionar";
+            selectColumn.UseColumnTextForButtonValue = true;
+            DgvCustomers.Columns.Add(selectColumn);
         }
 
         private void DgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -71,7 +61,7 @@ namespace PachaSystemERP.Forms
                 && e.RowIndex >= 0)
             {
                 var customerID = (int)DgvCustomers["ID", e.RowIndex].Value;
-                _invoice.CustomerID = customerID;
+                CustomerID = customerID;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

@@ -60,10 +60,9 @@ namespace PachaSystemERP.Classes
             return stringBuilder.ToString();
         }
 
-        public CaeResponse  GenerateInvoice(InvoiceBuilder builder)
+        public CaeResponse  GenerateInvoice(Invoice invoice)
         {
             var credentials = GetCredentials();
-            var invoice = builder.GetInvoiceData();
             var request = GenerateRequest(invoice);
 
             var response = _wsfeClient.SolicitarCae(credentials, request);
